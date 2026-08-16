@@ -1,0 +1,124 @@
+<!--
+  TutorExel - Book Free Trial Webhook Integration
+
+  HOW TO ADD TO WORDPRESS:
+  ========================
+  Option 1: Use "Insert Headers and Footers" plugin
+            - Go to Settings > Insert Headers and Footers
+            - Paste this code in "Scripts in Footer" section
+            - Save
+
+  Option 2: Theme Customizer
+            - Go to Appearance > Customize > Additional CSS/Scripts
+            - Paste this code
+            - Save
+
+  Option 3: Edit theme directly
+            - Go to Appearance > Theme Editor
+            - Open footer.php
+            - Paste this code before </body>
+            - Save
+
+  Option 4: Use Code Snippets plugin
+            - Install "Code Snippets" plugin
+            - Add new snippet (JavaScript)
+            - Paste the code between script tags
+            - Activate
+-->
+
+<script>
+(function() {
+  'use strict';
+
+  var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/p9u7KRMWqnM4jO41Ghdo/webhook-trigger/9c41ef10-0897-43e9-b8cb-dc1f041db3ae';
+  var FORM_SELECTOR = '#book-trial';
+  var webhookCalled = false;
+
+  function sanitize(val) {
+    return typeof val === 'string' ? val.trim().replace(/[<>]/g, '') : val;
+  }
+
+  function clean(data) {
+    var result = {};
+    for (var key in data) {
+      if (data[key] !== null && data[key] !== undefined && data[key] !== '') {
+        result[key] = sanitize(data[key]);
+      }
+    }
+    return result;
+  }
+
+  function getFormData(form) {
+    var data = {};
+    var inputs = form.querySelectorAll('input, select, textarea');
+
+    inputs.forEach(function(el) {
+      var name = el.name || el.id;
+      if (!name) return;
+
+      if (el.type === 'checkbox' || el.type === 'radio') {
+        if (el.checked) data[name] = el.value || 'yes';
+      } else if (el.value) {
+        data[name] = el.value;
+      }
+    });
+
+    return data;
+  }
+
+  function sendWebhook(formData) {
+    if (webhookCalled) return;
+    webhookCalled = true;
+
+    var payload = Object.assign({}, clean(formData), {
+      submittedAt: new Date().toISOString(),
+      source: 'tutorexel-website-book-trial',
+      pageUrl: window.location.href
+    });
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function() {});
+  }
+
+  function isValid(form) {
+    var fields = form.querySelectorAll('[required]');
+    for (var i = 0; i < fields.length; i++) {
+      if (!fields[i].value || !fields[i].value.trim()) return false;
+    }
+    return true;
+  }
+
+  function init() {
+    var form = document.querySelector(FORM_SELECTOR);
+    if (!form) return;
+
+    form.addEventListener('submit', function() {
+      if (isValid(form)) {
+        sendWebhook(getFormData(form));
+      }
+    });
+
+    var buttons = form.querySelectorAll('button[type="submit"], input[type="submit"], .book-trial-submit');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        setTimeout(function() {
+          if (!webhookCalled && isValid(form)) {
+            sendWebhook(getFormData(form));
+          }
+        }, 100);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  window.addEventListener('pageshow', function() { webhookCalled = false; });
+})();
+</script>

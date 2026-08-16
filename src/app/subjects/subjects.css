@@ -1,0 +1,791 @@
+/* ===== Subject Banner Section (Same as About page) ===== */
+.subject-banner {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+.subject-banner__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.subject-banner__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.subject-banner__decoration--right {
+  bottom: 0px;
+  right: -10px;
+}
+
+.subject-banner__curve {
+  display: block;
+}
+
+.subject-banner__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: .4;
+}
+
+.subject-banner__curve--3 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+.subject-banner__curve--4 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.subject-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.subject-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subject-banner__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-6);
+}
+
+.subject-banner__title-highlight {
+  background: linear-gradient(0deg, #FF003B -25.96%, #FFA84A 117.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subject-banner__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.subject-banner__title-star img {
+  width: 40px;
+}
+
+.subject-banner__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.subject-banner__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ===== Year Level Section ===== */
+.subject-years {
+  background: #FFFFFF;
+  padding: 100px 0;
+  padding-top: 0px;
+}
+
+.subject-years__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.subject-years__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.subject-years__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.subject-years__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.subject-years__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Year Cards Grid */
+.subject-years__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Year Card */
+.subject-years__card {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Normal card hover - becomes dark */
+.subject-years__card:hover {
+  background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.subject-years__card:hover .subject-years__card-year {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.subject-years__card:hover .subject-years__card-ages {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.subject-years__card:hover .subject-years__card-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.subject-years__card:hover .subject-years__card-btn--maths {
+  background: #FFFFFF;
+  color: #232323;
+  border-color: #FFFFFF;
+}
+
+.subject-years__card:hover .subject-years__card-btn--science {
+  background: #FFFFFF;
+  color: #16a34a;
+  border-color: #FFFFFF;
+}
+
+/* Featured Card (Dark by default) */
+.subject-years__card--featured {
+  background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);
+  border-color: transparent;
+}
+
+/* When grid is hovered, reset featured card to light if another card is hovered */
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+}
+
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) .subject-years__card-year {
+  background: #F5F5F5;
+  color: #232323;
+}
+
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) .subject-years__card-ages {
+  color: #757575;
+}
+
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) .subject-years__card-description {
+  color: #515151;
+}
+
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) .subject-years__card-btn--maths {
+  background: transparent;
+  color: #232323;
+  border-color: #D0D0D0;
+}
+
+.subject-years__grid:has(.subject-years__card:hover) .subject-years__card--featured:not(:hover) .subject-years__card-btn--science {
+  background: transparent;
+  color: #16a34a;
+  border-color: #16a34a;
+}
+
+/* Card Header */
+.subject-years__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.subject-years__card-year {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #F5F5F5;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #232323;
+  letter-spacing: 0.5px;
+}
+
+.subject-years__card-year--featured {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.subject-years__card-ages {
+  font-size: 14px;
+  font-weight: 400;
+  color: #757575;
+}
+
+.subject-years__card--featured .subject-years__card-ages {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Card Description */
+.subject-years__card-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.subject-years__card--featured .subject-years__card-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Card Buttons */
+.subject-years__card-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.subject-years__card-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* English Button (Orange) */
+.subject-years__card-btn--english {
+  background: #FF6B35;
+  color: #FFFFFF;
+}
+
+.subject-years__card-btn--english:hover {
+  background: #E55A28;
+}
+
+/* Maths Button (Outline) */
+.subject-years__card-btn--maths {
+  background: transparent;
+  color: #232323;
+  border: 1.5px solid #D0D0D0;
+}
+
+.subject-years__card-btn--maths:hover {
+  background: #232323;
+  color: #FFFFFF;
+  border-color: #232323;
+}
+
+/* Featured Card Buttons */
+.subject-years__card--featured .subject-years__card-btn--english {
+  background: #FF6B35;
+  color: #FFFFFF;
+}
+
+.subject-years__card--featured .subject-years__card-btn--maths {
+  background: #FFFFFF;
+  color: #232323;
+  border-color: #FFFFFF;
+}
+
+.subject-years__card--featured .subject-years__card-btn--maths:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Science Button (Green outline) */
+.subject-years__card-btn--science {
+  background: transparent;
+  color: #16a34a;
+  border: 1.5px solid #16a34a;
+}
+
+.subject-years__card-btn--science:hover {
+  background: #16a34a;
+  color: #FFFFFF;
+}
+
+.subject-years__card--featured .subject-years__card-btn--science {
+  background: transparent;
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.subject-years__card--featured .subject-years__card-btn--science:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #16a34a;
+}
+
+/* ===== Structured Learning Section ===== */
+.subject-structured {
+  background: linear-gradient(0.67deg, #FF003B -125.55%, #FFA84A 95.62%);
+  padding: 80px 0;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+.subject-structured__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.subject-structured__left {
+  position: relative;
+}
+
+.subject-structured__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+}
+
+.subject-structured__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.subject-structured__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 30px;
+}
+
+.subject-structured__image {
+  position: relative;
+}
+
+.subject-structured__image img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  object-fit: contain;
+}
+
+.subject-structured__right {
+  display: flex;
+  align-items: center;
+}
+
+.subject-structured__cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.subject-structured__card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.subject-structured__card-number {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #FFA84A 0%, #FF8A3D 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.subject-structured__card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 8px;
+}
+
+.subject-structured__card-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.5;
+}
+
+/* ===== What Sets Us Apart Section ===== */
+.subject-apart {
+  background: #FFFFFF;
+  padding: 100px 0;
+}
+
+.subject-apart__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.subject-apart__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.subject-apart__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.subject-apart__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.subject-apart__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+
+.subject-apart__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subject-apart__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.subject-apart__check {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.subject-apart__item-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.5;
+}
+
+.subject-apart__item-text strong {
+  font-weight: 600;
+  color: #232323;
+}
+
+.subject-apart__image {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.subject-apart__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 991px) {
+  .subject-banner {
+    padding: 140px 0 60px;
+  }
+
+  .subject-structured__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .subject-structured__title {
+    font-size: 40px;
+  }
+
+  .subject-structured__image img {
+    max-width: 350px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .subject-apart__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .subject-apart__title {
+    font-size: 40px;
+  }
+
+  .subject-apart__image {
+    order: -1;
+  }
+
+  .subject-banner__title {
+    font-size: 40px;
+  }
+
+  .subject-banner__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .subject-years__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .subject-years__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .subject-banner {
+    padding: 120px 0 50px;
+  }
+
+  .subject-banner__title {
+    font-size: 32px;
+  }
+
+  .subject-banner__title br {
+    display: none;
+  }
+
+  .subject-banner__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .subject-banner__decoration {
+    display: none;
+  }
+
+  .subject-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .subject-banner__actions .btn {
+    width: 100%;
+  }
+
+  .subject-years {
+    padding: 60px 0;
+  }
+
+  .subject-years__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .subject-years__title {
+    font-size: 28px;
+  }
+
+  .subject-years__header {
+    margin-bottom: 32px;
+  }
+
+  .subject-structured {
+    padding: 60px 0;
+  }
+
+  .subject-structured__title {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .subject-structured__label {
+    justify-content: center;
+  }
+
+  .subject-structured__cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .subject-structured__card {
+    padding: 24px 20px;
+  }
+
+  .subject-apart {
+    padding: 60px 0;
+  }
+
+  .subject-apart__title {
+    font-size: 32px;
+  }
+
+  .subject-apart__title br {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .subject-banner__title {
+    font-size: 28px;
+    margin-top: 80px;
+  }
+
+  .subject-structured__left{
+    text-align: center;
+  }
+
+  .subject-years__card {
+    padding: 24px 20px;
+  }
+
+  .subject-years__card-buttons {
+    flex-direction: column;
+  }
+
+  .subject-years__title {
+    font-size: 24px;
+  }
+
+  .subject-structured__title {
+    font-size: 26px;
+  }
+
+  .subject-structured__card-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .subject-structured__card-title {
+    font-size: 16px;
+  }
+
+  .subject-structured__card-description {
+    font-size: 13px;
+  }
+
+  .subject-apart__title {
+    font-size: 26px;
+  }
+
+  .subject-apart__item-text {
+    font-size: 14px;
+  }
+}
+
+/* ===== Live Online Coaching Banner Features ===== */
+.subject-banner__features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0 24px;
+  max-width: 900px;
+}
+
+.subject-banner__feature-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  border-left: 3px solid var(--primary-color, #1a2e3b);
+}
+
+.subject-banner__feature-card:nth-child(1) { border-left-color: #3d8b7a; }
+.subject-banner__feature-card:nth-child(2) { border-left-color: #d4654a; }
+.subject-banner__feature-card:nth-child(3) { border-left-color: #c4963a; }
+
+.subject-banner__feature-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a2e3b;
+  margin-bottom: 6px;
+}
+
+.subject-banner__feature-desc {
+  font-size: 13px;
+  color: #5a6b78;
+  line-height: 1.5;
+}
+
+.subject-banner__checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 24px;
+  max-width: 900px;
+}
+
+.subject-banner__check-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #5a6b78;
+}
+
+@media (max-width: 768px) {
+  .subject-banner__features {
+    grid-template-columns: 1fr;
+  }
+  .subject-banner__checklist {
+    gap: 8px 16px;
+  }
+}

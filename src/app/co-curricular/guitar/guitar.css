@@ -1,0 +1,677 @@
+/* ===== Guitar Page Styles ===== */
+
+/* --- Hero Banner (site-wide pattern) --- */
+.guitar-hero {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.guitar-hero__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.guitar-hero__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.guitar-hero__decoration--right {
+  top: 100px;
+  right: -10px;
+}
+
+.guitar-hero__curve {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  opacity: 0.5;
+}
+
+.guitar-hero__curve-right {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  opacity: 0.5;
+}
+
+.guitar-hero__stars {
+  width: 100%;
+  height: auto;
+  max-width: 120px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.guitar-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 992px;
+  margin: 0 auto;
+}
+
+.guitar-hero__title {
+  font-size: 68px;
+  font-weight: 500;
+  color: #232323;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -2.72px;
+}
+
+.guitar-hero__title-highlight {
+  background: linear-gradient(90deg, #FF7446 71.635%, #FF253F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.guitar-hero__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.guitar-hero__title-star img {
+  width: 32px;
+  height: 32px;
+}
+
+.guitar-hero__subtitle {
+  font-size: 20px;
+  color: #515151;
+  line-height: 1.4;
+  max-width: 896px;
+  margin: 0 auto 40px;
+}
+
+.guitar-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.guitar-hero__actions .btn-primary {
+  padding: 18px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  letter-spacing: -0.36px;
+}
+
+.guitar-hero__btn-outline {
+  background: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  letter-spacing: -0.36px;
+}
+
+.guitar-hero__btn-outline:hover {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* --- Education Cards Section --- */
+.education {
+  padding: var(--spacing-20) 0;
+  background: var(--color-white);
+  padding-top: 0px;
+}
+
+.education__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-12);
+}
+
+.education__grid--bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-6);
+  max-width: 66.666%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.education-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-8);
+  transition: all var(--transition-base);
+}
+
+.education-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.education-card--highlighted {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.education-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 107, 53, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-5);
+}
+
+.education-card__icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--color-primary);
+}
+
+.education-card--highlighted .education-card__icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.education-card--highlighted .education-card__icon svg {
+  color: var(--color-white);
+}
+
+.education-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-3);
+}
+
+.education-card--highlighted .education-card__title {
+  color: var(--color-white);
+}
+
+.education-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-subheading);
+  line-height: 1.7;
+}
+
+.education-card--highlighted .education-card__desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --- Grade Progression Section --- */
+.grade-progression {
+  padding: var(--spacing-20) 0;
+  background: var(--color-background);
+}
+
+.grade-path {
+  margin-top: var(--spacing-12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+  padding: var(--spacing-8) 0;
+}
+
+.grade-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  position: relative;
+  min-width: 90px;
+}
+
+.grade-node__circle {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.grade-node__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.grade-connector {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  flex-shrink: 0;
+  margin-bottom: var(--spacing-6);
+}
+
+/* --- Lesson Structure Section --- */
+.lesson-structure {
+  padding: var(--spacing-20) 0;
+  background: var(--color-white);
+}
+
+.lesson-structure__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-12);
+  align-items: start;
+}
+
+.lesson-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.lesson-item {
+  display: flex;
+  gap: var(--spacing-5);
+  align-items: flex-start;
+}
+
+.lesson-item__time {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.lesson-item__time-icon {
+  font-size: var(--font-size-base);
+}
+
+.lesson-item__content {
+  flex: 1;
+}
+
+.lesson-item__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-1);
+}
+
+.lesson-item__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-subheading);
+  line-height: 1.6;
+}
+
+.lesson-details {
+  margin-top: var(--spacing-8);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.lesson-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.lesson-detail__label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lesson-detail__value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+}
+
+.lesson-structure__image {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 100%;
+  min-height: 360px;
+}
+
+.lesson-structure__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Who Is This For Section --- */
+.audience {
+  padding: var(--spacing-20) 0;
+  background: var(--color-background);
+}
+
+.audience__layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-12);
+  margin-top: var(--spacing-12);
+  align-items: center;
+}
+
+.audience__image {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  height: 470px;
+}
+
+.audience__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audience__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.audience-item {
+  padding-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.audience-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.audience-item__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-2);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.audience-item:last-child .audience-item__title {
+  text-decoration: none;
+}
+
+.audience-item__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-subheading);
+  line-height: 1.7;
+}
+
+/* --- Requirements Section --- */
+.requirements {
+  padding: var(--spacing-20) 0;
+  background: var(--color-white);
+}
+
+.requirements__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-12);
+}
+
+.requirement-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  text-align: center;
+  transition: all var(--transition-base);
+}
+
+.requirement-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.requirement-card--highlighted {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.requirement-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 107, 53, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-4);
+}
+
+.requirement-card__icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-primary);
+}
+
+.requirement-card--highlighted .requirement-card__icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.requirement-card--highlighted .requirement-card__icon svg {
+  color: var(--color-white);
+}
+
+.requirement-card__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-heading);
+  line-height: 1.5;
+}
+
+.requirement-card--highlighted .requirement-card__label {
+  color: var(--color-white);
+}
+
+/* --- Music CTA Section --- */
+.music-cta {
+  padding: var(--spacing-20) 0;
+  background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+  text-align: center;
+}
+
+.music-cta__title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-8);
+}
+
+.music-cta__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.music-cta__btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 2px solid var(--color-white);
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+}
+
+.music-cta__btn--outline:hover {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 991px) {
+  .guitar-hero {
+    padding: 140px 0 60px;
+  }
+
+  .guitar-hero__title {
+    font-size: 50px;
+    letter-spacing: -2px;
+  }
+
+  .guitar-hero__subtitle {
+    font-size: 18px;
+  }
+
+  .education__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .education__grid--bottom {
+    max-width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lesson-structure__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-structure__image {
+    min-height: 280px;
+    order: -1;
+  }
+
+  .audience__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .audience__image {
+    height: 300px;
+  }
+
+  .requirements__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grade-path {
+    justify-content: flex-start;
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .guitar-hero {
+    padding: 120px 0 50px;
+  }
+
+  .guitar-hero__title {
+    font-size: 42px;
+  }
+
+  .education__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .education__grid--bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .grade-node {
+    min-width: 70px;
+  }
+
+  .grade-node__circle {
+    width: 44px;
+    height: 44px;
+    font-size: var(--font-size-sm);
+  }
+
+  .grade-connector {
+    width: 24px;
+  }
+
+  .lesson-details {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .requirements__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .guitar-hero__title {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .guitar-hero__actions {
+    flex-direction: column;
+  }
+
+  .guitar-hero__decoration {
+    display: none;
+  }
+
+  .music-cta__actions {
+    flex-direction: column;
+  }
+
+  .grade-node {
+    min-width: 56px;
+  }
+
+  .grade-node__circle {
+    width: 38px;
+    height: 38px;
+    font-size: var(--font-size-xs);
+  }
+
+  .grade-connector {
+    width: 16px;
+  }
+
+  .grade-node__label {
+    font-size: 9px;
+  }
+}

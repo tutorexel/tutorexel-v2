@@ -1,0 +1,86 @@
+/* ===== Co-Curricular Booking Page ===== */
+.cc-booking-hero {
+  position: relative;
+  padding: calc(var(--spacing-20) + 80px) 0 var(--spacing-10);
+  background: linear-gradient(180deg, #fff8f4 0%, #ffffff 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.cc-booking-hero__decoration {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.cc-booking-hero__decoration--left { left: 0; }
+.cc-booking-hero__decoration--right { right: 0; }
+
+.cc-booking-hero__content {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cc-booking-hero__title {
+  font-family: var(--font-family);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-4);
+  line-height: 1.2;
+}
+
+.cc-booking-hero__highlight {
+  color: var(--color-primary);
+}
+
+.cc-booking-hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.6;
+}
+
+/* Calendar Widget */
+.cc-booking-section {
+  padding: 0 var(--container-padding) var(--spacing-16);
+  background: #ffffff;
+}
+
+.cc-booking__widget {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.cc-booking__iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .cc-booking-hero {
+    padding: calc(var(--spacing-12) + 80px) 0 var(--spacing-6);
+  }
+
+  .cc-booking-hero__title {
+    font-size: 32px;
+  }
+
+  .cc-booking-hero__decoration--left,
+  .cc-booking-hero__decoration--right {
+    display: none;
+  }
+
+  .cc-booking__iframe {
+    height: 900px;
+  }
+}

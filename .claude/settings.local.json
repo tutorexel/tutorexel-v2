@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "mcp__figma__get_screenshot",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://www.figma.com/api/mcp/asset/9012ca5e-5851-4590-8139-8eff671533c4'' -OutFile ''C:\\\\Users\\\\raju\\\\tutorexel-backup\\\\tutorexel-v1\\\\public\\\\images\\\\subjects\\\\structured-learning-woman.webp''\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://www.figma.com/api/mcp/asset/58689586-aedd-4645-a407-2f302e81116d'' -OutFile ''C:\\\\Users\\\\raju\\\\tutorexel-backup\\\\tutorexel-v1\\\\public\\\\images\\\\subjects\\\\classroom-learning.webp''\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://www.figma.com/api/mcp/asset/acbff88d-db22-49b3-8005-b33b6d81652f'' -OutFile ''C:\\\\Users\\\\raju\\\\tutorexel-backup\\\\tutorexel-v1\\\\public\\\\images\\\\subjects\\\\learning_outcomes_image.webp''\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://www.figma.com/api/mcp/asset/5b920f02-a5b3-4534-a878-7102c16732d0'' -OutFile ''C:\\\\Users\\\\raju\\\\tutorexel-backup\\\\tutorexel-v1\\\\public\\\\images\\\\subjects\\\\detail-session__image.webp''\")",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri ''https://www.figma.com/api/mcp/asset/bf7247fd-7c92-40d3-a2c5-55295d3b586b'' -OutFile ''C:\\\\Users\\\\raju\\\\tutorexel-backup\\\\tutorexel-v1\\\\public\\\\images\\\\co-curricular\\\\how_it_works_image.webp''\")",
+      "Bash(powershell -Command:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(npm run build:*)",
+      "Bash(xargs grep:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)"
+    ]
+  }
+}
