@@ -3,6 +3,18 @@ import Link from 'next/link';
 import BookTrialButton from './BookTrialButton';
 import './Hero.css';
 
+type Country = {
+  code: string; // ISO 3166-1 alpha-2, lowercase — used for flagcdn.com
+  name: string;
+};
+
+const COUNTRIES: Country[] = [
+  { code: "au", name: "Australia" },
+  { code: "us", name: "United States" },
+  { code: "ca", name: "Canada" },
+  { code: "nz", name: "New Zealand" },
+];
+
 export default function Hero() {
   return (
     <section className="hero">
@@ -24,17 +36,19 @@ export default function Hero() {
           {/* Left Content */}
           <div className="hero__content">
             <h1 className="hero__title">
-              Australian <span className="hero__title-gradient">Online</span><br/>
-              <span className="hero__title-gradient">Tutoring</span> That Gets<br/>
+              Curriculum-Aligned <span className="hero__title-gradient">Online</span><br />
+              <span className="hero__title-gradient">Tutoring</span> That Gets<br />
               Real Results <span className="hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="Star" width={24} height={24} /></span>
             </h1>
             <p className="hero__description">
-              Live Online Classes With Experienced Teachers. Australian Curriculum Aligned learning. Your child deserves Excellence.
+              Live Online Classes With Experienced Teachers. Your School Curriculum Aligned learning. Your child deserves Excellence.
             </p>
             <div className="hero__cta">
               <BookTrialButton className="hero__btn-primary">Book Your FREE Trial Class</BookTrialButton>
               <a href="/pricing" className="hero__btn-secondary">Join Now →</a>
             </div>
+
+
             <div className="hero__social-proof">
               <div className="hero__avatars">
                 <div className="hero__avatar"><img src="https://i.pravatar.cc/40?img=1" alt="User" /></div>
@@ -44,6 +58,26 @@ export default function Hero() {
                 <div className="hero__avatar hero__avatar--count"><span>+9k</span></div>
               </div>
             </div>
+
+            <p className="hero__countries-label">Now teaching families across</p>
+            <div className="hero__countries">
+              {COUNTRIES.map((country) => (
+                <div className="hero__country" key={country.code}>
+                  <Image
+                    src={`https://flagcdn.com/w40/${country.code}.png`}
+                    alt={`${country.name} flag`}
+                    width={18}
+                    height={13}
+                    className="hero__country-flag"
+                    unoptimized
+                  />
+                  <span className="hero__country-name">{country.name}</span>
+                </div>
+              ))}
+            </div>
+            <p className="hero__country-description">
+              Trusted by students across Australia, USA, Canada & New Zealand
+            </p>
           </div>
 
           {/* Right Side - Badges */}

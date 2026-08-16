@@ -148,7 +148,7 @@
   font-size: 12px;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-weight: 700;
   padding: 4px 12px;
   border-radius: 20px;
@@ -201,6 +201,113 @@
 .pricing-card__button:hover {
   background: #ff6b35;
   transform: translateY(-2px);
+}
+
+.pricing__country-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.pricing__country-label {
+  font-size: 14px;
+  color: #5c6b67;
+  font-weight: 500;
+}
+
+/* Dropdown wrapper */
+.country-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.country-selector__trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #e3e6e5;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2b332f;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.country-selector__trigger:hover {
+  border-color: #e8623a;
+}
+
+.country-selector__flag {
+  border-radius: 2px;
+  display: block;
+  object-fit: cover;
+  width: 18px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.country-selector__name {
+  white-space: nowrap;
+}
+
+.country-selector__chevron {
+  display: flex;
+  align-items: center;
+  color: #8a938f;
+  transition: transform 0.15s ease;
+}
+
+.country-selector__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.country-selector__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #e3e6e5;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  padding: 6px;
+  min-width: 180px;
+  z-index: 20;
+  list-style: none;
+  margin: 0;
+}
+
+.country-selector__option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2b332f;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.country-selector__option:hover {
+  background: #f5f6f5;
+}
+
+.country-selector__option--active {
+  background: #fdf1ec;
+  color: #c14a26;
 }
 
 /* ===== Responsive: max-width 1199px ===== */
@@ -376,6 +483,7 @@
   box-shadow: 0 6px 18px rgba(229, 96, 49, 0.28);
   animation: pricing-discount-shimmer 6s ease-in-out infinite;
 }
+
 .pricing__discount-badge strong {
   font-weight: 900;
   background: #fff;
@@ -384,25 +492,55 @@
   border-radius: 6px;
   letter-spacing: 0.5px;
 }
+
 .pricing__discount-pulse {
   display: inline-block;
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: #fff;
-  box-shadow: 0 0 0 0 rgba(255,255,255,0.85);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
   animation: pricing-discount-pulse 1.4s infinite;
 }
+
 @keyframes pricing-discount-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.9); transform: scale(1); }
-  70%  { box-shadow: 0 0 0 10px rgba(255,255,255,0); transform: scale(1.15); }
-  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); transform: scale(1); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+    transform: scale(1);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    transform: scale(1.15);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    transform: scale(1);
+  }
 }
+
 @keyframes pricing-discount-shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
+
 @media (max-width: 640px) {
-  .pricing__discount-badge { font-size: 0.88rem; padding: 8px 16px; gap: 8px; }
-  .pricing__discount-badge strong { font-size: 1em; padding: 1px 7px; }
+  .pricing__discount-badge {
+    font-size: 0.88rem;
+    padding: 8px 16px;
+    gap: 8px;
+  }
+
+  .pricing__discount-badge strong {
+    font-size: 1em;
+    padding: 1px 7px;
+  }
 }
