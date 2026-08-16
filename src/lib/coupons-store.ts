@@ -1,14 +1,8 @@
 /**
- * Coupons — server-side store.
- *
- * Persistence strategy (auto-detected, mirrors geo-store.ts):
- *   1. If a KV/Redis REST store is configured (KV_REST_API_URL + KV_REST_API_TOKEN,
- *      or UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN) → use it.
- *      This is REQUIRED on Vercel/serverless, where the filesystem is read-only.
- *   2. Otherwise fall back to coupons.json on disk (works for local dev).
- *
+ * Coupons — server-side JSON file store.
+ * Persists at coupons.json in the project root (matching geo-store pattern).
  * In-process mutex serialises writes so concurrent requests can't lose updates
- * (adequate for current volume).
+ * (single pm2 fork — adequate for current volume).
  */
 
 import fs from "fs/promises";
@@ -36,54 +30,9 @@ interface StoreShape {
 const STORE_PATH = path.join(process.cwd(), "coupons.json");
 const DEFAULT_STORE: StoreShape = { coupons: [] };
 
-/** Redis key used in the KV store. */
-export const COUPONS_KV_KEY = "coupons";
-
-// ─── KV (Upstash Redis REST) helpers ─────────────────────────────────────────
-const KV_URL = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL ?? "";
-const KV_TOKEN = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN ?? "";
-
-function hasKV(): boolean {
-  return !!(KV_URL && KV_TOKEN);
-}
-
-async function kvGet(): Promise<StoreShape | null> {
-  const res = await fetch(`${KV_URL}/get/${COUPONS_KV_KEY}`, {
-    headers: { Authorization: `Bearer ${KV_TOKEN}` },
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error(`KV get failed (HTTP ${res.status})`);
-  const data = (await res.json()) as { result: string | null };
-  if (!data.result) return null;
-  return JSON.parse(data.result) as StoreShape;
-}
-
-async function kvSet(store: StoreShape): Promise<void> {
-  const res = await fetch(`${KV_URL}/set/${COUPONS_KV_KEY}`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${KV_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(store),
-    cache: "no-store",
-  });
-  if (!res.ok) throw new Error(`KV set failed (HTTP ${res.status})`);
-}
-
 let writeChain: Promise<unknown> = Promise.resolve();
 
 async function readStore(): Promise<StoreShape> {
-  if (hasKV()) {
-    try {
-      const stored = await kvGet();
-      return { coupons: Array.isArray(stored?.coupons) ? stored!.coupons : [] };
-    } catch {
-      return { ...DEFAULT_STORE };
-    }
-  }
-
-  // Local dev fallback: read from disk.
   try {
     const raw = await fs.readFile(STORE_PATH, "utf-8");
     const parsed = JSON.parse(raw) as Partial<StoreShape>;
@@ -94,13 +43,6 @@ async function readStore(): Promise<StoreShape> {
 }
 
 async function writeStore(store: StoreShape): Promise<void> {
-  if (hasKV()) {
-    await kvSet(store);
-    return;
-  }
-
-  // Local dev fallback: atomic write via temp file. NOTE: this throws on
-  // Vercel/serverless (read-only filesystem) — configure a KV store there.
   const tmp = STORE_PATH + ".tmp";
   await fs.writeFile(tmp, JSON.stringify(store, null, 2), "utf-8");
   await fs.rename(tmp, STORE_PATH);
