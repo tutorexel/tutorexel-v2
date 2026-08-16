@@ -178,6 +178,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 25px;
 }
 
 .hero__country {
@@ -194,24 +195,15 @@
   border-radius: 2px;
   display: block;
   object-fit: cover;
-  width: 18px;
-  height: 13px;
+  width: 33px;
+  /* height: 13px; */
 }
 
 .hero__country-name {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   color: #2b332f;
   white-space: nowrap;
-}
-
-.hero__country-description {
-  color: #515151;
-  max-width: 500px;
-  margin: 15px 0;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.75;
 }
 
 @media (max-width: 640px) {

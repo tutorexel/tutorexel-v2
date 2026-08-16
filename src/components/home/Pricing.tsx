@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import './Pricing.css';
-import CountrySelector, { COUNTRIES, type Country } from "@/components/shared/CountrySelector";
+import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 
 type PricingPlan = {
   id: string;
@@ -116,8 +116,8 @@ export default function Pricing() {
           </p>
 
           <div className="pricing__country-row">
-            <span className="pricing__country-label">Pricing shown for:</span>
-            <CountrySelector selected={selectedCountry} onChange={setSelectedCountry} />
+            {/* <span className="pricing__country-label">Pricing shown for:</span> */}
+            <CountryTabs selected={selectedCountry} onChange={setSelectedCountry} />
           </div>
 
         </div>

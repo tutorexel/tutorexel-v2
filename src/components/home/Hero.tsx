@@ -10,7 +10,7 @@ type Country = {
 
 const COUNTRIES: Country[] = [
   { code: "au", name: "Australia" },
-  { code: "us", name: "United States" },
+  { code: "us", name: "USA" },
   { code: "ca", name: "Canada" },
   { code: "nz", name: "New Zealand" },
 ];
@@ -35,10 +35,25 @@ export default function Hero() {
         <div className="hero__grid">
           {/* Left Content */}
           <div className="hero__content">
+            <p className="hero__countries-label">Now teaching families across</p>
+            <div className="hero__countries">
+              {COUNTRIES.map((country) => (
+                <div className="hero__country" key={country.code}>
+                  <Image
+                    src={`https://flagcdn.com/80x60/${country.code}.png`}
+                    alt={`${country.name} flag`}
+                    width={18}
+                    height={13}
+                    className="hero__country-flag"
+                    unoptimized
+                  />
+                  <span className="hero__country-name">{country.name}</span>
+                </div>
+              ))}
+            </div>
             <h1 className="hero__title">
-              Curriculum-Aligned <span className="hero__title-gradient">Online</span><br />
-              <span className="hero__title-gradient">Tutoring</span> That Gets<br />
-              Real Results <span className="hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="Star" width={24} height={24} /></span>
+              Online Tutoring That Gets <span className="hero__title-gradient">Real Results</span>
+              <span className="hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="Star" width={24} height={24} /></span>
             </h1>
             <p className="hero__description">
               Live Online Classes With Experienced Teachers. Your School Curriculum Aligned learning. Your child deserves Excellence.
@@ -59,25 +74,6 @@ export default function Hero() {
               </div>
             </div>
 
-            <p className="hero__countries-label">Now teaching families across</p>
-            <div className="hero__countries">
-              {COUNTRIES.map((country) => (
-                <div className="hero__country" key={country.code}>
-                  <Image
-                    src={`https://flagcdn.com/w40/${country.code}.png`}
-                    alt={`${country.name} flag`}
-                    width={18}
-                    height={13}
-                    className="hero__country-flag"
-                    unoptimized
-                  />
-                  <span className="hero__country-name">{country.name}</span>
-                </div>
-              ))}
-            </div>
-            <p className="hero__country-description">
-              Trusted by students across Australia, USA, Canada & New Zealand
-            </p>
           </div>
 
           {/* Right Side - Badges */}
@@ -88,7 +84,7 @@ export default function Hero() {
               </div>
               <div className="hero__badge-content">
                 <span className="hero__badge-title">100%</span>
-                <span className="hero__badge-subtitle">Australian Curriculum</span>
+                <span className="hero__badge-subtitle">Curriculum Aligned</span>
               </div>
             </div>
             <div className="hero__badge hero__badge--experience">

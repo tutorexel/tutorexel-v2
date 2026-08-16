@@ -7,7 +7,7 @@ import Image from "next/image";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
-import CountrySelector, { COUNTRIES, type Country } from "@/components/shared/CountrySelector";
+import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import "./pricing.css";
 
 type PricingPlan = {
@@ -297,8 +297,8 @@ function PricingPageContent() {
         <div className="container">
 
           <div className="pricing__country-row">
-            <span className="pricing__country-label">Pricing shown for:</span>
-            <CountrySelector selected={selectedCountry} onChange={setSelectedCountry} />
+            {/* <span className="pricing__country-label">Pricing shown for:</span> */}
+            <CountryTabs selected={selectedCountry} onChange={setSelectedCountry} />
           </div>
 
           <div className="pricing__grid">
