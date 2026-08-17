@@ -15,7 +15,7 @@ const COUNTRIES: Country[] = [
   { code: "au", name: "Australia" },
   { code: "us", name: "USA" },
   { code: "ca", name: "Canada" },
-  { code: "nz", name: "New Zealand" },
+  { code: "nz", name: "NZD" },
 ];
 
 const socialLinks = [

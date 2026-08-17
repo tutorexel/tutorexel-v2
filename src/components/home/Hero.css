@@ -181,6 +181,10 @@
   margin-bottom: 25px;
 }
 
+.footer .hero__countries {
+  justify-content: center;
+}
+
 .hero__country {
   display: flex;
   align-items: center;
@@ -191,12 +195,21 @@
   padding: 7px 14px 7px 10px;
 }
 
+.footer .hero__country {
+  gap: 5px;
+  padding: 7px;
+}
+
 .hero__country-flag {
   border-radius: 2px;
   display: block;
   object-fit: cover;
   width: 33px;
   /* height: 13px; */
+}
+
+.footer .hero__country-flag {
+  width: 28px;
 }
 
 .hero__country-name {
@@ -215,8 +228,16 @@
     padding: 6px 12px 6px 9px;
   }
 
+  .footer .hero__country-flag {
+    width: 20px;
+  }
+
   .hero__country-name {
     font-size: 12px;
+  }
+
+  .footer .hero__country-name {
+    font-size: 11px;
   }
 }
 
@@ -510,7 +531,7 @@
     background-position: center;
     opacity: 1;
     order: 3;
-    top: 450px;
+    top: 591px;
   }
 
   .hero__content {
