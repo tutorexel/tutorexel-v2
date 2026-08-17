@@ -80,7 +80,7 @@ export default function ResultsPage() {
           </h1>
           <p className="results-hero__subtitle">
             These are not made-up numbers. These are actual outcomes from
-            Australian students who learned with TutorExel.
+            Worldwide students who learned with TutorExel.
           </p>
         </div>
       </section>

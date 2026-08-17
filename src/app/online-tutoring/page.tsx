@@ -9,22 +9,22 @@ import { cities } from "@/data/cities";
 import "./[city]/city.css";
 
 export const metadata: Metadata = {
-  title: "Online Tutoring Across Australia | TutorExel",
+  title: "Online Tutoring Across Worldwide | TutorExel",
   description:
-    "Expert online tutoring for Australian students in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
+    "Expert online tutoring for Students Worldwide in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
   openGraph: {
-    title: "Online Tutoring Across Australia | TutorExel",
+    title: "Online Tutoring Across Worldwide | TutorExel",
     description:
-      "Expert online tutoring for Australian students in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
+      "Expert online tutoring for Students Worldwide in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
     url: "https://tutorexel.com/online-tutoring",
     siteName: "TutorExel",
     locale: "en_AU",
     type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
+    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Online Tutoring" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Online Tutoring Across Australia | TutorExel",
+    title: "Online Tutoring Across Worldwide | TutorExel",
     description:
       "Expert online tutoring for Australian students in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
     images: ["/images/banner/og-image.webp"],
@@ -108,7 +108,7 @@ export default function OnlineTutoringPage() {
             </p>
             <h2 className="ot-cities__title">Online Tutoring in Your City</h2>
             <p className="ot-cities__subtitle">
-              TutorExel delivers expert online tutoring to students across Australia. Choose your city to learn more about our programs in your area.
+              TutorExel delivers expert online tutoring to students across Worldwide. Choose your city to learn more about our programs in your area.
             </p>
           </div>
 

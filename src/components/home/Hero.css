@@ -163,6 +163,63 @@
   color: #515151;
 }
 
+/* Countries label */
+.hero__countries-label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 24px 0 10px;
+}
+
+/* Country capsules */
+.hero__countries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.hero__country {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffff;
+  border: 1px solid #e3e6e5;
+  border-radius: 999px;
+  padding: 7px 14px 7px 10px;
+}
+
+.hero__country-flag {
+  border-radius: 2px;
+  display: block;
+  object-fit: cover;
+  width: 33px;
+  /* height: 13px; */
+}
+
+.hero__country-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2b332f;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .hero__countries {
+    gap: 8px;
+  }
+
+  .hero__country {
+    padding: 6px 12px 6px 9px;
+  }
+
+  .hero__country-name {
+    font-size: 12px;
+  }
+}
+
 .hero__social-proof {
   display: flex;
   align-items: center;
@@ -484,7 +541,7 @@
     padding: 14px 32px;
   }
 
-  .hero__social-proof{
+  .hero__social-proof {
     justify-content: center;
   }
 
@@ -653,13 +710,13 @@
     width: fit-content;
   }
 
-  .hero__badge.hero__badge--verified{
+  .hero__badge.hero__badge--verified {
     position: absolute;
     top: 10px;
     left: 0;
   }
 
-  .hero__badge.hero__badge--experience{
+  .hero__badge.hero__badge--experience {
     position: absolute;
     top: 160px;
     right: 0;
@@ -931,6 +988,7 @@
   text-decoration: none;
   transition: all 0.2s;
 }
+
 .hero__btn-secondary:hover {
   background: #1a2e3b;
   color: #fff;

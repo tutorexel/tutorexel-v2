@@ -1,6 +1,11 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import './Pricing.css';
+import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 
 type PricingPlan = {
   id: string;
@@ -22,7 +27,7 @@ const pricingPlans: PricingPlan[] = [
     subtitle: 'Mathematics, English, Science',
     currency: '$',
     amount: '84',
-    period: 'AUD/month per subject',
+    period: 'month per subject',
     popular: true,
     borderColor: 'orange',
     features: [
@@ -44,7 +49,7 @@ const pricingPlans: PricingPlan[] = [
     subtitle: 'Music & Creative Arts\nPiano & Guitar',
     currency: '$',
     amount: '79',
-    period: 'AUD/month (4 classes)',
+    period: 'month (4 classes)',
     popular: false,
     borderColor: 'dark',
     features: [
@@ -65,7 +70,7 @@ const pricingPlans: PricingPlan[] = [
     currency: '$',
     amount: '219',
     originalAmount: '299',
-    period: 'per month',
+    period: 'month',
     popular: false,
     borderColor: 'dark',
     features: [
@@ -89,6 +94,9 @@ function CheckIcon() {
 }
 
 export default function Pricing() {
+
+  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]);
+
   return (
     <section className="pricing section">
       <div className="pricing__bg"></div>
@@ -106,6 +114,12 @@ export default function Pricing() {
           <p className="section-header__subtitle">
             No contracts. No hidden fees. Cancel anytime.
           </p>
+
+          <div className="pricing__country-row">
+            {/* <span className="pricing__country-label">Pricing shown for:</span> */}
+            <CountryTabs selected={selectedCountry} onChange={setSelectedCountry} />
+          </div>
+
         </div>
 
         <div className="pricing__grid">
@@ -133,7 +147,7 @@ export default function Pricing() {
                 <div className="pricing-card__price">
                   <span className="currency">{plan.currency}</span>
                   <span className="amount">{plan.amount}</span>
-                  <span className="period">{plan.period}</span>
+                  <span className="period">{selectedCountry.currency}/{plan.period}</span>
                 </div>
               </div>
 
@@ -148,7 +162,7 @@ export default function Pricing() {
                 ))}
               </div>
 
-              <Link href={`/pricing?plan=${plan.id}`} className="pricing-card__button">
+              <Link href={`/pricing?plan=${plan.id}&currency=${selectedCountry.currency}`} className="pricing-card__button">
                 Get Started
               </Link>
             </div>

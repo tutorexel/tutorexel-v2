@@ -7,6 +7,7 @@ import Image from "next/image";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
+import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import "./pricing.css";
 
 type PricingPlan = {
@@ -29,7 +30,7 @@ const pricingPlans: PricingPlan[] = [
     subtitle: "Mathematics, English, Science",
     currency: "$",
     amount: "84",
-    period: "AUD/month per subject",
+    period: "month per subject",
     popular: true,
     borderColor: "orange",
     features: [
@@ -51,7 +52,7 @@ const pricingPlans: PricingPlan[] = [
     subtitle: "Music & Creative Arts\nPiano & Guitar",
     currency: "$",
     amount: "79",
-    period: "AUD/month (4 classes)",
+    period: "month (4 classes)",
     popular: false,
     borderColor: "dark",
     features: [
@@ -72,11 +73,11 @@ const pricingPlans: PricingPlan[] = [
     currency: "$",
     amount: "219",
     originalAmount: "299",
-    period: "per month",
+    period: "month",
     popular: false,
     borderColor: "dark",
     features: [
-      "8 live classes per month",
+      "12 live classes per month",
       "3 Subjects — Maths, English & Science",
       "1:1 personalised tutoring available",
       "Group sessions available (max 3 students)",
@@ -98,8 +99,8 @@ function CheckIcon() {
 function GreenCheckIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9" cy="9" r="9" fill="#4CAF50"/>
-      <path d="M5.5 9L8 11.5L12.5 6.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="9" cy="9" r="9" fill="#4CAF50" />
+      <path d="M5.5 9L8 11.5L12.5 6.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -107,8 +108,8 @@ function GreenCheckIcon() {
 function PlusIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7 1V13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M1 7H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M7 1V13" stroke="white" strokeWidth="2" strokeLinecap="round" />
+      <path d="M1 7H13" stroke="white" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -116,7 +117,7 @@ function PlusIcon() {
 function MinusIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 7H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M1 7H13" stroke="white" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -124,10 +125,10 @@ function MinusIcon() {
 function StarIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <line x1="12" y1="0" x2="12" y2="24" stroke="#E56031" strokeWidth="0.6"/>
-      <line x1="0" y1="12" x2="24" y2="12" stroke="#E56031" strokeWidth="0.6"/>
-      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#E56031" strokeWidth="0.6"/>
-      <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" stroke="#E56031" strokeWidth="0.6"/>
+      <line x1="12" y1="0" x2="12" y2="24" stroke="#E56031" strokeWidth="0.6" />
+      <line x1="0" y1="12" x2="24" y2="12" stroke="#E56031" strokeWidth="0.6" />
+      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" stroke="#E56031" strokeWidth="0.6" />
+      <line x1="19.07" y1="4.93" x2="4.93" y2="19.07" stroke="#E56031" strokeWidth="0.6" />
     </svg>
   );
 }
@@ -198,16 +199,25 @@ function PricingPageContent() {
   const searchParams = useSearchParams();
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]);
   const subOptionsRef = useRef<HTMLDivElement>(null);
 
   // Auto-select plan from query parameter (when coming from Home page)
   useEffect(() => {
     const planParam = searchParams.get("plan");
+    const currencyParam = searchParams.get("currency");
     if (planParam && pricingPlans.some((p) => p.id === planParam)) {
       setSelectedOffering(planParam);
       setTimeout(() => {
         subOptionsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 300);
+    }
+
+    if (currencyParam) {
+      const matchedCountry = COUNTRIES.find((c) => c.currency === currencyParam);
+      if (matchedCountry) {
+        setSelectedCountry(matchedCountry);
+      }
     }
   }, [searchParams]);
 
@@ -285,14 +295,18 @@ function PricingPageContent() {
       {/* Pricing Cards - Same styling as Home page */}
       <section className="pricing section">
         <div className="container">
-    
+
+          <div className="pricing__country-row">
+            {/* <span className="pricing__country-label">Pricing shown for:</span> */}
+            <CountryTabs selected={selectedCountry} onChange={setSelectedCountry} />
+          </div>
+
           <div className="pricing__grid">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.name}
-                className={`pricing-card pricing-card--${plan.borderColor} ${
-                  selectedOffering === plan.id ? "pricing-card--selected" : ""
-                }`}
+                className={`pricing-card pricing-card--${plan.borderColor} ${selectedOffering === plan.id ? "pricing-card--selected" : ""
+                  }`}
               >
                 {plan.popular && (
                   <span className="pricing-card__badge">Most Popular</span>
@@ -313,7 +327,7 @@ function PricingPageContent() {
                   <div className="pricing-card__price">
                     <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
-                    <span className="period">{plan.period}</span>
+                    <span className="period">{selectedCountry.currency}/{plan.period}</span>
                   </div>
                 </div>
 
@@ -330,9 +344,8 @@ function PricingPageContent() {
 
                 <button
                   onClick={() => handleSelect(plan.id)}
-                  className={`pricing-card__button ${
-                    selectedOffering === plan.id ? "pricing-card__button--selected" : ""
-                  }`}
+                  className={`pricing-card__button ${selectedOffering === plan.id ? "pricing-card__button--selected" : ""
+                    }`}
                 >
                   {selectedOffering === plan.id ? "Selected" : "Get Started"}
                 </button>
@@ -349,15 +362,15 @@ function PricingPageContent() {
                   {selectedOffering === "live-online-coaching"
                     ? "Class Type"
                     : selectedOffering === "co-curricular"
-                    ? "Activity"
-                    : "Plan"}
+                      ? "Activity"
+                      : "Plan"}
                 </h2>
                 <p className="pricing-suboptions__subtitle">
                   {selectedOffering === "live-online-coaching"
                     ? "Select between personalised one-on-one coaching or affordable group sessions."
                     : selectedOffering === "co-curricular"
-                    ? "Choose from our music programs — learn Piano, Guitar, or both at a discount."
-                    : "Get the complete learning package with both Maths and English included."}
+                      ? "Choose from our music programs — learn Piano, Guitar, or both at a discount."
+                      : "Get the complete learning package with both Maths and English included."}
                 </p>
               </div>
 
@@ -372,20 +385,20 @@ function PricingPageContent() {
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$84</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 1 Subject</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 1 Subject</span>
                       </div>
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$149</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 2 Subjects</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 2 Subjects</span>
                       </div>
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$219</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 3 Subjects</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 3 Subjects</span>
                       </div>
                       <p className="pricing-subcard__note">4 sessions per month per subject</p>
                     </div>
                     <Link
-                      href="/enroll?offering=live-online-coaching&type=one-to-one"
+                      href={`/enroll?offering=live-online-coaching&type=one-to-one&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -401,20 +414,20 @@ function PricingPageContent() {
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$39</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 1 Subject</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 1 Subject</span>
                       </div>
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$69</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 2 Subjects</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 2 Subjects</span>
                       </div>
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$99</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 3 Subjects</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 3 Subjects</span>
                       </div>
                       <p className="pricing-subcard__note">4 sessions per month per subject</p>
                     </div>
                     <Link
-                      href="/enroll?offering=live-online-coaching&type=group"
+                      href={`/enroll?offering=live-online-coaching&type=group&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -434,11 +447,11 @@ function PricingPageContent() {
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$79</span>
-                        <span className="pricing-subcard__detail">/month (4 classes)</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month (4 classes)</span>
                       </div>
                     </div>
                     <Link
-                      href="/enroll?offering=co-curricular&activity=piano"
+                      href={`/enroll?offering=co-curricular&activity=piano&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -454,11 +467,11 @@ function PricingPageContent() {
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$79</span>
-                        <span className="pricing-subcard__detail">/month (4 classes)</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month (4 classes)</span>
                       </div>
                     </div>
                     <Link
-                      href="/enroll?offering=co-curricular&activity=guitar"
+                      href={`/enroll?offering=co-curricular&activity=guitar&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -474,11 +487,11 @@ function PricingPageContent() {
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$149</span>
-                        <span className="pricing-subcard__detail">/month &mdash; both activities</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; both activities</span>
                       </div>
                     </div>
                     <Link
-                      href="/enroll?offering=co-curricular&activity=both"
+                      href={`/enroll?offering=co-curricular&activity=both&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -502,11 +515,11 @@ function PricingPageContent() {
                       </div>
                       <div className="pricing-subcard__price-row">
                         <span className="pricing-subcard__amount">$219</span>
-                        <span className="pricing-subcard__detail">/month &mdash; 3 subjects included</span>
+                        <span className="pricing-subcard__detail">{selectedCountry.currency}/month &mdash; 3 subjects included</span>
                       </div>
                     </div>
                     <Link
-                      href="/enroll?offering=premium-plan"
+                      href={`/enroll?offering=premium-plan&currency=${selectedCountry.currency}`}
                       className="pricing-subcard__btn"
                     >
                       Join <ArrowRight />
@@ -569,9 +582,8 @@ function PricingPageContent() {
             {faqItems.map((item, index) => (
               <div
                 key={index}
-                className={`pricing-faq__item ${
-                  openFaqIndex === index ? "pricing-faq__item--open" : ""
-                }`}
+                className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""
+                  }`}
               >
                 <button
                   className="pricing-faq__question"
