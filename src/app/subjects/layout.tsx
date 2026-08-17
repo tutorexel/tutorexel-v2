@@ -1,24 +1,24 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Subjects | TutorExel - Australian Curriculum Aligned Tutoring',
+  title: 'Subjects | TutorExel - Personalised Learning Aligned Tutoring',
   description:
-    'Australian aligned curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
+    'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
   openGraph: {
-    title: 'Subjects | TutorExel - Australian Curriculum Aligned Tutoring',
+    title: 'Subjects | TutorExel - Personalised Learning Aligned Tutoring',
     description:
-      'Australian aligned curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
+      'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
     url: 'https://tutorexel.com/subjects',
     siteName: 'TutorExel',
     locale: 'en_AU',
     type: 'website',
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
+    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Your Personalised Online Tutoring" }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Subjects | TutorExel - Australian Curriculum Aligned Tutoring',
+    title: 'Subjects | TutorExel - Personalised Learning Aligned Tutoring',
     description:
-      'Australian aligned curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
+      'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
     images: ["/images/banner/og-image.webp"],
   },
   alternates: {

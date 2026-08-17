@@ -8,6 +8,7 @@ import { sendEnrollmentWebhook } from "@/utils/webhook";
 import { trackEnrollment } from "@/utils/analytics";
 import { pushUTMToGHL } from "@/utils/utm";
 import { computePricing, type ClassType, type Offering } from "@/lib/pricing";
+import { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import "./enroll.css";
 
 interface AppliedCoupon {
@@ -65,15 +66,26 @@ function EnrollForm() {
   const offeringParam = searchParams.get("offering") || "";
   const typeParam = searchParams.get("type") || "";
   const activityParam = searchParams.get("activity") || "";
+  const currencyParam = (searchParams.get("currency") || "").toUpperCase();
   // Auto-apply coupon link: /enroll?coupon=CODE — pre-fills the input and
   // applies the coupon as soon as the user has a valid total.
   const couponParam = (searchParams.get("coupon") || "").trim().toUpperCase();
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [redirecting, setRedirecting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const webhookCalledRef = useRef(false);
+
+  // Country / currency selection — defaults to whatever ?currency= was passed
+  // in from the Pricing page, falling back to the first country (Australia).
+  const [selectedCountry, setSelectedCountry] = useState<Country>(
+    () => COUNTRIES.find((c) => c.currency === currencyParam) || COUNTRIES[0]
+  );
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const country = COUNTRIES.find((c) => c.code === e.target.value);
+    if (country) setSelectedCountry(country);
+  };
 
   // Scroll to top when form is submitted successfully
   useEffect(() => {
@@ -145,7 +157,8 @@ function EnrollForm() {
     }));
   };
 
-  // Calculate total amount via shared pricing lib (server uses the same fn).
+  // Calculate total amount via shared pricing lib (server can use the same fn
+  // if it wants to re-derive the amount for the email).
   const pricing = useMemo(
     () =>
       computePricing({
@@ -162,8 +175,9 @@ function EnrollForm() {
   // intendedCoupon is the code we *want* applied — starts with the URL param,
   // becomes whatever the user types if they apply manually, becomes "" on remove.
   // A single effect (below) re-validates this against the current cart total
-  // every time either changes — so switching programmes never strands the user
-  // with a dropped-but-not-reapplied coupon.
+  // every time either changes. With no payment gateway, this discount is
+  // informational only — it's included in the email so your team can honour
+  // it manually when following up with the family.
   const [intendedCoupon, setIntendedCoupon] = useState(couponParam);
   const [couponInput, setCouponInput] = useState(couponParam);
   const [appliedCoupon, setAppliedCoupon] = useState<AppliedCoupon | null>(null);
@@ -297,10 +311,15 @@ function EnrollForm() {
       offering: offeringLabels[formData.offering] || formData.offering,
       planDetails: planDetails,
       totalAmount: totalAmount,
-      // Server recomputes the total and re-validates this coupon — never trust the client
-      // for the actual discount. We just signal which code (if any) the user wanted to use.
+      // Display-only currency label the user selected — the numeric amount is
+      // NOT converted, it's the same underlying price shown in every currency.
+      displayCurrency: selectedCountry.currency,
+      // Informational only — no payment is taken here, this just tells your
+      // team what discount to honour manually when they follow up.
       couponCode: appliedCoupon ? appliedCoupon.code : null,
-      // Pass the raw selection so the server can derive its own total.
+      discountAmount: appliedCoupon ? appliedCoupon.discountAmount : null,
+      finalAmount: appliedCoupon ? appliedCoupon.finalAmount : null,
+      // Raw selection, in case the email template wants to reconstruct details.
       pricingSelection: {
         offering: formData.offering,
         classType: formData.classType,
@@ -310,47 +329,31 @@ function EnrollForm() {
     };
 
     try {
+      // /api/enroll should simply email the enrolment details to your team —
+      // no payment link is created or expected here.
       const res = await fetch("/api/enroll", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submissionData),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         console.error("API Error:", data);
         throw new Error("Failed to submit enrolment");
       }
 
-      // Send to webhook (fire and forget) — include paymentUrl so GHL can email it
+      // Send to webhook (fire and forget) — e.g. to sync the lead into your CRM/GHL.
       if (!webhookCalledRef.current) {
         webhookCalledRef.current = true;
-        sendEnrollmentWebhook({
-          ...submissionData,
-          paymentUrl: data.paymentUrl || "",
-        }).catch(() => {});
+        sendEnrollmentWebhook(submissionData).catch(() => { });
       }
 
-      // Track enrollment conversion in GA4
+      // Track enrollment/lead conversion in GA4
       trackEnrollment(formData.offering, totalAmount);
       pushUTMToGHL(formData.email);
 
-      // Log API response for debugging
-      if (data.paymentError) {
-        console.warn("[Enroll] Payment issue:", data.paymentError);
-      }
-
-      // Redirect to dynamic Razorpay payment page if available
-      if (data.paymentUrl) {
-        setSubmitting(false);
-        setRedirecting(true);
-        window.location.href = data.paymentUrl;
-        return;
-      }
-
-      // Fallback: show success page if payment link creation failed
-      console.warn("[Enroll] No paymentUrl received. API response:", JSON.stringify(data));
       setSubmitting(false);
       setSubmitted(true);
     } catch (err) {
@@ -393,11 +396,8 @@ function EnrollForm() {
               <p className="enroll-success__message">
                 Thank you! Your details have been received.
                 {totalAmount !== null && (
-                  <> The fee for the programme is <strong className="enroll-success__fee">${totalAmount}{formData.offering === "co-curricular" && Object.values(formData.activities).filter(Boolean).length === 1 ? "/session" : "/month"}</strong>.</>
-                )} Please complete the payment to activate your enrolment.
-              </p>
-              <p className="enroll-success__note">
-                We could not generate your payment link automatically. Please contact us at <a href="mailto:info@tutorexel.com.au">info@tutorexel.com.au</a> to complete your payment.
+                  <> The fee for the programme is <strong className="enroll-success__fee">{selectedCountry.currency} ${appliedCoupon ? appliedCoupon.finalAmount.toFixed(2) : totalAmount}{formData.offering === "co-curricular" && Object.values(formData.activities).filter(Boolean).length === 1 ? "/session" : "/month"}</strong>.</>
+                )} Our team will get back to you within 24 hours to confirm your enrolment and arrange next steps.
               </p>
               <div className="enroll-success__actions">
                 <Link href="/" className="btn btn-secondary btn-lg">
@@ -533,7 +533,7 @@ function EnrollForm() {
                   </div>
                 </div>
 
-                {/* Year Group & Offering */}
+                {/* Year Group & Country */}
                 <div className="enroll-form__row">
                   <div className="enroll-form__field">
                     <label className="enroll-form__label">Year Group *</label>
@@ -555,6 +555,25 @@ function EnrollForm() {
                     </select>
                   </div>
 
+                  <div className="enroll-form__field">
+                    <label className="enroll-form__label">Country</label>
+                    <select
+                      name="country"
+                      value={selectedCountry.code}
+                      onChange={handleCountryChange}
+                      className="enroll-form__select"
+                    >
+                      {COUNTRIES.map((country) => (
+                        <option key={country.code} value={country.code}>
+                          {country.name} ({country.currency})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Offering */}
+                <div className="enroll-form__row">
                   <div className="enroll-form__field">
                     <label className="enroll-form__label">Our Offerings *</label>
                     <select
@@ -706,7 +725,7 @@ function EnrollForm() {
                       <div className="enroll-form__breakdown">
                         <div className="enroll-form__breakdown-row">
                           <span>Original Price</span>
-                          <span>${totalAmount}</span>
+                          <span>{selectedCountry.currency} ${totalAmount}</span>
                         </div>
                         <div className="enroll-form__breakdown-row enroll-form__breakdown-row--discount">
                           <span>
@@ -720,12 +739,12 @@ function EnrollForm() {
                               ×
                             </button>
                           </span>
-                          <span>−${appliedCoupon.discountAmount.toFixed(2)}</span>
+                          <span>−{selectedCountry.currency} ${appliedCoupon.discountAmount.toFixed(2)}</span>
                         </div>
                         <div className="enroll-form__total enroll-form__total--final">
                           <span className="enroll-form__total-label">Final Amount:</span>
                           <span className="enroll-form__total-amount">
-                            ${appliedCoupon.finalAmount.toFixed(2)}
+                            {selectedCountry.currency} ${appliedCoupon.finalAmount.toFixed(2)}
                             <span className="enroll-form__total-period">
                               {pricing.period}
                             </span>
@@ -736,7 +755,7 @@ function EnrollForm() {
                       <div className="enroll-form__total">
                         <span className="enroll-form__total-label">Total Amount:</span>
                         <span className="enroll-form__total-amount">
-                          ${totalAmount}
+                          {selectedCountry.currency} ${totalAmount}
                           <span className="enroll-form__total-period">
                             {pricing.period}
                           </span>
@@ -786,7 +805,7 @@ function EnrollForm() {
                     )}
                   </>
                 ) : formData.offering === "live-online-coaching" && formData.classType ? (
-                  <div className="enroll-form__total" style={{color: '#999', fontSize: '14px'}}>
+                  <div className="enroll-form__total" style={{ color: '#999', fontSize: '14px' }}>
                     Select subject(s) to see total amount
                   </div>
                 ) : null}
@@ -815,14 +834,10 @@ function EnrollForm() {
               <button
                 type="submit"
                 className="enroll-form__submit"
-                disabled={submitting || redirecting}
+                disabled={submitting}
               >
-                {submitting
-                  ? "Submitting..."
-                  : redirecting
-                    ? "Redirecting to Payment..."
-                    : "Submit Enrolment"}{" "}
-                {!submitting && !redirecting && <ArrowRight />}
+                {submitting ? "Submitting..." : "Submit Enrolment"}{" "}
+                {!submitting && <ArrowRight />}
               </button>
             </form>
           </div>

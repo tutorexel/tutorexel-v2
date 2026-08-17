@@ -34,7 +34,7 @@ const faqData = [
   {
     question: 'When are classes scheduled?',
     answer:
-      'Classes are scheduled to suit Australian school timings, typically after school hours and on weekends. You can choose the time slots that work best for your family.',
+      'Classes are scheduled to suit Worldwide school timings, typically after school hours and on weekends. You can choose the time slots that work best for your family.',
   },
 ];
 

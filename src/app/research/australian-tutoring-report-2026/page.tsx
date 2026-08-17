@@ -133,19 +133,19 @@ export default function AustralianTutoringReport2026Page() {
             <div className="report-banner__meta">
               <span className="report-banner__meta-item">
                 <span className="report-banner__meta-icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 2H3C2.4 2 2 2.4 2 3V13C2 13.6 2.4 14 3 14H13C13.6 14 14 13.6 14 13V3C14 2.4 13.6 2 13 2ZM12 12H4V5H12V12Z" fill="#757575"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 2H3C2.4 2 2 2.4 2 3V13C2 13.6 2.4 14 3 14H13C13.6 14 14 13.6 14 13V3C14 2.4 13.6 2 13 2ZM12 12H4V5H12V12Z" fill="#757575" /></svg>
                 </span>
                 Published: March 2025
               </span>
               <span className="report-banner__meta-item">
                 <span className="report-banner__meta-icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.1 1 1 4.1 1 8C1 11.9 4.1 15 8 15C11.9 15 15 11.9 15 8C15 4.1 11.9 1 8 1ZM8 13C5.2 13 3 10.8 3 8C3 5.2 5.2 3 8 3C10.8 3 13 5.2 13 8C13 10.8 10.8 13 8 13ZM8.5 4.5H7V9L11 11.3L11.8 10L8.5 8.2V4.5Z" fill="#757575"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.1 1 1 4.1 1 8C1 11.9 4.1 15 8 15C11.9 15 15 11.9 15 8C15 4.1 11.9 1 8 1ZM8 13C5.2 13 3 10.8 3 8C3 5.2 5.2 3 8 3C10.8 3 13 5.2 13 8C13 10.8 10.8 13 8 13ZM8.5 4.5H7V9L11 11.3L11.8 10L8.5 8.2V4.5Z" fill="#757575" /></svg>
                 </span>
                 Updated for 2026
               </span>
               <span className="report-banner__meta-item">
                 <span className="report-banner__meta-icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.7 1 2 3.7 2 7C2 10.3 4.7 13 8 13C11.3 13 14 10.3 14 7C14 3.7 11.3 1 8 1ZM10.5 9.5L9.5 10.5L8 9L6.5 10.5L5.5 9.5L7 8L5.5 6.5L6.5 5.5L8 7L9.5 5.5L10.5 6.5L9 8L10.5 9.5Z" fill="#757575"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1C4.7 1 2 3.7 2 7C2 10.3 4.7 13 8 13C11.3 13 14 10.3 14 7C14 3.7 11.3 1 8 1ZM10.5 9.5L9.5 10.5L8 9L6.5 10.5L5.5 9.5L7 8L5.5 6.5L6.5 5.5L8 7L9.5 5.5L10.5 6.5L9 8L10.5 9.5Z" fill="#757575" /></svg>
                 </span>
                 By TutorExel Research
               </span>
@@ -452,7 +452,7 @@ export default function AustralianTutoringReport2026Page() {
               </li>
               <li className="report-trend-list__item">
                 <span className="report-trend-list__number">2</span>
-                <span className="report-trend-list__text"><strong>Increased demand for STEM tutoring.</strong> Maths and science tutoring enquiries are growing faster than other subjects, driven by parental awareness of STEM career opportunities and the updated Australian Curriculum emphasis on digital literacy.</span>
+                <span className="report-trend-list__text"><strong>Increased demand for STEM tutoring.</strong> Maths and science tutoring enquiries are growing faster than other subjects, driven by parental awareness of STEM career opportunities and the updated School Curriculum emphasis on digital literacy.</span>
               </li>
               <li className="report-trend-list__item">
                 <span className="report-trend-list__number">3</span>

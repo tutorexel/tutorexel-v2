@@ -6,6 +6,18 @@ import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import "./Footer.css";
 
+type Country = {
+  code: string; // ISO 3166-1 alpha-2, lowercase — used for flagcdn.com
+  name: string;
+};
+
+const COUNTRIES: Country[] = [
+  { code: "au", name: "Australia" },
+  { code: "us", name: "USA" },
+  { code: "ca", name: "Canada" },
+  { code: "nz", name: "New Zealand" },
+];
+
 const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61579444003084&rdid=qshk54k5w9JwWLWL&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Za9NLXEqM%2F#", icon: "/images/footer/Facebook.webp" },
   { name: "Instagram", href: "https://www.instagram.com/tutorexellearning?igsh=MWNrejdyMWtyd2lsOQ%3D%3D%20https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Za9NLXEqM%2F", icon: "/images/footer/Instragarm.webp" },
@@ -54,10 +66,25 @@ export default function Footer() {
                 />
               </Link>
               <p className="footer__description">
-                Australian online tutoring excellence. Helping
+                Online Tutoring Across excellence. Helping
                 students achieve their full potential through personalised,
                 curriculum-aligned education.
               </p>
+              <div className="hero__countries">
+                {COUNTRIES.map((country) => (
+                  <div className="hero__country" key={country.code}>
+                    <Image
+                      src={`https://flagcdn.com/80x60/${country.code}.png`}
+                      alt={`${country.name} flag`}
+                      width={18}
+                      height={13}
+                      className="hero__country-flag"
+                      unoptimized
+                    />
+                    <span className="hero__country-name">{country.name}</span>
+                  </div>
+                ))}
+              </div>
               <div className="footer__social">
                 {socialLinks.map((social) => (
                   <a

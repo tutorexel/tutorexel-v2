@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "TutorExel",
     locale: "en_AU",
     type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
+    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Online Tutoring" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,7 +35,7 @@ const openings = [
     type: "Part-time / Casual",
     subjects: "Years 2-7 Mathematics",
     description:
-      "Deliver structured, curriculum-aligned Maths sessions to Australian students via Zoom. Strong knowledge of ACARA standards required.",
+      "Deliver structured, curriculum-aligned Maths sessions to Students Worldwide via Zoom. Strong knowledge of ACARA standards required.",
   },
   {
     title: "Online English Tutor",
@@ -181,7 +181,7 @@ export default function CareersPage() {
               </span>
             </h1>
             <p className="careers-hero__subtitle">
-              Join a team of passionate educators making quality tutoring accessible to Australian families. Flexible hours, meaningful work, 100% remote.
+              Join a team of passionate educators making quality tutoring accessible to globally families. Flexible hours, meaningful work, 100% remote.
             </p>
             <Link href="/careers/apply" className="btn btn-primary btn-lg">
               Apply Now
@@ -334,7 +334,7 @@ export default function CareersPage() {
         <div className="container">
           <h2 className="careers-cta__title">Ready to Make a Difference?</h2>
           <p className="careers-cta__subtitle">
-            Join our team of dedicated educators and help Australian students achieve their potential.
+            Join our team of dedicated educators and help Students Worldwide achieve their potential.
           </p>
           <div className="careers-cta__actions">
             <Link href="/careers/apply" className="btn btn-primary btn-lg">Apply Now</Link>

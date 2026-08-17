@@ -77,7 +77,7 @@ const pricingPlans: PricingPlan[] = [
     popular: false,
     borderColor: "dark",
     features: [
-      "8 live classes per month",
+      "12 live classes per month",
       "3 Subjects — Maths, English & Science",
       "1:1 personalised tutoring available",
       "Group sessions available (max 3 students)",

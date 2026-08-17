@@ -50,8 +50,8 @@
     border-radius: 2px;
     display: block;
     object-fit: cover;
-    width: 18px;
-    height: 13px;
+    width: 23px;
+    /* height: 13px; */
     flex-shrink: 0;
     opacity: 0.55;
     transition: opacity 0.15s ease;
