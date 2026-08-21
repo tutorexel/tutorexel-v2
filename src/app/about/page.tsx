@@ -119,7 +119,7 @@ export default function AboutPage() {
           />
         </div>
         <div className="about-hero__decoration about-hero__decoration--right">
-            <Image
+          <Image
             src="/images/about/star-design.webp"
             alt=""
             width={200}
@@ -134,7 +134,7 @@ export default function AboutPage() {
             height={200}
             className="about-hero__curve about-hero__curve--3"
           />
-        
+
         </div>
 
         <div className="container">
@@ -143,7 +143,7 @@ export default function AboutPage() {
               Built by Educators. Trusted{' '}
               <br />
               by{' '}
-              <span className="about-hero__title-highlight">Australian Families</span>{' '}
+              <span className="about-hero__title-highlight">Families Worldwide</span>{' '}
               <span className="about-hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="Star" width={20} height={20} /></span>
             </h1>
             <p className="about-hero__subtitle">
@@ -280,15 +280,15 @@ export default function AboutPage() {
                 Structured to Match Your Child's School Curriculum
               </h2>
               <p className="about-curriculum__text">
-                Every session at TutorExel is mapped to the ACARA (Australian Curriculum, Assessment and Reporting Authority) framework. Whether your child is in Year 2 or Year 7, our lessons follow the exact same standards their school uses.
+                Every TutorExel session starts with understanding exactly what your child's school expects — their curriculum, grade/year level, and learning goals. For Australian families, that means every lesson is mapped to the ACARA framework. For families in other countries, our tutors tailor lesson plans and pacing to match your child's own school.
               </p>
               <p className="about-curriculum__means-title">This means:</p>
               <div className="about-curriculum__list">
                 {acaraPoints.map((item) => (
                   <div className="about-curriculum__list-item" key={item}>
                     <svg className="about-curriculum__check-icon" width="33" height="33" viewBox="0 0 33 33" fill="none">
-                      <circle cx="16.5" cy="16.5" r="12" fill="#10B981"/>
-                      <path d="M14.5 21.5L9.5 16.5L11 15L14.5 18.5L22 11L23.5 12.5L14.5 21.5Z" fill="white"/>
+                      <circle cx="16.5" cy="16.5" r="12" fill="#10B981" />
+                      <path d="M14.5 21.5L9.5 16.5L11 15L14.5 18.5L22 11L23.5 12.5L14.5 21.5Z" fill="white" />
                     </svg>
                     {item}
                   </div>

@@ -158,7 +158,7 @@ export default function Footer() {
       <div className="footer__bottom">
         <div className="container">
           <p className="footer__copyright">
-            &copy; {new Date().getFullYear()} TutorExel. All rights reserved. Australian tutoring excellence.
+            &copy; {new Date().getFullYear()} TutorExel. All rights reserved.
           </p>
         </div>
       </div>
