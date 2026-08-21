@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Contact TutorExel for online tutoring enquiries. Book your child's free trial class. We respond within 2 hours during business hours.",
     url: "https://tutorexel.com/contact",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

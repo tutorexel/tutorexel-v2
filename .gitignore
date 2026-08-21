@@ -37,3 +37,7 @@ geo-config.json
 # Coupons & submissions data (auto-created)
 coupons.json
 submissions.json
+
+# Content replace automation
+locate-and-apply.js
+content-backups/

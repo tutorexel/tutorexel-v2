@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       "Learn how TutorExel collects, uses, and protects your personal information. We are committed to safeguarding your privacy.",
     url: "https://tutorexel.com/privacy",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

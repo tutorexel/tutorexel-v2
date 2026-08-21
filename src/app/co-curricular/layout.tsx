@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Learn Piano and Guitar online from home. Trinity College London syllabus. Qualified tutors, structured progression, and globally recognised certification.",
     url: "https://tutorexel.com/co-curricular",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

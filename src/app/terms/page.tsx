@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
     url: "https://tutorexel.com/terms",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

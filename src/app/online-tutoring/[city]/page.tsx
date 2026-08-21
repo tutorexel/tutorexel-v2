@@ -90,7 +90,7 @@ export async function generateMetadata({
       description,
       url,
       siteName: "TutorExel",
-      locale: "en_AU",
+      locale: "en",
       type: "website",
     },
     twitter: {

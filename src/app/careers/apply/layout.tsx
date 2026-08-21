@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Join TutorExel as an online tutor. Apply now to teach Students Worldwide in maths, English, piano, or guitar.",
     url: "https://tutorexel.com/careers/apply",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
   },
   twitter: {

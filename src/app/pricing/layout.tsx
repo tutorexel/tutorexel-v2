@@ -16,7 +16,7 @@ export const metadata: Metadata = {
       "Simple, transparent pricing for online tutoring. From $39/month for group classes to $219/month premium plans. Maths, English, Science, Piano & Guitar for Years 2-7.",
     url: "https://tutorexel.com/pricing",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

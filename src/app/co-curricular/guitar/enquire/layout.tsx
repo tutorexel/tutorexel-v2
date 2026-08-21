@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Enquire about online guitar lessons for your child. Book a free trial lesson with our expert instructors.",
     url: "https://tutorexel.com/co-curricular/guitar/enquire",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [
       {

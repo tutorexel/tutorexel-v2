@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Learn guitar online with qualified tutors following the Trinity College London syllabus. From beginner to Grade 8. Ages 8+. Book a free trial lesson.",
     url: "https://tutorexel.com/co-curricular/guitar",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
   },
   twitter: {

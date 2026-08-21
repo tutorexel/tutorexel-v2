@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Prepare your child for NAPLAN with expert online tutoring aligned to the Australian Curriculum. Targeted practice for Year 3, Year 5 & Year 7 in Maths, Reading, Writing & Language Conventions.",
     url: "https://tutorexel.com/naplan-preparation",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

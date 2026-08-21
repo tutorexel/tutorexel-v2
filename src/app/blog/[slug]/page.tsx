@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       url: `https://tutorexel.com/blog/${post.slug}`,
       siteName: "TutorExel",
-      locale: "en_AU",
+      locale: "en",
       type: "article",
       images: [{ url: post.image, width: 1200, height: 630, alt: post.title }],
     },

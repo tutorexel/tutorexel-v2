@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
     url: "https://tutorexel.com/subscription",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },
@@ -52,7 +52,7 @@ const yearLevels = ["Year 2", "Year 3", "Year 4", "Year 5", "Year 6", "Year 7"];
 
 const benefits = [
   { title: "Learn at Your Own Pace", desc: "No schedules. No pressure. Your child works through materials whenever it suits them." },
-  { title: "ACARA Curriculum Aligned", desc: "Every resource maps directly to what your child is learning at school." },
+  { title: "Curriculum-Aligned Learning", desc: "Every resource maps directly to what your child is learning at school." },
   { title: "Supplement Live Tutoring", desc: "Use alongside TutorExel live sessions or as standalone self-study material." },
   { title: "New Content Monthly", desc: "Fresh worksheets and mock tests added every month to keep learning current." },
   { title: "Instant Access", desc: "Download and start immediately. No waiting for a tutor or scheduling sessions." },

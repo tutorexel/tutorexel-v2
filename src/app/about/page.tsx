@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       'Built by educators, trusted by Australian families. Learn about TutorExel\'s mission, approach, and the team behind quality online tutoring.',
     url: 'https://tutorexel.com/about',
     siteName: 'TutorExel',
-    locale: 'en_AU',
+    locale: 'en',
     type: 'website',
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },
@@ -174,13 +174,13 @@ export default function AboutPage() {
               </p>
               <h2 className="about-story__title">Why TutorExel Exists</h2>
               <p className="about-story__text">
-                As parents and educators, we saw a gap in Australian online tutoring. Most platforms are marketplaces - they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability.
+                As parents and educators, we saw a gap in online tutoring. Most platforms are marketplaces - they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability.
               </p>
               <p className="about-story__text about-story__text--bold about-story__text--italic">
                 TutorExel was built to be different.
               </p>
               <p className="about-story__text">
-                We hire, train, and manage every educator on our platform. We align every lesson to the Australian National Curriculum (ACARA). And we track every student&apos;s progress so parents always know exactly where their child stands.
+                We hire, train, and manage every educator on our platform. We align every lesson to your child's own school curriculum - whatever system they're learning under. And we track every student&apos;s progress so parents always know exactly where their child stands.
               </p>
               <div className="about-story__founder-quote">
                 <p className="about-story__text">
@@ -277,7 +277,7 @@ export default function AboutPage() {
             </div>
             <div className="about-curriculum__content">
               <h2 className="about-curriculum__title">
-                Fully Aligned to the Australian National Curriculum
+                Structured to Match Your Child's School Curriculum
               </h2>
               <p className="about-curriculum__text">
                 Every session at TutorExel is mapped to the ACARA (Australian Curriculum, Assessment and Reporting Authority) framework. Whether your child is in Year 2 or Year 7, our lessons follow the exact same standards their school uses.

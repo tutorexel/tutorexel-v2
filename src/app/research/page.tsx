@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Research reports and data on the Australian tutoring industry. Market trends, parent preferences, online learning insights, and NAPLAN preparation analysis from TutorExel.",
     url: "https://tutorexel.com/research",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

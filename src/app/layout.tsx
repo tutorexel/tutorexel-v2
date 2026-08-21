@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "Live online tutoring with Australian curriculum-aligned classes. Experienced teachers. Free trial class available.",
   openGraph: {
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [
       {
