@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Comprehensive research report on the Australian tutoring industry in 2026. Market size, trends, parent preferences, online vs in-person data, and NAPLAN impact analysis.",
     url: "https://tutorexel.com/research/australian-tutoring-report-2026",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "article",
   },
   twitter: {

@@ -138,7 +138,7 @@ export default function SubjectsPage() {
               </span>
             </h1>
             <p className="subject-banner__subtitle">
-              Real-time, interactive tutoring sessions where your child learns one-to-one or in groups with a qualified Australian curriculum tutor. Not pre-recorded videos. Not worksheets. A real teacher, live, focused entirely on your child.
+              Real-time, interactive tutoring sessions where your child learns one-to-one or in groups with a qualified tutor. Not pre-recorded videos. Not worksheets. A real teacher, live, focused entirely on your child.
             </p>
 
             <div className="subject-banner__features">
@@ -151,8 +151,8 @@ export default function SubjectsPage() {
                 <p className="subject-banner__feature-desc">4 structured sessions per month per subject with a dedicated tutor</p>
               </div>
               <div className="subject-banner__feature-card">
-                <h3 className="subject-banner__feature-title">ACARA Curriculum Aligned</h3>
-                <p className="subject-banner__feature-desc">Every lesson mapped to the Australian National Curriculum standards</p>
+                <h3 className="subject-banner__feature-title">Curriculum-Aligned Learning</h3>
+                <p className="subject-banner__feature-desc">Every lesson is tailored to your child's school curriculum and grade/year level</p>
               </div>
             </div>
 
@@ -161,7 +161,7 @@ export default function SubjectsPage() {
               <span className="subject-banner__check-item">{"✓"} Weekly practice worksheets</span>
               <span className="subject-banner__check-item">{"✓"} Progress reports for parents</span>
               <span className="subject-banner__check-item">{"✓"} Free diagnostic assessment</span>
-              <span className="subject-banner__check-item">{"✓"} Qualified tutors well versed with Australian curriculum</span>
+              <span className="subject-banner__check-item">{"✓"} Qualified tutors experienced in adapting lessons to your child's curriculum</span>
               <span className="subject-banner__check-item">{"✓"} Flexible scheduling</span>
             </div>
 

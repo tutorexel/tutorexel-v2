@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Enrol your child in TutorExel's online tutoring programmes. Choose from Maths, English, Piano, Guitar, or our all-inclusive Premium Plan.",
     url: "https://tutorexel.com/enroll",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

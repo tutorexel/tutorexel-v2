@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Take our free online assessment to identify your child's strengths and learning gaps. Personalised results and recommendations for Years 2-7.",
     url: "https://tutorexel.com/free-assessment",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

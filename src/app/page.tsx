@@ -10,24 +10,24 @@ import FAQ from '@/components/home/FAQ';
 import CTA from '@/components/home/CTA';
 
 export const metadata: Metadata = {
-  title: "TutorExel - #1 Online Tutoring in Australia",
+  title: "TutorExel — Personalised Online Tutoring for School Students",
   description:
-    "Australia's top online tutoring with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
+    "Personalised, curriculum-aligned online tutoring for students in the USA, Canada, Australia and New Zealand. Maths, English, Science & Music. Free trial available. with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
   openGraph: {
-    title: "TutorExel - #1 Online Tutoring in Australia",
+    title: "TutorExel — Personalised Online Tutoring for School Students",
     description:
-      "Australia's top online tutoring with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
+      "Personalised, curriculum-aligned online tutoring for students in the USA, Canada, Australia and New Zealand. Maths, English, Science & Music. Free trial available. with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
     url: "https://tutorexel.com",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TutorExel - #1 Online Tutoring in Australia",
+    title: "TutorExel — Personalised Online Tutoring for School Students",
     description:
-      "Australia's top online tutoring with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
+      "Personalised, curriculum-aligned online tutoring for students in the USA, Canada, Australia and New Zealand. Maths, English, Science & Music. Free trial available. with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
     images: ["/images/banner/og-image.webp"],
   },
   alternates: {

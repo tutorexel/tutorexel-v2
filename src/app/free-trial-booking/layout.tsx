@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       "Book your free trial class with TutorExel. Choose a convenient time slot and experience Australian curriculum-aligned online tutoring.",
     url: "https://tutorexel.com/free-trial-booking",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Book a Free Trial" }],
   },

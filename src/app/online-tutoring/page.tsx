@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Expert online tutoring for Students Worldwide in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
     url: "https://tutorexel.com/online-tutoring",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Online Tutoring" }],
   },

@@ -79,7 +79,7 @@ export default function BlogPage() {
               </span>
             </h1>
             <p className="blog-banner__subtitle">
-              Tips, guides, and insights for Australian parents and students.
+              Tips, guides, and insights for Worldwide parents and students.
               From NAPLAN preparation to everyday study strategies.
             </p>
           </div>
@@ -93,9 +93,8 @@ export default function BlogPage() {
             {blogCategories.map((category) => (
               <button
                 key={category}
-                className={`blog-filter__tab ${
-                  activeCategory === category ? "blog-filter__tab--active" : ""
-                }`}
+                className={`blog-filter__tab ${activeCategory === category ? "blog-filter__tab--active" : ""
+                  }`}
                 onClick={() => setActiveCategory(category)}
               >
                 {category}

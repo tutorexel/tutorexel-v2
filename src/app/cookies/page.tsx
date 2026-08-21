@@ -12,7 +12,7 @@ export const metadata: Metadata = {
       "Learn about the cookies TutorExel uses on its website and how you can manage your cookie preferences.",
     url: "https://tutorexel.com/cookies",
     siteName: "TutorExel",
-    locale: "en_AU",
+    locale: "en",
     type: "website",
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
   },

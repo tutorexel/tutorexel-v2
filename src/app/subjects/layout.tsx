@@ -10,7 +10,7 @@ export const metadata: Metadata = {
       'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
     url: 'https://tutorexel.com/subjects',
     siteName: 'TutorExel',
-    locale: 'en_AU',
+    locale: 'en',
     type: 'website',
     images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Your Personalised Online Tutoring" }],
   },

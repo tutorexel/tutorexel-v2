@@ -33,6 +33,34 @@ const testimonialsData = [
     location: 'Chatswood, NSW',
     text: '"As a busy parent, I appreciate how flexible TutorExel is with scheduling. The online platform works seamlessly, and the progress reports help us stay informed about our son\'s development."',
   },
+  {
+    id: 5,
+    image: '/avatar-emily.png',
+    name: 'Emily Carter',
+    location: 'Austin, Texas, USA',
+    text: 'TutorExel has been a great support for our daughter. Her tutor is patient, encouraging, and takes the time to explain difficult concepts in a way she understands. She is much more confident in her schoolwork now.',
+  },
+  {
+    id: 6,
+    image: '/avatar-daniel.png',
+    name: 'Daniel Wilson',
+    location: 'Toronto, Ontario, Canada',
+    text: 'We really appreciate the personalised approach. The lessons are well structured, and the tutor adapts the sessions to our son’s learning needs. He enjoys his classes and feels much more comfortable asking questions.',
+  },
+  {
+    id: 7,
+    image: '/avatar-sophie.png',
+    name: 'Sophie Thompson',
+    location: 'Auckland, New Zealand',
+    text: 'Finding flexible online tutoring has made a big difference for our family. The lessons are engaging, and our daughter feels supported rather than pressured. We have been very happy with her progress and confidence.',
+  },
+  {
+    id: 8,
+    image: '/avatar-jennifer.png',
+    name: 'Jennifer Miller',
+    location: 'Seattle, Washington, USA',
+    text: 'We were looking for tutoring that would work around our family schedule, and TutorExel has been a wonderful fit. Our son connects really well with his tutor, and the personalised lessons have helped him understand challenging topics and approach schoolwork with much more confidence.',
+  },
 ];
 
 export default function Testimonials() {
