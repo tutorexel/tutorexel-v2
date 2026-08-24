@@ -63,7 +63,7 @@ const openings = [
 const qualifications = [
   "A relevant teaching qualification (B.Ed, M.Ed, or equivalent)",
   "Experience teaching primary or secondary students",
-  "Strong knowledge of the Australian Curriculum (ACARA)",
+  "Strong knowledge of the school curriculum",
   "Reliable internet connection and a quiet teaching space",
   "A laptop or computer with a working camera and microphone",
   "Patience, enthusiasm, and a genuine passion for education",
@@ -78,7 +78,7 @@ const whyJoinCards = [
     ),
     title: "100% Remote",
     description:
-      "Work from anywhere in Australia. All sessions are conducted via Zoom. No commuting required.",
+      "Work from anywhere. All sessions are conducted via Zoom. No commuting required.",
   },
   {
     icon: (

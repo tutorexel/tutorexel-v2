@@ -86,9 +86,10 @@ const stats = [
 ];
 
 const acaraPoints = [
-  'No gaps between what they learn with us and what they learn at school',
+  'Learning stays aligned with what your child is taught at school',
   'Topics are covered in the right order and at the right depth',
-  'Assessment benchmarks match national expectations',
+  'Lessons are tailored to your child’s learning pace and needs',
+  'Regular assessments help track progress and identify areas for improvement'
 ];
 
 const heroAvatars = [
@@ -280,7 +281,10 @@ export default function AboutPage() {
                 Structured to Match Your Child's School Curriculum
               </h2>
               <p className="about-curriculum__text">
-                Every TutorExel session starts with understanding exactly what your child's school expects — their curriculum, grade/year level, and learning goals. For Australian families, that means every lesson is mapped to the ACARA framework. For families in other countries, our tutors tailor lesson plans and pacing to match your child's own school.
+                Every TutorExel session starts with understanding your child’s school curriculum, grade/year level, learning goals, and academic needs. Our tutors tailor lessons, pacing, and practice to complement what your child is learning at school.
+              </p>
+              <p className="about-curriculum__text">
+                Whether your child studies in Australia, the USA, Canada, or another curriculum, we help ensure that learning with TutorExel stays relevant to their school journey.
               </p>
               <p className="about-curriculum__means-title">This means:</p>
               <div className="about-curriculum__list">

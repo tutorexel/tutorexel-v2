@@ -103,8 +103,8 @@ export default function Hero() {
                 </svg>
               </div>
               <div className="hero__badge-content">
-                <span className="hero__badge-title">NAPLAN, ICAS</span>
-                <span className="hero__badge-subtitle">OC &amp; Selective Prep</span>
+                <span className="hero__badge-title">Academic Excellence</span>
+                <span className="hero__badge-subtitle">School &amp; Competitive Exam Prep</span>
               </div>
             </div>
           </div>
