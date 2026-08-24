@@ -19,8 +19,8 @@ import "./subject-detail.css";
 function CheckIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="10" fill="#22C55E"/>
-      <path d="M6 10L9 13L14 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="10" cy="10" r="10" fill="#22C55E" />
+      <path d="M6 10L9 13L14 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -284,7 +284,7 @@ export default function SubjectDetailPage() {
   const courseSchema = createCourseSchema(
     yearLabel,
     subjectLabel,
-    `40 structured ${subjectLabel} tutoring sessions for ${yearLabel} students, aligned with the Australian Curriculum (ACARA). Delivered live through 1-on-1 or small group online sessions.`
+    `40 structured ${subjectLabel} tutoring sessions for ${yearLabel} students, aligned with the school curriculum. Delivered live through 1-on-1 or small group online sessions.`
   );
   const subjectBreadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: "https://tutorexel.com" },
@@ -360,14 +360,14 @@ export default function SubjectDetailPage() {
             <h1 className="detail-banner__title">
               {yearLabel}, {subjectLabel},{" "}
               <span className="detail-banner__title-highlight">Tutoring</span>
-              {" "}ACARA{" "}
+              {" "}Curriculum{" "}
               <span className="detail-banner__title-highlight">Aligned</span>
               <span className="detail-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="Star" width={20} height={20} />
               </span>
             </h1>
             <p className="detail-banner__subtitle">
-              40 structured online tutoring sessions covering the complete {yearLabel} {subjectLabel} Australian curriculum (ACARA aligned).
+              40 structured online tutoring sessions covering the complete {yearLabel} {subjectLabel} school curriculum.
               Delivered live through personalised 1-on-1 or small group sessions with qualified tutors.
             </p>
             <div className="detail-banner__actions">
@@ -385,17 +385,17 @@ export default function SubjectDetailPage() {
         const intro = subjectIntros[key];
         if (!intro) return null;
         return (
-          <section style={{padding:'40px 0'}}>
+          <section style={{ padding: '40px 0' }}>
             <div className="container">
-              <div style={{maxWidth:'800px',margin:'0 auto'}}>
-                <p style={{fontSize:'16px',lineHeight:1.8,color:'#5a6b78',marginBottom:'20px'}}>{intro.intro}</p>
-                <div style={{background:'#f7f5f0',borderRadius:'10px',padding:'20px',marginBottom:'16px',borderLeft:'3px solid #3d8b7a'}}>
-                  <p style={{fontWeight:700,fontSize:'14px',color:'#1a2e3b',marginBottom:'6px'}}>Key Topics Covered:</p>
-                  <p style={{fontSize:'14px',color:'#5a6b78',lineHeight:1.6}}>{intro.keyTopics}</p>
+              <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                <p style={{ fontSize: '16px', lineHeight: 1.8, color: '#5a6b78', marginBottom: '20px' }}>{intro.intro}</p>
+                <div style={{ background: '#f7f5f0', borderRadius: '10px', padding: '20px', marginBottom: '16px', borderLeft: '3px solid #3d8b7a' }}>
+                  <p style={{ fontWeight: 700, fontSize: '14px', color: '#1a2e3b', marginBottom: '6px' }}>Key Topics Covered:</p>
+                  <p style={{ fontSize: '14px', color: '#5a6b78', lineHeight: 1.6 }}>{intro.keyTopics}</p>
                 </div>
-                <div style={{background:'#fff5f0',borderRadius:'10px',padding:'20px',borderLeft:'3px solid #d4654a'}}>
-                  <p style={{fontWeight:700,fontSize:'14px',color:'#1a2e3b',marginBottom:'6px'}}>Parent Tip:</p>
-                  <p style={{fontSize:'14px',color:'#5a6b78',lineHeight:1.6}}>{intro.parentTip}</p>
+                <div style={{ background: '#fff5f0', borderRadius: '10px', padding: '20px', borderLeft: '3px solid #d4654a' }}>
+                  <p style={{ fontWeight: 700, fontSize: '14px', color: '#1a2e3b', marginBottom: '6px' }}>Parent Tip:</p>
+                  <p style={{ fontSize: '14px', color: '#5a6b78', lineHeight: 1.6 }}>{intro.parentTip}</p>
                 </div>
               </div>
             </div>
@@ -458,25 +458,22 @@ export default function SubjectDetailPage() {
           <div className="detail-curriculum__toggle">
             <button
               onClick={() => handleSubjectToggle("english")}
-              className={`detail-curriculum__toggle-btn${
-                activeSubject === "english" ? " detail-curriculum__toggle-btn--active" : ""
-              }`}
+              className={`detail-curriculum__toggle-btn${activeSubject === "english" ? " detail-curriculum__toggle-btn--active" : ""
+                }`}
             >
               English
             </button>
             <button
               onClick={() => handleSubjectToggle("maths")}
-              className={`detail-curriculum__toggle-btn${
-                activeSubject === "maths" ? " detail-curriculum__toggle-btn--active" : ""
-              }`}
+              className={`detail-curriculum__toggle-btn${activeSubject === "maths" ? " detail-curriculum__toggle-btn--active" : ""
+                }`}
             >
               Maths
             </button>
             <button
               onClick={() => handleSubjectToggle("science")}
-              className={`detail-curriculum__toggle-btn${
-                activeSubject === "science" ? " detail-curriculum__toggle-btn--active" : ""
-              }`}
+              className={`detail-curriculum__toggle-btn${activeSubject === "science" ? " detail-curriculum__toggle-btn--active" : ""
+                }`}
             >
               Science
             </button>
@@ -489,9 +486,8 @@ export default function SubjectDetailPage() {
                 <button
                   key={term}
                   onClick={() => setActiveTerm(term)}
-                  className={`detail-curriculum__tab${
-                    activeTerm === term ? " detail-curriculum__tab--active" : ""
-                  }`}
+                  className={`detail-curriculum__tab${activeTerm === term ? " detail-curriculum__tab--active" : ""
+                    }`}
                 >
                   {termLabels[term]}
                 </button>
@@ -617,7 +613,7 @@ export default function SubjectDetailPage() {
               </h3>
               <p className="detail-explore__card-description">
                 Explore the full {yearLabel} {otherSubjectLabel} curriculum with 40
-                structured sessions aligned to the Australian curriculum (ACARA).
+                structured sessions aligned to the school curriculum.
               </p>
               <Link href={`/subjects/${yearId}/${otherSubjectId}`} className="detail-explore__btn">
                 Know more
