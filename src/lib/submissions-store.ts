@@ -59,13 +59,10 @@ export async function logSubmission(
 
 export async function getAllSubmissions(): Promise<Submission[]> {
   const list = purgeExpired(await read());
-  await write(list);
   return list.filter((s) => !s.trashedAt);
 }
-
 export async function getTrashedSubmissions(): Promise<Submission[]> {
   const list = purgeExpired(await read());
-  await write(list);
   return list.filter((s) => !!s.trashedAt);
 }
 
