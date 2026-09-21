@@ -15,10 +15,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tutorexel.com"),
+  metadataBase: new URL("https://www.tutorexel.com"),
   title: "TutorExel - Australian Online Tutoring Excellence",
   description:
     "Live online tutoring with Australian curriculum-aligned classes. Experienced teachers. Free trial class available.",
+  verification: {
+    google: "zuMcZ7KO5VoEy1fK0XtI1KujSvnKMLoIZx7DcNxk8AY",
+  },
   openGraph: {
     siteName: "TutorExel",
     locale: "en",
@@ -70,12 +73,12 @@ gtag('config', 'G-C2VFSLJF3K');`}
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PT9K2JV3');`}
+})(window,document,'script','dataLayer','GTM-PW3LW3FT');`}
       </Script>
       <body suppressHydrationWarning>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PT9K2JV3"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PW3LW3FT"
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
