@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import HeroV1 from '@/components/home/HeroV1';
 import HowItWorks from '@/components/home/HowItWorks';
 import YearLevels from '@/components/home/YearLevels';
@@ -16,9 +17,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  alternates: {
-    canonical: "https://tutorexel.com",
-  },
+  alternates: getRegionalAlternates('/home-v1', 'au'),
 };
 
 export default function HomeV1() {

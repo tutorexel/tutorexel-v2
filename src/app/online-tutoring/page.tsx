@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/home/CTA";
@@ -29,9 +30,7 @@ export const metadata: Metadata = {
       "Expert online tutoring for Australian students in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/online-tutoring",
-  },
+  alternates: getRegionalAlternates('/online-tutoring', 'au'),
 };
 
 export default function OnlineTutoringPage() {

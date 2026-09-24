@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import "./thank-you.css";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Thank You | TutorExel",
   description:
     "Thank you for your enquiry. Our team will be in touch shortly.",
+  alternates: getRegionalAlternates('/thank-you', 'au'),
 };
 
 export default function ThankYouPage() {

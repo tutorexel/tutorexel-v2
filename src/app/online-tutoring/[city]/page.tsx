@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -98,9 +99,7 @@ export async function generateMetadata({
       title,
       description,
     },
-    alternates: {
-      canonical: url,
-    },
+    alternates: getRegionalAlternates('/online-tutoring/' + slug, 'au'),
   };
 }
 

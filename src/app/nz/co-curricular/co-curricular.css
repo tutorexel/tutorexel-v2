@@ -1,0 +1,636 @@
+/* ===== Co-Curricular Landing Page ===== */
+
+/* ===== Banner Section (Same as About page) ===== */
+.cocurricular-banner {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+span.cocurricular-banner__title-star img {
+  width: 40px;
+}
+
+.cocurricular-banner__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cocurricular-banner__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.cocurricular-banner__decoration--right {
+  bottom: 0px;
+  right: -10px;
+}
+
+.cocurricular-banner__curve {
+  display: block;
+}
+
+.cocurricular-banner__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: .4;
+}
+
+.cocurricular-banner__curve--3 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+.cocurricular-banner__curve--4 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.cocurricular-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.cocurricular-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cocurricular-banner__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-6);
+}
+
+.cocurricular-banner__title-highlight {
+  background: linear-gradient(0deg, #FF003B -25.96%, #FFA84A 117.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cocurricular-banner__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.cocurricular-banner__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.cocurricular-banner__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* --- Instruments Section --- */
+.instruments {
+  padding: var(--spacing-20) 0;
+  background: var(--color-white);
+  padding-top: 0px;
+}
+
+.instruments__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-8);
+}
+
+.instrument-card {
+  background: var(--color-white);
+  border-radius: 25px;
+  border: 1px solid #b5b5c3;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.instrument-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+.instrument-card--highlighted {
+  box-shadow: 0px 20px 24.3px 0px rgba(229, 96, 49, 0.15);
+}
+
+.instrument-card__image {
+  position: relative;
+  width: calc(100% - 56px);
+  height: 232px;
+  overflow: hidden;
+  margin: 28px 28px 0;
+  border-radius: 10px;
+}
+
+.instrument-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.instrument-card:hover .instrument-card__image img {
+  transform: scale(1.05);
+}
+
+.instrument-card__body {
+  padding: 28px;
+  padding-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.instrument-card__title {
+  font-size: 26px;
+  font-weight: var(--font-weight-semibold);
+  color: #070708;
+  margin-bottom: var(--spacing-4);
+  line-height: 1;
+}
+
+.instrument-card__desc {
+  font-size: 18px;
+  color: var(--color-subheading);
+  line-height: 1.45;
+  margin-bottom: var(--spacing-6);
+}
+
+.instrument-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-6);
+}
+
+.instrument-card__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: 16px;
+  color: var(--color-subheading);
+}
+
+.instrument-card__feature-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.instrument-card__feature-icon img {
+  width: 17px;
+  height: 17px;
+}
+
+.instrument-card__cta {
+  margin-top: auto;
+}
+
+.instrument-card__btn {
+  width: 100%;
+  background: #e56031;
+  padding: 18px 40px;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.36px;
+  border-radius: 8px;
+}
+
+.instrument-card__btn:hover {
+  background: #d14e24;
+}
+
+/* --- Features Section --- */
+.features {
+  padding: var(--spacing-20) 0;
+  background: #f7f7f8;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-5);
+  margin-top: var(--spacing-8);
+}
+
+.feature-card {
+  background: var(--color-white);
+  border-radius: 20px;
+  padding: var(--spacing-6) var(--spacing-4);
+  padding-top: 32px;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 346px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.feature-card:hover {
+  background: #000000;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-card__icon {
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-5);
+  flex-shrink: 0;
+}
+
+.feature-card__icon svg {
+  width: 75px;
+  height: 75px;
+}
+
+.feature-card__title {
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: #070708;
+  margin-bottom: var(--spacing-4);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.feature-card:hover .feature-card__title {
+  color: var(--color-white);
+}
+
+.feature-card__desc {
+  font-size: 16px;
+  color: var(--color-subheading);
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.feature-card:hover .feature-card__desc {
+  color: var(--color-white);
+}
+
+/* --- How It Works --- */
+.music-how-it-works {
+  padding: 100px 0 0;
+  background: linear-gradient(0.28deg, #FF003B -25.55%, #FFA84A 95.62%);
+  position: relative;
+  overflow: hidden;
+}
+
+.music-how-it-works .container {
+  position: static;
+}
+
+.music-how-it-works__decoration {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-30%);
+  width: 508px;
+  height: 535px;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.music-how-it-works__decoration img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.music-how-it-works__content {
+  display: flex;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+  align-items: flex-start;
+}
+
+.music-how-it-works__left {
+  flex: 0 0 auto;
+  width: 636px;
+  padding-top: 0;
+  padding-bottom: 100px;
+}
+
+.music-how-it-works__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+  padding-right: 50px;
+}
+
+.music-how-it-works__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  line-height: 1.04;
+  text-align: left;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+
+.music-how-it-works__image {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex: 1;
+  margin-bottom: -100px;
+  margin-right: -150px;
+}
+
+.music-how-it-works__image img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 550px;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+.music-how-it-works__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.music-step-card {
+  background: var(--color-white);
+  border-radius: 25px;
+  padding: 46px var(--spacing-6) var(--spacing-8);
+  transition: all var(--transition-base);
+  text-align: center;
+  min-height: 295px;
+  width: 308px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.music-step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.music-step-card__number {
+  width: 75px;
+  height: 75px;
+  border-radius: 17px;
+  background: #FFA84A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-5);
+  line-height: 1.26;
+}
+
+.music-step-card__title {
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  color: #070708;
+  margin-bottom: var(--spacing-3);
+  line-height: 1.3;
+}
+
+.music-step-card__desc {
+  font-size: 16px;
+  color: var(--color-subheading);
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1400px) {
+  .music-how-it-works__right {
+    padding-right: 0;
+  }
+
+  .music-how-it-works__image {
+    margin-right: -100px;
+  }
+
+  .music-how-it-works__image img {
+    max-height: 480px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .music-how-it-works__content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .music-how-it-works__left {
+    width: 100%;
+    max-width: 636px;
+    padding-bottom: var(--spacing-8);
+  }
+
+  .music-how-it-works__right {
+    order: -1;
+    margin-bottom: var(--spacing-8);
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .music-how-it-works__title {
+    text-align: center;
+  }
+
+  .music-how-it-works__image {
+    margin-right: 0;
+    margin-bottom: 0;
+    justify-content: center;
+  }
+
+  .music-how-it-works__image img {
+    max-height: 400px;
+    object-position: center bottom;
+  }
+
+  .music-how-it-works {
+    padding: var(--spacing-16) 0 0;
+  }
+
+  .music-step-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .cocurricular-banner {
+    padding: 140px 0 60px;
+  }
+
+  .cocurricular-banner__title {
+    font-size: 40px;
+  }
+
+  .cocurricular-banner__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .instruments__grid {
+    grid-template-columns: 1fr;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .features__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-card {
+    min-height: auto;
+    padding: var(--spacing-6);
+  }
+
+  .music-how-it-works__title {
+    font-size: 40px;
+  }
+
+  .music-how-it-works__decoration {
+    display: none;
+  }
+
+  .music-how-it-works__image img {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cocurricular-banner {
+    padding: 120px 0 50px;
+  }
+
+  .cocurricular-banner__title {
+    font-size: 32px;
+  }
+
+  .cocurricular-banner__title br {
+    display: none;
+  }
+
+  .cocurricular-banner__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .cocurricular-banner__decoration {
+    display: none;
+  }
+
+  .cocurricular-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cocurricular-banner__actions .btn {
+    width: 100%;
+  }
+
+  .features__grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .music-how-it-works__grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .music-how-it-works__title {
+    font-size: 32px;
+  }
+
+  .music-how-it-works__image img {
+    max-height: 280px;
+  }
+
+  .instrument-card__image {
+    height: 200px;
+    width: calc(100% - 40px);
+    margin: 20px 20px 0;
+  }
+
+  .instrument-card__body {
+    padding: 20px;
+  }
+
+  .instrument-card__title {
+    font-size: 22px;
+  }
+
+  .instrument-card__desc {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cocurricular-banner__title {
+    font-size: 28px;
+    margin-top: 80px;
+  }
+
+  .instrument-card__body {
+    padding: var(--spacing-5);
+  }
+
+  .music-step-card {
+    padding: var(--spacing-6);
+    padding-top: var(--spacing-8);
+    min-height: auto;
+  }
+
+  .music-step-card__number {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+
+  .feature-card__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .feature-card__icon img {
+    width: 60px;
+    height: 60px;
+  }
+}

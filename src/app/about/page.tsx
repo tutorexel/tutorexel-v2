@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getRegionalAlternates } from "@/utils/seo";
 import Image from 'next/image';
 import Testimonials from '@/components/home/Testimonials';
 import CTA from '@/components/home/CTA';
@@ -28,9 +29,7 @@ export const metadata: Metadata = {
       'Built by educators, trusted by Australian families. Learn about TutorExel\'s mission, approach, and the team behind quality online tutoring.',
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: 'https://tutorexel.com/about',
-  },
+  alternates: getRegionalAlternates('/about', 'au'),
 };
 
 function StarIcon() {

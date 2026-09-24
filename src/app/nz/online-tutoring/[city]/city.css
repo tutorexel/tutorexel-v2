@@ -1,0 +1,1165 @@
+/* ===== City Banner Section ===== */
+.city-banner {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+.city-banner__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.city-banner__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.city-banner__decoration--right {
+  bottom: 0px;
+  right: -10px;
+}
+
+.city-banner__curve {
+  display: block;
+}
+
+.city-banner__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: .4;
+}
+
+.city-banner__curve--3 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+.city-banner__curve--4 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.city-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.city-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.city-banner__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-6);
+}
+
+.city-banner__title-highlight {
+  background: linear-gradient(0deg, #FF003B -25.96%, #FFA84A 117.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.city-banner__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.city-banner__title-star img {
+  width: 40px;
+}
+
+.city-banner__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.city-banner__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ===== Why Choose Section ===== */
+.city-why {
+  background: #FFFFFF;
+  padding: 100px 0;
+  padding-top: 0px;
+}
+
+.city-why__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.city-why__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.city-why__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.city-why__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.city-why__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.city-why__description {
+  font-size: 18px;
+  font-weight: 600;
+  color: #232323;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  background: #FFF9F5;
+  border-left: 4px solid #E56031;
+  border-radius: 0 12px 12px 0;
+}
+
+.city-why__fact {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.city-why__fact strong {
+  color: #232323;
+}
+
+/* ===== What We Offer Section ===== */
+.city-offer {
+  background: #F9FAFB;
+  padding: 100px 0;
+}
+
+.city-offer__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.city-offer__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.city-offer__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.city-offer__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.city-offer__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.city-offer__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.city-offer__card {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.city-offer__card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: #E56031;
+}
+
+.city-offer__card-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #FFA84A 0%, #FF8A3D 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #FFFFFF;
+}
+
+.city-offer__card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 8px;
+}
+
+.city-offer__card-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.city-offer__card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: transparent;
+  color: #232323;
+  border: 1.5px solid #D0D0D0;
+}
+
+.city-offer__card-btn:hover {
+  background: #232323;
+  color: #FFFFFF;
+  border-color: #232323;
+}
+
+/* ===== How It Works Section ===== */
+.city-how {
+  background: linear-gradient(0.67deg, #FF003B -125.55%, #FFA84A 95.62%);
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.city-how__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.city-how__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+.city-how__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.city-how__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.city-how__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.city-how__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.city-how__card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.city-how__card-number {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #FFA84A 0%, #FF8A3D 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.city-how__card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 8px;
+}
+
+.city-how__card-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.5;
+}
+
+/* ===== City Stats Section ===== */
+.city-stats {
+  background: #FFFFFF;
+  padding: 80px 0;
+}
+
+.city-stats__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.city-stats__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.city-stats__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.city-stats__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.city-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.city-stats__card {
+  background: #FFF9F5;
+  border: 1px solid #FFE8D6;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.city-stats__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.city-stats__card-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #E56031;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.city-stats__card-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #515151;
+}
+
+/* ===== City FAQ Section ===== */
+.city-faq {
+  background: #F9FAFB;
+  padding: 100px 0;
+}
+
+.city-faq__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.city-faq__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.city-faq__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.city-faq__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.city-faq__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.city-faq__list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.city-faq__item {
+  background: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0px 54.4793px 64.0933px rgba(205, 205, 205, 0.16);
+}
+
+.city-faq__item:hover {
+  background: #FAFAFA;
+}
+
+.city-faq__item--open {
+  background: #FFFFFF;
+}
+
+.city-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  gap: 20px;
+}
+
+.city-faq__question-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #232323;
+  line-height: 1.4;
+}
+
+.city-faq__icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 2px;
+  background: #232323;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.city-faq__icon-symbol {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.city-faq__item--open .city-faq__icon {
+  background: #FF6B35;
+}
+
+.city-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.city-faq__answer--open {
+  max-height: 500px;
+}
+
+.city-faq__answer-content {
+  padding: 0 28px 24px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* ===== Internal Links Section ===== */
+.city-links {
+  background: #FFFFFF;
+  padding: 60px 0;
+}
+
+.city-links__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.city-links__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 20px;
+}
+
+.city-links__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.city-links__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #515151;
+  background: #F9FAFB;
+  border: 1px solid #E5E5E5;
+  transition: all 0.2s ease;
+}
+
+.city-links__link:hover {
+  color: #E56031;
+  border-color: #E56031;
+  background: #FFF9F5;
+}
+
+/* ===== Online Tutoring Index Page ===== */
+.ot-banner {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+.ot-banner__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ot-banner__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.ot-banner__decoration--right {
+  bottom: 0px;
+  right: -10px;
+}
+
+.ot-banner__curve {
+  display: block;
+}
+
+.ot-banner__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: .4;
+}
+
+.ot-banner__curve--3 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+.ot-banner__curve--4 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.ot-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.ot-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ot-banner__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-6);
+}
+
+.ot-banner__title-highlight {
+  background: linear-gradient(0deg, #FF003B -25.96%, #FFA84A 117.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ot-banner__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.ot-banner__title-star img {
+  width: 40px;
+}
+
+.ot-banner__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.ot-banner__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ===== City List Section ===== */
+.ot-cities {
+  background: #FFFFFF;
+  padding: 100px 0;
+  padding-top: 0px;
+}
+
+.ot-cities__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.ot-cities__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.ot-cities__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.ot-cities__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.ot-cities__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ot-cities__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ot-cities__card {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.ot-cities__card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: #E56031;
+}
+
+.ot-cities__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ot-cities__card-name {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #E56031 0%, #FFA84A 100%);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+.ot-cities__card-state {
+  font-size: 14px;
+  font-weight: 400;
+  color: #757575;
+}
+
+.ot-cities__card-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.ot-cities__card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #E56031;
+  text-decoration: none;
+  transition: gap 0.2s ease;
+}
+
+.ot-cities__card-link:hover {
+  gap: 10px;
+}
+
+.ot-cities__card-link-arrow {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 991px) {
+  .city-banner {
+    padding: 140px 0 60px;
+  }
+
+  .city-banner__title {
+    font-size: 40px;
+  }
+
+  .city-banner__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .city-why__title {
+    font-size: 40px;
+  }
+
+  .city-offer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .city-offer__title {
+    font-size: 40px;
+  }
+
+  .city-how__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .city-how__title {
+    font-size: 40px;
+  }
+
+  .city-stats__title {
+    font-size: 40px;
+  }
+
+  .city-faq__title {
+    font-size: 40px;
+  }
+
+  .city-faq__question {
+    padding: 22px 24px;
+  }
+
+  .city-faq__question-text {
+    font-size: 17px;
+  }
+
+  .city-faq__answer-content {
+    padding: 0 24px 22px;
+  }
+
+  .ot-banner {
+    padding: 140px 0 60px;
+  }
+
+  .ot-banner__title {
+    font-size: 40px;
+  }
+
+  .ot-cities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ot-cities__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .city-banner {
+    padding: 120px 0 50px;
+  }
+
+  .city-banner__title {
+    font-size: 32px;
+  }
+
+  .city-banner__title br {
+    display: none;
+  }
+
+  .city-banner__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .city-banner__decoration {
+    display: none;
+  }
+
+  .city-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .city-banner__actions .btn {
+    width: 100%;
+  }
+
+  .city-why {
+    padding: 60px 0;
+  }
+
+  .city-why__title {
+    font-size: 28px;
+  }
+
+  .city-why__description {
+    font-size: 16px;
+  }
+
+  .city-offer {
+    padding: 60px 0;
+  }
+
+  .city-offer__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .city-offer__title {
+    font-size: 28px;
+  }
+
+  .city-offer__header {
+    margin-bottom: 32px;
+  }
+
+  .city-how {
+    padding: 60px 0;
+  }
+
+  .city-how__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .city-how__title {
+    font-size: 32px;
+  }
+
+  .city-how__card {
+    padding: 24px 20px;
+  }
+
+  .city-stats {
+    padding: 60px 0;
+  }
+
+  .city-stats__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .city-stats__title {
+    font-size: 28px;
+  }
+
+  .city-faq {
+    padding: 60px 0;
+  }
+
+  .city-faq__title {
+    font-size: 28px;
+  }
+
+  .city-faq__list {
+    gap: 12px;
+  }
+
+  .city-faq__question {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .city-faq__question-text {
+    font-size: 16px;
+  }
+
+  .city-faq__answer-content {
+    padding: 0 20px 20px;
+    font-size: 14px;
+  }
+
+  .city-links__grid {
+    gap: 8px;
+  }
+
+  .city-links__link {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+
+  .ot-banner {
+    padding: 120px 0 50px;
+  }
+
+  .ot-banner__title {
+    font-size: 32px;
+  }
+
+  .ot-banner__title br {
+    display: none;
+  }
+
+  .ot-banner__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .ot-banner__decoration {
+    display: none;
+  }
+
+  .ot-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ot-banner__actions .btn {
+    width: 100%;
+  }
+
+  .ot-cities {
+    padding: 60px 0;
+  }
+
+  .ot-cities__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ot-cities__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .city-banner__title {
+    font-size: 28px;
+    margin-top: 80px;
+  }
+
+  .city-why__title {
+    font-size: 24px;
+  }
+
+  .city-offer__title {
+    font-size: 24px;
+  }
+
+  .city-offer__card {
+    padding: 24px 20px;
+  }
+
+  .city-how__title {
+    font-size: 26px;
+  }
+
+  .city-how__card-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .city-how__card-title {
+    font-size: 16px;
+  }
+
+  .city-how__card-description {
+    font-size: 13px;
+  }
+
+  .city-stats__title {
+    font-size: 24px;
+  }
+
+  .city-stats__card-value {
+    font-size: 28px;
+  }
+
+  .city-faq__title {
+    font-size: 24px;
+  }
+
+  .city-faq__question {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .city-faq__question-text {
+    font-size: 15px;
+  }
+
+  .city-faq__answer-content {
+    padding: 0 16px 18px;
+    font-size: 13px;
+  }
+
+  .ot-banner__title {
+    font-size: 28px;
+    margin-top: 80px;
+  }
+
+  .ot-cities__title {
+    font-size: 24px;
+  }
+
+  .ot-cities__card {
+    padding: 24px 20px;
+  }
+}

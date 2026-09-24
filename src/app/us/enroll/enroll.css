@@ -1,0 +1,675 @@
+/* ===== Enroll Page ===== */
+
+/* Hero - matches site-wide pattern */
+.enroll-hero {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.enroll-hero__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.enroll-hero__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.enroll-hero__decoration--right {
+  bottom: 0;
+  right: -10px;
+}
+
+.enroll-hero__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: 0.4;
+  display: block;
+}
+
+.enroll-hero__curve--3 {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  opacity: 0.4;
+  display: block;
+}
+
+.enroll-hero__curve--4 {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+  opacity: 0.4;
+  display: block;
+}
+
+.enroll-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.enroll-hero__content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.enroll-hero__title {
+  font-size: 68px;
+  font-weight: var(--font-weight-medium);
+  color: #232323;
+  margin-bottom: var(--spacing-4);
+  line-height: 1.15;
+  letter-spacing: -2.72px;
+}
+
+.enroll-hero__title-highlight {
+  background: linear-gradient(90deg, #FF7446 71.635%, #FF253F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+span.enroll-hero__title-star img {
+  width: 40px;
+}
+
+.enroll-hero__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.enroll-hero__subtitle {
+  font-size: 20px;
+  color: #515151;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+}
+
+/* Section */
+.enroll-section {
+  background: var(--color-white);
+  padding: 80px 0;
+  padding-top: 0px;
+}
+
+/* Form Wrapper */
+.enroll-form-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Form Card - white with red border, matching contact page */
+.enroll-form__card {
+  background: var(--color-white);
+  border-radius: 25px;
+  padding: 30px 21px;
+  border: 0.895px solid #ff003b;
+  box-shadow: 0px 27.742px 89.489px rgba(0, 0, 0, 0.1);
+}
+
+.enroll-form__title {
+  font-size: 26px;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1.38;
+  background: linear-gradient(58.45deg, #FF003B -83.71%, #FFA84A 74.25%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.enroll-form__subtitle {
+  font-size: 16px;
+  color: #515151;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.34;
+}
+
+/* Form Rows */
+.enroll-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 17px;
+  margin-bottom: 17px;
+}
+
+.enroll-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.enroll-form__label {
+  font-size: 16px;
+  font-weight: var(--font-weight-normal);
+  color: #1e1e1e;
+  margin-bottom: 8px;
+}
+
+/* Inputs & Select - light style */
+.enroll-form__input,
+.enroll-form__select {
+  width: 100%;
+  padding: 16px 14px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  font-weight: 300;
+  border: 0.447px solid #515151;
+  border-radius: 9px;
+  outline: none;
+  transition: border-color var(--transition-base);
+  background: #fafafa;
+  color: #1e1e1e;
+}
+
+.enroll-form__input::placeholder {
+  color: #999;
+  font-weight: 300;
+}
+
+.enroll-form__input:focus,
+.enroll-form__select:focus {
+  border-color: #ff003b;
+}
+
+.enroll-form__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10L6 8z' fill='%23515151'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+/* Groups (Radio, Checkbox) */
+.enroll-form__group {
+  margin-bottom: 17px;
+}
+
+.enroll-form__radio-group,
+.enroll-form__checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+.enroll-form__radio,
+.enroll-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+}
+
+.enroll-form__radio input,
+.enroll-form__checkbox input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.enroll-form__radio input {
+  border-radius: 50%;
+}
+
+.enroll-form__checkbox input {
+  border-radius: 4px;
+}
+
+.enroll-form__radio input:checked {
+  background: #e56031;
+  border-color: #e56031;
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+.enroll-form__checkbox input:checked {
+  background: #e56031;
+  border-color: #e56031;
+}
+
+.enroll-form__checkbox input:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.enroll-form__radio-label,
+.enroll-form__checkbox-label {
+  font-size: 16px;
+  font-weight: 300;
+  color: #1e1e1e;
+}
+
+/* Info Card (Premium) */
+.enroll-form__info-card {
+  background: #FFF5EE;
+  border: 1px solid rgba(229, 96, 49, 0.2);
+  border-radius: 9px;
+  padding: var(--spacing-4);
+  font-size: 15px;
+  color: #515151;
+  line-height: 1.6;
+}
+
+/* Total Amount */
+.enroll-form__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin-top: 17px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.enroll-form__total-label {
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  color: #1e1e1e;
+}
+
+.enroll-form__total-amount {
+  font-size: 36px;
+  font-weight: var(--font-weight-bold);
+  color: #e56031;
+}
+
+.enroll-form__total-period {
+  font-size: 16px;
+  font-weight: var(--font-weight-regular);
+  color: #515151;
+  margin-left: 4px;
+}
+
+/* Auto-apply coupon banner (shown when ?coupon=... is in URL) */
+.enroll-coupon-banner {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  color: #9a3412;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.enroll-coupon-banner strong {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.enroll-coupon-banner--success {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.enroll-coupon-banner--error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* Coupon */
+.enroll-form__coupon {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: #fff7ed;
+  border: 1px dashed #fed7aa;
+  border-radius: 10px;
+}
+
+.enroll-form__coupon-label {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: #1e1e1e;
+  margin-bottom: 8px;
+}
+
+.enroll-form__coupon-row {
+  display: flex;
+  gap: 8px;
+}
+
+.enroll-form__coupon-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: var(--font-family);
+  outline: none;
+  background: #fff;
+  color: #111;
+}
+
+.enroll-form__coupon-input:focus {
+  border-color: #e56031;
+}
+
+.enroll-form__coupon-apply {
+  padding: 10px 20px;
+  background: #1e1e1e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition-base);
+}
+
+.enroll-form__coupon-apply:hover:not(:disabled) {
+  background: #000;
+}
+
+.enroll-form__coupon-apply:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.enroll-form__coupon-error {
+  margin: 8px 0 0;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+/* Price breakdown when a coupon is applied */
+.enroll-form__breakdown {
+  margin-top: 17px;
+  padding: 16px 0 4px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.enroll-form__breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 16px;
+  color: #1e1e1e;
+}
+
+.enroll-form__breakdown-row--discount {
+  color: #15803d;
+  font-weight: var(--font-weight-semibold);
+}
+
+.enroll-form__total--final {
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px dashed #E5E5E5;
+}
+
+.enroll-form__coupon-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(21, 128, 61, 0.12);
+  color: #15803d;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.enroll-form__coupon-remove:hover {
+  background: rgba(21, 128, 61, 0.22);
+}
+
+/* Terms */
+.enroll-form__terms {
+  margin-top: 20px;
+  padding: 0;
+}
+
+.enroll-form__terms .enroll-form__checkbox-label {
+  font-size: 16px;
+  color: #1e1e1e;
+}
+
+.enroll-form__terms .enroll-form__checkbox-label a {
+  color: #e56031;
+  font-weight: var(--font-weight-normal);
+}
+
+.enroll-form__terms .enroll-form__checkbox-label a:hover {
+  text-decoration: underline;
+}
+
+/* Submit Button - black pill matching contact form */
+.enroll-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 14px;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family);
+  color: var(--color-white);
+  background: #000;
+  border: none;
+  border-radius: 38px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.enroll-form__submit:hover:not(:disabled) {
+  background: #222;
+  transform: translateY(-2px);
+}
+
+.enroll-form__submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.enroll-form__error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: 9px;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+/* ===== Success State ===== */
+.enroll-success {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--color-white);
+  border: 0.895px solid #ff003b;
+  border-radius: 25px;
+  padding: 60px 30px;
+  text-align: center;
+  box-shadow: 0px 27.742px 89.489px rgba(0, 0, 0, 0.1);
+}
+
+.enroll-success__icon {
+  color: #22C55E;
+  margin-bottom: var(--spacing-6);
+  display: flex;
+  justify-content: center;
+}
+
+.enroll-success__icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.enroll-success__title {
+  font-size: 26px;
+  font-weight: var(--font-weight-semibold);
+  background: linear-gradient(58.45deg, #FF003B -83.71%, #FFA84A 74.25%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-4);
+}
+
+.enroll-success__message {
+  font-size: 16px;
+  color: #515151;
+  line-height: 1.7;
+  max-width: 450px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.enroll-success__fee {
+  color: #e56031;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.enroll-success__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* Payment Button */
+.btn-payment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.btn-payment:hover {
+  background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+
+.btn-payment svg {
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 991px) {
+  .enroll-hero {
+    padding: 140px 0 60px;
+  }
+
+  .enroll-hero__title {
+    font-size: 50px;
+    letter-spacing: -2px;
+  }
+
+  .enroll-hero__subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  .enroll-hero {
+    padding: 120px 0 30px;
+  }
+
+  .enroll-hero__title {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+
+  .enroll-hero__subtitle {
+    font-size: 16px;
+  }
+
+  .enroll-hero__decoration {
+    display: none;
+  }
+
+  .enroll-section {
+    padding: 60px 0;
+    padding-top: 0;
+  }
+
+  .enroll-form__card {
+    padding: 24px 16px;
+  }
+
+  .enroll-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .enroll-form__radio-group,
+  .enroll-form__checkbox-group {
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .enroll-success {
+    padding: 40px 20px;
+  }
+
+  .enroll-success__actions {
+    flex-direction: column;
+  }
+
+  .enroll-success__actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .enroll-hero__title {
+    font-size: 28px;
+    margin-top: 40px;
+  }
+
+  .enroll-form__submit {
+    padding: 16px 14px;
+    font-size: 16px;
+  }
+}

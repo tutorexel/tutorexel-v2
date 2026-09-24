@@ -1,0 +1,39 @@
+/* ===== Free Trial Booking Page =====
+   iframe is tall enough to show full widget without internal scroll.
+   Page-level scroll handles overflow naturally. */
+.booking-page {
+  padding: 80px var(--container-padding) var(--spacing-10);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.booking-page__widget-wrapper {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.booking-page__iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .booking-page {
+    padding: 80px var(--container-padding) var(--spacing-6);
+  }
+
+  .booking-page__iframe {
+    height: 900px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-page__iframe {
+    height: 1100px;
+  }
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   createFaqSchema,
@@ -27,9 +28,7 @@ export const metadata: Metadata = {
       "Simple, transparent pricing for online tutoring. From $39/month for group classes to $219/month premium plans. Maths, English, Science, Piano & Guitar for Years 2-7.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/pricing",
-  },
+  alternates: getRegionalAlternates('/pricing', 'au'),
 };
 
 const pricingFaqItems = [

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import "../../thank-you/thank-you.css";
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Your free trial class has been booked successfully. Our team will confirm your session shortly.",
   robots: "noindex",
+  alternates: getRegionalAlternates('/free-trial-booking/thank-you', 'au'),
 };
 
 export default function FreeTrialThankYouPage() {

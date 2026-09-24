@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Guitar Lessons Enquiry | TutorExel",
@@ -28,9 +29,7 @@ export const metadata: Metadata = {
       "Enquire about online guitar lessons for your child. Book a free trial lesson.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/co-curricular/guitar/enquire",
-  },
+  alternates: getRegionalAlternates('/co-curricular/guitar/enquire', 'au'),
 };
 
 export default function GuitarEnquiryLayout({

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Student Results & Success Stories | TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "See real results from TutorExel students. Our personalised, curriculum-aligned tutoring delivers measurable improvements in maths and English.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/results",
-  },
+  alternates: getRegionalAlternates('/results', 'au'),
 };
 
 export default function ResultsLayout({

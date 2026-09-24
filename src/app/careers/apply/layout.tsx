@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Apply Now | Teaching Careers | TutorExel",
@@ -19,9 +20,7 @@ export const metadata: Metadata = {
     description:
       "Join TutorExel as an online tutor. Apply now to teach Students Worldwide in maths, English, piano, or guitar.",
   },
-  alternates: {
-    canonical: "https://tutorexel.com/careers/apply",
-  },
+  alternates: getRegionalAlternates('/careers/apply', 'au'),
 };
 
 export default function CareersApplyLayout({

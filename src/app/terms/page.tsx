@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
@@ -23,9 +24,7 @@ export const metadata: Metadata = {
       "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/terms",
-  },
+  alternates: getRegionalAlternates('/terms', 'au'),
 };
 
 export default function TermsPage() {

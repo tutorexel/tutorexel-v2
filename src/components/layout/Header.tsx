@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { trackPhoneClick, trackEnrollClick } from "@/utils/analytics";
 import { LOGIN_URL } from "@/utils/externalLinks";
+import { getRegionalHref } from "@/utils/regionalLinks";
 import "./Header.css";
 
 const navLinks = [
@@ -34,11 +35,21 @@ const subjectYears = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "";
+
+  const toHref = (path: string) => getRegionalHref(path, pathname);
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    const regionalTarget = toHref(href);
+    if (
+      regionalTarget === "/" ||
+      regionalTarget === "/us" ||
+      regionalTarget === "/ca" ||
+      regionalTarget === "/nz"
+    ) {
+      return pathname === regionalTarget || pathname === `${regionalTarget}/`;
+    }
+    return pathname.startsWith(regionalTarget);
   };
 
   useEffect(() => {
@@ -48,10 +59,21 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    }
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [menuOpen]);
+
   return (
     <header className={`navbar${scrolled ? " navbar--scrolled" : ""}`}>
       <div className="container navbar__inner">
-        <Link href="/" className="navbar__logo">
+        <Link href={toHref("/")} className="navbar__logo">
           <Image
             src="/images/banner/Header_Logo.webp"
             alt="TutorExel"
@@ -75,7 +97,7 @@ export default function Header() {
               }
             >
               <Link
-                href={link.href}
+                href={toHref(link.href)}
                 className={`navbar__link${isActive(link.href) ? " navbar__link--active" : ""}`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -93,28 +115,28 @@ export default function Header() {
                     {subjectYears.map((sy) => (
                       <div key={sy.id} className="navbar__mega-col">
                         <Link
-                          href={`/subjects/${sy.id}/maths`}
+                          href={toHref(`/subjects/${sy.id}/maths`)}
                           className="navbar__mega-year"
                           onClick={() => setMenuOpen(false)}
                         >
                           {sy.year}
                         </Link>
                         <Link
-                          href={`/subjects/${sy.id}/maths`}
+                          href={toHref(`/subjects/${sy.id}/maths`)}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >
                           Maths
                         </Link>
                         <Link
-                          href={`/subjects/${sy.id}/english`}
+                          href={toHref(`/subjects/${sy.id}/english`)}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >
                           English
                         </Link>
                         <Link
-                          href={`/subjects/${sy.id}/science`}
+                          href={toHref(`/subjects/${sy.id}/science`)}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >
@@ -131,7 +153,7 @@ export default function Header() {
                   {coCurricularItems.map((item) => (
                     <Link
                       key={item.href}
-                      href={item.href}
+                      href={toHref(item.href)}
                       className="navbar__dropdown-link"
                       onClick={() => setMenuOpen(false)}
                     >
@@ -146,7 +168,7 @@ export default function Header() {
           {/* Mobile-only links inside hamburger menu */}
           <li className="navbar__mobile-auth">
             <Link
-              href="/enroll"
+              href={toHref("/enroll")}
               className="navbar__link"
               onClick={() => { setMenuOpen(false); trackEnrollClick("mobile-menu"); }}
             >
@@ -175,7 +197,7 @@ export default function Header() {
             Login
           </a>
 
-          <Link href="/enroll" className="navbar__btn" onClick={() => trackEnrollClick("header")}>
+          <Link href={toHref("/enroll")} className="navbar__btn" onClick={() => trackEnrollClick("header")}>
             Enroll Now
           </Link>
         </div>

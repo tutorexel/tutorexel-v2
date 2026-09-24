@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
@@ -23,9 +24,7 @@ export const metadata: Metadata = {
       "Learn about the cookies TutorExel uses on its website and how you can manage your cookie preferences.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/cookies",
-  },
+  alternates: getRegionalAlternates('/cookies', 'au'),
 };
 
 export default function CookiePolicyPage() {

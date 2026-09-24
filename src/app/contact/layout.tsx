@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Contact Us | Get Started with TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Contact TutorExel for online tutoring enquiries. Book your child's free trial class. We respond within 2 hours during business hours.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/contact",
-  },
+  alternates: getRegionalAlternates('/contact', 'au'),
 };
 
 export default function ContactLayout({

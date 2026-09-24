@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getRegionalAlternates } from "@/utils/seo";
 
 function getYearLabel(yearId: string): string {
   const num = yearId.replace('year-', '');
@@ -49,9 +50,7 @@ export async function generateMetadata({
       description,
       images: ['/images/banner/og-image.webp'],
     },
-    alternates: {
-      canonical: url,
-    },
+    alternates: getRegionalAlternates('/subjects/' + yearId + '/' + subjectId, 'au'),
   };
 }
 

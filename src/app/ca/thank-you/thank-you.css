@@ -1,0 +1,149 @@
+/* ===== Thank You Page ===== */
+.thank-you {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: calc(var(--spacing-20) + 80px) var(--container-padding) var(--spacing-20);
+}
+
+.thank-you__content {
+  max-width: 520px;
+  text-align: center;
+}
+
+.thank-you__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: #F0FFF0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-6);
+}
+
+.thank-you__icon svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-success);
+}
+
+.thank-you__title {
+  font-family: var(--font-family);
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-4);
+}
+
+.thank-you__message {
+  font-size: var(--font-size-base);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-4);
+}
+
+.thank-you__message strong {
+  color: var(--color-heading);
+}
+
+.thank-you__message a {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  transition: color var(--transition-base);
+}
+
+.thank-you__message a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* WhatsApp pill — keeps icon + number as a single, centered unit */
+.thank-you__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin: 0 auto var(--spacing-6);
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  background: #F0FFF0;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: background var(--transition-base), color var(--transition-base);
+  white-space: nowrap;
+}
+
+.thank-you__whatsapp:hover {
+  background: #E0FFE0;
+  color: var(--color-primary-dark);
+}
+
+.thank-you__whatsapp svg {
+  flex-shrink: 0;
+}
+
+.thank-you__hint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-8);
+}
+
+.thank-you__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+/* Info card (used on free trial thank-you) */
+.thank-you__info-card {
+  background: #f0faf0;
+  border: 1px solid #d4edda;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+  text-align: left;
+}
+
+.thank-you__info-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-3);
+}
+
+.thank-you__info-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.thank-you__info-card li {
+  font-size: 14px;
+  color: var(--color-subheading);
+  line-height: 1.7;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.thank-you__info-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 767px) {
+  .thank-you__title { font-size: 36px; }
+}
+
+@media (max-width: 480px) {
+  .thank-you__title { font-size: 28px; }
+  .thank-you__actions { flex-direction: column; }
+}

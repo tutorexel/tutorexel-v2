@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import Image from "next/image";
 import "./careers.css";
@@ -24,9 +25,7 @@ export const metadata: Metadata = {
       "Join TutorExel as an online tutor. Work from home, flexible hours, and make a real difference in students' lives. Apply today.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/careers",
-  },
+  alternates: getRegionalAlternates('/careers', 'au'),
 };
 
 const openings = [

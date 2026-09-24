@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Co-Curricular Music Lessons | TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Learn Piano and Guitar online from home. Trinity College London syllabus. Qualified tutors, structured progression, and globally recognised certification.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/co-curricular",
-  },
+  alternates: getRegionalAlternates('/co-curricular', 'au'),
 };
 
 export default function CoCurricularLayout({

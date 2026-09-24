@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { blogs } from "@/data/blogs";
+import { getAllSlugsForSitemap } from "@/sanity/client";
 import { cities } from "@/data/cities";
 
 const BASE_URL = "https://tutorexel.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
   // Static pages with high priority (key pages)
@@ -45,13 +45,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  // Dynamic blog post pages — using slugs
-  const blogEntries: MetadataRoute.Sitemap = blogs.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  // Dynamic blog post pages from Sanity (per region)
+  const sanityPosts = await getAllSlugsForSitemap();
+  const blogEntries: MetadataRoute.Sitemap = sanityPosts.map((post) => {
+    const postUrl =
+      post.region && post.region !== "au"
+        ? `${BASE_URL}/${post.region}/blog/${post.slug}`
+        : `${BASE_URL}/blog/${post.slug}`;
+
+    return {
+      url: postUrl,
+      lastModified: post._updatedAt ? new Date(post._updatedAt) : lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    };
+  });
 
   return [
     // Homepage

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Learning Hub | Tutoring Tips & Parent Guides | TutorExel Blog",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Expert tips on maths, English, NAPLAN preparation, and study skills. Guides for Australian parents to support their child's learning.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/blog",
-  },
+  alternates: getRegionalAlternates('/blog', 'au'),
 };
 
 export default function BlogLayout({

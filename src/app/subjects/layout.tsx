@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: 'Subjects | TutorExel - Personalised Learning Aligned Tutoring',
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: 'https://tutorexel.com/subjects',
-  },
+  alternates: getRegionalAlternates('/subjects', 'au'),
 };
 
 export default function SubjectsLayout({

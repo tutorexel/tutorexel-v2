@@ -30,15 +30,56 @@
   margin-bottom: var(--spacing-6);
 }
 
+/* Country capsules in Footer - White rounded pills matching live design */
+.footer__countries,
+.footer .hero__countries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: var(--spacing-6);
+}
+
+.footer__country,
+.footer .hero__country {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e3e6e5;
+  border-radius: 999px;
+  padding: 6px 12px 6px 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.footer__country-flag,
+.footer .hero__country-flag {
+  border-radius: 2px;
+  display: block;
+  object-fit: cover;
+  width: 20px;
+  height: 14px;
+}
+
+.footer__country-name,
+.footer .hero__country-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2b332f;
+  white-space: nowrap;
+}
+
 .footer__social {
   display: flex;
   gap: var(--spacing-3);
+  margin-bottom: var(--spacing-6);
 }
 
 .social-link {
   width: 40px;
   height: 40px;
   background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,6 +160,14 @@
     grid-column: span 2;
     max-width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__countries,
+  .footer .hero__countries {
+    justify-content: center;
   }
 
   .footer__social {
@@ -126,7 +175,7 @@
   }
 }
 
-/* ===== Responsive: max-width 767px ===== */
+/* ===== Responsive: max-width 767px (Mobile layout matching live reference) ===== */
 @media (max-width: 767px) {
   .footer__main {
     padding: var(--spacing-12) 0 var(--spacing-8);
@@ -135,18 +184,82 @@
   .footer__grid {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: var(--spacing-8);
   }
 
   .footer__brand {
     grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__logo {
+    display: inline-block;
+    margin: 0 auto var(--spacing-4);
+  }
+
+  .footer__description {
+    font-size: 15px;
+    max-width: 440px;
+    margin: 0 auto var(--spacing-5);
+    text-align: center;
+    line-height: 1.65;
+  }
+
+  /* Country capsules on mobile: horizontal pills matching Screenshot 3 */
+  .footer__countries,
+  .footer .hero__countries {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto var(--spacing-6);
+    max-width: 360px;
+  }
+
+  .footer__country,
+  .footer .hero__country {
+    padding: 5px 10px 5px 7px;
+    gap: 5px;
+  }
+
+  .footer__country-flag,
+  .footer .hero__country-flag {
+    width: 18px;
+    height: 12px;
+  }
+
+  .footer__country-name,
+  .footer .hero__country-name {
+    font-size: 12px;
+  }
+
+  .footer__social {
+    justify-content: center;
+    margin: 0 auto var(--spacing-8);
+    gap: 12px;
   }
 
   .footer__links {
     text-align: center;
   }
 
+  .footer__links-title {
+    margin-bottom: var(--spacing-4);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+  }
+
   .footer__links-list {
     align-items: center;
+    gap: 12px;
+  }
+
+  .footer__links-list a,
+  .footer__link-button {
+    font-size: 15px;
   }
 
   .footer__bottom {
@@ -162,6 +275,28 @@
 @media (max-width: 575px) {
   .footer__main {
     padding: var(--spacing-10) 0 var(--spacing-6);
+  }
+
+  .footer__description {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 0 8px;
+  }
+
+  .footer__countries,
+  .footer .hero__countries {
+    gap: 6px;
+    max-width: 335px;
+  }
+
+  .footer__country,
+  .footer .hero__country {
+    padding: 4px 9px 4px 6px;
+  }
+
+  .footer__country-name,
+  .footer .hero__country-name {
+    font-size: 11.5px;
   }
 
   .footer__bottom {

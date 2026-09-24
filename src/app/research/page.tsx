@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import JsonLd from "@/components/seo/JsonLd";
 import { createBreadcrumbSchema } from "@/utils/schema";
@@ -26,9 +27,7 @@ export const metadata: Metadata = {
       "Research reports and data on the Australian tutoring industry. Market trends, parent preferences, online learning insights, and NAPLAN preparation analysis from TutorExel.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/research",
-  },
+  alternates: getRegionalAlternates('/research', 'au'),
 };
 
 export default function ResearchPage() {

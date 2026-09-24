@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/home/CTA";
@@ -29,9 +30,7 @@ export const metadata: Metadata = {
       "Prepare your child for NAPLAN with expert online tutoring aligned to the Australian Curriculum. Targeted practice for Year 3, Year 5 & Year 7 in Maths, Reading, Writing & Language Conventions.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/naplan-preparation",
-  },
+  alternates: getRegionalAlternates('/naplan-preparation', 'au'),
 };
 
 const faqData = [

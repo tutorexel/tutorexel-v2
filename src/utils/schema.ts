@@ -85,7 +85,7 @@ export function createFaqSchema(
 
 export function createBlogPostingSchema(post: {
   title: string;
-  excerpt: string;
+  excerpt?: string;
   image: string;
   datePublished: string;
   slug: string;
@@ -94,8 +94,8 @@ export function createBlogPostingSchema(post: {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: post.excerpt,
-    image: `https://tutorexel.com${post.image}`,
+    description: post.excerpt || "",
+    image: post.image.startsWith('http') ? post.image : `https://tutorexel.com${post.image}`,
     datePublished: post.datePublished,
     author: {
       "@type": "Organization",

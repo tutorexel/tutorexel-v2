@@ -1,0 +1,862 @@
+/* ===== NAPLAN Banner Section ===== */
+.naplan-banner {
+  position: relative;
+  padding: 160px 0 80px;
+  background-color: #FFF9F5;
+  background-image: linear-gradient(180deg, #FFFAF7 0%, #FFF5EE 30%, #FFFFFF 100%);
+  overflow: hidden;
+}
+
+.naplan-banner__decoration {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.naplan-banner__decoration--left {
+  top: 100px;
+  left: -20px;
+}
+
+.naplan-banner__decoration--right {
+  bottom: 0px;
+  right: -10px;
+}
+
+.naplan-banner__curve {
+  display: block;
+}
+
+.naplan-banner__curve--1 {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  opacity: .4;
+}
+
+.naplan-banner__curve--3 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
+.naplan-banner__curve--4 {
+  opacity: .4;
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+
+.naplan-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.naplan-banner__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.naplan-banner__title {
+  font-size: 50px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-6);
+}
+
+.naplan-banner__title-highlight {
+  background: linear-gradient(0deg, #FF003B -25.96%, #FFA84A 117.14%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.naplan-banner__title-star {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: var(--spacing-2);
+}
+
+.naplan-banner__title-star img {
+  width: 40px;
+}
+
+.naplan-banner__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-subheading);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-8);
+}
+
+.naplan-banner__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+/* ===== What is NAPLAN Section ===== */
+.naplan-what {
+  background: #FFFFFF;
+  padding: 100px 0;
+  padding-top: 0px;
+}
+
+.naplan-what__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.naplan-what__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.naplan-what__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.naplan-what__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.naplan-what__content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.naplan-what__answer {
+  font-size: 18px;
+  font-weight: 600;
+  color: #232323;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  background: #FFF9F5;
+  border-left: 4px solid #E56031;
+  border-radius: 0 12px 12px 0;
+}
+
+.naplan-what__details {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.naplan-what__details:last-child {
+  margin-bottom: 0;
+}
+
+.naplan-what__link {
+  color: #E56031;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.naplan-what__link:hover {
+  color: #c94f24;
+  text-decoration: underline;
+}
+
+/* ===== Year Level Cards Section ===== */
+.naplan-years {
+  background: #F9FAFB;
+  padding: 100px 0;
+}
+
+.naplan-years__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.naplan-years__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.naplan-years__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.naplan-years__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.naplan-years__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.naplan-years__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.naplan-years__card {
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.naplan-years__card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+  border-color: #E56031;
+}
+
+.naplan-years__card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.naplan-years__card-year {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #E56031 0%, #FFA84A 100%);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+.naplan-years__card-ages {
+  font-size: 14px;
+  font-weight: 400;
+  color: #757575;
+}
+
+.naplan-years__card-description {
+  font-size: 15px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.naplan-years__card-subjects {
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.naplan-years__card-subject-group {
+  margin-bottom: 12px;
+}
+
+.naplan-years__card-subject-group:last-child {
+  margin-bottom: 0;
+}
+
+.naplan-years__card-subject-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 4px;
+}
+
+.naplan-years__card-subject-list {
+  font-size: 13px;
+  font-weight: 400;
+  color: #757575;
+  line-height: 1.5;
+}
+
+.naplan-years__card-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.naplan-years__card-links {
+  display: flex;
+  gap: 10px;
+}
+
+.naplan-years__card-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.naplan-years__card-btn--english {
+  background: transparent;
+  color: #232323;
+  border: 1.5px solid #D0D0D0;
+}
+
+.naplan-years__card-btn--english:hover {
+  background: #232323;
+  color: #FFFFFF;
+  border-color: #232323;
+}
+
+.naplan-years__card-btn--maths {
+  background: transparent;
+  color: #232323;
+  border: 1.5px solid #D0D0D0;
+}
+
+.naplan-years__card-btn--maths:hover {
+  background: #232323;
+  color: #FFFFFF;
+  border-color: #232323;
+}
+
+.naplan-years__card-btn--cta {
+  background: #E56031;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 20px;
+  font-size: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.naplan-years__card-btn--cta:hover {
+  background: #c94f24;
+}
+
+/* ===== How We Prepare Section ===== */
+.naplan-prepare {
+  background: linear-gradient(0.67deg, #FF003B -125.55%, #FFA84A 95.62%);
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.naplan-prepare__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.naplan-prepare__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+.naplan-prepare__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.naplan-prepare__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.naplan-prepare__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.naplan-prepare__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.naplan-prepare__card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.naplan-prepare__card-number {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #FFA84A 0%, #FF8A3D 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.naplan-prepare__card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 8px;
+}
+
+.naplan-prepare__card-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.5;
+}
+
+/* ===== NAPLAN FAQ Section ===== */
+.naplan-faq {
+  background: #FFFFFF;
+  padding: 100px 0;
+}
+
+.naplan-faq__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.naplan-faq__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+  margin-bottom: 12px;
+}
+
+.naplan-faq__label-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.naplan-faq__title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #232323;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.naplan-faq__subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #515151;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.naplan-faq__list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.naplan-faq__item {
+  background: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0px 54.4793px 64.0933px rgba(205, 205, 205, 0.16);
+}
+
+.naplan-faq__item:hover {
+  background: #FAFAFA;
+}
+
+.naplan-faq__item--open {
+  background: #FFFFFF;
+}
+
+.naplan-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  gap: 20px;
+}
+
+.naplan-faq__question-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #232323;
+  line-height: 1.4;
+}
+
+.naplan-faq__icon {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 2px;
+  background: #232323;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.naplan-faq__icon-symbol {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.naplan-faq__item--open .naplan-faq__icon {
+  background: #FF6B35;
+}
+
+.naplan-faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.naplan-faq__answer--open {
+  max-height: 500px;
+}
+
+.naplan-faq__answer-content {
+  padding: 0 28px 24px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.7;
+}
+
+/* ===== Internal Links Section ===== */
+.naplan-links {
+  background: #F9FAFB;
+  padding: 60px 0;
+}
+
+.naplan-links__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.naplan-links__title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 20px;
+}
+
+.naplan-links__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.naplan-links__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #515151;
+  background: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  transition: all 0.2s ease;
+}
+
+.naplan-links__link:hover {
+  color: #E56031;
+  border-color: #E56031;
+  background: #FFF9F5;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 991px) {
+  .naplan-banner {
+    padding: 140px 0 60px;
+  }
+
+  .naplan-banner__title {
+    font-size: 40px;
+  }
+
+  .naplan-banner__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .naplan-what__title {
+    font-size: 40px;
+  }
+
+  .naplan-years__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .naplan-years__title {
+    font-size: 40px;
+  }
+
+  .naplan-prepare__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .naplan-prepare__title {
+    font-size: 40px;
+  }
+
+  .naplan-faq__title {
+    font-size: 40px;
+  }
+
+  .naplan-faq__question {
+    padding: 22px 24px;
+  }
+
+  .naplan-faq__question-text {
+    font-size: 17px;
+  }
+
+  .naplan-faq__answer-content {
+    padding: 0 24px 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  .naplan-banner {
+    padding: 120px 0 50px;
+  }
+
+  .naplan-banner__title {
+    font-size: 32px;
+  }
+
+  .naplan-banner__title br {
+    display: none;
+  }
+
+  .naplan-banner__subtitle {
+    font-size: var(--font-size-sm);
+  }
+
+  .naplan-banner__decoration {
+    display: none;
+  }
+
+  .naplan-banner__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .naplan-banner__actions .btn {
+    width: 100%;
+  }
+
+  .naplan-what {
+    padding: 60px 0;
+  }
+
+  .naplan-what__title {
+    font-size: 28px;
+  }
+
+  .naplan-what__answer {
+    font-size: 16px;
+  }
+
+  .naplan-years {
+    padding: 60px 0;
+  }
+
+  .naplan-years__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .naplan-years__title {
+    font-size: 28px;
+  }
+
+  .naplan-years__header {
+    margin-bottom: 32px;
+  }
+
+  .naplan-prepare {
+    padding: 60px 0;
+  }
+
+  .naplan-prepare__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .naplan-prepare__title {
+    font-size: 32px;
+  }
+
+  .naplan-prepare__card {
+    padding: 24px 20px;
+  }
+
+  .naplan-faq {
+    padding: 60px 0;
+  }
+
+  .naplan-faq__title {
+    font-size: 28px;
+  }
+
+  .naplan-faq__list {
+    gap: 12px;
+  }
+
+  .naplan-faq__question {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .naplan-faq__question-text {
+    font-size: 16px;
+  }
+
+  .naplan-faq__answer-content {
+    padding: 0 20px 20px;
+    font-size: 14px;
+  }
+
+  .naplan-links__grid {
+    gap: 8px;
+  }
+
+  .naplan-links__link {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .naplan-banner__title {
+    font-size: 28px;
+    margin-top: 80px;
+  }
+
+  .naplan-what__title {
+    font-size: 24px;
+  }
+
+  .naplan-years__card {
+    padding: 24px 20px;
+  }
+
+  .naplan-years__title {
+    font-size: 24px;
+  }
+
+  .naplan-years__card-links {
+    flex-direction: column;
+  }
+
+  .naplan-prepare__title {
+    font-size: 26px;
+  }
+
+  .naplan-prepare__card-number {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .naplan-prepare__card-title {
+    font-size: 16px;
+  }
+
+  .naplan-prepare__card-description {
+    font-size: 13px;
+  }
+
+  .naplan-faq__title {
+    font-size: 24px;
+  }
+
+  .naplan-faq__question {
+    padding: 18px 16px;
+    gap: 12px;
+  }
+
+  .naplan-faq__question-text {
+    font-size: 15px;
+  }
+
+  .naplan-faq__answer-content {
+    padding: 0 16px 18px;
+    font-size: 13px;
+  }
+}

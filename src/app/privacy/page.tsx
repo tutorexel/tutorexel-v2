@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
@@ -23,9 +24,7 @@ export const metadata: Metadata = {
       "Learn how TutorExel collects, uses, and protects your personal information.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/privacy",
-  },
+  alternates: getRegionalAlternates('/privacy', 'au'),
 };
 
 export default function PrivacyPolicyPage() {

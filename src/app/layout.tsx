@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import ConditionalChrome from "@/components/layout/ConditionalChrome";
 import FreeTrialModalProvider from "@/components/layout/FreeTrialModalProvider";
+import CountrySwitcher from "@/components/shared/CountrySwitcher";
 import JsonLd from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema, reviewSchema } from "@/utils/schema";
 
@@ -89,6 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <JsonLd data={reviewSchema} />
         <FreeTrialModalProvider>
           <ConditionalChrome>{children}</ConditionalChrome>
+          <CountrySwitcher />
         </FreeTrialModalProvider>
       </body>
     </html>

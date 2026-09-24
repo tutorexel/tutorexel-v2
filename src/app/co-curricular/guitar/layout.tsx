@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Online Guitar Lessons - Trinity College London Syllabus | TutorExel",
@@ -19,9 +20,7 @@ export const metadata: Metadata = {
     description:
       "Learn guitar online with qualified tutors following the Trinity College London syllabus. From beginner to Grade 8. Ages 8+. Book a free trial lesson.",
   },
-  alternates: {
-    canonical: "https://tutorexel.com/co-curricular/guitar",
-  },
+  alternates: getRegionalAlternates('/co-curricular/guitar', 'au'),
 };
 
 export default function GuitarLayout({

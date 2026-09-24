@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Online Piano Lessons - Trinity College London Syllabus | TutorExel",
@@ -19,9 +20,7 @@ export const metadata: Metadata = {
     description:
       "Learn piano online with qualified tutors following the Trinity College London syllabus. From beginner to Grade 8. Ages 5+. Book a free trial lesson.",
   },
-  alternates: {
-    canonical: "https://tutorexel.com/co-curricular/piano",
-  },
+  alternates: getRegionalAlternates('/co-curricular/piano', 'au'),
 };
 
 export default function PianoLayout({

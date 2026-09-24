@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Enrol Now | Start Online Tutoring | TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Enrol your child in TutorExel's online tutoring programmes. Choose from Maths, English, Piano, Guitar, or our all-inclusive Premium Plan.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/enroll",
-  },
+  alternates: getRegionalAlternates('/enroll', 'au'),
 };
 
 export default function EnrollLayout({

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTA from "@/components/home/CTA";
@@ -26,9 +27,7 @@ export const metadata: Metadata = {
     description:
       "Comprehensive research report on the Australian tutoring industry in 2026. Market size, trends, parent preferences, online vs in-person data, and NAPLAN impact analysis.",
   },
-  alternates: {
-    canonical: "https://tutorexel.com/research/australian-tutoring-report-2026",
-  },
+  alternates: getRegionalAlternates('/research/australian-tutoring-report-2026', 'au'),
 };
 
 const reportSchema: Record<string, unknown> = {

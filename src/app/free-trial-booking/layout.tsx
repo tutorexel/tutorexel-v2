@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Book a Free Trial Class | TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Book your free trial class with TutorExel. Choose a convenient time slot and experience Australian curriculum-aligned online tutoring.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/free-trial-booking",
-  },
+  alternates: getRegionalAlternates('/free-trial-booking', 'au'),
 };
 
 export default function FreeTrialBookingLayout({

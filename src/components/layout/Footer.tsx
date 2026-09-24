@@ -1,9 +1,11 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
+import { getRegionalHref } from "@/utils/regionalLinks";
 import "./Footer.css";
 
 type Country = {
@@ -48,6 +50,8 @@ const legalLinks = [
 
 export default function Footer() {
   const { open: openTrialModal } = useFreeTrialModal();
+  const pathname = usePathname() || "";
+  const toHref = (path: string) => getRegionalHref(path, pathname);
 
   return (
     <footer className="footer">
@@ -56,7 +60,7 @@ export default function Footer() {
           <div className="footer__grid">
             {/* Brand Column */}
             <div className="footer__brand">
-              <Link href="/" className="footer__logo">
+              <Link href={toHref("/")} className="footer__logo">
                 <Image
                   src="/images/footer/footer-logo.webp"
                   alt="TutorExel"
@@ -70,18 +74,18 @@ export default function Footer() {
                 students achieve their full potential through personalised,
                 curriculum-aligned education.
               </p>
-              <div className="hero__countries">
+              <div className="footer__countries hero__countries">
                 {COUNTRIES.map((country) => (
-                  <div className="hero__country" key={country.code}>
+                  <div className="footer__country hero__country" key={country.code}>
                     <Image
                       src={`https://flagcdn.com/80x60/${country.code}.png`}
                       alt={`${country.name} flag`}
                       width={18}
                       height={13}
-                      className="hero__country-flag"
+                      className="footer__country-flag hero__country-flag"
                       unoptimized
                     />
-                    <span className="hero__country-name">{country.name}</span>
+                    <span className="footer__country-name hero__country-name">{country.name}</span>
                   </div>
                 ))}
               </div>
@@ -104,7 +108,7 @@ export default function Footer() {
               <h4 className="footer__links-title">Quick Links</h4>
               <div className="footer__links-list">
                 {quickLinks.map((link) => (
-                  <Link key={link.label} href={link.href}>
+                  <Link key={link.label} href={toHref(link.href)}>
                     {link.label}
                   </Link>
                 ))}
@@ -132,7 +136,7 @@ export default function Footer() {
                   Free Assessment
                 </a>
                 {supportLinks.map((link) => (
-                  <Link key={link.label} href={link.href}>
+                  <Link key={link.label} href={toHref(link.href)}>
                     {link.label}
                   </Link>
                 ))}
@@ -144,7 +148,7 @@ export default function Footer() {
               <h4 className="footer__links-title">Legal</h4>
               <div className="footer__links-list">
                 {legalLinks.map((link) => (
-                  <Link key={link.label} href={link.href}>
+                  <Link key={link.label} href={toHref(link.href)}>
                     {link.label}
                   </Link>
                 ))}

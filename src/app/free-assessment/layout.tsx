@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 
 export const metadata: Metadata = {
   title: "Free Assessment Test | Know Your Child's Level | TutorExel",
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
       "Take our free online assessment to identify your child's strengths and learning gaps. Personalised results and recommendations for Years 2-7.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/free-assessment",
-  },
+  alternates: getRegionalAlternates('/free-assessment', 'au'),
 };
 
 export default function FreeAssessmentLayout({

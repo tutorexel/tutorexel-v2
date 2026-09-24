@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | TutorExel",
   description:
     "Understand TutorExel's refund, cancellation, and rescheduling policies for tutoring services.",
+  alternates: getRegionalAlternates('/refund', 'au'),
 };
 
 export default function RefundPolicyPage() {

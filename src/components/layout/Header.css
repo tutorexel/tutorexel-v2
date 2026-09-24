@@ -3,7 +3,10 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  z-index: 10000;
   padding: 16px 0;
   transition: all 0.3s ease;
   background: #FFFFFF;
@@ -19,6 +22,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .navbar__logo {
@@ -330,7 +336,19 @@ img.phone-icon {
 
 @media (max-width: 991px) {
   .navbar__hamburger {
-    display: flex;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-shrink: 0 !important;
+    cursor: pointer;
+    z-index: 10002;
+  }
+
+  .navbar__hamburger span {
+    display: block !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: #232323 !important;
   }
 
   .navbar__menu {
@@ -338,6 +356,8 @@ img.phone-icon {
     top: 100%;
     left: 0;
     right: 0;
+    width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     background: #FFFFFF;
     padding: 24px;
@@ -349,6 +369,7 @@ img.phone-icon {
     transition: all 0.3s ease;
     max-height: 80vh;
     overflow-y: auto;
+    z-index: 10001;
   }
 
   .navbar__menu--open {
@@ -436,27 +457,39 @@ img.phone-icon {
   .navbar__inner {
     flex-wrap: wrap;
     position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* Row 1: Logo + Hamburger */
   .navbar__logo {
     order: 1;
     padding-left: 0;
+    max-width: calc(100% - 44px);
+    flex-shrink: 1;
   }
 
   .navbar__hamburger {
-    order: 2;
-    margin-left: auto;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    order: 2 !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+    z-index: 10002;
   }
 
   /* Row 2: Phone + Enroll buttons */
   .navbar__actions {
     order: 3;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-left: 0;
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   .navbar__links-icon {
@@ -492,10 +525,6 @@ img.phone-icon {
     padding: 10px 18px;
     font-size: 13px;
   }
-
-  .navbar__actions {
-    justify-content: center;
-  }
 }
 
 @media (max-width: 575px) {
@@ -506,8 +535,9 @@ img.phone-icon {
 
   .navbar__actions {
     gap: 8px;
-    margin-top: 20px;
+    margin-top: 10px;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .navbar__phone {
@@ -636,4 +666,14 @@ img.phone-icon {
     padding: 12px 16px;
     font-weight: 600;
   }
+}
+
+/* Mobile menu open: hide floating elements so navigation is never covered */
+body:has(.navbar__menu--open) .floating-cta-stack,
+body:has(.navbar__menu--open) .country-switcher,
+.menu-open .floating-cta-stack,
+.menu-open .country-switcher {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }

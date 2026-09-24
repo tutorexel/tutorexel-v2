@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import { getRegionalAlternates } from "@/utils/seo";
 import CTA from "@/components/home/CTA";
 import "./subscription.css";
 
@@ -22,9 +23,7 @@ export const metadata: Metadata = {
     description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: {
-    canonical: "https://tutorexel.com/subscription",
-  },
+  alternates: getRegionalAlternates('/subscription', 'au'),
 };
 
 const resources = [

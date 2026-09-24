@@ -270,141 +270,217 @@ export const blogs = [
     excerpt: "From national assessments like NAPLAN and ICAS to rapidly changing digital skills and higher academic competition, students need more than just classroom lessons to thrive",
     content: (
       <>
-        <h4>Understanding the New Demands of Learning</h4>
-        <p>For many parents, the question isn’t <i>“Is my child learning at school?” </i> —it’s <i>“Is school alone enough to help my child succeed?</i>”</p>
+        <h2 id="s1">Understanding the New Demands of Learning</h2>
+        <p>For many parents, the question isn’t <i>“Is my child learning at school?”</i> It’s this:</p>
+        <blockquote className="pull">“Is school alone enough to help my child succeed?”</blockquote>
         <p>The truth is, while schools provide a strong foundation, today’s students face <b>more challenges and expectations than ever before</b>. From national assessments like <b>NAPLAN</b> and <b>ICAS</b> to rapidly changing digital skills and higher academic competition, students need more than just classroom lessons to thrive.</p>
         <p>That’s where platforms like <b>TutorExel</b> come in: to provide the structure, confidence, and practice that schools alone can’t always cover.</p>
 
-        <hr />
-
-        <h4>The Changing Landscape of Education in 2025</h4>
+        <h2 id="s2">The Changing Landscape of Education in 2025</h2>
         <p>Education today looks very different from even five years ago. Here’s why:</p>
-
-        <ol>
-          <li><b>National Testing Pressure</b></li>
-          <ul>
-            <li>NAPLAN and ICAS aren’t just assessments—they influence school strategies and often determine how prepared a student is for future learning.</li>
-            <li>Students who aren’t familiar with the style of these tests often lose marks, not because they don’t know the content, but because they aren’t confident with the format.</li>
-          </ul>
-          <li><b>Large Class Sizes</b></li>
-          <ul>
-            <li>Even the best teachers struggle to give one-on-one attention in a class of 25–30 students.</li>
-            <li>This means quieter students may miss out on the help they need, while advanced learners may not be stretched enough.</li>
-          </ul>
-          <li><b>New Curriculum Expectations</b></li>
-          <ul>
-            <li>The updated <b>Your School Curriculum</b> has placed a greater emphasis on problem-solving, reasoning, and applying knowledge in real-world contexts—not just memorisation.</li>
-            <li>Many children need extra guided practice to adjust to this style of learning.</li>
-          </ul>
-          <li><b>Post-Pandemic Learning Gaps</b></li>
-          <ul>
-            <li>The disruptions of the past few years still affect students today. Some missed foundational concepts in early years, which makes it harder to keep up as the content gets more complex.</li>
-          </ul>
+        <ol className="num-cards">
+          <li>
+            <b>National Testing Pressure</b>
+            <ul>
+              <li>NAPLAN and ICAS aren’t just assessments. They influence school strategies and often determine how prepared a student is for future learning.</li>
+              <li>Students who aren’t familiar with the style of these tests often lose marks, not because they don’t know the content, but because they aren’t confident with the format.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Large Class Sizes</b>
+            <ul>
+              <li>Even the best teachers struggle to give one-on-one attention in a class of 25 to 30 students.</li>
+              <li>This means quieter students may miss out on the help they need, while advanced learners may not be stretched enough.</li>
+            </ul>
+          </li>
+          <li>
+            <b>New Curriculum Expectations</b>
+            <ul>
+              <li>The updated <b>Your School Curriculum</b> has placed a greater emphasis on problem-solving, reasoning, and applying knowledge in real-world contexts, not just memorisation.</li>
+              <li>Many children need extra guided practice to adjust to this style of learning.</li>
+            </ul>
+          </li>
+          <li>
+            <b>Post-Pandemic Learning Gaps</b>
+            <ul>
+              <li>The disruptions of the past few years still affect students today. Some missed foundational concepts in early years, which makes it harder to keep up as the content gets more complex.</li>
+            </ul>
+          </li>
         </ol>
 
-        <hr />
-
-        <h4>Why School Support Alone Isn’t Enough</h4>
+        <h2 id="s3">Why School Support Alone Isn’t Enough</h2>
         <p>While schools do their best, relying only on classroom teaching can leave gaps. Here’s why:</p>
-        <ul>
-          <li><b>Limited Time –</b> Teachers must move at the same pace for the whole class, even if some students need more time.</li>
-          <li><b>Different Learning Styles –</b> Some children learn best through visual examples, others through practice or discussion. A single classroom approach may not suit everyone.</li>
-          <li><b>Minimal Personalisation –</b> Even with differentiation strategies, most schools can’t offer fully individualised plans.</li>
-          <li><b>Homework Struggles –</b> Without clear guidance, homework can turn into frustration for both child and parent.</li>
-        </ul>
-        <p>For parents, this often shows up as:</p>
-        <ul>
-          <li>Falling confidence in their child’s ability.</li>
-          <li>Anxiety before exams or assessments.</li>
-          <li>Gaps in subjects like maths and English becoming harder to close over time.</li>
-        </ul>
+        <div className="tiles">
+          <div className="tile">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </span>
+            <b>Limited Time</b>
+            <p>Teachers must move at the same pace for the whole class, even if some students need more time.</p>
+          </div>
+          <div className="tile">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+            <b>Different Learning Styles</b>
+            <p>Some children learn best through visual examples, others through practice or discussion. A single classroom approach may not suit everyone.</p>
+          </div>
+          <div className="tile">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </span>
+            <b>Minimal Personalisation</b>
+            <p>Even with differentiation strategies, most schools can’t offer fully individualised plans.</p>
+          </div>
+          <div className="tile">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-6h6v6"/></svg>
+            </span>
+            <b>Homework Struggles</b>
+            <p>Without clear guidance, homework can turn into frustration for both child and parent.</p>
+          </div>
+        </div>
+        <aside className="callout callout--warn">
+          <b>For parents, this often shows up as:</b>
+          <ul>
+            <li>Falling confidence in their child’s ability.</li>
+            <li>Anxiety before exams or assessments.</li>
+            <li>Gaps in subjects like maths and English becoming harder to close over time.</li>
+          </ul>
+        </aside>
 
-        <hr />
-
-        <h4>How Additional Support Makes a Difference</h4>
+        <h2 id="s4">How Additional Support Makes a Difference</h2>
         <p>This is where <b>structured tutoring</b> fills the gap. When students have access to extra guidance beyond school, they benefit in several ways:</p>
-        <ol>
-          <li><b>Confidence Building</b></li>
-          <ul>
-            <li>Small achievements in a supportive space help children believe in themselves again.</li>
-            <li>At TutorExel, our worksheets are tiered into easy, medium, and hard—so every child experiences progress at their level.</li>
-          </ul>
-          <li><b>Focused Attention</b></li>
-          <ul>
-            <li>One-on-one or small group learning means teachers can spot misunderstandings instantly and address them before they grow.</li>
-          </ul>
-          <li><b>Curriculum Alignment</b></li>
-          <ul>
-            <li>Our lessons are built term-by-term, exactly following Your School Curriculum. That means children aren’t learning random content—they’re reinforcing what’s needed right now.</li>
-          </ul>
-          <li><b>Assessment Readiness</b></li>
-          <ul>
-            <li>By practising <b>NAPLAN and ICAS-style questions</b> regularly, students feel more confident and less anxious when exam time arrives.</li>
-          </ul>
-          <li><b>Healthy Learning Habits</b></li>
-          <ul>
-            <li>Beyond content, tutoring teaches students how to learn—breaking tasks into steps, reviewing concepts regularly, and practising consistently.</li>
-          </ul>
+        <ol className="benefits">
+          <li>
+            <b>Confidence Building</b>
+            <span>Small achievements in a supportive space help children believe in themselves again. At TutorExel, our worksheets are tiered into easy, medium, and hard, so every child experiences progress at their level.</span>
+          </li>
+          <li>
+            <b>Focused Attention</b>
+            <span>One-on-one or small group learning means teachers can spot misunderstandings instantly and address them before they grow.</span>
+          </li>
+          <li>
+            <b>Curriculum Alignment</b>
+            <span>Our lessons are built term-by-term, exactly following Your School Curriculum. That means children aren’t learning random content. They’re reinforcing what’s needed right now.</span>
+          </li>
+          <li>
+            <b>Assessment Readiness</b>
+            <span>By practising <b>NAPLAN and ICAS-style questions</b> regularly, students feel more confident and less anxious when exam time arrives.</span>
+          </li>
+          <li>
+            <b>Healthy Learning Habits</b>
+            <span>Beyond content, tutoring teaches students how to learn: breaking tasks into steps, reviewing concepts regularly, and practising consistently.</span>
+          </li>
         </ol>
 
-        <hr />
+        <aside className="mid-cta">
+          <div>
+            <b>See where your child stands in one session</b>
+            <span>Free diagnostic test, then a personalised learning plan.</span>
+          </div>
+          <a className="btn btn-hi" href="/free-assessment">
+            Take the free test <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </aside>
 
-        <h4>The TutorExel Approach in 2025</h4>
-        <p>At TutorExel, we’ve designed our programme specifically to meet the modern challenges of education.</p>
-        <p>Here’s how we support students:</p>
-        <ul>
-          <li><b>Free Diagnostic Test</b><br />Every child begins with a short assessment to identify strengths and gaps.</li>
-          <li><b>Structured Sessions (10 per term)</b><br />Each term is divided into <b>10 planned sessions</b> that cover the curriculum step by step.</li>
-          <li><b>Bank of Practice Questions</b><br />During lessons, teachers can pull questions directly from our labelled question bank—organised by topic, session, and difficulty. This keeps students actively engaged and practising in real time.</li>
-          <li><b>Class & Home Worksheets</b><br />Every session comes with worksheets at easy, medium, and hard levels, ensuring practice is always at the right level.</li>
-          <li><b>Monthly Report Cards</b><br />Parents get regular updates showing real progress—not just “doing fine”.</li>
-          <li><b>Flexible Pacing</b><br />The pace is adjusted as per the student’s requirement. No child is rushed, and no child is held back.</li>
-        </ul>
+        <h2 id="s5">The TutorExel Approach in 2025</h2>
+        <p>At TutorExel, we’ve designed our programme specifically to meet the modern challenges of education. Here’s how we support students:</p>
+        <div className="feats">
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l2 2 4-4M5 3h14v18H5z"/></svg>
+            </span>
+            <b>Free Diagnostic Test</b>
+            <p>Every child begins with a short assessment to identify strengths and gaps.</p>
+          </div>
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            </span>
+            <b>Structured Sessions (10 per term)</b>
+            <p>Each term is divided into <b>10 planned sessions</b> that cover the curriculum step by step.</p>
+          </div>
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16v4H4zM4 10h16v4H4zM4 16h16v4H4z"/></svg>
+            </span>
+            <b>Bank of Practice Questions</b>
+            <p>During lessons, teachers can pull questions directly from our labelled question bank, organised by topic, session, and difficulty. This keeps students actively engaged and practising in real time.</p>
+          </div>
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg>
+            </span>
+            <b>Class &amp; Home Worksheets</b>
+            <p>Every session comes with worksheets at easy, medium, and hard levels, ensuring practice is always at the right level.</p>
+          </div>
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+            </span>
+            <b>Monthly Report Cards</b>
+            <p>Parents get regular updates showing real progress, not just “doing fine”.</p>
+          </div>
+          <div className="feat-i">
+            <span className="tile-ic">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h4l3-8 4 16 3-8h2"/></svg>
+            </span>
+            <b>Flexible Pacing</b>
+            <p>The pace is adjusted as per the student’s requirement. No child is rushed, and no child is held back.</p>
+          </div>
+        </div>
 
-        <hr />
-
-        <h4>For Parents: Why This Matters</h4>
+        <h2 id="s6">For Parents: Why This Matters</h2>
         <p>Parents often tell us:</p>
-        <ul>
-          <li><i>“I don’t want my child to fall behind now, because it only gets harder later.”</i></li>
-          <li><i>“My child understands concepts in class, but struggles when doing homework alone.”</i></li>
-          <li><i>“We want to prepare for NAPLAN and ICAS without adding stress.”</i></li>
-        </ul>
-        <p>These concerns are real—and they’re exactly what TutorExel is designed to address.</p>
+        <div className="quotes">
+          <figure className="q">
+            <blockquote>I don’t want my child to fall behind now, because it only gets harder later.</blockquote>
+          </figure>
+          <figure className="q">
+            <blockquote>My child understands concepts in class, but struggles when doing homework alone.</blockquote>
+          </figure>
+          <figure className="q">
+            <blockquote>We want to prepare for NAPLAN and ICAS without adding stress.</blockquote>
+          </figure>
+        </div>
+        <p>These concerns are real, and they’re exactly what TutorExel is designed to address.</p>
         <p>With structured lessons, ongoing practice, and supportive teaching, children not only improve their skills but also regain their enthusiasm for learning.</p>
 
-        <hr />
-
-        <h4>Keeping Learning Stress-Free</h4>
+        <h2 id="s7">Keeping Learning Stress-Free</h2>
         <p>We also understand that families don’t want tutoring to add more burden. That’s why TutorExel is designed to be:</p>
-        <ul>
-          <li><b>Short and Focused – </b>Sessions are structured, not endless.</li>
-          <li><b>Interactive  – </b>Children participate, not just listen.</li>
-          <li><b>Balanced  – </b>Healthy pacing ensures students have time for school, play, and family life.</li>
-        </ul>
-        <p>The goal is not more pressure—it’s more confidence.</p>
+        <div className="trio">
+          <div>
+            <b>Short and Focused</b>
+            <span>Sessions are structured, not endless.</span>
+          </div>
+          <div>
+            <b>Interactive</b>
+            <span>Children participate, not just listen.</span>
+          </div>
+          <div>
+            <b>Balanced</b>
+            <span>Healthy pacing ensures students have time for school, play, and family life.</span>
+          </div>
+        </div>
+        <blockquote className="pull pull--big">The goal is not more pressure. It’s more confidence.</blockquote>
 
-        <hr />
-
-        <h4>The Way Forward in 2025</h4>
-        <p>As education standards continue to rise, students need a mix of <b>school learning</b> and <b>personalised support</b> to stay on track.</p>
-        <p>With TutorExel, parents can feel reassured that:</p>
-        <ul>
+        <h2 id="s8">The Way Forward in 2025</h2>
+        <p>As education standards continue to rise, students need a mix of <b>school learning</b> and <b>personalised support</b> to stay on track. With TutorExel, parents can feel reassured that:</p>
+        <ul className="checks">
           <li>Their child is covering the curriculum properly.</li>
           <li>Their child is practising at the right level.</li>
           <li>Their child is preparing not just for school, but for future assessments and challenges.</li>
         </ul>
 
-        <hr />
-
-        <h4>Ready to Take the Next Step?</h4>
-        <p>The best place to start is with our <b>Free Diagnostic Test</b>. In just one session, you’ll know exactly where your child stands and what they need to grow.</p>
-
-        <div className="blog-cta">
-          <a variant="primary-orange" className="hero-cta-button d-inline-flex align-items-center main-btn1" href="/contact" data-discover="true">Take the Free Diagnostic Test Today <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" className="ms-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path></svg></a>
+        <h2 id="s9">Ready to Take the Next Step?</h2>
+        <div className="end-cta">
+          <p>The best place to start is with our <b>Free Diagnostic Test</b>. In just one session, you’ll know exactly where your child stands and what they need to grow.</p>
+          <a className="btn end-btn" href="/free-assessment">
+            Take the Free Diagnostic Test Today <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
-        <p>In 2025 and beyond, school alone isn’t always enough—but with the right support, every child can learn with confidence.</p>
-
+        <p className="closing">In 2025 and beyond, school alone isn’t always enough, but with the right support, every child can learn with confidence.</p>
       </>
     )
   },
