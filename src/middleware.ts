@@ -36,12 +36,12 @@ const oldIdToSlug: Record<string, string> = {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // 1. Legacy blog ID redirect
-  const blogMatch = pathname.match(/^\/blog\/(\d+)$/);
+  // 1. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
+  const blogMatch = pathname.match(/^\/(au\/)?blog\/(\d+)$/);
   if (blogMatch) {
-    const slug = oldIdToSlug[blogMatch[1]];
+    const slug = oldIdToSlug[blogMatch[2]];
     if (slug) {
-      return NextResponse.redirect(new URL(`/blog/${slug}`, request.url), 301);
+      return NextResponse.redirect(new URL(`/au/blog/${slug}`, request.url), 301);
     }
   }
 

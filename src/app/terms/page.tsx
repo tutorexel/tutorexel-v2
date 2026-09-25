@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/terms', 'au'),
+  alternates: getRegionalAlternates('/terms', 'us'),
 };
 
 export default function TermsPage() {

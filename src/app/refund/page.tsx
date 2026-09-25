@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Refund & Cancellation Policy | TutorExel",
   description:
     "Understand TutorExel's refund, cancellation, and rescheduling policies for tutoring services.",
-  alternates: getRegionalAlternates('/refund', 'au'),
+  alternates: getRegionalAlternates('/refund', 'us'),
 };
 
 export default function RefundPolicyPage() {

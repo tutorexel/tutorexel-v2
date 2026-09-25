@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getRegionalAlternates } from "@/utils/seo";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import { createBlogPostingSchema, createBreadcrumbSchema } from "@/utils/schema";
 import {
@@ -19,14 +19,23 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const slugs = await getAllSlugsByRegion("au");
+  const slugs = await getAllSlugsByRegion("us");
   return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlugAndRegion(slug, "au");
-  if (!post) return { title: "Post Not Found | TutorExel" };
+  const post = await getPostBySlugAndRegion(slug, "us");
+  if (!post) {
+    const auPost = await getPostBySlugAndRegion(slug, "au");
+    if (auPost) {
+      return {
+        title: `${auPost.title} | TutorExel`,
+        alternates: getRegionalAlternates('/blog/' + slug, 'au'),
+      };
+    }
+    return { title: "Post Not Found | TutorExel" };
+  }
 
   const imgSrc = getPostImageUrl(post.mainImage, post.imageUrl);
   const metaTitle = post.metaTitle?.trim() || `${post.title} | TutorExel`;
@@ -53,19 +62,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: metaDescription,
       images: [imgSrc],
     },
-    alternates: getRegionalAlternates('/blog/' + post.slug, 'au'),
+    alternates: getRegionalAlternates('/blog/' + post.slug, 'us'),
   };
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = await getPostBySlugAndRegion(slug, "au");
+  const post = await getPostBySlugAndRegion(slug, "us");
 
   if (!post) {
+    const auPost = await getPostBySlugAndRegion(slug, "au");
+    if (auPost) {
+      permanentRedirect(`/au/blog/${slug}`);
+    }
     notFound();
   }
 
-  const relatedPosts = await getRelatedPosts(slug, post.region || "au");
+  const relatedPosts = await getRelatedPosts(slug, post.region || "us");
   const localFallback = localBlogs.find((b) => b.slug === slug);
   const featuredImgSrc = getPostImageUrl(post.mainImage, post.imageUrl);
 
@@ -94,7 +107,7 @@ export default async function BlogPostPage({ params }: Props) {
       <BlogArticleView
         post={post}
         relatedPosts={relatedPosts}
-        region="au"
+        region="us"
         localFallback={localFallback}
       />
     </>

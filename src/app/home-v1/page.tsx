@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
-  alternates: getRegionalAlternates('/home-v1', 'au'),
+  alternates: getRegionalAlternates('/home-v1', 'us'),
 };
 
 export default function HomeV1() {

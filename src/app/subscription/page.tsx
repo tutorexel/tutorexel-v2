@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/subscription', 'au'),
+  alternates: getRegionalAlternates('/subscription', 'us'),
 };
 
 const resources = [

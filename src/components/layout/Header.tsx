@@ -43,7 +43,7 @@ export default function Header() {
     const regionalTarget = toHref(href);
     if (
       regionalTarget === "/" ||
-      regionalTarget === "/us" ||
+      regionalTarget === "/au" ||
       regionalTarget === "/ca" ||
       regionalTarget === "/nz"
     ) {

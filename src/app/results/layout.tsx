@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "See real results from TutorExel students. Our personalised, curriculum-aligned tutoring delivers measurable improvements in maths and English.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/results', 'au'),
+  alternates: getRegionalAlternates('/results', 'us'),
 };
 
 export default function ResultsLayout({

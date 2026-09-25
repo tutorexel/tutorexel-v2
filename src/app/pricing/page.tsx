@@ -199,7 +199,9 @@ function PricingPageContent() {
   const searchParams = useSearchParams();
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]);
+  const [selectedCountry, setSelectedCountry] = useState<Country>(
+    COUNTRIES.find((c) => c.code === "us") || COUNTRIES[0]
+  );
   const subOptionsRef = useRef<HTMLDivElement>(null);
 
   // Auto-select plan from query parameter (when coming from Home page)

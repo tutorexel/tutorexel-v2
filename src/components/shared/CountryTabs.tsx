@@ -10,8 +10,8 @@ export type Country = {
 };
 
 export const COUNTRIES: Country[] = [
-    { code: "au", name: "Australia", currency: "AUD" },
     { code: "us", name: "USA", currency: "USD" },
+    { code: "au", name: "Australia", currency: "AUD" },
     { code: "ca", name: "Canada", currency: "CAD" },
     { code: "nz", name: "New Zealand", currency: "NZD" },
 ];

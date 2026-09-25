@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       'Your School Curriculum for Year 2 to Year 7. Maths and English tutoring structured around the ACARA national curriculum.',
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/subjects', 'au'),
+  alternates: getRegionalAlternates('/subjects', 'us'),
 };
 
 export default function SubjectsLayout({

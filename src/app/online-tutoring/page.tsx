@@ -7,7 +7,7 @@ import BookTrialButton from "@/components/home/BookTrialButton";
 import JsonLd from "@/components/seo/JsonLd";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import { cities } from "@/data/cities";
-import "./[city]/city.css";
+import "./city.css";
 
 export const metadata: Metadata = {
   title: "Online Tutoring Across Worldwide | TutorExel",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "Expert online tutoring for Australian students in Years 2-7. ACARA-aligned Maths, English & Science programs available in Sydney, Melbourne, Brisbane, Perth, Adelaide and across Australia. From $39/month.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/online-tutoring', 'au'),
+  alternates: getRegionalAlternates('/online-tutoring', 'us'),
 };
 
 export default function OnlineTutoringPage() {
@@ -115,7 +115,7 @@ export default function OnlineTutoringPage() {
             {cities.map((city) => (
               <Link
                 key={city.slug}
-                href={`/online-tutoring/${city.slug}`}
+                href={`/au/online-tutoring/${city.slug}`}
                 className="ot-cities__card"
               >
                 <div className="ot-cities__card-header">

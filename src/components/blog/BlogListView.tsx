@@ -14,7 +14,7 @@ interface BlogListViewProps {
   region?: string;
 }
 
-export default function BlogListView({ posts = [], region = "au" }: BlogListViewProps) {
+export default function BlogListView({ posts = [], region = "us" }: BlogListViewProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const regionConfig = useMemo(() => getRegionConfig(region), [region]);
 

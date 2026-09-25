@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "Learn how TutorExel collects, uses, and protects your personal information.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/privacy', 'au'),
+  alternates: getRegionalAlternates('/privacy', 'us'),
 };
 
 export default function PrivacyPolicyPage() {

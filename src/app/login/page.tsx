@@ -6,7 +6,7 @@ import "./login.css";
 export const metadata: Metadata = {
   title: "Login | TutorExel",
   description: "Login to your TutorExel student portal to access lessons, worksheets, and progress reports.",
-  alternates: getRegionalAlternates('/login', 'au'),
+  alternates: getRegionalAlternates('/login', 'us'),
 };
 
 export default function LoginPage() {

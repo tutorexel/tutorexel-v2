@@ -4,7 +4,7 @@ import { getRegionalAlternates } from "@/utils/seo";
 export const metadata: Metadata = {
   title: "TutorExel — Links",
   description: "Australian online tutoring for Year 2-7. Maths, English, Science, Piano, Guitar. Free trial class available.",
-  alternates: getRegionalAlternates('/links', 'au'),
+  alternates: getRegionalAlternates('/links', 'us'),
 };
 
 export default function LinksLayout({

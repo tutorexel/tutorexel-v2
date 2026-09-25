@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       "Personalised, curriculum-aligned online tutoring for students in the USA, Canada, Australia and New Zealand. Maths, English, Science & Music. Free trial available. with experienced teachers and curriculum-aligned live classes. Maths, English, Science & Music. Free trial available.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/', 'au'),
+  alternates: getRegionalAlternates('/', 'us'),
 };
 
 export default function Home() {

@@ -50,7 +50,7 @@ export async function generateMetadata({
       description,
       images: ['/images/banner/og-image.webp'],
     },
-    alternates: getRegionalAlternates('/subjects/' + yearId + '/' + subjectId, 'au'),
+    alternates: getRegionalAlternates('/subjects/' + yearId + '/' + subjectId, 'us'),
   };
 }
 

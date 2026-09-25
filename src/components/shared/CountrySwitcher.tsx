@@ -121,19 +121,19 @@ function FlagNZ() {
 }
 
 const COUNTRIES: CountryConfig[] = [
-  { code: "AU", name: "Australia", flag: <FlagAU /> },
   { code: "US", name: "United States", flag: <FlagUS /> },
+  { code: "AU", name: "Australia", flag: <FlagAU /> },
   { code: "CA", name: "Canada", flag: <FlagCA /> },
   { code: "NZ", name: "New Zealand", flag: <FlagNZ /> },
 ];
 
 /**
  * Derives the target URL for a region given the current pathname.
- * Swaps /us, /ca, /nz prefix with target region prefix (AU has no prefix).
+ * Swaps /au, /us, /ca, /nz prefix with target region prefix (US has no prefix).
  */
 export function getRegionalUrl(pathname: string, targetRegion: RegionCode): string {
   let cleanPath = pathname || "/";
-  const match = cleanPath.match(/^\/(us|ca|nz)(\/.*)?$/i);
+  const match = cleanPath.match(/^\/(au|us|ca|nz)(\/.*)?$/i);
   if (match) {
     cleanPath = match[2] || "/";
   }
@@ -141,7 +141,7 @@ export function getRegionalUrl(pathname: string, targetRegion: RegionCode): stri
     cleanPath = `/${cleanPath}`;
   }
 
-  const prefix = targetRegion === "AU" ? "" : `/${targetRegion.toLowerCase()}`;
+  const prefix = targetRegion === "US" ? "" : `/${targetRegion.toLowerCase()}`;
   const suffix = cleanPath === "/" ? "" : cleanPath;
   const url = `${prefix}${suffix}`;
   return url || "/";
@@ -151,11 +151,11 @@ export function getRegionalUrl(pathname: string, targetRegion: RegionCode): stri
  * Detects current region from pathname.
  */
 export function getCurrentRegion(pathname: string): RegionCode {
-  const match = pathname.match(/^\/(us|ca|nz)(\/.*)?$/i);
+  const match = pathname.match(/^\/(au|ca|nz)(\/.*)?$/i);
   if (match) {
     return match[1].toUpperCase() as RegionCode;
   }
-  return "AU";
+  return "US";
 }
 
 export default function CountrySwitcher() {

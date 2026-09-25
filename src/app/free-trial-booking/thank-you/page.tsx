@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Your free trial class has been booked successfully. Our team will confirm your session shortly.",
   robots: "noindex",
-  alternates: getRegionalAlternates('/free-trial-booking/thank-you', 'au'),
+  alternates: getRegionalAlternates('/free-trial-booking/thank-you', 'us'),
 };
 
 export default function FreeTrialThankYouPage() {

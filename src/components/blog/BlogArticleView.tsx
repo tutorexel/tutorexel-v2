@@ -37,7 +37,7 @@ function slugify(text: string | undefined): string {
     .replace(/^-+|-+$/g, "");
 }
 
-function createIntroComponents(region: string = "au"): PortableTextComponents {
+function createIntroComponents(region: string = "us"): PortableTextComponents {
   return {
     block: {
       normal: ({ children }) => <p>{children}</p>,
@@ -308,7 +308,7 @@ function LegacySectionLayoutRenderer({
 export default function BlogArticleView({
   post,
   relatedPosts = [],
-  region = "au",
+  region = "us",
   localFallback,
 }: BlogArticleViewProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -381,7 +381,7 @@ export default function BlogArticleView({
   const dekText = post.dek?.trim() || post.excerpt?.trim() || "";
 
   // Canonical Post URL for sharing
-  const canonicalPath = region === "au" ? `/blog/${post.slug}` : `/${region}/blog/${post.slug}`;
+  const canonicalPath = region === "us" ? `/blog/${post.slug}` : `/${region}/blog/${post.slug}`;
   const canonicalUrl = `https://www.tutorexel.com${canonicalPath}`;
 
   // Section presence flags (empty sections are completely skipped)

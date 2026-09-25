@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Book your free trial class with TutorExel. Choose a convenient time slot and experience Australian curriculum-aligned online tutoring.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/free-trial-booking', 'au'),
+  alternates: getRegionalAlternates('/free-trial-booking', 'us'),
 };
 
 export default function FreeTrialBookingLayout({

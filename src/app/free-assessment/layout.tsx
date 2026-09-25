@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Take our free online assessment to identify your child's strengths and learning gaps. Personalised results and recommendations for Years 2-7.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/free-assessment', 'au'),
+  alternates: getRegionalAlternates('/free-assessment', 'us'),
 };
 
 export default function FreeAssessmentLayout({

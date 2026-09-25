@@ -1,7 +1,7 @@
 /**
  * Regional navigation link utilities.
- * Ensures internal links stay within the user's active region (US, CA, NZ),
- * while keeping AU on the root paths without prefix.
+ * Ensures internal links stay within the user's active region (AU, CA, NZ),
+ * while keeping US on the root paths without prefix.
  */
 
 export type RegionCode = "AU" | "US" | "CA" | "NZ";
@@ -39,18 +39,18 @@ export const REGIONAL_SUPPORTED_BASE_ROUTES = new Set([
 
 /**
  * Detects current region from the pathname.
- * Root /... is "AU", while /us/..., /ca/..., /nz/... correspond to their respective regions.
+ * Root /... is "US", while /au/..., /ca/..., /nz/... correspond to their respective regions.
  */
 export function getCurrentRegion(pathname: string = ""): RegionCode {
   const clean = pathname.trim().toLowerCase();
   if (clean === "us" || clean === "ca" || clean === "nz" || clean === "au") {
     return clean.toUpperCase() as RegionCode;
   }
-  const match = clean.match(/^\/(us|ca|nz)(\/.*)?$/i);
+  const match = clean.match(/^\/(au|ca|nz)(\/.*)?$/i);
   if (match) {
     return match[1].toUpperCase() as RegionCode;
   }
-  return "AU";
+  return "US";
 }
 
 /**
@@ -69,9 +69,9 @@ export function isRouteSupportedInRegion(path: string): boolean {
  * 
  * Rules:
  * - External links (http, https, mailto, tel), protocols (//), and anchors (#) are NEVER modified.
- * - AU region links are kept at root without prefix (e.g. /about).
- * - US, CA, NZ links are prefixed with /{region} (e.g. /ca/about).
- * - Root "/" becomes "/{region}" for US, CA, NZ.
+ * - US region links are kept at root without prefix (e.g. /about).
+ * - AU, CA, NZ links are prefixed with /{region} (e.g. /au/about, /ca/about).
+ * - Root "/" becomes "/{region}" for AU, CA, NZ.
  * - If a route is NOT in the supported regional routes list, it falls back to the root path
  *   to avoid creating 404s.
  */
@@ -100,17 +100,17 @@ export function getRegionalHref(
       ? (upper as RegionCode)
       : getCurrentRegion(cleanInput);
 
-  // AU has no prefix: keep root paths
-  if (region === "AU") {
-    // If it already had a regional prefix, strip it for AU
-    const clean = href.replace(/^\/(us|ca|nz)(\/|$)/i, "/");
+  // US has no prefix: keep root paths
+  if (region === "US") {
+    // If it already had a regional prefix, strip it for US
+    const clean = href.replace(/^\/(au|ca|nz|us)(\/|$)/i, "/");
     return clean || "/";
   }
 
   const regLower = region.toLowerCase();
 
   // Check if href already has a regional prefix
-  const existingMatch = href.match(/^\/(us|ca|nz)(\/.*)?$/i);
+  const existingMatch = href.match(/^\/(au|ca|nz|us)(\/.*)?$/i);
   if (existingMatch) {
     if (existingMatch[1].toLowerCase() === regLower) {
       return href;

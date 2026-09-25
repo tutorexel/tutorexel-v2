@@ -633,7 +633,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
   },
 };
 
-export function getRegionConfig(regionCode: string = "au"): RegionConfig {
+export function getRegionConfig(regionCode: string = "us"): RegionConfig {
   const code = (regionCode.toLowerCase() as RegionCode);
-  return REGIONS_CONFIG[code] || REGIONS_CONFIG.au;
+  return REGIONS_CONFIG[code] || REGIONS_CONFIG.us;
 }

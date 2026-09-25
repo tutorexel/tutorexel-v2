@@ -4,7 +4,7 @@ import Link from "next/link";
 import JsonLd from "@/components/seo/JsonLd";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import CTA from "@/components/home/CTA";
-import "./australian-tutoring-report-2026/report.css";
+import "./report.css";
 
 export const metadata: Metadata = {
   title: "Research & Reports | TutorExel",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Research reports and data on the Australian tutoring industry. Market trends, parent preferences, online learning insights, and NAPLAN preparation analysis from TutorExel.",
     images: ["/images/banner/og-image.webp"],
   },
-  alternates: getRegionalAlternates('/research', 'au'),
+  alternates: getRegionalAlternates('/research', 'us'),
 };
 
 export default function ResearchPage() {
@@ -56,7 +56,7 @@ export default function ResearchPage() {
       <section className="research-reports">
         <div className="container">
           <div className="research-reports__grid">
-            <Link href="/research/australian-tutoring-report-2026" className="research-reports__card">
+            <Link href="/au/research/australian-tutoring-report-2026" className="research-reports__card">
               <span className="research-reports__card-badge">Research Report</span>
               <h2 className="research-reports__card-title">2026 State of Tutoring in Australia</h2>
               <p className="research-reports__card-description">

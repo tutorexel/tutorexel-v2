@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Thank You | TutorExel",
   description:
     "Thank you for your enquiry. Our team will be in touch shortly.",
-  alternates: getRegionalAlternates('/thank-you', 'au'),
+  alternates: getRegionalAlternates('/thank-you', 'us'),
 };
 
 export default function ThankYouPage() {
