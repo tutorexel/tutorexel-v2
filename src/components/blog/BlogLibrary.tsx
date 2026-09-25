@@ -1,17 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { SanityPost } from "@/sanity/types";
 import { RegionConfig } from "@/data/regions";
 import { getRegionalHref } from "@/utils/regionalLinks";
-import {
-  normalizeCategoryKey,
-  getCategoryDisplayName,
-  CATEGORIES_META,
-  CategoryKey,
-  CategoryIcon,
-} from "@/utils/blogUtils";
+import { getCategoryDisplayName } from "@/utils/blogUtils";
 import BlogArticleCard from "./BlogArticleCard";
 
 interface BlogLibraryProps {
@@ -27,287 +21,48 @@ export default function BlogLibrary({
   regionConfig,
   searchQuery,
   onClearSearch,
-  featuredSlugs = [],
 }: BlogLibraryProps) {
-  const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [sortOrder, setSortOrder] = useState<"new" | "old">("new");
   const [visibleCount, setVisibleCount] = useState<number>(9);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
-  const [showStickyBar, setShowStickyBar] = useState(false);
-  const topicsRef = useRef<HTMLDivElement>(null);
-  const libraryRef = useRef<HTMLElement>(null);
-
-  // IntersectionObserver to show sticky bar when topics scroll away
+  // Reset pagination when search query changes
   useEffect(() => {
-    let topicsGone = false;
-    let libVisible = true;
+    setVisibleCount(9);
+  }, [searchQuery]);
 
-    const checkSticky = () => {
-      setShowStickyBar(topicsGone && libVisible);
-    };
-
-    const topicsEl = topicsRef.current;
-    const libEl = libraryRef.current;
-
-    if (!topicsEl || !libEl) return;
-
-    const topicsObserver = new IntersectionObserver(
-      ([entry]) => {
-        topicsGone = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        checkSticky();
-      },
-      { rootMargin: "-80px 0px 0px 0px" }
-    );
-
-    const libObserver = new IntersectionObserver(
-      ([entry]) => {
-        libVisible = entry.isIntersecting;
-        checkSticky();
-      },
-      { rootMargin: "-140px 0px -40% 0px" }
-    );
-
-    topicsObserver.observe(topicsEl);
-    libObserver.observe(libEl);
-
-    return () => {
-      topicsObserver.disconnect();
-      libObserver.disconnect();
-    };
-  }, []);
-
-  // Compute category counts
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: posts.length };
-    Object.keys(CATEGORIES_META).forEach((key) => {
-      counts[key] = 0;
-    });
-
-    posts.forEach((post) => {
-      const key = normalizeCategoryKey(post.category);
-      if (counts[key] !== undefined) {
-        counts[key] += 1;
-      }
-    });
-
-    return counts;
-  }, [posts]);
-
-  // Topic card definitions
-  const topicDefinitions: Array<{
-    key: string;
-    label: string;
-    desc: string;
-    catAttr: string;
-  }> = [
-    {
-      key: "all",
-      label: "All topics",
-      desc: "Every guide in one place",
-      catAttr: "all",
-    },
-    ...Object.values(CATEGORIES_META).map((c) => ({
-      key: c.key,
-      label: c.name,
-      desc: c.shortDesc,
-      catAttr: c.key,
-    })),
-  ];
-
-  // Filter and sort posts
+  // Filter posts (by search query if any) - render all posts without category filtering
   const filteredPosts = useMemo(() => {
     const trimmed = searchQuery.trim().toLowerCase();
+    if (!trimmed) {
+      return posts;
+    }
 
-    const list = posts.filter((post) => {
-      const catKey = normalizeCategoryKey(post.category);
-
-      // Only exclude featured posts from the library grid if there are more than 3 posts in total
-      if (
-        posts.length > 3 &&
-        activeCategory === "all" &&
-        !trimmed &&
-        featuredSlugs.includes(post.slug)
-      ) {
-        return false;
-      }
-
-      // Category filter
-      if (activeCategory !== "all" && catKey !== activeCategory) {
-        return false;
-      }
-
-      // Search query filter
-      if (trimmed) {
-        const title = (post.title || "").toLowerCase();
-        const excerpt = (post.excerpt || "").toLowerCase();
-        const catName = getCategoryDisplayName(post.category).toLowerCase();
-        if (
-          !title.includes(trimmed) &&
-          !excerpt.includes(trimmed) &&
-          !catName.includes(trimmed)
-        ) {
-          return false;
-        }
-      }
-
-      return true;
+    return posts.filter((post) => {
+      const title = (post.title || "").toLowerCase();
+      const excerpt = (post.excerpt || "").toLowerCase();
+      const catName = getCategoryDisplayName(post.category).toLowerCase();
+      return (
+        title.includes(trimmed) ||
+        excerpt.includes(trimmed) ||
+        catName.includes(trimmed)
+      );
     });
-
-    if (sortOrder === "old") {
-      return [...list].reverse();
-    }
-
-    return list;
-  }, [posts, activeCategory, searchQuery, sortOrder, featuredSlugs]);
-
-  const handleCategorySelect = (key: string, scroll = false) => {
-    setActiveCategory(key);
-    setVisibleCount(9);
-    if (scroll) {
-      document.getElementById("gridTop")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  }, [posts, searchQuery]);
 
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 6);
   };
 
-  const currentTopicLabel =
-    activeCategory === "all"
-      ? "All topics"
-      : CATEGORIES_META[activeCategory as CategoryKey]?.name || "Guides";
-
-  const statusText = searchQuery.trim()
-    ? `${filteredPosts.length} ${filteredPosts.length === 1 ? "article" : "articles"} matching "${searchQuery.trim()}"`
-    : filteredPosts.length === 0
-    ? activeCategory === "all"
-      ? "Guides coming soon"
-      : `No articles in ${currentTopicLabel} yet`
-    : `Showing ${filteredPosts.length} articles${
-        activeCategory === "all" && posts.length > 3 ? ", plus 3 featured above" : ` in ${currentTopicLabel}`
-      }`;
-
   const displayedPosts = filteredPosts.slice(0, visibleCount);
   const hasMore = filteredPosts.length > visibleCount;
 
   return (
-    <section className="lib" id="library" ref={libraryRef} aria-labelledby="libH">
-      <div className="wrap">
-        <div className="lib-head">
-          <div>
-            <h2 id="libH">Browse the library</h2>
-            <p className="status" id="status" aria-live="polite">
-              {statusText}
-            </p>
-          </div>
-
-          <div className="sort" role="group" aria-label="Sort articles">
-            <button
-              type="button"
-              data-s="new"
-              aria-pressed={sortOrder === "new"}
-              onClick={() => setSortOrder("new")}
-            >
-              Newest
-            </button>
-            <button
-              type="button"
-              data-s="old"
-              aria-pressed={sortOrder === "old"}
-              onClick={() => setSortOrder("old")}
-            >
-              Oldest
-            </button>
-          </div>
-        </div>
-
-        {/* Topic filter cards */}
-        <div className="topics" id="topics" ref={topicsRef} role="toolbar" aria-label="Filter by topic">
-          {topicDefinitions.map((t) => {
-            const isSelected = activeCategory === t.key;
-            const count = categoryCounts[t.key] || 0;
-            return (
-              <button
-                key={t.key}
-                type="button"
-                className="topic"
-                data-k={t.key}
-                data-cat={t.catAttr}
-                aria-pressed={isSelected}
-                onClick={() => handleCategorySelect(t.key, false)}
-              >
-                <span className="topic-ic">
-                  {t.key === "all" ? (
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" />
-                    </svg>
-                  ) : (
-                    <CategoryIcon catKey={t.key} />
-                  )}
-                </span>
-                <span className="topic-txt">
-                  <b>{t.label}</b>
-                  <small>{t.desc}</small>
-                </span>
-                <span className="topic-n">{count}</span>
-                <span className="topic-check" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="12"
-                    height="12"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12.5l4.5 4.5L19 7.5" />
-                  </svg>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Compact Sticky Filter Bar (slides in on scroll) */}
-      <div className={`lib-bar ${showStickyBar ? "show" : ""}`} id="libBar">
-        <div className="wrap lib-bar-in">
-          <span className="lib-bar-title">{currentTopicLabel}</span>
-          <div className="tabs" role="toolbar" aria-label="Filter by topic">
-            {topicDefinitions.map((t) => {
-              const isSelected = activeCategory === t.key;
-              const count = categoryCounts[t.key] || 0;
-              return (
-                <button
-                  key={t.key}
-                  type="button"
-                  className="tab"
-                  data-cat={t.catAttr}
-                  aria-pressed={isSelected}
-                  onClick={() => handleCategorySelect(t.key, true)}
-                >
-                  {t.label} <span>{count}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Grid container with anchor for smooth scrolling */}
+    <section className="lib" id="library" aria-labelledby="libH">
       <div className="wrap" id="gridTop">
+        <div className="lib-head">
+          <h2 id="libH">Browse the library</h2>
+        </div>
+
         {filteredPosts.length === 0 ? (
           <div className="empty">
             {searchQuery.trim() ? (
@@ -320,28 +75,9 @@ export default function BlogLibrary({
                   <button
                     type="button"
                     className="btn btn-ghost"
-                    onClick={() => {
-                      onClearSearch();
-                      setActiveCategory("all");
-                    }}
+                    onClick={onClearSearch}
                   >
                     Clear search
-                  </button>
-                </p>
-              </>
-            ) : activeCategory !== "all" ? (
-              <>
-                <h3>No articles found in {currentTopicLabel} yet</h3>
-                <p className="meta">
-                  We are adding new guides regularly. Explore all topics to see available articles.
-                </p>
-                <p>
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    onClick={() => setActiveCategory("all")}
-                  >
-                    View all topics
                   </button>
                 </p>
               </>

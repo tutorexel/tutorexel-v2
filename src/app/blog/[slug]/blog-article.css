@@ -42,12 +42,19 @@ html {
   color: var(--ink);
   font: 400 16px/1.65 var(--ff-b);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.art-page * {
+  box-sizing: border-box;
 }
 
 .wrap {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  width: 100%;
 }
 
 .btn {
@@ -204,7 +211,7 @@ html {
   position: relative;
   overflow-x: clip;
   background: linear-gradient(180deg, #FFEFE7 0%, #FFF8F4 70%, var(--page));
-  padding: 44px 0 120px;
+  padding: 108px 0 120px;
 }
 .art-hero-in {
   position: relative;
@@ -215,6 +222,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .crumbs {
   display: flex;
@@ -225,6 +233,9 @@ html {
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 22px;
+  word-break: break-word;
+  line-height: 1.4;
+  padding: 0 8px;
 }
 .crumbs a {
   color: var(--muted);
@@ -239,20 +250,25 @@ html {
 }
 .art-title {
   font-family: var(--ff-d);
-  font-size: clamp(32px, 4.6vw, 54px);
+  font-size: clamp(30px, 4.4vw, 52px);
   font-weight: 600;
-  line-height: 1.12;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 16px 0 16px;
   color: var(--ink);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .art-dek {
-  font-size: clamp(16px, 1.5vw, 19px);
+  font-size: clamp(15.5px, 1.5vw, 19px);
   color: var(--ink-2);
   max-width: 62ch;
   margin: 0 0 28px;
   line-height: 1.6;
   font-weight: 400;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  padding: 0 8px;
 }
 .art-meta {
   display: flex;
@@ -434,6 +450,7 @@ html {
   gap: 64px;
   padding: 64px 20px 40px;
   align-items: start;
+  width: 100%;
 }
 
 /* Prose */
@@ -442,6 +459,9 @@ html {
   font-size: 17.5px;
   line-height: 1.8;
   color: var(--ink-2);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .prose h2 {
   font-family: var(--ff-d);
@@ -1517,51 +1537,535 @@ html {
 
 /* Media Queries */
 @media (max-width: 1060px) {
+  .art-hero {
+    padding: 100px 0 96px;
+  }
   .art-layout {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
+    padding: 48px 20px 32px;
   }
   .side-rail {
     position: static;
-    order: -1;
+    order: 2; /* Side rail CTA appears AFTER article prose on mobile/tablet */
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .prose {
+    order: 1;
+    max-width: none;
   }
   .toc {
     display: none;
   }
-  .prose {
-    max-width: none;
+  .art-figure {
+    margin-top: -64px;
+    border-radius: 22px;
+  }
+  .trio {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .art-hero {
+    padding: 92px 0 86px;
+  }
+  .art-title {
+    font-size: clamp(24px, 5.2vw, 36px);
+    line-height: 1.2;
+  }
+  .art-figure {
+    aspect-ratio: 16/10;
+    margin-top: -54px;
+    border-radius: 18px;
+  }
+  .tiles,
+  .feats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .tile,
+  .feat-i {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+  .trio {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .more-reads {
+    padding: 36px 0 20px;
   }
 }
 
 @media (max-width: 640px) {
   .art-hero {
-    padding: 28px 0 90px;
+    padding: 86px 0 76px;
+  }
+  .crumbs {
+    font-size: 12px;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .art-title {
+    font-size: clamp(22px, 6.2vw, 29px);
+    line-height: 1.22;
+    margin: 12px 0 14px;
+  }
+  .art-dek {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 20px;
   }
   .art-meta {
-    border-radius: 20px;
+    border-radius: 18px;
+    padding: 12px 14px;
+    gap: 10px 14px;
+    width: 100%;
+    max-width: 390px;
+    box-sizing: border-box;
   }
   .am-sep {
     display: none;
   }
+  .am-stat {
+    font-size: 12.5px;
+  }
+  .share {
+    width: 34px;
+    height: 34px;
+  }
   .art-figure {
     aspect-ratio: 16/10;
-    margin-top: -64px;
-    border-radius: 18px;
+    margin-top: -46px;
+    border-radius: 16px;
+    box-shadow: 0 18px 36px -18px rgba(80, 30, 10, 0.3);
   }
-  .tiles,
-  .feats,
-  .trio {
-    grid-template-columns: 1fr;
-  }
-  .num-cards > li {
-    padding: 70px 18px 16px;
-  }
-  .num-cards > li::before {
-    top: 16px;
-    left: 18px;
+  .art-layout {
+    gap: 32px;
+    padding: 36px 16px 24px;
   }
   .prose {
-    font-size: 16.5px;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .prose h2 {
+    font-size: clamp(20px, 5.2vw, 24px);
+    margin: 36px 0 12px;
+    padding-left: 14px;
+  }
+  .prose h3 {
+    font-size: clamp(17px, 4.4vw, 20px);
+    margin: 26px 0 10px;
+  }
+  .prose h4 {
+    font-size: 15.5px;
+    margin: 20px 0 8px;
+  }
+  .prose ul,
+  .prose ol {
+    padding-left: 20px;
+  }
+  .prose .pull,
+  .pull {
+    font-size: 19px !important;
+    line-height: 1.4 !important;
+    margin: 18px 0 20px !important;
+  }
+  .prose .pull--big,
+  .pull--big {
+    font-size: 21px !important;
+    padding: 20px 14px !important;
+    margin: 22px 0 !important;
+  }
+
+  /* Numbered cards: clean padding aligning title with number badge */
+  .prose .num-cards > li,
+  .num-cards > li {
+    padding: 16px 16px 16px 64px !important;
+    border-radius: 16px !important;
+  }
+  .prose .num-cards > li::before,
+  .num-cards > li::before {
+    left: 14px !important;
+    top: 16px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 14px !important;
+    border-radius: 10px !important;
+  }
+  .prose .num-cards > li > b,
+  .num-cards > li > b {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 6px !important;
+  }
+  .prose .num-cards ul,
+  .num-cards ul {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    padding-left: 16px !important;
+  }
+  .prose .num-cards p,
+  .num-cards p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Icon tiles & Feat */
+  .tile,
+  .feat-i {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .tile-ic {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+  .tile > b,
+  .feat-i > b {
+    font-size: 16px;
+    margin: 8px 0 4px;
+  }
+  .tile p,
+  .feat-i p {
+    font-size: 14px;
+  }
+
+  /* Callout */
+  .callout {
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 14.5px;
+  }
+  .callout b {
+    font-size: 15.5px;
+    margin-bottom: 6px;
+  }
+
+  /* Benefits / Timeline */
+  .prose .benefits,
+  .benefits {
+    margin: 18px 0 !important;
+  }
+  .prose .benefits li,
+  .benefits li {
+    padding: 0 0 18px 50px !important;
+  }
+  .prose .benefits li::before,
+  .benefits li::before {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 14px !important;
+  }
+  .prose .benefits::before,
+  .benefits::before {
+    left: 16px !important;
+  }
+  .prose .benefits > li > b,
+  .benefits > li > b {
+    font-size: 16px !important;
+  }
+  .prose .benefits span,
+  .benefits span {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Quotes */
+  .q {
+    padding: 16px 16px 16px 46px;
+    border-radius: 14px;
+  }
+  .q::before {
+    left: 14px;
+    top: 4px;
+    font-size: 42px;
+  }
+  .q blockquote {
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  /* Trio */
+  .trio div {
+    padding: 16px;
+    border-radius: 14px;
+  }
+  .trio b {
+    font-size: 15px;
+  }
+  .trio span {
+    font-size: 14px;
+  }
+
+  /* Checklist */
+  .prose .checks li,
+  .checks li {
+    padding: 12px 14px 12px 46px !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  .prose .checks li::before,
+  .checks li::before {
+    left: 14px !important;
+    top: 14px !important;
+    transform: none !important;
+    width: 22px !important;
+    height: 22px !important;
+    background-size: 11px !important;
+  }
+
+  /* Mid CTA */
+  .prose .mid-cta,
+  .mid-cta {
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    margin: 26px 0 10px !important;
+  }
+  .prose .mid-cta b,
+  .mid-cta b {
+    font-size: 16px !important;
+  }
+  .prose .mid-cta span,
+  .mid-cta span {
+    font-size: 13.5px !important;
+  }
+  .prose .mid-cta .btn,
+  .prose .mid-cta .btn-hi,
+  .mid-cta .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+  }
+
+  /* End CTA */
+  .prose .end-cta,
+  .end-cta {
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+    margin: 16px 0 20px !important;
+  }
+  .prose .end-cta p,
+  .end-cta p {
+    font-size: 15px !important;
+    margin-bottom: 14px !important;
+    line-height: 1.55 !important;
+  }
+  .prose .end-btn,
+  .end-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 12px 18px !important;
+    font-size: 14px !important;
+  }
+
+  /* Author box */
+  .author-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 12px;
+    border-radius: 16px;
+    margin-top: 32px;
+  }
+  .av--xl {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 14px;
+  }
+  .author-box b {
+    font-size: 16px;
+  }
+  .author-box p {
+    font-size: 14px;
+    margin: 4px 0 10px;
+  }
+  .author-box a {
+    justify-content: center;
+    font-size: 13.5px;
+  }
+
+  /* Side CTA */
+  .side-cta {
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+  .side-cta b {
+    font-size: 16px;
+  }
+  .side-cta p {
+    font-size: 13.5px;
+    margin-bottom: 12px;
+  }
+  .yr-pick--light {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .yr-pick--light .yr-chip {
+    padding: 8px 12px;
+    font-size: 12.5px;
+    min-height: 38px;
+  }
+  .side-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* More reads & Subject links */
+  .more-reads {
+    padding: 28px 0 20px;
+  }
+  .mr-head h2 {
+    font-size: 22px;
+  }
+  .subj {
+    margin-top: 28px;
+    padding: 18px 16px;
+    border-radius: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .subj > b {
+    font-size: 14px;
+  }
+  .subj-links {
+    gap: 8px;
+  }
+  .subj-links a {
+    padding: 7px 12px;
+    font-size: 12.5px;
+    border-radius: 7px;
+  }
+
+  /* Final CTA */
+  .final {
+    padding: 24px 0 92px; /* Clearance for floating buttons */
+  }
+  .final-card {
+    border-radius: 18px;
+  }
+  .final-img {
+    min-height: 170px;
+    max-height: 200px;
+  }
+  .fa-stat {
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+  .fa-stat b {
+    font-size: 14px;
+  }
+  .fa-stat span {
+    font-size: 10.5px;
+  }
+  .fa-stat--1 {
+    left: 6%;
+    top: 18%;
+  }
+  .fa-stat--2 {
+    right: 6%;
+    top: 12%;
+  }
+  .fa-stat--3 {
+    display: none;
+  }
+  .final-txt {
+    padding: 20px 16px;
+  }
+  .final-txt h2 {
+    font-size: clamp(20px, 5.2vw, 25px);
+    margin-bottom: 10px;
+  }
+  .final-txt p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .final-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .final-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 0 16px;
+  }
+  .art-hero {
+    padding: 82px 0 68px;
+  }
+  .art-title {
+    font-size: 23px;
+  }
+  .art-meta {
+    padding: 10px 12px;
+    gap: 8px 10px;
+  }
+  .av--lg {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 12px;
+  }
+  .am-who b {
+    font-size: 12.5px;
+  }
+  .am-who span {
+    font-size: 11px;
+  }
+  .share {
+    width: 30px;
+    height: 30px;
+  }
+  .art-figure {
+    margin-top: -38px;
+    border-radius: 14px;
+  }
+  .art-layout {
+    padding: 24px 14px 20px;
+    gap: 26px;
+  }
+  .prose .num-cards > li,
+  .num-cards > li {
+    padding: 14px 12px 14px 58px !important;
+    border-radius: 14px !important;
+  }
+  .prose .num-cards > li::before,
+  .num-cards > li::before {
+    left: 12px !important;
+    top: 14px !important;
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 13px !important;
+  }
+  .mr-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 

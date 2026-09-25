@@ -16,7 +16,7 @@ interface BlogHeroProps {
   regionConfig: RegionConfig;
   searchQuery: string;
   onSearchChange: (query: string) => void;
-  topicCount: number;
+  topicCount?: number;
 }
 
 export default function BlogHero({
@@ -24,7 +24,6 @@ export default function BlogHero({
   regionConfig,
   searchQuery,
   onSearchChange,
-  topicCount,
 }: BlogHeroProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -108,12 +107,6 @@ export default function BlogHero({
     } else if (e.key === "Escape") {
       setShowSuggestions(false);
     }
-  };
-
-  const handlePopularClick = (tag: string) => {
-    onSearchChange(tag);
-    setShowSuggestions(false);
-    document.getElementById("library")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleClear = () => {
@@ -328,75 +321,6 @@ export default function BlogHero({
             </div>
           )}
         </div>
-
-        {/* Popular chips */}
-        <div className="popular">
-          <span>Popular:</span>
-          {regionConfig.hero.popularTags.map((tag) => (
-            <button
-              key={tag}
-              type="button"
-              onClick={() => handlePopularClick(tag)}
-            >
-              {tag}
-            </button>
-          ))}
-        </div>
-
-        {/* Hero stats */}
-        <ul className="hero-stats">
-          <li>
-            <span className="hs-ic">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2V5Zm2 14h13" />
-              </svg>
-            </span>
-            <span>
-              <b>{posts.length || 22}</b> free guides
-            </span>
-          </li>
-          <li>
-            <span className="hs-ic">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" />
-              </svg>
-            </span>
-            <span>
-              <b>{topicCount || 5}</b> topics
-            </span>
-          </li>
-          <li>
-            <span className="hs-ic">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 3 2 8l10 5 10-5-10-5ZM6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" />
-              </svg>
-            </span>
-            <span>
-              For <b>{regionConfig.yearLabel}s 2 to 7</b>
-            </span>
-          </li>
-        </ul>
       </div>
     </section>
   );
