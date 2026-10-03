@@ -58,6 +58,6 @@ export interface SubjectCopyData {
     h2: string;
     text: string;
     buttonText: string;
-    whatsappNumber: string;
+    whatsappNumber?: string;
   };
 }

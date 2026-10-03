@@ -27,6 +27,10 @@ import { auYear10MathsCopy } from "./au-year-10-maths";
 import { auYear10EnglishCopy } from "./au-year-10-english";
 import { auYear10ScienceCopy } from "./au-year-10-science";
 
+import { caGrade2MathsCopy } from "./ca-grade-2-maths";
+import { caGrade2EnglishCopy } from "./ca-grade-2-english";
+import { caGrade2ScienceCopy } from "./ca-grade-2-science";
+
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
     maths: auYear2MathsCopy,
@@ -75,6 +79,31 @@ const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   },
 };
 
-export function getAuSubjectCopy(yearId: string, subjectId: string): SubjectCopyData | null {
-  return AU_SUBJECT_COPY[yearId]?.[subjectId] ?? null;
+const CA_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
+  "year-2": {
+    maths: caGrade2MathsCopy,
+    english: caGrade2EnglishCopy,
+    science: caGrade2ScienceCopy,
+  },
+};
+
+export function getSubjectCopy(
+  region: string | undefined,
+  year: string | number,
+  subject: string
+): SubjectCopyData | null {
+  const yearKey = typeof year === "number" ? `year-${year}` : year.startsWith("year-") ? year : `year-${year}`;
+
+  if (region === "ca") {
+    return CA_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+  }
+  if (region === "au" || !region) {
+    return AU_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+  }
+  return null;
 }
+
+export function getAuSubjectCopy(yearId: string, subjectId: string): SubjectCopyData | null {
+  return getSubjectCopy("au", yearId, subjectId);
+}
+

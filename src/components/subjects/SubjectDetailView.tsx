@@ -14,7 +14,7 @@ import BookTrialButton from "@/components/home/BookTrialButton";
 import { createCourseSchema, createBreadcrumbSchema } from "@/utils/schema";
 import { type RegionCode } from "@/utils/regionalLinks";
 import { getRegionConfig } from "@/data/regions";
-import { getAuSubjectCopy } from "@/data/copy/au-subject-copy";
+import { getSubjectCopy } from "@/data/copy/au-subject-copy";
 import "@/app/subjects/[yearId]/[subjectId]/subject-detail.css";
 
 /* ------------------------------------------------------------------ */
@@ -235,7 +235,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
     subjectId === "english" ? "english" : subjectId === "science" ? "science" : "maths"
   );
 
-  const auCopy = isAu ? getAuSubjectCopy(yearId, activeSubject) : null;
+  const auCopy = getSubjectCopy(effectiveRegion, yearId, activeSubject);
 
   // Get year data
   const yearData = (subjectsData as Record<string, Record<string, unknown>>)[yearId];
