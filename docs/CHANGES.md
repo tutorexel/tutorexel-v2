@@ -754,3 +754,60 @@ The following blog posts have titles longer than 60 characters or meta descripti
 - Final CTA Secondary Button: "Contact Us" -> `/ca/contact`
 - Testimonials Block: Omitted entirely (hidden on /ca)
 
+---
+
+## Canada Content Update: Phase 5 Verification Report
+
+Date: 2026-10-04
+Target Pages:
+1. /ca (Canada Home)
+2. /ca/co-curricular (Canada Music Hub)
+3. /ca/co-curricular/piano (Canada Piano)
+4. /ca/co-curricular/guitar (Canada Guitar)
+5. /ca/subjects/year-2/maths (Grade 2 Math)
+6. /ca/subjects/year-2/english (Grade 2 English)
+7. /ca/subjects/year-2/science (Grade 2 Science)
+
+### 1. Build and Static Generation
+- Command: `npm run build`
+- Result: Exit code 0 (254 static and SSG pages generated in 15.6s).
+- All 7 Canadian target routes pre-rendered statically without build or type errors.
+
+### 2. Comprehensive 7-Page Verification Table
+
+| Route | Status | H1 Matches Doc | Title (<=60 chars) | Meta Desc (150-160 chars) | Canonical Self | Robots | OpenGraph Locale & Lang | Hreflang Tags | JSON-LD Schemas | Leak Scan Count | Phone / WhatsApp | Testimonials Block | Image Alts Missing | Topics & Terms in HTML |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `/ca` | 200 | Yes (1 H1) | Yes (54 chars) | Yes (160 chars) | `https://www.tutorexel.com/ca` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg (no phone), FAQPage | 0 | 0 | None (omitted) | 0 | N/A |
+| `/ca/co-curricular` | 200 | Yes (1 H1) | Yes (58 chars) | Yes (156 chars) | `https://www.tutorexel.com/ca/co-curricular` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs | 0 | 0 | None (omitted) | 0 | N/A |
+| `/ca/co-curricular/piano` | 200 | Yes (1 H1) | Yes (58 chars) | Yes (151 chars) | `https://www.tutorexel.com/ca/co-curricular/piano` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs | 0 | 0 | None (omitted) | 0 | N/A |
+| `/ca/co-curricular/guitar` | 200 | Yes (1 H1) | Yes (59 chars) | Yes (152 chars) | `https://www.tutorexel.com/ca/co-curricular/guitar` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs | 0 | 0 | None (omitted) | 0 | N/A |
+| `/ca/subjects/year-2/maths` | 200 | Yes (1 H1) | Yes (47 chars) | Yes (156 chars) | `https://www.tutorexel.com/ca/subjects/year-2/maths` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs, Course (CAD, en-CA) | 0 | 0 | None (omitted) | 0 | 40 topics, 4 terms |
+| `/ca/subjects/year-2/english` | 200 | Yes (1 H1) | Yes (50 chars) | Yes (160 chars) | `https://www.tutorexel.com/ca/subjects/year-2/english` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs, Course (CAD, en-CA) | 0 | 0 | None (omitted) | 0 | 40 topics, 4 terms |
+| `/ca/subjects/year-2/science` | 200 | Yes (1 H1) | Yes (50 chars) | Yes (160 chars) | `https://www.tutorexel.com/ca/subjects/year-2/science` | `index, follow` | `en_CA` / `en-CA` | 1 (`en-CA`) | EducationalOrg, Breadcrumbs, Course (CAD, en-CA) | 0 | 0 | None (omitted) | 0 | 40 topics, 4 terms |
+
+### 3. Leak Scan Details
+- Tested strings on rendered text: "Australian", "NAPLAN", "ACARA", "NSW", "AUD", "+61", "personalised", "programme", "Maths", "Year 2" or any "Year N", "SAT", "ACT", "["
+- Result: 0 matches found across all 7 pages.
+- Zero Australian phone numbers (+61, 1300, 1800) and zero WhatsApp links on all 7 pages.
+- Zero em-dashes and zero en-dashes across all files and rendered output.
+
+### 4. Link Integrity
+- 38 unique internal links found on the 7 Canadian pages tested on live production build.
+- 38 / 38 return HTTP status < 400 (0 broken links).
+
+### 5. Regression Check
+- AU Root (`/`): HTTP 200 (AU copy preserved).
+- AU Subject (`/subjects/year-2/maths`): HTTP 200 (Australian curriculum preserved).
+- AU Piano (`/co-curricular/piano`): HTTP 200 (AU copy and pricing preserved).
+- US Root (`/us`): HTTP 200 (US copy preserved).
+- US Subject (`/us/subjects/year-2/maths`): HTTP 200 (US copy preserved).
+- US Piano (`/us/co-curricular/piano`): HTTP 200 (US copy preserved).
+- NZ Root (`/nz`): HTTP 200 (NZ copy preserved).
+- NZ Subject (`/nz/subjects/year-2/maths`): HTTP 200 (NZ copy preserved).
+- NZ Piano (`/nz/co-curricular/piano`): HTTP 200 (NZ copy preserved).
+- Canada Year 3 Math (`/ca/subjects/year-3/maths`): HTTP 200.
+
+### 6. Sitemap and Robots
+- `sitemap.xml`: HTTP 200, contains all 7 Canadian routes with `https://www.tutorexel.com` host.
+- `robots.txt`: HTTP 200, allows all 7 Canadian routes (only disallowing `/ca/enroll`, `/ca/thank-you`, `/ca/careers/apply`, `/ca/free-trial-booking/thank-you`, and `/admin/`).
+
