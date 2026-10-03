@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { getCurrentRegion } from '@/utils/regionalLinks';
 import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import BookTrialButton from './BookTrialButton';
 import './CTA.css';
 
@@ -25,13 +26,24 @@ export default function CTA({ region, title, description, buttonText }: CTAProps
   const pathname = usePathname() || '';
   const currentRegion = region || getCurrentRegion(pathname);
   const config = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
-  const isAuHome = currentRegion === 'au' && pathname === '/';
+  const isAuHome = currentRegion === 'au' && (pathname === '/' || pathname === '');
+  const isCaHome = currentRegion === 'ca' && (pathname === '/ca' || pathname === '/ca/');
 
-  const resolvedTitle = title || (isAuHome ? AU_HOME_COPY.cta.title : "Ready to See Your Child Excel?");
-  const resolvedDescription = description || (isAuHome
+  const resolvedTitle = title || (isCaHome
+    ? CA_HOME_COPY.cta.title
+    : isAuHome
+    ? AU_HOME_COPY.cta.title
+    : "Ready to See Your Child Excel?");
+  const resolvedDescription = description || (isCaHome
+    ? CA_HOME_COPY.cta.description
+    : isAuHome
     ? AU_HOME_COPY.cta.description
     : `Join hundreds of ${config.demonym} families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.`);
-  const resolvedButtonText = buttonText || (isAuHome ? AU_HOME_COPY.cta.buttonText : "Book Online Now");
+  const resolvedButtonText = buttonText || (isCaHome
+    ? CA_HOME_COPY.cta.buttonText
+    : isAuHome
+    ? AU_HOME_COPY.cta.buttonText
+    : "Book Online Now");
 
   return (
     <section className="cta section">

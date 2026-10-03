@@ -22,8 +22,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Connect with experienced online tutors for Grades 2 to 7 across America. Live personal classes in Math, English and Science aligned with US state standards."
     },
     "ca": {
-      "title": "Online Tutoring Grades 2-7 | TutorExel Canada",
-      "description": "Connect with top Canadian online tutors for Grades 2 to 7. Live personalized classes in Math, English and Science aligned with provincial curriculum goals."
+      "title": "Online Tutoring in Canada | Grades 2 to 10 | TutorExel",
+      "description": "Live online math, English and science tutoring for Grades 2 to 10, matched to your province's curriculum, with EQAO and test prep. Book a free trial class."
     },
     "nz": {
       "title": "Online Tutoring Years 2-7 | TutorExel NZ",

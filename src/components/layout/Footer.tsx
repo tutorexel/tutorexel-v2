@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { REGIONS } from "@/data/regions";
+import { REGIONS, REGIONS_CONFIG } from "@/data/regions";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
@@ -44,6 +44,7 @@ export default function Footer() {
 
   const currentRegionCode = getCurrentRegion(pathname);
   const currentRegion = REGIONS.find((r) => r.code === currentRegionCode) || REGIONS[0];
+  const config = REGIONS_CONFIG[currentRegionCode] || REGIONS_CONFIG.au;
 
   return (
     <footer className="footer">
@@ -63,7 +64,7 @@ export default function Footer() {
               </Link>
               <p className="footer__description">
                 Online Tutoring Across excellence. Helping
-                students achieve their full potential through personalised,
+                students achieve their full potential through {config.spellingPersonalised},
                 curriculum-aligned education.
               </p>
               <div className="footer__countries">

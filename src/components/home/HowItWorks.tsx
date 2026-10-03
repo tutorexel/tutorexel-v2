@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { getCurrentRegion } from '@/utils/regionalLinks';
 import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import './HowItWorks.css';
 
 interface HowItWorksProps {
@@ -35,8 +38,34 @@ const defaultSteps = [
 ];
 
 export default function HowItWorks({ region }: HowItWorksProps = {}) {
-  const isAu = region === 'au';
-  const steps = isAu ? AU_HOME_COPY.howItWorks.steps : defaultSteps;
+  const pathname = usePathname() || '';
+  const currentRegion = region || getCurrentRegion(pathname);
+  const isAu = currentRegion === 'au';
+  const isCa = currentRegion === 'ca';
+
+  const steps = isCa
+    ? CA_HOME_COPY.howItWorks.steps
+    : isAu
+    ? AU_HOME_COPY.howItWorks.steps
+    : defaultSteps;
+
+  const eyebrow = isCa
+    ? CA_HOME_COPY.howItWorks.eyebrow
+    : isAu
+    ? AU_HOME_COPY.howItWorks.eyebrow
+    : 'Simple Process';
+
+  const title = isCa
+    ? CA_HOME_COPY.howItWorks.title
+    : isAu
+    ? AU_HOME_COPY.howItWorks.title
+    : 'How TutorExel Works';
+
+  const intro = isCa
+    ? CA_HOME_COPY.howItWorks.intro
+    : isAu
+    ? AU_HOME_COPY.howItWorks.intro
+    : 'Get started in 4 easy steps. Your child could be learning with us this week.';
 
   return (
     <section className="how-it-works">
@@ -53,15 +82,13 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
                   width={20}
                   height={20}
                 />
-                {isAu ? AU_HOME_COPY.howItWorks.eyebrow : 'Simple Process'}
+                {eyebrow}
               </div>
               <h2 className="how-it-works__title">
-                {isAu ? AU_HOME_COPY.howItWorks.title : 'How TutorExel Works'}
+                {title}
               </h2>
               <p className="how-it-works__subtitle">
-                {isAu
-                  ? AU_HOME_COPY.howItWorks.intro
-                  : 'Get started in 4 easy steps. Your child could be learning with us this week.'}
+                {intro}
               </p>
             </div>
             <div className="how-it-works__image">

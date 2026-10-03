@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { getCurrentRegion } from '@/utils/regionalLinks';
 import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { CA_HOME_COPY } from '@/data/copy/ca-home';
 
 interface YearLevelsProps {
   region?: RegionCode;
@@ -16,6 +17,7 @@ export default function YearLevels({ region }: YearLevelsProps) {
   const currentRegion = region || getCurrentRegion(pathname);
   const config = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
   const isAu = currentRegion === 'au';
+  const isCa = currentRegion === 'ca';
 
   const levelWord = config.yearLabel;
   const mathLabel = config.mathLabel;
@@ -54,7 +56,29 @@ export default function YearLevels({ region }: YearLevelsProps) {
     },
   ];
 
-  const yearLevels = isAu ? AU_HOME_COPY.yearLevels.years : defaultYearLevels;
+  const yearLevels = isCa
+    ? CA_HOME_COPY.yearLevels.years
+    : isAu
+    ? AU_HOME_COPY.yearLevels.years
+    : defaultYearLevels;
+
+  const eyebrowText = isCa
+    ? CA_HOME_COPY.yearLevels.eyebrow
+    : isAu
+    ? AU_HOME_COPY.yearLevels.eyebrow
+    : `Choose Your ${levelWord} Level`;
+
+  const titleText = isCa
+    ? CA_HOME_COPY.yearLevels.title
+    : isAu
+    ? AU_HOME_COPY.yearLevels.title
+    : `Select Your Child's ${levelWord} Level`;
+
+  const introText = isCa
+    ? CA_HOME_COPY.yearLevels.intro
+    : isAu
+    ? AU_HOME_COPY.yearLevels.intro
+    : `Each ${levelWord.toLowerCase()} level includes ${mathLabel}, English and Science programs, structured across 4 terms with 10 sessions each.`;
 
   return (
     <section className="subject-years section">
@@ -62,41 +86,47 @@ export default function YearLevels({ region }: YearLevelsProps) {
         <div className="subject-years__header">
           <p className="subject-years__label">
             <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="subject-years__label-icon" />
-            {isAu ? AU_HOME_COPY.yearLevels.eyebrow : `Choose Your ${levelWord} Level`}
+            {eyebrowText}
           </p>
           <h2 className="subject-years__title">
-            {isAu ? AU_HOME_COPY.yearLevels.title : `Select Your Child's ${levelWord} Level`}
+            {titleText}
           </h2>
           <p className="subject-years__subtitle">
-            {isAu
-              ? AU_HOME_COPY.yearLevels.intro
-              : `Each ${levelWord.toLowerCase()} level includes ${mathLabel}, English and Science programs, structured across 4 terms with 10 sessions each.`}
+            {introText}
           </p>
         </div>
 
         <div className="subject-years__grid">
-          {yearLevels.map((level) => (
-            <div key={level.year} className={`subject-years__card ${level.featured ? 'subject-years__card--featured' : ''}`}>
-              <div className="subject-years__card-header">
-                <span className={`subject-years__card-year ${level.featured ? 'subject-years__card-year--featured' : ''}`}>
-                  {levelWord.toUpperCase()} {level.year}
-                </span>
-                <span className="subject-years__card-ages">(Ages {level.ages})</span>
+          {yearLevels.map((level) => {
+            const showButtons = !('hasButtons' in level) || level.hasButtons !== false;
+            return (
+              <div key={level.year} className={`subject-years__card ${level.featured ? 'subject-years__card--featured' : ''}`}>
+                <div className="subject-years__card-header">
+                  <span className={`subject-years__card-year ${level.featured ? 'subject-years__card-year--featured' : ''}`}>
+                    {levelWord.toUpperCase()} {level.year}
+                  </span>
+                  <span className="subject-years__card-ages">(Ages {level.ages})</span>
+                </div>
+                <p className="subject-years__card-description">{level.description}</p>
+                {showButtons ? (
+                  <div className="subject-years__card-buttons">
+                    <RegionLink href={`/subjects/year-${level.year}/english`} className="subject-years__card-btn subject-years__card-btn--english">
+                      English
+                    </RegionLink>
+                    <RegionLink href={`/subjects/year-${level.year}/maths`} className="subject-years__card-btn subject-years__card-btn--maths">
+                      {mathLabel}
+                    </RegionLink>
+                    <RegionLink href={`/subjects/year-${level.year}/science`} className="subject-years__card-btn subject-years__card-btn--science">
+                      Science
+                    </RegionLink>
+                  </div>
+                ) : (
+                  /* TODO: Grade {level.year} subject pages do not exist yet */
+                  null
+                )}
               </div>
-              <p className="subject-years__card-description">{level.description}</p>
-              <div className="subject-years__card-buttons">
-                <RegionLink href={`/subjects/year-${level.year}/english`} className="subject-years__card-btn subject-years__card-btn--english">
-                  English
-                </RegionLink>
-                <RegionLink href={`/subjects/year-${level.year}/maths`} className="subject-years__card-btn subject-years__card-btn--maths">
-                  {mathLabel}
-                </RegionLink>
-                <RegionLink href={`/subjects/year-${level.year}/science`} className="subject-years__card-btn subject-years__card-btn--science">
-                  Science
-                </RegionLink>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

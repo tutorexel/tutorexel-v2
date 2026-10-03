@@ -7,6 +7,7 @@ import RegionLink from '@/components/shared/RegionLink';
 import { getCurrentRegion } from '@/utils/regionalLinks';
 import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { COUNTRIES, type Country } from '@/components/shared/CountryTabs';
 import './Pricing.css';
 
@@ -104,6 +105,7 @@ export default function Pricing({ region }: PricingProps = {}) {
   const pathname = usePathname() || '';
   const currentRegion = region || getCurrentRegion(pathname);
   const isAu = currentRegion === 'au';
+  const isCa = currentRegion === 'ca';
   const initialCountry = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
   const [selectedCountry, setSelectedCountry] = useState<Country>(initialCountry);
 
@@ -111,6 +113,77 @@ export default function Pricing({ region }: PricingProps = {}) {
     const current = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
     setSelectedCountry(current);
   }, [currentRegion]);
+
+  if (isCa) {
+    return (
+      <section className="pricing section">
+        <div className="pricing__bg"></div>
+        <div className="container">
+          <div className="section-header section-header--center">
+            <p className="section-header__label section-header__label--no-before">
+              <Image src="/images/icons/circle_icon.webp" alt="" className="section-header__label-icon" width={20} height={20} />
+              {CA_HOME_COPY.pricing.eyebrow}
+            </p>
+            <h2 className="section-header__title">{CA_HOME_COPY.pricing.title}</h2>
+            <div className="pricing__discount-badge">
+              <span className="pricing__discount-pulse" aria-hidden="true"></span>
+              {CA_HOME_COPY.pricing.line1}
+            </div>
+            <p className="section-header__subtitle">
+              {CA_HOME_COPY.pricing.line2}
+            </p>
+          </div>
+
+          <div className="pricing__grid">
+            {CA_HOME_COPY.pricing.plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`pricing-card pricing-card--${plan.borderColor}`}
+              >
+                {plan.popular && (
+                  <span className="pricing-card__badge">Most Popular</span>
+                )}
+
+                <div className="pricing-card__header">
+                  <div className="pricing-card__name">{plan.name}</div>
+                  <div className="pricing-card__subtitle">{plan.subtitle}</div>
+                </div>
+
+                <div className="pricing-card__price-wrapper">
+                  {plan.originalAmount && (
+                    <div className="pricing-card__original-price">
+                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
+                      <span className="discount-badge">{plan.discountBadge}</span>
+                    </div>
+                  )}
+                  <div className="pricing-card__price">
+                    <span className="currency">{plan.currency}</span>
+                    <span className="amount">{plan.amount}</span>
+                    <span className="period">{plan.period}</span>
+                  </div>
+                </div>
+
+                <div className="pricing-card__features">
+                  {plan.features.map((feature) => (
+                    <div className="pricing-card__feature" key={feature}>
+                      <span className="feature-check">
+                        <CheckIcon />
+                      </span>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <RegionLink href={plan.ctaHref} region="ca" className="pricing-card__button">
+                  {plan.ctaText}
+                </RegionLink>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (isAu) {
     return (

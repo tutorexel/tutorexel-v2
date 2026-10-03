@@ -2,7 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { getCurrentRegion } from '@/utils/regionalLinks';
+import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import './Testimonials.css';
+
+interface TestimonialsProps {
+  region?: RegionCode;
+}
 
 const testimonialsData = [
   {
@@ -63,7 +70,11 @@ const testimonialsData = [
   },
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ region }: TestimonialsProps = {}) {
+  const pathname = usePathname() || '';
+  const currentRegion = region || getCurrentRegion(pathname);
+  const config = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -95,6 +106,10 @@ export default function Testimonials() {
     currentSlide * itemsPerSlide,
     currentSlide * itemsPerSlide + itemsPerSlide
   );
+
+  if (!config.showTestimonials) {
+    return null;
+  }
 
   return (
     <section className="testimonials section">

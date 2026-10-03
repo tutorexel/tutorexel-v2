@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { getCurrentRegion } from '@/utils/regionalLinks';
 import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { createFaqSchema } from '@/utils/schema';
 import './FAQ.css';
 
@@ -50,6 +51,7 @@ export default function FAQ({ region }: FAQProps = {}) {
   const pathname = usePathname() || '';
   const currentRegion = region || getCurrentRegion(pathname);
   const isAu = currentRegion === 'au';
+  const isCa = currentRegion === 'ca';
 
   const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -57,7 +59,30 @@ export default function FAQ({ region }: FAQProps = {}) {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
-  const faqs = isAu ? AU_HOME_COPY.faq.items : defaultFaqData;
+  const faqs = isCa
+    ? CA_HOME_COPY.faq.items
+    : isAu
+    ? AU_HOME_COPY.faq.items
+    : defaultFaqData;
+
+  const eyebrow = isCa
+    ? CA_HOME_COPY.faq.eyebrow
+    : isAu
+    ? AU_HOME_COPY.faq.eyebrow
+    : 'Got Questions?';
+
+  const title = isCa
+    ? CA_HOME_COPY.faq.title
+    : isAu
+    ? AU_HOME_COPY.faq.title
+    : 'Frequently Asked Questions';
+
+  const intro = isCa
+    ? CA_HOME_COPY.faq.intro
+    : isAu
+    ? AU_HOME_COPY.faq.intro
+    : 'Find answers to common questions about our tutoring services.';
+
   const faqSchema = createFaqSchema(faqs);
 
   return (
@@ -70,15 +95,13 @@ export default function FAQ({ region }: FAQProps = {}) {
         <div className="section-header section-header--center">
           <p className="section-header__label section-header__label--no-before">
             <Image src="/images/icons/circle_icon.webp" alt="" className="section-header__label-icon" width={20} height={20} />
-            {isAu ? AU_HOME_COPY.faq.eyebrow : 'Got Questions?'}
+            {eyebrow}
           </p>
           <h2 className="section-header__title">
-            {isAu ? AU_HOME_COPY.faq.title : 'Frequently Asked Questions'}
+            {title}
           </h2>
           <p className="section-header__subtitle">
-            {isAu
-              ? AU_HOME_COPY.faq.intro
-              : 'Find answers to common questions about our tutoring services.'}
+            {intro}
           </p>
         </div>
 
@@ -96,7 +119,7 @@ export default function FAQ({ region }: FAQProps = {}) {
                 <span className="faq__question-text">{item.question}</span>
                 <span className="faq__icon">
                   <span className="faq__icon-symbol">
-                    {openIndex === index ? (isAu ? '-' : '−') : '+'}
+                    {openIndex === index ? '-' : '+'}
                   </span>
                 </span>
               </button>

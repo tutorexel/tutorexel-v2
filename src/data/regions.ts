@@ -47,6 +47,7 @@ export interface RegionConfig {
   mathLabel: string;
   spellingPersonalised: string;
   spellingEnrol: string;
+  showTestimonials: boolean;
   yearLevels: number[];
   hero: {
     title: string;
@@ -106,6 +107,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Maths",
     spellingPersonalised: "personalised",
     spellingEnrol: "Enrol",
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     hero: {
       title: "TutorExel",
@@ -259,6 +261,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Math",
     spellingPersonalised: "personalized",
     spellingEnrol: "Enroll",
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
@@ -412,7 +415,8 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     yearLabel: "Grade",
     mathLabel: "Math",
     spellingPersonalised: "personalized",
-    spellingEnrol: "Enroll",
+    spellingEnrol: "Enrol",
+    showTestimonials: false,
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
@@ -567,6 +571,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Maths",
     spellingPersonalised: "personalised",
     spellingEnrol: "Enrol",
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
