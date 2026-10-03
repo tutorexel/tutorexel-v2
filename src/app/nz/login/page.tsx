@@ -1,17 +1,17 @@
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import { LOGIN_URL } from "@/utils/externalLinks";
 import "./login.css";
 
-export const metadata: Metadata = {
-  title: "Login | TutorExel",
-  description: "Login to your TutorExel student portal to access lessons, worksheets, and progress reports.",
-  alternates: getRegionalAlternates('/login', 'nz'),
-};
+export const metadata = buildMetadata({
+  path: "/login",
+  region: "nz",
+  noindex: true,
+});
 
 export default function LoginPage() {
   return (
     <section className="login-page">
+      <h1 className="sr-only">Student Portal Login</h1>
       <div className="login-page__wrapper">
         <iframe
           src={LOGIN_URL}

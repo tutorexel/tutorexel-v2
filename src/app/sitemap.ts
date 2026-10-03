@@ -1,214 +1,132 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugsForSitemap } from "@/sanity/client";
-import { cities } from "@/data/cities";
+import { PAGE_AVAILABILITY, INDEX_YEAR_8_10, HREFLANG_MODE, type RegionCode } from "@/data/page-availability";
+import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
 
-const BASE_URL = "https://tutorexel.com";
+const BASE_URL = "https://www.tutorexel.com";
+
+const NOINDEX_PATHS = new Set([
+  "/enroll",
+  "/login",
+  "/thank-you",
+  "/free-trial-booking/thank-you",
+  "/careers/apply",
+  "/home-v1",
+]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
-  // Common key pages supported across regions
-  const commonPages = [
-    "/about",
-    "/subjects",
-    "/pricing",
-    "/contact",
-    "/free-trial",
-    "/free-assessment",
-    "/enroll",
-    "/results",
-    "/co-curricular",
-    "/co-curricular/piano",
-    "/co-curricular/guitar",
-    "/subscription",
-    "/careers",
-    "/careers/apply",
-  ];
+  // Generate sitemap entries directly from PAGE_AVAILABILITY
+  const staticEntries: MetadataRoute.Sitemap = [];
 
-  const legalPages = ["/privacy", "/terms", "/refund", "/cookies", "/links"];
+  for (const entry of PAGE_AVAILABILITY) {
+    if (NOINDEX_PATHS.has(entry.path)) {
+      continue;
+    }
 
-  // Dynamic subject pages — all year/subject combinations
-  const years = ["year-2", "year-3", "year-4", "year-5", "year-6", "year-7"];
-  const subjects = ["maths", "english"];
+    const isYear8to10 = /^\/subjects\/year-(8|9|10)\//.test(entry.path);
+    if (!INDEX_YEAR_8_10 && isYear8to10) {
+      continue;
+    }
 
-  const subjectEntries: MetadataRoute.Sitemap = ["", "/au", "/ca", "/nz"].flatMap((prefix) =>
-    years.flatMap((year) =>
-      subjects.map((subject) => ({
-        url: `${BASE_URL}${prefix}/subjects/${year}/${subject}`,
+    const isRoot = entry.path === "/";
+    const auUrl = isRoot ? BASE_URL : `${BASE_URL}${entry.path}`;
+    const usUrl = isRoot ? `${BASE_URL}/us` : `${BASE_URL}/us${entry.path}`;
+    const caUrl = isRoot ? `${BASE_URL}/ca` : `${BASE_URL}/ca${entry.path}`;
+    const nzUrl = isRoot ? `${BASE_URL}/nz` : `${BASE_URL}/nz${entry.path}`;
+
+    const urlMap: Record<RegionCode, string> = {
+      au: auUrl,
+      us: usUrl,
+      ca: caUrl,
+      nz: nzUrl,
+    };
+
+    let clusterLanguages: Record<string, string>;
+    if (entry.isMarketUnique || entry.regions.length <= 1) {
+      const singleRegion = entry.regions[0] || "au";
+      const selfUrl = urlMap[singleRegion];
+      clusterLanguages = {
+        [REGION_LOCALE_MAP[singleRegion as Region]]: selfUrl,
+        "x-default": selfUrl,
+      };
+    } else {
+      clusterLanguages = {
+        "en-AU": auUrl,
+        "en-US": usUrl,
+        "en-CA": caUrl,
+        "en-NZ": nzUrl,
+        "x-default": auUrl,
+      };
+    }
+
+    for (const region of entry.regions) {
+      const pageUrl = urlMap[region];
+      const isAu = region === "au";
+      const priority = isRoot ? (isAu ? 1.0 : 0.9) : entry.path.startsWith("/subjects/") ? 0.8 : 0.8;
+      const locale = REGION_LOCALE_MAP[region as Region];
+
+      const languages = HREFLANG_MODE === "self"
+        ? { [locale]: pageUrl }
+        : clusterLanguages;
+
+      staticEntries.push({
+        url: pageUrl,
         lastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.8,
-      }))
-    )
-  );
+        changeFrequency: isRoot ? "weekly" : "monthly",
+        priority,
+        alternates: {
+          languages,
+        },
+      });
+    }
+  }
 
-  // Dynamic blog post pages from Sanity (per region)
+  // Dynamic Sanity blog posts mapped by their assigned region
+  const sampleSlugs = new Set([
+    "sample-article-us",
+    "sample-article-ca",
+    "sample-article-nz",
+  ]);
+
   const sanityPosts = await getAllSlugsForSitemap();
-  const blogEntries: MetadataRoute.Sitemap = sanityPosts.map((post) => {
-    const postUrl =
-      post.region && post.region !== "us"
-        ? `${BASE_URL}/${post.region}/blog/${post.slug}`
-        : `${BASE_URL}/blog/${post.slug}`;
+  const validPosts = sanityPosts.filter((post) => {
+    if (!post.slug) return false;
+    if (sampleSlugs.has(post.slug)) return false;
+    if (/^\d+$/.test(post.slug)) return false;
+    return true;
+  });
+
+  const blogEntries: MetadataRoute.Sitemap = validPosts.map((post) => {
+    const rawRegion = (post.region?.toLowerCase() || "au") as Region;
+    const region = (["au", "us", "ca", "nz"].includes(rawRegion) ? rawRegion : "au") as Region;
+    const prefix = region === "au" ? "" : `/${region}`;
+    const postUrl = `${BASE_URL}${prefix}/blog/${post.slug}`;
+    const postDate = post._updatedAt
+      ? new Date(post._updatedAt)
+      : post.publishedAt
+      ? new Date(post.publishedAt)
+      : lastModified;
+
+    const locale = REGION_LOCALE_MAP[region];
+    const languages = HREFLANG_MODE === "self"
+      ? { [locale]: postUrl }
+      : {
+          [locale]: postUrl,
+          "x-default": postUrl,
+        };
 
     return {
       url: postUrl,
-      lastModified: post._updatedAt ? new Date(post._updatedAt) : lastModified,
+      lastModified: postDate,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+      alternates: {
+        languages,
+      },
     };
   });
 
-  return [
-    // ── US (Root) Pages ───────────────────────────────────────
-    {
-      url: BASE_URL,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    ...commonPages.map((path) => ({
-      url: `${BASE_URL}${path}`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: `${BASE_URL}/blog`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/online-tutoring`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/research`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    ...legalPages.map((path) => ({
-      url: `${BASE_URL}${path}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    })),
-
-    // ── AU (/au) Pages ────────────────────────────────────────
-    {
-      url: `${BASE_URL}/au`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    ...commonPages.map((path) => ({
-      url: `${BASE_URL}/au${path}`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: `${BASE_URL}/au/blog`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/au/naplan-preparation`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/au/online-tutoring`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    ...cities.map((city) => ({
-      url: `${BASE_URL}/au/online-tutoring/${city.slug}`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: `${BASE_URL}/au/research`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/au/research/australian-tutoring-report-2026`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    ...legalPages.map((path) => ({
-      url: `${BASE_URL}/au${path}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    })),
-
-    // ── CA (/ca) Pages ────────────────────────────────────────
-    {
-      url: `${BASE_URL}/ca`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    ...commonPages.map((path) => ({
-      url: `${BASE_URL}/ca${path}`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: `${BASE_URL}/ca/blog`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    ...legalPages.map((path) => ({
-      url: `${BASE_URL}/ca${path}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    })),
-
-    // ── NZ (/nz) Pages ────────────────────────────────────────
-    {
-      url: `${BASE_URL}/nz`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    ...commonPages.map((path) => ({
-      url: `${BASE_URL}/nz${path}`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    {
-      url: `${BASE_URL}/nz/blog`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    ...legalPages.map((path) => ({
-      url: `${BASE_URL}/nz${path}`,
-      lastModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.3,
-    })),
-
-    // ── Dynamic Subject Pages ─────────────────────────────────
-    ...subjectEntries,
-
-    // ── Dynamic Blog Posts (Sanity) ───────────────────────────
-    ...blogEntries,
-  ];
+  return [...staticEntries, ...blogEntries];
 }

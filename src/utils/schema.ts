@@ -1,35 +1,55 @@
-export const organizationSchema: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "TutorExel",
-  url: "https://tutorexel.com",
-  logo: "https://tutorexel.com/images/logo.svg",
-  description:
-    "Australia's leading online tutoring platform aligned with the Australian Curriculum (ACARA). Live online classes in Maths, English, Piano & Guitar.",
-  foundingDate: "2009",
-  areaServed: {
-    "@type": "Country",
-    name: "Australia",
-  },
-  sameAs: [
-    "https://www.facebook.com/tutorexel",
-    "https://www.instagram.com/tutorexel",
-    "https://www.linkedin.com/company/tutorexel",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+61-470-330-548",
-    contactType: "customer service",
-    availableLanguage: "English",
-    areaServed: "AU",
-  },
-};
+import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
+import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
+
+export function getOrganizationSchema(region: RegionCode = "au"): Record<string, unknown> {
+  const config = REGIONS_CONFIG[region] || REGIONS_CONFIG.au;
+
+  const descriptions: Record<RegionCode, string> = {
+    au: "Australia's leading online tutoring platform aligned with the Australian Curriculum (ACARA). Live online classes in Maths, English, Piano & Guitar.",
+    us: "Dedicated online tutoring platform for American students. Live interactive classes in Math, English, and Science aligned to US state standards.",
+    ca: "Dedicated online tutoring platform for Canadian students. Live interactive classes in Math, English, and Science aligned to provincial curricula.",
+    nz: "Dedicated online tutoring platform for New Zealand students. Live interactive classes in Maths, English, and Science aligned to the NZC framework.",
+  };
+
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: "TutorExel",
+    url: "https://www.tutorexel.com",
+    logo: "https://www.tutorexel.com/images/logo.svg",
+    description: descriptions[region] || descriptions.au,
+    foundingDate: "2009",
+    areaServed: {
+      "@type": "Country",
+      name: config.countryName,
+    },
+    sameAs: [
+      "https://www.facebook.com/tutorexel",
+      "https://www.instagram.com/tutorexel",
+      "https://www.linkedin.com/company/tutorexel",
+    ],
+  };
+
+  if (config.phone) {
+    schema.contactPoint = {
+      "@type": "ContactPoint",
+      telephone: config.phone,
+      contactType: "customer service",
+      availableLanguage: "English",
+      areaServed: config.code.toUpperCase(),
+    };
+  }
+
+  return schema;
+}
+
+export const organizationSchema: Record<string, unknown> = getOrganizationSchema("au");
 
 export const websiteSchema: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "TutorExel",
-  url: "https://tutorexel.com",
+  url: "https://www.tutorexel.com",
   publisher: {
     "@type": "EducationalOrganization",
     name: "TutorExel",
@@ -39,8 +59,11 @@ export const websiteSchema: Record<string, unknown> = {
 export function createCourseSchema(
   yearLevel: string,
   subject: string,
-  description: string
+  description: string,
+  region: RegionCode = "au"
 ): Record<string, unknown> {
+  const config = REGIONS_CONFIG[region] || REGIONS_CONFIG.au;
+
   return {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -49,18 +72,18 @@ export function createCourseSchema(
     provider: {
       "@type": "EducationalOrganization",
       name: "TutorExel",
-      url: "https://tutorexel.com",
+      url: "https://www.tutorexel.com",
     },
     educationalLevel: yearLevel,
-    inLanguage: "en-AU",
+    inLanguage: config.locale,
     courseMode: "online",
     offers: {
       "@type": "Offer",
       category: "Online Tutoring",
-      priceCurrency: "AUD",
+      priceCurrency: config.currency,
       eligibleRegion: {
         "@type": "Country",
-        name: "Australia",
+        name: config.countryName,
       },
     },
   };
@@ -88,35 +111,46 @@ export function createBlogPostingSchema(post: {
   excerpt?: string;
   image: string;
   datePublished: string;
+  dateModified?: string;
   slug: string;
+  region?: RegionCode;
+  author?: string;
 }): Record<string, unknown> {
+  const region = post.region || "au";
+  const prefix = region === "au" ? "" : `/${region}`;
+  const canonicalUrl = `https://www.tutorexel.com${prefix}/blog/${post.slug}`;
+  const inLanguage = REGION_LOCALE_MAP[region as Region] || "en-AU";
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt || "",
-    image: post.image.startsWith('http') ? post.image : `https://tutorexel.com${post.image}`,
+    image: post.image.startsWith("http") ? post.image : `https://www.tutorexel.com${post.image}`,
     datePublished: post.datePublished,
+    dateModified: post.dateModified || post.datePublished,
+    inLanguage,
     author: {
       "@type": "Organization",
-      name: "TutorExel",
-      url: "https://tutorexel.com",
+      name: post.author || "TutorExel",
+      url: "https://www.tutorexel.com",
     },
     publisher: {
       "@type": "Organization",
       name: "TutorExel",
-      url: "https://tutorexel.com",
+      url: "https://www.tutorexel.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://tutorexel.com/images/logo.svg",
+        url: "https://www.tutorexel.com/images/logo.svg",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://tutorexel.com/blog/${post.slug}`,
+      "@id": canonicalUrl,
     },
   };
 }
+
 
 export function createServiceSchema(
   services: Array<{
@@ -124,8 +158,11 @@ export function createServiceSchema(
     description: string;
     price: string;
     priceSuffix: string;
-  }>
+  }>,
+  region: RegionCode = "au"
 ): Record<string, unknown>[] {
+  const config = REGIONS_CONFIG[region] || REGIONS_CONFIG.au;
+
   return services.map((service) => ({
     "@context": "https://schema.org",
     "@type": "Service",
@@ -134,25 +171,24 @@ export function createServiceSchema(
     provider: {
       "@type": "EducationalOrganization",
       name: "TutorExel",
-      url: "https://tutorexel.com",
+      url: "https://www.tutorexel.com",
     },
     areaServed: {
       "@type": "Country",
-      name: "Australia",
+      name: config.countryName,
     },
     offers: {
       "@type": "Offer",
       price: service.price,
-      priceCurrency: "AUD",
+      priceCurrency: config.currency,
       description: service.priceSuffix,
       eligibleRegion: {
         "@type": "Country",
-        name: "Australia",
+        name: config.countryName,
       },
     },
   }));
 }
-
 
 export function createBreadcrumbSchema(
   items: Array<{ name: string; url: string }>
@@ -168,31 +204,3 @@ export function createBreadcrumbSchema(
     })),
   };
 }
-
-export const reviewSchema: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "TutorExel",
-  url: "https://tutorexel.com",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "127",
-    bestRating: "5",
-    worstRating: "1",
-  },
-  review: [
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Priya Sharma" },
-      reviewRating: { "@type": "Rating", ratingValue: "5" },
-      reviewBody: "My daughter went from struggling with fractions to confidently solving complex problems. Best decision we made for her education!",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Rajesh Kumar" },
-      reviewRating: { "@type": "Rating", ratingValue: "5" },
-      reviewBody: "We tried two other tutoring services before TutorExel. The difference is night and day. My son actually looks forward to his classes now.",
-    },
-  ],
-};

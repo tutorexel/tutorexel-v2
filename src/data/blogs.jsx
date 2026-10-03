@@ -1,3 +1,5 @@
+import React from "react";
+
 export const blogs = [
   {
     id: 1, slug: "introducing-tutorexel-personalised-online-tutoring", date: "December 20, 2024", title: "Introducing TutorExel: Personalised Online Tutoring for Students",

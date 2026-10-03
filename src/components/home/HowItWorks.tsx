@@ -1,7 +1,13 @@
 import Image from 'next/image';
+import { type RegionCode } from '@/data/regions';
+import { AU_HOME_COPY } from '@/data/copy/au-home';
 import './HowItWorks.css';
 
-const steps = [
+interface HowItWorksProps {
+  region?: RegionCode;
+}
+
+const defaultSteps = [
   {
     number: 1,
     title: 'Book Free Assessment',
@@ -12,7 +18,7 @@ const steps = [
     number: 2,
     title: 'Get Custom Plan',
     description:
-      'Based on the assessment, we create a personalised learning plan for your child\'s needs and goals.',
+      "Based on the assessment, we create a personalised learning plan for your child's needs and goals.",
   },
   {
     number: 3,
@@ -28,7 +34,10 @@ const steps = [
   },
 ];
 
-export default function HowItWorks() {
+export default function HowItWorks({ region }: HowItWorksProps = {}) {
+  const isAu = region === 'au';
+  const steps = isAu ? AU_HOME_COPY.howItWorks.steps : defaultSteps;
+
   return (
     <section className="how-it-works">
       <div className="container">
@@ -44,17 +53,21 @@ export default function HowItWorks() {
                   width={20}
                   height={20}
                 />
-                Simple Process
+                {isAu ? AU_HOME_COPY.howItWorks.eyebrow : 'Simple Process'}
               </div>
-              <h2 className="how-it-works__title">How TutorExel Works</h2>
+              <h2 className="how-it-works__title">
+                {isAu ? AU_HOME_COPY.howItWorks.title : 'How TutorExel Works'}
+              </h2>
               <p className="how-it-works__subtitle">
-                Get started in 4 easy steps. Your child could be learning with us this week.
+                {isAu
+                  ? AU_HOME_COPY.howItWorks.intro
+                  : 'Get started in 4 easy steps. Your child could be learning with us this week.'}
               </p>
             </div>
             <div className="how-it-works__image">
               <Image
                 src="/images/how-it-works/tutorExel_work_image.webp"
-                alt="How TutorExel Works"
+                alt="Online tutoring process and student learning workflow"
                 className="how-it-works__img"
                 width={600}
                 height={400}

@@ -1,36 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import CTA from "@/components/home/CTA";
 import "./subscription.css";
 
-export const metadata: Metadata = {
-  title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-  description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests. Subscribe monthly and learn at your own pace.",
-  openGraph: {
-    title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-    description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
-    url: "https://tutorexel.com/subscription",
-    siteName: "TutorExel",
-    locale: "en",
-    type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-    description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
-    images: ["/images/banner/og-image.webp"],
-  },
-  alternates: getRegionalAlternates('/subscription', 'ca'),
-};
+export const metadata = buildMetadata({
+  path: "/subscription",
+  region: "ca",
+});
 
 const resources = [
   {
     icon: "\uD83D\uDCD8",
     title: "eBooks",
-    description: "Comprehensive study guides for Maths and English, aligned to the Australian Curriculum. Each eBook covers a full term of content with clear explanations and worked examples.",
+    description: "Comprehensive study guides for Math and English, aligned to the Canadian Provincial Curricula. Each eBook covers a full term of content with clear explanations and worked examples.",
     features: ["Year 2-7 coverage", "Term-by-term structure", "Clear explanations", "Worked examples"],
   },
   {
@@ -42,8 +25,8 @@ const resources = [
   {
     icon: "\uD83D\uDCCB",
     title: "Mock Tests",
-    description: "NAPLAN-style practice tests and term assessments that mirror real exam conditions. Track your child's readiness and identify areas that need more attention.",
-    features: ["NAPLAN-style format", "Timed practice tests", "Detailed answer guides", "Progress benchmarking"],
+    description: "Provincial assessment style practice tests and term assessments that mirror real exam conditions. Track your child's readiness and identify areas that need more attention.",
+    features: ["Provincial assessment format", "Timed practice tests", "Detailed answer guides", "Progress benchmarking"],
   },
 ];
 
@@ -77,11 +60,11 @@ export default function SubscriptionPage() {
               Self{" "}
               <span className="subscription-banner__title-highlight">Learning</span>{" "}
               <span className="subscription-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="Star" width={20} height={20} />
+                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="subscription-banner__subtitle">
-              Curriculum-aligned eBooks, worksheets, and mock tests for <span style={{whiteSpace:"nowrap"}}>Years 2-7.</span>
+              Curriculum-aligned eBooks, worksheets, and mock tests for <span style={{whiteSpace:"nowrap"}}>Grades 2-7.</span>
             </p>
             <div style={{display:'inline-flex',alignItems:'center',gap:'8px',marginTop:'20px',background:'rgba(212,101,74,0.1)',padding:'10px 24px',borderRadius:'24px',border:'1px solid rgba(212,101,74,0.2)'}}>
               <span style={{fontSize:'14px',color:'#d4654a',fontWeight:600}}>Coming Soon</span>
@@ -97,7 +80,7 @@ export default function SubscriptionPage() {
             <p style={{fontSize:'13px',fontWeight:600,color:'#d4654a',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'8px'}}>What You Get</p>
             <h2 style={{fontFamily:'var(--font-poppins)',fontSize:'32px',fontWeight:700,color:'#1a2e3b',marginBottom:'12px'}}>Everything Your Child Needs to Study Independently</h2>
             <p style={{fontSize:'15px',color:'#5a6b78',maxWidth:'600px',margin:'0 auto'}}>
-              A complete self-study toolkit built around the Australian National Curriculum. New resources added every month.
+              A complete self-study toolkit built around the Canadian Provincial Curricula. New resources added every month.
             </p>
           </div>
 
@@ -124,8 +107,8 @@ export default function SubscriptionPage() {
       <section style={{padding:'48px 0',background:'#f7f5f0'}}>
         <div className="container">
           <div style={{textAlign:'center',marginBottom:'28px'}}>
-            <h2 style={{fontFamily:'var(--font-poppins)',fontSize:'28px',fontWeight:700,color:'#1a2e3b',marginBottom:'8px'}}>Available for Years 2-7</h2>
-            <p style={{fontSize:'14px',color:'#5a6b78'}}>Resources for both Maths and English at every year level</p>
+            <h2 style={{fontFamily:'var(--font-poppins)',fontSize:'28px',fontWeight:700,color:'#1a2e3b',marginBottom:'8px'}}>Available for Grades 2-7</h2>
+            <p style={{fontSize:'14px',color:'#5a6b78'}}>Resources for both Math and English at every year level</p>
           </div>
           <div style={{display:'flex',justifyContent:'center',gap:'12px',flexWrap:'wrap'}}>
             {yearLevels.map((y) => (

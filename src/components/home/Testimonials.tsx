@@ -17,7 +17,7 @@ const testimonialsData = [
     image: '/avatar-rohit.png',
     name: 'Rajesh Kumar',
     location: 'Castle Hill, NSW',
-    text: '"We tried two other tutoring services before TutorExel. The difference is night and day. My son actually looks forward to his classes now, and his NAPLAN results improved dramatically. Worth every penny!"',
+    text: '"We tried two other tutoring services before TutorExel. The difference is night and day. My son actually looks forward to his classes now, and his academic results improved dramatically. Worth every penny!"',
   },
   {
     id: 3,

@@ -1,7 +1,9 @@
 /* Label above the tabs (reuses existing .pricing__country-row / .pricing__country-label wrapper) */
-
+ 
 .pricing__country-row {
     margin-top: 32px;
+    display: flex;
+    justify-content: center;
 }
 
 .country-tabs {
@@ -14,6 +16,15 @@
     max-width: 560px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.country-tabs--single {
+    width: auto;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+    border: none;
 }
 
 .country-tabs__tab {
@@ -31,6 +42,7 @@
     color: #8a938f;
     cursor: pointer;
     white-space: nowrap;
+    text-decoration: none;
     transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -46,12 +58,27 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.country-tabs__tab--single {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFF5F1;
+    border: 1px solid #FF6B35;
+    border-radius: 999px;
+    padding: 7px 18px 7px 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #FF6B35;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.12);
+    cursor: default;
+}
+
 .country-tabs__flag {
     border-radius: 2px;
     display: block;
     object-fit: cover;
     width: 23px;
-    /* height: 13px; */
+    height: 15px;
     flex-shrink: 0;
     opacity: 0.55;
     transition: opacity 0.15s ease;
@@ -61,11 +88,16 @@
     opacity: 1;
 }
 
-/* Mobile: allow horizontal scroll instead of cramming labels */
+/* Mobile */
 @media (max-width: 480px) {
     .country-tabs__tab {
         padding: 8px 10px;
         font-size: 12px;
+    }
+
+    .country-tabs__tab--single {
+        padding: 6px 14px 6px 10px;
+        font-size: 13px;
     }
 
     .country-tabs__name {

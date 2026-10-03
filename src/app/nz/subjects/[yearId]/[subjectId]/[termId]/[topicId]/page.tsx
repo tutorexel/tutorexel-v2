@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, use } from "react";
+import { notFound } from "next/navigation";
 import { questionData } from "@/data/questionData";
 import "./practice-test.css";
 
@@ -39,24 +40,23 @@ const getTopicData = (
 
 export default function PracticeTestPage({ params }: PageProps) {
   const { yearId, subjectId, termId, topicId } = use(params);
+  const yearNum = parseInt(yearId.replace("year-", ""), 10);
+  if (isNaN(yearNum) || yearNum < 2 || yearNum > 7) {
+    notFound();
+  }
   const yearKey = yearId.replace("-", "");
+  const termKey = termId.replace("-", "");
+  const topicKey = topicId.replace("-", "");
 
-  const topicData = getTopicData(yearKey, subjectId, termId, topicId);
+  const topicData =
+    getTopicData(yearKey, subjectId, termKey, topicKey) ||
+    getTopicData(yearKey, subjectId, termId, topicId);
 
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
   const [showPopup, setShowPopup] = useState(true);
 
   if (!topicData || topicData.questions.length === 0) {
-    return (
-      <div className="practice-test">
-        <div className="container">
-          <div className="practice-test__not-found">
-            <h1>Practice Test Not Found</h1>
-            <p>Sorry, we couldn&apos;t find content for this practice test yet.</p>
-          </div>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   const questions = topicData.questions;

@@ -1,5 +1,4 @@
-import type { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   createFaqSchema,
@@ -7,29 +6,10 @@ import {
   createServiceSchema,
 } from "@/utils/schema";
 
-export const metadata: Metadata = {
-  title: "Pricing | Affordable Online Tutoring Plans | TutorExel",
-  description:
-    "Simple, transparent pricing for online tutoring. From $39/month for group classes to $219/month premium plans. Maths, English, Science, Piano & Guitar for Years 2-7.",
-  openGraph: {
-    title: "Pricing | Affordable Online Tutoring Plans | TutorExel",
-    description:
-      "Simple, transparent pricing for online tutoring. From $39/month for group classes to $219/month premium plans. Maths, English, Science, Piano & Guitar for Years 2-7.",
-    url: "https://tutorexel.com/pricing",
-    siteName: "TutorExel",
-    locale: "en",
-    type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pricing | Affordable Online Tutoring Plans | TutorExel",
-    description:
-      "Simple, transparent pricing for online tutoring. From $39/month for group classes to $219/month premium plans. Maths, English, Science, Piano & Guitar for Years 2-7.",
-    images: ["/images/banner/og-image.webp"],
-  },
-  alternates: getRegionalAlternates('/pricing', 'nz'),
-};
+export const metadata = buildMetadata({
+  path: "/pricing",
+  region: "nz",
+});
 
 const pricingFaqItems = [
   {
@@ -71,32 +51,32 @@ export default function PricingLayout({
 }) {
   const faqSchema = createFaqSchema(pricingFaqItems);
   const breadcrumbSchema = createBreadcrumbSchema([
-    { name: "Home", url: "https://tutorexel.com" },
-    { name: "Pricing", url: "https://tutorexel.com/pricing" },
+    { name: "Home", url: "https://www.tutorexel.com/nz" },
+    { name: "Pricing", url: "https://www.tutorexel.com/nz/pricing" },
   ]);
   const serviceSchemas = createServiceSchema([
     {
       name: "Live Online Maths & English Tutoring - Group (3:1)",
       description:
-        "Small group online tutoring sessions (max 3 students) for Years 2-7, aligned to the Australian Curriculum (ACARA). Includes weekly practice worksheets, progress tests, and free diagnostic assessment.",
+        "Small group online tutoring sessions (max 3 students) for Years 2-7, aligned to the New Zealand Curriculum (NZC). Includes weekly practice worksheets, progress tests, and free diagnostic assessment.",
       price: "55",
       priceSuffix: "per month per subject",
     },
     {
       name: "Live Online Maths & English Tutoring - 1:1",
       description:
-        "Personalised one-on-one online tutoring for Years 2-7, aligned to the Australian Curriculum (ACARA). Includes weekly practice worksheets, progress tests, and free diagnostic assessment.",
+        "Personalised one-on-one online tutoring for Years 2-7, aligned to the New Zealand Curriculum (NZC). Includes weekly practice worksheets, progress tests, and free diagnostic assessment.",
       price: "109",
       priceSuffix: "per month per subject",
     },
     {
       name: "Premium Plan - Complete Learning Package",
       description:
-        "12 live classes per month covering Maths, English and Science for Years 2-7. Includes recorded session access, weekly progress reports, and WhatsApp support.",
+        "12 live classes per month covering Maths, English and Science for Years 2-7. Includes recorded session access and weekly progress reports.",
       price: "249",
       priceSuffix: "per month",
     },
-  ]);
+  ], "nz");
 
   return (
     <>

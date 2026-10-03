@@ -1,31 +1,11 @@
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions | TutorExel",
-  description:
-    "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
-  openGraph: {
-    title: "Terms & Conditions | TutorExel",
-    description:
-      "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
-    url: "https://tutorexel.com/terms",
-    siteName: "TutorExel",
-    locale: "en",
-    type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
-  },
-  twitter: {
-    card: "summary",
-    title: "Terms & Conditions | TutorExel",
-    description:
-      "Read the terms and conditions governing the use of TutorExel's tutoring services and website.",
-    images: ["/images/banner/og-image.webp"],
-  },
-  alternates: getRegionalAlternates('/terms', 'ca'),
-};
+export const metadata = buildMetadata({
+  path: "/terms",
+  region: "ca",
+});
 
 export default function TermsPage() {
   return (
@@ -57,7 +37,7 @@ export default function TermsPage() {
 
             <h2>Introduction</h2>
             <p>
-              TutorExel LLP, a limited liability partnership registered under the laws of India (hereinafter referred to as &quot;TutorExel&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), provides online educational services including live online tutoring classes for English and Mathematics, co-curricular online activities, NAPLAN bootcamp programs (live and self-study), doubt-clearing sessions, assessments, quizzes, recorded sessions, and related learning material (the &quot;Services&quot;).
+              TutorExel LLP, a limited liability partnership registered under the laws of India (hereinafter referred to as &quot;TutorExel&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), provides online educational services including live online tutoring classes for English and Mathematics, co-curricular online activities, provincial preparation programs (live and self-study), doubt-clearing sessions, assessments, quizzes, recorded sessions, and related learning material (the &quot;Services&quot;).
             </p>
             <p>
               The Services are accessible through www.tutorexel.com and any other websites through which TutorExel makes the Services available (collectively, the &quot;Site&quot;), and through TutorExel&apos;s white-labelled learning platform and one or more third-party learning management systems, video-conferencing platforms, and related technologies (collectively, the &quot;Applications&quot;).
@@ -86,7 +66,7 @@ export default function TermsPage() {
               In addition to other words and expressions that may be defined elsewhere in these Terms, unless the context otherwise requires, the following capitalised terms wherever used in these Terms shall have the meanings ascribed to them below:
             </p>
             <ul>
-              <li><strong>&quot;Courses&quot;</strong> means educational courses, programs, and learning modules offered by TutorExel through the Site or Applications, including live online classes, co-curricular activities, and NAPLAN bootcamp programs.</li>
+              <li><strong>&quot;Courses&quot;</strong> means educational courses, programs, and learning modules offered by TutorExel through the Site or Applications, including live online classes, co-curricular activities, and provincial preparation programs.</li>
               <li><strong>&quot;Course Fees&quot;</strong> means the amounts payable by a Parent or Guardian for enrolment of a Student in a Course.</li>
               <li><strong>&quot;Collective Content&quot;</strong> means TutorExel Content and Member Content collectively.</li>
               <li><strong>&quot;Content&quot;</strong> means text, graphics, images, worksheets, assessments, quizzes, software (excluding the Applications), audio, video, recordings, information, or other materials made available through the Site, Applications, or Services.</li>
@@ -251,7 +231,7 @@ export default function TermsPage() {
               If, as a Student (through the Parent or Guardian), you wish to cancel a confirmed enrolment made through the Site, Applications, or Services after enrolment in a Course, the cancellation and refund policy applicable to such Course shall apply. No refund shall be made in respect of any classes, sessions, or learning material already provided or accessed.
             </p>
             <p>
-              TutorExel&apos;s ability to refund Course Fees or any other amounts charged shall depend strictly upon the terms of the applicable Refund and Cancellation Policy, the nature of the Course (live classes, co-curricular activities, NAPLAN bootcamp live, or NAPLAN self-study), and the stage at which cancellation is requested. Details regarding refunds and cancellations are made available on the Site, Applications, or through official communication channels, and Parents or Guardians are advised to review the same carefully before enrolment.
+              TutorExel&apos;s ability to refund Course Fees or any other amounts charged shall depend strictly upon the terms of the applicable Refund and Cancellation Policy, the nature of the Course (live classes, co-curricular activities, provincial live or self-study programs), and the stage at which cancellation is requested. Details regarding refunds and cancellations are made available on the Site, Applications, or through official communication channels, and Parents or Guardians are advised to review the same carefully before enrolment.
             </p>
             <p>
               Any refunds determined to be eligible shall be initiated by TutorExel in accordance with its payment processing timelines and methods. TutorExel does not guarantee immediate processing of refunds and shall not be responsible for delays caused by banking systems, payment gateways, or third-party processors.
@@ -400,7 +380,7 @@ export default function TermsPage() {
 
             <h2>Additional Terms</h2>
             <p>
-              TutorExel offers multiple products and Services, including but not limited to live academic tutoring, co-curricular programs, and NAPLAN bootcamp offerings. Certain products, features, or Services may be subject to additional terms, conditions, or requirements.
+              TutorExel offers multiple products and Services, including but not limited to live academic tutoring, co-curricular programs, and provincial exam preparation offerings. Certain products, features, or Services may be subject to additional terms, conditions, or requirements.
             </p>
             <p>
               Where such additional terms apply, they shall be deemed to form part of these Terms and shall govern your use of the relevant product or Service. In the event of any conflict, the additional terms applicable to the specific Service shall prevail to the extent of such conflict.
@@ -628,8 +608,8 @@ export default function TermsPage() {
               <p className="legal-contact__title">Questions About These Terms?</p>
               <p>If you have any questions about these Terms and Conditions, please contact us:</p>
               <p><strong>Email:</strong> <a href="mailto:info@tutorexel.com">info@tutorexel.com</a></p>
-              <p><svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 13.81c-.25.71-1.49 1.37-2.05 1.41-.56.04-1.08.28-3.56-.74-2.98-1.23-4.84-4.27-4.98-4.47-.15-.2-1.19-1.58-1.19-3.02s.75-2.14 1.02-2.44c.27-.3.59-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.57.84 2.06.92 2.21.07.15.12.32.02.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.14 1.02 2.11 1.33 2.41 1.48.3.15.47.13.65-.08.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.49.22.56.34.08.12.08.71-.17 1.42z"/></svg> <strong>WhatsApp:</strong> <a href="https://wa.me/61470330548">+61 470-330-548</a></p>
-              <p><strong>Website:</strong> <a href="https://tutorexel.com/contact">www.tutorexel.com/contact</a></p>
+              
+              <p><strong>Website:</strong> <a href="https://www.tutorexel.com/ca/contact">www.tutorexel.com/contact</a></p>
             </div>
           </div>
         </div>

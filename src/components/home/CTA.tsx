@@ -1,4 +1,10 @@
+"use client";
+
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { getCurrentRegion } from '@/utils/regionalLinks';
+import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
+import { AU_HOME_COPY } from '@/data/copy/au-home';
 import BookTrialButton from './BookTrialButton';
 import './CTA.css';
 
@@ -8,7 +14,25 @@ function PhoneIcon() {
   );
 }
 
-export default function CTA() {
+interface CTAProps {
+  region?: RegionCode;
+  title?: string;
+  description?: string;
+  buttonText?: string;
+}
+
+export default function CTA({ region, title, description, buttonText }: CTAProps) {
+  const pathname = usePathname() || '';
+  const currentRegion = region || getCurrentRegion(pathname);
+  const config = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
+  const isAuHome = currentRegion === 'au' && pathname === '/';
+
+  const resolvedTitle = title || (isAuHome ? AU_HOME_COPY.cta.title : "Ready to See Your Child Excel?");
+  const resolvedDescription = description || (isAuHome
+    ? AU_HOME_COPY.cta.description
+    : `Join hundreds of ${config.demonym} families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.`);
+  const resolvedButtonText = buttonText || (isAuHome ? AU_HOME_COPY.cta.buttonText : "Book Online Now");
+
   return (
     <section className="cta section">
       <div className="container">
@@ -24,20 +48,24 @@ export default function CTA() {
           </div>
 
           <div className="cta__content">
-            <h2 className="cta__title">Ready to See Your Child Excel?</h2>
+            <h2 className="cta__title">
+              {resolvedTitle}
+            </h2>
             <p className="cta__description">
-              Join hundreds of Worldwide families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.
+              {resolvedDescription}
             </p>
             <div className="cta__actions">
               <BookTrialButton className="cta__btn">
-                Book Online Now
+                {resolvedButtonText}
               </BookTrialButton>
-              <a href="https://wa.me/61470330548" className="cta__phone">
-                <span className="cta__phone-icon">
-                  <PhoneIcon />
-                </span>
-                +61 470-330-548
-              </a>
+              {config.phone && (
+                <a href={`https://wa.me/${config.phone.replace(/[^0-9]/g, '')}`} className="cta__phone">
+                  <span className="cta__phone-icon">
+                    <PhoneIcon />
+                  </span>
+                  {config.phone}
+                </a>
+              )}
             </div>
           </div>
         </div>

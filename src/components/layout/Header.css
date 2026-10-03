@@ -21,10 +21,23 @@
 .navbar__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 36px;
   width: 100%;
-  max-width: 100%;
+  max-width: var(--container-max-width, 1200px);
   box-sizing: border-box;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .navbar__inner {
+    gap: 20px;
+  }
+  .navbar__menu {
+    gap: 14px;
+  }
+  .navbar__link {
+    font-size: 14px;
+  }
 }
 
 .navbar__logo {
@@ -335,6 +348,11 @@ img.phone-icon {
 }
 
 @media (max-width: 991px) {
+  .navbar__inner {
+    justify-content: space-between;
+    gap: 0;
+  }
+
   .navbar__hamburger {
     display: flex !important;
     visibility: visible !important;

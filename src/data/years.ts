@@ -106,7 +106,46 @@ export const yearLevels: YearLevel[] = [
     label: "Year 7",
     ages: "Ages 12-13",
     description:
-      "Maths: Integers, ratios, equations, coordinate geometry, statistics. English: Analytical writing, literary analysis, complex text types, advanced punctuation, oral presentations.",
+      "Maths: Integers, ratios, equations, coordinate geometry, statistics. English: Analytical writing, literary analysis, complex text types, advanced punctuation, oral presentations. Science: Classification, ecosystems, forces, particle theory, mixtures.",
+    subjects: [
+      { id: "english", label: "English" },
+      { id: "maths", label: "Maths" },
+      { id: "science", label: "Science" },
+    ],
+  },
+  {
+    id: "year-8",
+    year: 8,
+    label: "Year 8",
+    ages: "Ages 13-14",
+    description:
+      "Maths: Ratios and rates, algebra, linear equations, Pythagoras' theorem, area and volume, probability. English: Persuasive writing, text analysis, novel study, grammar, building towards Year 9 NAPLAN. Science: Cells, body systems, mixtures and compounds, energy, rock cycle.",
+    subjects: [
+      { id: "english", label: "English" },
+      { id: "maths", label: "Maths" },
+      { id: "science", label: "Science" },
+    ],
+  },
+  {
+    id: "year-9",
+    year: 9,
+    label: "Year 9",
+    ages: "Ages 14-15",
+    description:
+      "Maths: Expanding and factorising, indices, linear graphs, trigonometry, statistics, NAPLAN numeracy. English: Persuasive writing, comparing texts, language conventions, NAPLAN writing. Science: Ecosystems, body systems, atomic structure, chemical reactions, energy transfer.",
+    subjects: [
+      { id: "english", label: "English" },
+      { id: "maths", label: "Maths" },
+      { id: "science", label: "Science" },
+    ],
+  },
+  {
+    id: "year-10",
+    year: 10,
+    label: "Year 10",
+    ages: "Ages 15-16",
+    description:
+      "Maths: Quadratics, indices, trigonometry, statistics, financial maths, senior maths pathways. English: Analytical and persuasive essays, comparing texts, senior English readiness. Science: Genetics and evolution, the Big Bang, chemical reactions, motion and forces.",
     subjects: [
       { id: "english", label: "English" },
       { id: "maths", label: "Maths" },
@@ -387,6 +426,30 @@ const mathsOutcomes: Record<string, LearningOutcome[]> = {
     { text: "Apply geometric reasoning with angles and transformations" },
     { text: "Use ratios and rates to solve practical problems" },
   ],
+  "year-8": [
+    { text: "Work with ratios, rates, percentages and financial mathematics" },
+    { text: "Solve linear equations and simplify algebraic expressions" },
+    { text: "Apply Pythagoras theorem to solve right-angled triangle problems" },
+    { text: "Calculate area, surface area and volume of composite solids" },
+    { text: "Determine probabilities of compound events using tree diagrams" },
+    { text: "Analyse bivariate data and interpret scatter plots" },
+  ],
+  "year-9": [
+    { text: "Expand and factorise monic and non-monic algebraic expressions" },
+    { text: "Apply index laws with positive, negative and fractional powers" },
+    { text: "Graph linear relationships and solve simultaneous linear equations" },
+    { text: "Use trigonometry ratios to find unknown sides and angles in triangles" },
+    { text: "Calculate mean, median, mode and interquartile range for grouped data" },
+    { text: "Prepare for Year 9 NAPLAN numeracy with complex multi-step reasoning" },
+  ],
+  "year-10": [
+    { text: "Expand, factorise and solve quadratic equations using algebraic techniques" },
+    { text: "Apply trigonometry to three-dimensional problems and bearings" },
+    { text: "Analyse non-linear functions including quadratics and exponentials" },
+    { text: "Calculate compound interest, depreciation and financial loan repayments" },
+    { text: "Evaluate statistical claims using standard deviation and box plots" },
+    { text: "Develop advanced mathematical reasoning for senior secondary pathways" },
+  ],
 };
 
 const englishOutcomes: Record<string, LearningOutcome[]> = {
@@ -438,6 +501,30 @@ const englishOutcomes: Record<string, LearningOutcome[]> = {
     { text: "Construct well-reasoned arguments in formal debates" },
     { text: "Respond creatively and critically to a range of literary texts" },
   ],
+  "year-8": [
+    { text: "Analyse thematic elements and author perspective across novels and plays" },
+    { text: "Compose persuasive texts using sophisticated rhetorical devices and evidence" },
+    { text: "Apply complex sentence structures and varied vocabulary with precision" },
+    { text: "Develop critical reading comprehension skills preparing for Year 9 NAPLAN" },
+    { text: "Deliver persuasive and informative oral presentations with confidence" },
+    { text: "Edit and refine written work for coherence, voice and structural clarity" },
+  ],
+  "year-9": [
+    { text: "Compare and contrast stylistic choices and themes across diverse texts" },
+    { text: "Craft sustained persuasive and analytical essays with clear thesis statements" },
+    { text: "Demonstrate mastery of language conventions and advanced grammar rules" },
+    { text: "Excel in Year 9 NAPLAN reading, writing and language conventions tasks" },
+    { text: "Evaluate literary techniques and their emotional impact on target audiences" },
+    { text: "Synthesise ideas from multiple sources to construct reasoned arguments" },
+  ],
+  "year-10": [
+    { text: "Analyse complex literary and multimodal texts with sophisticated insights" },
+    { text: "Write sustained analytical essays evaluating context, perspective and form" },
+    { text: "Formulate compelling persuasive arguments tailored to senior academic standards" },
+    { text: "Compare literary texts exploring universal human experiences and conflicts" },
+    { text: "Demonstrate senior English readiness through rigorous textual analysis" },
+    { text: "Articulate critical interpretations in structured academic presentations" },
+  ],
 };
 
 const scienceOutcomes: Record<string, LearningOutcome[]> = {
@@ -483,6 +570,30 @@ const scienceOutcomes: Record<string, LearningOutcome[]> = {
     { text: "Analyse forces and motion" },
     { text: "Apply particle theory to matter" },
     { text: "Conduct and evaluate scientific investigations" },
+  ],
+  "year-8": [
+    { text: "Explain cellular structures and their specialised functions in organisms" },
+    { text: "Describe how multicellular organs and body systems coordinate life functions" },
+    { text: "Differentiate between pure substances, mixtures, compounds and elements" },
+    { text: "Explain energy transformations and the conservation of energy in systems" },
+    { text: "Investigate the rock cycle, geological processes and plate tectonics" },
+    { text: "Conduct controlled scientific experiments with accurate data collection" },
+  ],
+  "year-9": [
+    { text: "Model atomic structure, electron configurations and periodic table trends" },
+    { text: "Investigate chemical reactions and balance simple chemical equations" },
+    { text: "Explain how energy flows through and sustains complex ecosystems" },
+    { text: "Describe how body systems maintain homeostasis through feedback loops" },
+    { text: "Analyse energy transfer through wave motion, light and sound" },
+    { text: "Design fair test investigations evaluating reliability and experimental error" },
+  ],
+  "year-10": [
+    { text: "Explain the transmission of heritable characteristics through DNA and genetics" },
+    { text: "Describe evolutionary theory, natural selection and biodiversity evidence" },
+    { text: "Evaluate the Big Bang theory, cosmological models and stellar lifecycles" },
+    { text: "Apply Newton laws of motion to predict force, velocity and acceleration" },
+    { text: "Investigate rates of chemical reactions and chemical energy changes" },
+    { text: "Formulate scientific hypotheses and communicate evidence-based conclusions" },
   ],
 };
 
@@ -530,9 +641,13 @@ export function getSubjectData(yearId: string, subjectId: string): SubjectData |
 /*  Generate all year/subject combinations for static params           */
 /* ------------------------------------------------------------------ */
 
-export function getAllSubjectParams(): { yearId: string; subjectId: string }[] {
+export function getAllSubjectParams(region?: string): { yearId: string; subjectId: string }[] {
+  const allowedYears = (region === "us" || region === "ca" || region === "nz")
+    ? yearLevels.filter((y) => y.year <= 7)
+    : yearLevels;
+
   const params: { yearId: string; subjectId: string }[] = [];
-  for (const year of yearLevels) {
+  for (const year of allowedYears) {
     for (const subject of year.subjects) {
       params.push({ yearId: year.id, subjectId: subject.id });
     }

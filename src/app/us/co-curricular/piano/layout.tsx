@@ -1,0 +1,14 @@
+import { buildMetadata } from "@/utils/seo";
+
+export const metadata = buildMetadata({
+  path: "/co-curricular/piano",
+  region: "us",
+});
+
+export default function PianoLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}

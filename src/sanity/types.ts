@@ -178,6 +178,7 @@ export interface ArticleSection {
 
 export interface SanityPost {
   _id: string;
+  _updatedAt?: string;
   title: string;
   slug: string;
   publishedAt: string;

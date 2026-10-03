@@ -3,22 +3,11 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { REGIONS } from "@/data/regions";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
-import { getRegionalHref } from "@/utils/regionalLinks";
+import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
 import "./Footer.css";
-
-type Country = {
-  code: string; // ISO 3166-1 alpha-2, lowercase — used for flagcdn.com
-  name: string;
-};
-
-const COUNTRIES: Country[] = [
-  { code: "au", name: "Australia" },
-  { code: "us", name: "USA" },
-  { code: "ca", name: "Canada" },
-  { code: "nz", name: "NZD" },
-];
 
 const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61579444003084&rdid=qshk54k5w9JwWLWL&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Za9NLXEqM%2F#", icon: "/images/footer/Facebook.webp" },
@@ -53,6 +42,9 @@ export default function Footer() {
   const pathname = usePathname() || "";
   const toHref = (path: string) => getRegionalHref(path, pathname);
 
+  const currentRegionCode = getCurrentRegion(pathname);
+  const currentRegion = REGIONS.find((r) => r.code === currentRegionCode) || REGIONS[0];
+
   return (
     <footer className="footer">
       <div className="footer__main">
@@ -74,20 +66,18 @@ export default function Footer() {
                 students achieve their full potential through personalised,
                 curriculum-aligned education.
               </p>
-              <div className="footer__countries hero__countries">
-                {COUNTRIES.map((country) => (
-                  <div className="footer__country hero__country" key={country.code}>
-                    <Image
-                      src={`https://flagcdn.com/80x60/${country.code}.png`}
-                      alt={`${country.name} flag`}
-                      width={18}
-                      height={13}
-                      className="footer__country-flag hero__country-flag"
-                      unoptimized
-                    />
-                    <span className="footer__country-name hero__country-name">{country.name}</span>
-                  </div>
-                ))}
+              <div className="footer__countries">
+                <div className="footer__country">
+                  <Image
+                    src={currentRegion.flagUrl}
+                    alt={`${currentRegion.label} flag`}
+                    width={22}
+                    height={15}
+                    className="footer__country-flag"
+                    unoptimized
+                  />
+                  <span className="footer__country-name">{currentRegion.label}</span>
+                </div>
               </div>
               <div className="footer__social">
                 {socialLinks.map((social) => (

@@ -2,14 +2,22 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { getCurrentRegion } from '@/utils/regionalLinks';
+import { type RegionCode } from '@/data/regions';
+import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { createFaqSchema } from '@/utils/schema';
 import './FAQ.css';
 
-const faqData = [
+interface FAQProps {
+  region?: RegionCode;
+}
+
+const defaultFaqData = [
   {
     question: 'How do online classes work?',
     answer:
-      'Classes are conducted live via Zoom. Each session is interactive — your child will see the teacher and other students, ask questions in real time, and participate in interactive activities. All you need is a laptop and stable internet connection.',
+      'Classes are conducted live via Zoom. Each session is interactive: your child will see the teacher and other students, ask questions in real time, and participate in interactive activities. All you need is a laptop and stable internet connection.',
   },
   {
     question: 'What if my child misses a class?',
@@ -34,18 +42,23 @@ const faqData = [
   {
     question: 'When are classes scheduled?',
     answer:
-      'Classes are scheduled to suit Worldwide school timings, typically after school hours and on weekends. You can choose the time slots that work best for your family.',
+      'Classes are scheduled to suit local school timings, typically after school hours and on weekends. You can choose the time slots that work best for your family.',
   },
 ];
 
-export default function FAQ() {
+export default function FAQ({ region }: FAQProps = {}) {
+  const pathname = usePathname() || '';
+  const currentRegion = region || getCurrentRegion(pathname);
+  const isAu = currentRegion === 'au';
+
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   const toggleItem = (index: number) => {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
-  const faqSchema = createFaqSchema(faqData);
+  const faqs = isAu ? AU_HOME_COPY.faq.items : defaultFaqData;
+  const faqSchema = createFaqSchema(faqs);
 
   return (
     <section className="faq section">
@@ -57,16 +70,20 @@ export default function FAQ() {
         <div className="section-header section-header--center">
           <p className="section-header__label section-header__label--no-before">
             <Image src="/images/icons/circle_icon.webp" alt="" className="section-header__label-icon" width={20} height={20} />
-            Got Questions?
+            {isAu ? AU_HOME_COPY.faq.eyebrow : 'Got Questions?'}
           </p>
-          <h2 className="section-header__title">Frequently Asked Questions</h2>
+          <h2 className="section-header__title">
+            {isAu ? AU_HOME_COPY.faq.title : 'Frequently Asked Questions'}
+          </h2>
           <p className="section-header__subtitle">
-            Find answers to common questions about our tutoring services.
+            {isAu
+              ? AU_HOME_COPY.faq.intro
+              : 'Find answers to common questions about our tutoring services.'}
           </p>
         </div>
 
         <div className="faq__list">
-          {faqData.map((item, index) => (
+          {faqs.map((item, index) => (
             <div
               key={index}
               className={`faq__item ${openIndex === index ? 'faq__item--open' : ''}`}
@@ -79,7 +96,7 @@ export default function FAQ() {
                 <span className="faq__question-text">{item.question}</span>
                 <span className="faq__icon">
                   <span className="faq__icon-symbol">
-                    {openIndex === index ? '−' : '+'}
+                    {openIndex === index ? (isAu ? '-' : '−') : '+'}
                   </span>
                 </span>
               </button>

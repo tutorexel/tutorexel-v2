@@ -1,36 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import CTA from "@/components/home/CTA";
 import "./subscription.css";
 
-export const metadata: Metadata = {
-  title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-  description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests. Subscribe monthly and learn at your own pace.",
-  openGraph: {
-    title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-    description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
-    url: "https://tutorexel.com/subscription",
-    siteName: "TutorExel",
-    locale: "en",
-    type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Self Learning - eBooks, Worksheets & Mock Tests | TutorExel",
-    description: "Self-paced learning resources for Years 2-7. Curriculum-aligned eBooks, practice worksheets, and mock tests.",
-    images: ["/images/banner/og-image.webp"],
-  },
-  alternates: getRegionalAlternates('/subscription', 'nz'),
-};
+export const metadata = buildMetadata({
+  path: "/subscription",
+  region: "nz",
+});
 
 const resources = [
   {
     icon: "\uD83D\uDCD8",
     title: "eBooks",
-    description: "Comprehensive study guides for Maths and English, aligned to the Australian Curriculum. Each eBook covers a full term of content with clear explanations and worked examples.",
+    description: "Comprehensive study guides for Maths and English, aligned to the New Zealand Curriculum (NZC). Each eBook covers a full term of content with clear explanations and worked examples.",
     features: ["Year 2-7 coverage", "Term-by-term structure", "Clear explanations", "Worked examples"],
   },
   {
@@ -42,8 +25,8 @@ const resources = [
   {
     icon: "\uD83D\uDCCB",
     title: "Mock Tests",
-    description: "NAPLAN-style practice tests and term assessments that mirror real exam conditions. Track your child's readiness and identify areas that need more attention.",
-    features: ["NAPLAN-style format", "Timed practice tests", "Detailed answer guides", "Progress benchmarking"],
+    description: "Curriculum-aligned practice tests and term assessments that mirror real exam conditions. Track your child's readiness and identify areas that need more attention.",
+    features: ["NZC assessment format", "Timed practice tests", "Detailed answer guides", "Progress benchmarking"],
   },
 ];
 
@@ -77,7 +60,7 @@ export default function SubscriptionPage() {
               Self{" "}
               <span className="subscription-banner__title-highlight">Learning</span>{" "}
               <span className="subscription-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="Star" width={20} height={20} />
+                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="subscription-banner__subtitle">
@@ -97,7 +80,7 @@ export default function SubscriptionPage() {
             <p style={{fontSize:'13px',fontWeight:600,color:'#d4654a',textTransform:'uppercase',letterSpacing:'1px',marginBottom:'8px'}}>What You Get</p>
             <h2 style={{fontFamily:'var(--font-poppins)',fontSize:'32px',fontWeight:700,color:'#1a2e3b',marginBottom:'12px'}}>Everything Your Child Needs to Study Independently</h2>
             <p style={{fontSize:'15px',color:'#5a6b78',maxWidth:'600px',margin:'0 auto'}}>
-              A complete self-study toolkit built around the Australian National Curriculum. New resources added every month.
+              A complete self-study toolkit built around the New Zealand Curriculum. New resources added every month.
             </p>
           </div>
 

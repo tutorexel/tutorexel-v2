@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import RegionLink from "@/components/shared/RegionLink";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import "./FloatingCTA.css";
 
@@ -18,13 +18,13 @@ export default function FloatingCTA() {
 
   return (
     <div className="floating-cta-stack">
-      <Link
+      <RegionLink
         href="/pricing"
         className={"floating-cta floating-cta--join" + (showJoinNow ? " floating-cta--visible" : "")}
       >
         <span className="floating-cta__text">Join Now</span>
         <span className="floating-cta__arrow">→</span>
-      </Link>
+      </RegionLink>
       <a
         href={FREE_ASSESSMENT_URL}
         target="_blank"

@@ -1,53 +1,61 @@
 "use client";
 
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { REGIONS } from "@/data/regions";
+import { getCurrentRegion } from "@/utils/regionalLinks";
 import "./CountryTabs.css";
 
 export type Country = {
-    code: string; // ISO 3166-1 alpha-2, lowercase — used for flagcdn.com
-    name: string;
-    currency: string; // ISO 4217 currency code
+  code: string; // ISO 3166-1 alpha-2, lowercase, used for flagcdn.com
+  name: string;
+  currency: string; // ISO 4217 currency code
 };
 
-export const COUNTRIES: Country[] = [
-    { code: "us", name: "USA", currency: "USD" },
-    { code: "au", name: "Australia", currency: "AUD" },
-    { code: "ca", name: "Canada", currency: "CAD" },
-    { code: "nz", name: "New Zealand", currency: "NZD" },
-];
+export const COUNTRIES: Country[] = REGIONS.map((r) => ({
+  code: r.code,
+  name: r.label,
+  currency: r.currency,
+}));
 
 export default function CountryTabs({
-    selected,
-    onChange,
+  selected,
+  onChange,
 }: {
-    selected: Country;
-    onChange: (country: Country) => void;
+  selected: Country;
+  onChange?: (country: Country) => void;
 }) {
-    return (
-        <div className="country-tabs" role="tablist" aria-label="Select your country">
-            {COUNTRIES.map((country) => {
-                const isActive = country.code === selected.code;
-                return (
-                    <button
-                        key={country.code}
-                        type="button"
-                        role="tab"
-                        aria-selected={isActive}
-                        className={`country-tabs__tab ${isActive ? "country-tabs__tab--active" : ""}`}
-                        onClick={() => onChange(country)}
-                    >
-                        <Image
-                            src={`https://flagcdn.com/80x60/${country.code}.png`}
-                            alt=""
-                            width={18}
-                            height={13}
-                            className="country-tabs__flag"
-                            unoptimized
-                        />
-                        <span className="country-tabs__name">{country.name}</span>
-                    </button>
-                );
-            })}
-        </div>
-    );
+  const pathname = usePathname() || "";
+  const currentRegion = getCurrentRegion(pathname);
+  const activeRegion =
+    REGIONS.find((r) => r.code === currentRegion) ||
+    REGIONS.find((r) => r.code === selected.code.toLowerCase()) ||
+    REGIONS[0];
+
+  useEffect(() => {
+    if (onChange && selected.code.toLowerCase() !== activeRegion.code.toLowerCase()) {
+      onChange({
+        code: activeRegion.code,
+        name: activeRegion.label,
+        currency: activeRegion.currency,
+      });
+    }
+  }, [activeRegion, onChange, selected.code]);
+
+  return (
+    <div className="country-tabs country-tabs--single" aria-label="Current country">
+      <div className="country-tabs__tab country-tabs__tab--single">
+        <Image
+          src={activeRegion.flagUrl}
+          alt={`${activeRegion.label} flag`}
+          width={22}
+          height={15}
+          className="country-tabs__flag"
+          unoptimized
+        />
+        <span className="country-tabs__name">{activeRegion.label}</span>
+      </div>
+    </div>
+  );
 }

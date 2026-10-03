@@ -1,11 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import RegionLink from '@/components/shared/RegionLink';
+import { getCurrentRegion } from '@/utils/regionalLinks';
+import { type RegionCode } from '@/data/regions';
+import { AU_HOME_COPY } from '@/data/copy/au-home';
+import { COUNTRIES, type Country } from '@/components/shared/CountryTabs';
 import './Pricing.css';
-import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
+
+interface PricingProps {
+  region?: RegionCode;
+}
 
 type PricingPlan = {
   id: string;
@@ -75,7 +82,7 @@ const pricingPlans: PricingPlan[] = [
     borderColor: 'dark',
     features: [
       '12 live classes per month',
-      '3 Subjects — Maths, English & Science',
+      '3 Subjects - Maths, English & Science',
       '1:1 personalised tutoring available',
       'Group sessions available (max 3 students)',
       'Recorded session access',
@@ -93,9 +100,88 @@ function CheckIcon() {
   );
 }
 
-export default function Pricing() {
+export default function Pricing({ region }: PricingProps = {}) {
+  const pathname = usePathname() || '';
+  const currentRegion = region || getCurrentRegion(pathname);
+  const isAu = currentRegion === 'au';
+  const initialCountry = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
+  const [selectedCountry, setSelectedCountry] = useState<Country>(initialCountry);
 
-  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]);
+  useEffect(() => {
+    const current = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
+    setSelectedCountry(current);
+  }, [currentRegion]);
+
+  if (isAu) {
+    return (
+      <section className="pricing section">
+        <div className="pricing__bg"></div>
+        <div className="container">
+          <div className="section-header section-header--center">
+            <p className="section-header__label section-header__label--no-before">
+              <Image src="/images/icons/circle_icon.webp" alt="" className="section-header__label-icon" width={20} height={20} />
+              {AU_HOME_COPY.pricing.eyebrow}
+            </p>
+            <h2 className="section-header__title">{AU_HOME_COPY.pricing.title}</h2>
+            <div className="pricing__discount-badge">
+              <span className="pricing__discount-pulse" aria-hidden="true"></span>
+              {AU_HOME_COPY.pricing.line1}
+            </div>
+            <p className="section-header__subtitle">
+              {AU_HOME_COPY.pricing.line2}
+            </p>
+          </div>
+
+          <div className="pricing__grid">
+            {AU_HOME_COPY.pricing.plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`pricing-card pricing-card--${plan.borderColor}`}
+              >
+                {plan.popular && (
+                  <span className="pricing-card__badge">Most Popular</span>
+                )}
+
+                <div className="pricing-card__header">
+                  <div className="pricing-card__name">{plan.name}</div>
+                  <div className="pricing-card__subtitle">{plan.subtitle}</div>
+                </div>
+
+                <div className="pricing-card__price-wrapper">
+                  {plan.originalAmount && (
+                    <div className="pricing-card__original-price">
+                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
+                      <span className="discount-badge">{plan.discountBadge}</span>
+                    </div>
+                  )}
+                  <div className="pricing-card__price">
+                    <span className="currency">{plan.currency}</span>
+                    <span className="amount">{plan.amount}</span>
+                    <span className="period">{plan.period}</span>
+                  </div>
+                </div>
+
+                <div className="pricing-card__features">
+                  {plan.features.map((feature) => (
+                    <div className="pricing-card__feature" key={feature}>
+                      <span className="feature-check">
+                        <CheckIcon />
+                      </span>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <RegionLink href={plan.ctaHref} className="pricing-card__button">
+                  {plan.ctaText}
+                </RegionLink>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="pricing section">
@@ -114,12 +200,6 @@ export default function Pricing() {
           <p className="section-header__subtitle">
             No contracts. No hidden fees. Cancel anytime.
           </p>
-
-          <div className="pricing__country-row">
-            {/* <span className="pricing__country-label">Pricing shown for:</span> */}
-            <CountryTabs selected={selectedCountry} onChange={setSelectedCountry} />
-          </div>
-
         </div>
 
         <div className="pricing__grid">
@@ -162,9 +242,9 @@ export default function Pricing() {
                 ))}
               </div>
 
-              <Link href={`/pricing?plan=${plan.id}&currency=${selectedCountry.currency}`} className="pricing-card__button">
+              <RegionLink href={`/pricing?plan=${plan.id}&currency=${selectedCountry.currency}`} className="pricing-card__button">
                 Get Started
-              </Link>
+              </RegionLink>
             </div>
           ))}
         </div>

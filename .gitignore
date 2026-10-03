@@ -17,6 +17,7 @@ npm-debug.log*
 .env
 .env.*
 .env*.local
+!.env.example
 
 # uploads
 /public/uploads/
@@ -41,3 +42,17 @@ submissions.json
 # Content replace automation
 locate-and-apply.js
 content-backups/
+
+# build and compilation cache
+*.tsbuildinfo
+
+# deployment and test
+.vercel
+coverage
+
+# logs and temporary files
+*.log
+*.tmp
+
+# editor folders
+.claude

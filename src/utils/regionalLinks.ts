@@ -1,15 +1,18 @@
 /**
  * Regional navigation link utilities.
- * Ensures internal links stay within the user's active region (AU, CA, NZ),
- * while keeping US on the root paths without prefix.
+ * Handles the URL architecture where:
+ * - Australia (au) is at the root "/"
+ * - USA (us) is at "/us"
+ * - Canada (ca) is at "/ca"
+ * - New Zealand (nz) is at "/nz"
  */
 
-export type RegionCode = "AU" | "US" | "CA" | "NZ";
+export type RegionCode = "au" | "us" | "ca" | "nz";
 
 /**
  * Root routes known to exist across all regions (AU, US, CA, NZ).
  */
-export const REGIONAL_SUPPORTED_BASE_ROUTES = new Set([
+export const SHARED_BASE_ROUTES = new Set([
   "/",
   "/about",
   "/subjects",
@@ -26,9 +29,6 @@ export const REGIONAL_SUPPORTED_BASE_ROUTES = new Set([
   "/free-assessment",
   "/free-trial",
   "/free-trial-booking",
-  "/naplan-preparation",
-  "/online-tutoring",
-  "/research",
   "/subscription",
   "/cookies",
   "/home-v1",
@@ -38,97 +38,229 @@ export const REGIONAL_SUPPORTED_BASE_ROUTES = new Set([
 ]);
 
 /**
- * Detects current region from the pathname.
- * Root /... is "US", while /au/..., /ca/..., /nz/... correspond to their respective regions.
+ * Market-unique routes that only exist in Australia.
  */
-export function getCurrentRegion(pathname: string = ""): RegionCode {
-  const clean = pathname.trim().toLowerCase();
-  if (clean === "us" || clean === "ca" || clean === "nz" || clean === "au") {
-    return clean.toUpperCase() as RegionCode;
+export const AU_ONLY_BASE_ROUTES = new Set([
+  "/naplan-preparation",
+  "/online-tutoring",
+  "/research",
+]);
+
+export const REGIONAL_SUPPORTED_BASE_ROUTES = SHARED_BASE_ROUTES;
+
+/**
+ * Detects current region from the pathname or a raw region code.
+ * Root /... is "au", while /us/..., /ca/..., /nz/... correspond to their respective regions.
+ */
+export function getRegionFromPathname(pathname: string = ""): RegionCode {
+  const clean = (pathname || "").trim().toLowerCase();
+  if (clean === "us" || clean === "/us" || clean.startsWith("/us/") || clean.startsWith("/us?")) {
+    return "us";
   }
-  const match = clean.match(/^\/(au|ca|nz)(\/.*)?$/i);
-  if (match) {
-    return match[1].toUpperCase() as RegionCode;
+  if (clean === "ca" || clean === "/ca" || clean.startsWith("/ca/") || clean.startsWith("/ca?")) {
+    return "ca";
   }
-  return "US";
+  if (clean === "nz" || clean === "/nz" || clean.startsWith("/nz/") || clean.startsWith("/nz?")) {
+    return "nz";
+  }
+  return "au";
+}
+
+/**
+ * Legacy alias for getRegionFromPathname.
+ */
+export const getCurrentRegion = getRegionFromPathname;
+
+/**
+ * Extracts the region from route params (useful in Server Components and Layouts).
+ */
+export function getRegionFromParams(
+  params?: Record<string, unknown> | { region?: string } | string | null
+): RegionCode {
+  if (!params) return "au";
+  if (typeof params === "string") {
+    return getRegionFromPathname(params);
+  }
+  if (typeof params === "object" && "region" in params && typeof params.region === "string") {
+    return getRegionFromPathname(params.region);
+  }
+  return "au";
+}
+
+/**
+ * Returns the equivalent URL in the target region for a given pathname.
+ * If the route is market-unique to Australia and target is not Australia,
+ * it returns the target region's home page.
+ */
+export function getEquivalentRegionalUrl(
+  pathname: string = "/",
+  targetRegion: string | RegionCode
+): string {
+  const target = (targetRegion || "au").toLowerCase() as RegionCode;
+  let cleanPath = (pathname || "/").trim();
+
+  // Strip existing regional prefixes: /us, /ca, /nz, /au
+  cleanPath = cleanPath.replace(/^\/(us|ca|nz|au)(\/|$)/i, "$2");
+  if (!cleanPath.startsWith("/")) {
+    cleanPath = `/${cleanPath}`;
+  }
+  if (cleanPath.endsWith("/") && cleanPath.length > 1) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+
+  // Check if this is an AU-only market-unique route
+  const isAuOnly = Array.from(AU_ONLY_BASE_ROUTES).some(
+    (prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`)
+  );
+
+  // If this is an AU-only route and the target region is not Australia,
+  // there is no equivalent page in the target region, so return that region's home.
+  if (isAuOnly && target !== "au") {
+    return `/${target}`;
+  }
+
+  // For Australia: root URL has no prefix
+  if (target === "au") {
+    return cleanPath || "/";
+  }
+
+  return cleanPath === "/" ? `/${target}` : `/${target}${cleanPath}`;
 }
 
 /**
  * Checks whether a given internal path is supported in regional directories.
  */
-export function isRouteSupportedInRegion(path: string): boolean {
+export function isRouteSupportedInRegion(
+  path: string,
+  region: RegionCode | string = "au"
+): boolean {
   if (!path || path === "/" || path === "") return true;
-  const match = path.match(/^(\/[^\/?#]+)/);
+  const match = path.match(/^(\/[^/?#]+)/);
   if (!match) return false;
   const baseSegment = match[1].toLowerCase();
-  return REGIONAL_SUPPORTED_BASE_ROUTES.has(baseSegment);
+  if (SHARED_BASE_ROUTES.has(baseSegment)) return true;
+  const reg = getRegionFromPathname(region);
+  if (reg === "au" && AU_ONLY_BASE_ROUTES.has(baseSegment)) return true;
+  return false;
 }
 
 /**
- * Transforms an internal link href to include the current region prefix.
+ * Transforms an internal link href to include the target region prefix.
  * 
  * Rules:
- * - External links (http, https, mailto, tel), protocols (//), and anchors (#) are NEVER modified.
- * - US region links are kept at root without prefix (e.g. /about).
- * - AU, CA, NZ links are prefixed with /{region} (e.g. /au/about, /ca/about).
- * - Root "/" becomes "/{region}" for AU, CA, NZ.
- * - If a route is NOT in the supported regional routes list, it falls back to the root path
- *   to avoid creating 404s.
+ * - External links (http, https), protocols (mailto:, tel:), //, and anchors (#) are untouched.
+ * - System routes (/api, /admin, /blocked) are untouched.
+ * - Australia (au) has basePath "" (root paths without prefix).
+ * - USA (us) has basePath "/us".
+ * - Canada (ca) has basePath "/ca".
+ * - New Zealand (nz) has basePath "/nz".
+ * - Never double-prefix (e.g. /ca/about with region ca remains /ca/about).
+ * - Market-unique AU routes stay at root (no /ca or /nz prefix).
+ * - Preserves query strings, hash fragments, and trailing slashes.
  */
 export function getRegionalHref(
-  href: string,
-  pathnameOrRegion: string | RegionCode
+  path: string,
+  regionOrPathname: RegionCode | string = "au"
 ): string {
-  if (!href) return href;
+  if (!path) return path;
 
-  // Do NOT prefix external links, protocols, or anchor / hash links
+  // Leave external links, protocols, anchors, and system paths untouched
   if (
-    href.startsWith("http://") ||
-    href.startsWith("https://") ||
-    href.startsWith("mailto:") ||
-    href.startsWith("tel:") ||
-    href.startsWith("#") ||
-    href.startsWith("//")
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("mailto:") ||
+    path.startsWith("tel:") ||
+    path.startsWith("sms:") ||
+    path.startsWith("#") ||
+    path.startsWith("//") ||
+    path.startsWith("/api") ||
+    path.startsWith("/admin") ||
+    path.startsWith("/blocked")
   ) {
-    return href;
+    return path;
   }
 
-  const cleanInput = (pathnameOrRegion || "").trim();
-  const upper = cleanInput.toUpperCase();
-  const region: RegionCode =
-    upper === "AU" || upper === "US" || upper === "CA" || upper === "NZ"
-      ? (upper as RegionCode)
-      : getCurrentRegion(cleanInput);
+  const region = getRegionFromPathname(regionOrPathname);
 
-  // US has no prefix: keep root paths
-  if (region === "US") {
-    // If it already had a regional prefix, strip it for US
-    const clean = href.replace(/^\/(au|ca|nz|us)(\/|$)/i, "/");
-    return clean || "/";
+  // Separate hash fragment
+  const hashIndex = path.indexOf("#");
+  let hash = "";
+  let pathWithoutHash = path;
+  if (hashIndex !== -1) {
+    hash = path.slice(hashIndex);
+    pathWithoutHash = path.slice(0, hashIndex);
   }
 
-  const regLower = region.toLowerCase();
+  // Separate query string
+  const queryIndex = pathWithoutHash.indexOf("?");
+  let query = "";
+  let cleanPath = pathWithoutHash;
+  if (queryIndex !== -1) {
+    query = pathWithoutHash.slice(queryIndex);
+    cleanPath = pathWithoutHash.slice(0, queryIndex);
+  }
 
-  // Check if href already has a regional prefix
-  const existingMatch = href.match(/^\/(au|ca|nz|us)(\/.*)?$/i);
-  if (existingMatch) {
-    if (existingMatch[1].toLowerCase() === regLower) {
-      return href;
+  // Check if original had trailing slash (for paths longer than "/")
+  const hasTrailingSlash = cleanPath.length > 1 && cleanPath.endsWith("/");
+
+  // Ensure path starts with "/"
+  if (!cleanPath.startsWith("/")) {
+    cleanPath = `/${cleanPath}`;
+  }
+
+  // Strip existing regional prefixes (/us, /ca, /nz, /au) to prevent double-prefixing
+  let strippedPath = cleanPath.replace(/^\/(us|ca|nz|au)(\/|$)/i, "$2");
+  if (!strippedPath.startsWith("/")) {
+    strippedPath = `/${strippedPath}`;
+  }
+  // If strippedPath is just "/" or empty
+  if (strippedPath === "" || strippedPath === "//") {
+    strippedPath = "/";
+  }
+
+  // Remove trailing slash temporarily for routing logic
+  let normalizedPath = strippedPath;
+  if (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
+    normalizedPath = normalizedPath.slice(0, -1);
+  }
+
+  // Market-unique AU routes only exist at root
+  const isAuOnly = Array.from(AU_ONLY_BASE_ROUTES).some(
+    (prefix) => normalizedPath === prefix || normalizedPath.startsWith(`${prefix}/`)
+  );
+  if (isAuOnly) {
+    let finalPath = normalizedPath;
+    if (hasTrailingSlash && finalPath !== "/") {
+      finalPath = `${finalPath}/`;
     }
-    const rest = existingMatch[2] || "";
-    return `/${regLower}${rest}` || `/${regLower}`;
+    return `${finalPath}${query}${hash}`;
   }
 
-  // Check if destination exists for this region; if not, keep root version
-  if (!isRouteSupportedInRegion(href)) {
-    return href;
+  // Base path map
+  const basePathMap: Record<RegionCode, string> = {
+    au: "",
+    us: "/us",
+    ca: "/ca",
+    nz: "/nz",
+  };
+  const basePath = basePathMap[region] ?? "";
+
+  let finalPath = "";
+  if (basePath === "") {
+    // Australia: root paths
+    finalPath = normalizedPath;
+  } else {
+    // Non-AU regions
+    if (normalizedPath === "/" || normalizedPath === "") {
+      finalPath = basePath;
+    } else {
+      finalPath = `${basePath}${normalizedPath}`;
+    }
   }
 
-  // Root path '/' becomes '/{region}'
-  if (href === "/" || href === "") {
-    return `/${regLower}`;
+  if (hasTrailingSlash && finalPath !== "/" && !finalPath.endsWith("/")) {
+    finalPath = `${finalPath}/`;
   }
 
-  const cleanHref = href.startsWith("/") ? href : `/${href}`;
-  return `/${regLower}${cleanHref}`;
+  return `${finalPath}${query}${hash}`;
 }

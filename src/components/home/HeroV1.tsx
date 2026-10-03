@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import RegionLink from '@/components/shared/RegionLink';
 import './HeroV1.css';
 
 export default function HeroV1() {
@@ -55,7 +56,7 @@ export default function HeroV1() {
           </div>
 
           <div className="hero-v1__cta-wrap">
-            <Link href="/free-trial" className="hero-v1__cta">
+            <RegionLink href="/free-trial" className="hero-v1__cta">
               <span className="hero-v1__cta-shine" aria-hidden="true"></span>
               <span className="hero-v1__cta-label">Book My Child&apos;s Free Class</span>
               <span className="hero-v1__cta-arrow" aria-hidden="true">
@@ -64,7 +65,7 @@ export default function HeroV1() {
                   <path d="m12 5 7 7-7 7" />
                 </svg>
               </span>
-            </Link>
+            </RegionLink>
             <p className="hero-v1__cta-note">Takes 30 seconds. No credit card needed.</p>
           </div>
 

@@ -50,6 +50,7 @@
 .country-switcher__code {
   font-weight: 600;
   color: #1A2E3B;
+  text-transform: uppercase;
 }
 
 .country-switcher__chevron {

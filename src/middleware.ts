@@ -1,5 +1,5 @@
 /**
- * TutorExel Middleware — Blog redirects
+ * TutorExel Middleware - Blog redirects
  * GeoGuard geo-blocking removed so all regions (AU, US, CA, NZ) and search crawlers are public.
  */
 
@@ -34,18 +34,56 @@ const oldIdToSlug: Record<string, string> = {
 
 // ─── Middleware ──────────────────────────────────────────────────────────────
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
+  const isPreview = process.env.VERCEL_ENV === "preview";
 
-  // 1. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
-  const blogMatch = pathname.match(/^\/(au\/)?blog\/(\d+)$/);
-  if (blogMatch) {
-    const slug = oldIdToSlug[blogMatch[2]];
-    if (slug) {
-      return NextResponse.redirect(new URL(`/au/blog/${slug}`, request.url), 301);
+  let response: NextResponse | null = null;
+
+  // 1. Handle trailing slashes and /au redirects in a single hop
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    const clean = pathname.slice(0, -1);
+    if (clean === "/au") {
+      response = NextResponse.redirect(new URL("/" + search, request.url), 301);
+    } else if (clean.startsWith("/au/")) {
+      response = NextResponse.redirect(new URL((clean.slice(3) || "/") + search, request.url), 301);
+    } else {
+      response = NextResponse.redirect(new URL(clean + search, request.url), 308);
+    }
+  } else if (pathname === "/au") {
+    // 2. Legacy /au paths (no trailing slash) redirect straight to AU root equivalent (single-hop 301)
+    response = NextResponse.redirect(new URL("/" + search, request.url), 301);
+  } else if (pathname.startsWith("/au/")) {
+    response = NextResponse.redirect(new URL((pathname.slice(3) || "/") + search, request.url), 301);
+  } else {
+    // 3. Market-unique Australian routes accessed under /us, /ca, /nz redirect straight to AU root
+    const marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation|online-tutoring|research)(?:\/.*)?)$/i);
+    if (marketUniqueMatch) {
+      let target = marketUniqueMatch[2];
+      if (target.endsWith("/") && target.length > 1) {
+        target = target.slice(0, -1);
+      }
+      response = NextResponse.redirect(new URL(target + search, request.url), 301);
+    } else {
+      // 4. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
+      const blogMatch = pathname.match(/^\/(?:au\/)?blog\/(\d+)$/);
+      if (blogMatch) {
+        const slug = oldIdToSlug[blogMatch[1]];
+        if (slug) {
+          response = NextResponse.redirect(new URL(`/blog/${slug}` + search, request.url), 301);
+        }
+      }
     }
   }
 
-  return NextResponse.next();
+  if (!response) {
+    response = NextResponse.next();
+  }
+
+  if (isPreview) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
+
+  return response;
 }
 
 export const config = {

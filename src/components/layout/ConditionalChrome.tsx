@@ -12,6 +12,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import FloatingCTA from "./FloatingCTA";
 import UTMCapture from "./UTMCapture";
+import JsonLd from "@/components/seo/JsonLd";
+import { getOrganizationSchema } from "@/utils/schema";
+import { getCurrentRegion } from "@/utils/regionalLinks";
 
 const STANDALONE_PREFIXES = ["/admin", "/blocked"];
 const NO_HEADER_PREFIXES: string[] = [];
@@ -24,6 +27,8 @@ export default function ConditionalChrome({
   const pathname = usePathname() || "";
   const isStandalone = STANDALONE_PREFIXES.some((p) => pathname.startsWith(p));
   const isNoHeader = NO_HEADER_PREFIXES.some((p) => pathname.startsWith(p));
+  const currentRegion = getCurrentRegion(pathname);
+  const organizationSchema = getOrganizationSchema(currentRegion);
 
   if (isStandalone) {
     return <main>{children}</main>;
@@ -32,6 +37,7 @@ export default function ConditionalChrome({
   if (isNoHeader) {
     return (
       <>
+        <JsonLd data={organizationSchema} />
         <main>{children}</main>
         <Footer />
       </>
@@ -40,6 +46,7 @@ export default function ConditionalChrome({
 
   return (
     <>
+      <JsonLd data={organizationSchema} />
       <Header />
       <main>{children}</main>
       <Footer />

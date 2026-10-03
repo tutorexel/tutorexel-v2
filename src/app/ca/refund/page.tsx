@@ -1,14 +1,11 @@
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
-export const metadata: Metadata = {
-  title: "Refund & Cancellation Policy | TutorExel",
-  description:
-    "Understand TutorExel's refund, cancellation, and rescheduling policies for tutoring services.",
-  alternates: getRegionalAlternates('/refund', 'ca'),
-};
+export const metadata = buildMetadata({
+  path: "/refund",
+  region: "ca",
+});
 
 export default function RefundPolicyPage() {
   return (
@@ -52,7 +49,7 @@ export default function RefundPolicyPage() {
                 <ul>
                   <li>live online tutoring classes,</li>
                   <li>co-curricular classes,</li>
-                  <li>NAPLAN Bootcamp (live and self-study),</li>
+                  <li>Provincial Exam Bootcamp (live and self-study),</li>
                   <li>assessments, quizzes, recordings, and digital learning material.</li>
                 </ul>
               </li>
@@ -71,10 +68,10 @@ export default function RefundPolicyPage() {
               <li>access credentials to the Platform, recordings, or learning material are shared;</li>
               <li>any session (live or recorded) is consumed;</li>
               <li>any assessment, worksheet, or digital content is accessed.</li>
-              <li>issuance of login credentials for NAPLAN Bootcamp – Self-Study.</li>
+              <li>issuance of login credentials for Provincial Exam Bootcamp  -  Self-Study.</li>
             </ul>
             <p>
-              Once Services have commenced, <strong>refunds are strictly limited</strong> as outlined below. No refund, extension, credit, or substitution shall be permitted for NAPLAN Bootcamp – Self-Study once login credentials are issued.
+              Once Services have commenced, <strong>refunds are strictly limited</strong> as outlined below. No refund, extension, credit, or substitution shall be permitted for Provincial Exam Bootcamp  -  Self-Study once login credentials are issued.
             </p>
 
             <h2>3. CANCELLATION BY PARENT / GUARDIAN</h2>
@@ -96,7 +93,7 @@ export default function RefundPolicyPage() {
               <li>any subscription period already started.</li>
             </ul>
             <p>
-              For Courses spanning multiple sessions or months (<strong>excluding NAPLAN Bootcamp – Live and Self-Study</strong>), any refund, <strong>if approved</strong>, shall be calculated on a <strong>pro-rata basis</strong> and shall apply <strong>only to unconsumed Services</strong>, at TutorExel&apos;s sole discretion.
+              For Courses spanning multiple sessions or months (<strong>excluding Provincial Exam Bootcamp  -  Live and Self-Study</strong>), any refund, <strong>if approved</strong>, shall be calculated on a <strong>pro-rata basis</strong> and shall apply <strong>only to unconsumed Services</strong>, at TutorExel&apos;s sole discretion.
             </p>
 
             <h2>4. COURSE-SPECIFIC REFUND RULES</h2>
@@ -105,10 +102,10 @@ export default function RefundPolicyPage() {
               <li>Once the first class is attended or access is provided, no refund for consumed sessions.</li>
               <li>Missed classes due to Student absence are non-refundable.</li>
               <li>Make-up classes may be offered at TutorExel&apos;s discretion but do not entitle refund.</li>
-              <li>For Live Online Classes (excluding NAPLAN Bootcamp – Live), if a refund is approved after commencement of Services, such refund shall be calculated on a pro-rata basis and shall apply only to unconsumed sessions.</li>
+              <li>For Live Online Classes (excluding Provincial Exam Bootcamp  -  Live), if a refund is approved after commencement of Services, such refund shall be calculated on a pro-rata basis and shall apply only to unconsumed sessions.</li>
             </ul>
 
-            <h3>4.2 NAPLAN Bootcamp – Live</h3>
+            <h3>4.2 Provincial Exam Bootcamp  -  Live</h3>
             <p>No refund once:</p>
             <ul>
               <li>the bootcamp starts, or</li>
@@ -116,15 +113,15 @@ export default function RefundPolicyPage() {
             </ul>
             <p>This applies regardless of attendance or performance.</p>
 
-            <h3>4.3 NAPLAN Bootcamp – Self-Study</h3>
+            <h3>4.3 Provincial Exam Bootcamp  -  Self-Study</h3>
             <p>
-              For NAPLAN Bootcamp – Self-Study, the sharing of login credentials to access the learning platform, practice material, mock tests, or any related content shall constitute commencement of Services.
+              For Provincial Exam Bootcamp  -  Self-Study, the sharing of login credentials to access the learning platform, practice material, mock tests, or any related content shall constitute commencement of Services.
             </p>
             <p>
               Once login credentials are issued, the enrolment shall be deemed active and non-refundable, irrespective of whether the Student accesses or consumes the content.
             </p>
             <p>
-              Access to all NAPLAN Self-Study materials shall remain valid only until 31 March 2026, after which all access shall automatically expire without notice.
+              Access to all Self-Study materials shall remain valid only until 31 March 2026, after which all access shall automatically expire without notice.
             </p>
             <p>
               TutorExel shall have no obligation to extend access, provide refunds, or offer continued availability of content beyond the stated expiry date under any circumstances.
@@ -225,7 +222,7 @@ export default function RefundPolicyPage() {
               <p className="legal-contact__title">Need to Cancel or Request a Refund?</p>
               <p>Please reach out to us and we will be happy to assist:</p>
               <p><strong>Email:</strong> <a href="mailto:info@tutorexel.com">info@tutorexel.com</a></p>
-              <p><svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 13.81c-.25.71-1.49 1.37-2.05 1.41-.56.04-1.08.28-3.56-.74-2.98-1.23-4.84-4.27-4.98-4.47-.15-.2-1.19-1.58-1.19-3.02s.75-2.14 1.02-2.44c.27-.3.59-.37.78-.37.2 0 .39 0 .56.01.18.01.42-.07.66.5.25.57.84 2.06.92 2.21.07.15.12.32.02.52-.1.2-.15.32-.29.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.78 1.28 1.67 2.07 1.14 1.02 2.11 1.33 2.41 1.48.3.15.47.13.65-.08.17-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.72.81 2.01.96.3.15.49.22.56.34.08.12.08.71-.17 1.42z"/></svg> <strong>WhatsApp:</strong> <a href="https://wa.me/61470330548">+61 470-330-548</a></p>
+              
               <p><strong>Response time:</strong> Within 2 hours during business hours (Mon-Sat, 9am-8pm AEST)</p>
             </div>
           </div>

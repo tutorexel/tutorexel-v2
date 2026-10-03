@@ -15,6 +15,7 @@ import {
 } from "@/utils/blogUtils";
 import PortableTextRenderer from "./PortableTextRenderer";
 import PresetIconSvg from "./BlogBlockIcons";
+import { getRegionConfig } from "@/data/regions";
 import "@/app/blog/[slug]/blog-article.css";
 
 interface BlogArticleViewProps {
@@ -294,7 +295,7 @@ function LegacySectionLayoutRenderer({
         <blockquote className="pull pull--big">
           {quote}
           {section.attribution && (
-            <cite className="pull-attribution">— {section.attribution}</cite>
+            <cite className="pull-attribution">- {section.attribution}</cite>
           )}
         </blockquote>
       );
@@ -311,6 +312,7 @@ export default function BlogArticleView({
   region = "us",
   localFallback,
 }: BlogArticleViewProps) {
+  const regConfig = getRegionConfig(region);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeTocId, setActiveTocId] = useState<string>("");
   const [copied, setCopied] = useState(false);
@@ -1201,29 +1203,31 @@ export default function BlogArticleView({
             </div>
             <Link className="btn btn-hi side-btn" id="sideBtn" href={assessmentHref}>
               {selectedYear
-                ? `Book a free Year ${selectedYear} assessment`
+                ? `Book a free ${regConfig.yearLabel} ${selectedYear} assessment`
                 : "Book the free assessment"}
             </Link>
-            <a
-              className="side-wa"
-              href="https://wa.me/61470330548"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            {regConfig.phone && (
+              <a
+                className="side-wa"
+                href={`https://wa.me/${regConfig.phone.replace(/[^0-9]/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6L3 21Z" />
-              </svg>{" "}
-              Chat on WhatsApp
-            </a>
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6L3 21Z" />
+                </svg>{" "}
+                Chat on WhatsApp
+              </a>
+            )}
           </div>
         </aside>
       </div>
@@ -1340,9 +1344,11 @@ export default function BlogArticleView({
               <Link href={getRegionalHref("/subjects/year-7/english", region)}>
                 Year 7 English
               </Link>
-              <Link href={getRegionalHref("/naplan-preparation", region)}>
-                NAPLAN Prep
-              </Link>
+              {region === "au" && (
+                <Link href="/naplan-preparation">
+                  NAPLAN Prep
+                </Link>
+              )}
               <Link href={getRegionalHref("/pricing", region)}>
                 Pricing
               </Link>
@@ -1397,23 +1403,25 @@ export default function BlogArticleView({
                 <Link className="btn btn-hi" href={getRegionalHref("/enroll", region)}>
                   Book Online Now
                 </Link>
-                <a
-                  className="btn btn-wa"
-                  href="https://wa.me/61470330548"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="#fff"
-                    aria-hidden="true"
+                {regConfig.phone && (
+                  <a
+                    className="btn btn-wa"
+                    href={`https://wa.me/${regConfig.phone.replace(/[^0-9]/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z" />
-                  </svg>
-                  +61 470-330-548
-                </a>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="#fff"
+                      aria-hidden="true"
+                    >
+                      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z" />
+                    </svg>
+                    {regConfig.phone}
+                  </a>
+                )}
               </div>
             </div>
           </div>

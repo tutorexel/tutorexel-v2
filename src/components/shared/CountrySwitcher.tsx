@@ -3,9 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { REGIONS } from "@/data/regions";
+import {
+  getCurrentRegion,
+  getEquivalentRegionalUrl,
+  type RegionCode,
+} from "@/utils/regionalLinks";
 import "./CountrySwitcher.css";
-
-export type RegionCode = "AU" | "US" | "CA" | "NZ";
 
 interface CountryConfig {
   code: RegionCode;
@@ -120,42 +124,25 @@ function FlagNZ() {
   );
 }
 
-const COUNTRIES: CountryConfig[] = [
-  { code: "US", name: "United States", flag: <FlagUS /> },
-  { code: "AU", name: "Australia", flag: <FlagAU /> },
-  { code: "CA", name: "Canada", flag: <FlagCA /> },
-  { code: "NZ", name: "New Zealand", flag: <FlagNZ /> },
-];
+const FLAG_BY_CODE: Record<string, React.ReactNode> = {
+  au: <FlagAU />,
+  us: <FlagUS />,
+  ca: <FlagCA />,
+  nz: <FlagNZ />,
+};
+
+const COUNTRIES: CountryConfig[] = REGIONS.map((r) => ({
+  code: r.code as RegionCode,
+  name: r.label,
+  flag: FLAG_BY_CODE[r.code] || <FlagAU />,
+}));
 
 /**
  * Derives the target URL for a region given the current pathname.
- * Swaps /au, /us, /ca, /nz prefix with target region prefix (US has no prefix).
+ * Returns the equivalent page in the target region if it exists, else that region's home.
  */
 export function getRegionalUrl(pathname: string, targetRegion: RegionCode): string {
-  let cleanPath = pathname || "/";
-  const match = cleanPath.match(/^\/(au|us|ca|nz)(\/.*)?$/i);
-  if (match) {
-    cleanPath = match[2] || "/";
-  }
-  if (!cleanPath.startsWith("/")) {
-    cleanPath = `/${cleanPath}`;
-  }
-
-  const prefix = targetRegion === "US" ? "" : `/${targetRegion.toLowerCase()}`;
-  const suffix = cleanPath === "/" ? "" : cleanPath;
-  const url = `${prefix}${suffix}`;
-  return url || "/";
-}
-
-/**
- * Detects current region from pathname.
- */
-export function getCurrentRegion(pathname: string): RegionCode {
-  const match = pathname.match(/^\/(au|ca|nz)(\/.*)?$/i);
-  if (match) {
-    return match[1].toUpperCase() as RegionCode;
-  }
-  return "US";
+  return getEquivalentRegionalUrl(pathname, targetRegion);
 }
 
 export default function CountrySwitcher() {
@@ -196,7 +183,8 @@ export default function CountrySwitcher() {
   }
 
   const currentRegion = getCurrentRegion(pathname);
-  const activeCountry = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
+  const activeCountry =
+    COUNTRIES.find((c) => c.code.toLowerCase() === currentRegion.toLowerCase()) || COUNTRIES[0];
 
   return (
     <div className="country-switcher" ref={containerRef}>
@@ -204,7 +192,7 @@ export default function CountrySwitcher() {
       {isOpen && (
         <div className="country-switcher__dropdown" role="listbox" aria-label="Select Country">
           {COUNTRIES.map((country) => {
-            const isActive = country.code === currentRegion;
+            const isActive = country.code.toLowerCase() === currentRegion.toLowerCase();
             const targetHref = getRegionalUrl(pathname, country.code);
 
             return (
@@ -239,7 +227,7 @@ export default function CountrySwitcher() {
         aria-label={`Select Country (Currently ${activeCountry.name})`}
       >
         <span className="country-switcher__flag-wrapper">{activeCountry.flag}</span>
-        <span className="country-switcher__code">{activeCountry.code}</span>
+        <span className="country-switcher__code">{activeCountry.code.toUpperCase()}</span>
         <span className={`country-switcher__chevron ${isOpen ? "country-switcher__chevron--open" : ""}`} aria-hidden="true">
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
             <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>

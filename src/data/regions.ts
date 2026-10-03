@@ -28,12 +28,25 @@ export interface RegionSpotlightStep {
 
 export interface RegionConfig {
   code: RegionCode;
+  basePath: string;
+  label: string;
+  flag: string;
+  flagUrl: string;
+  locale: string;
+  phone: string | null;
+  phoneText: string;
+  phoneHref: string;
+  curriculumLabel: string;
+  testNames: string[];
   name: string;
   countryName: string;
   demonym: string;
   currency: string;
   currencySymbol: string;
   yearLabel: string;
+  mathLabel: string;
+  spellingPersonalised: string;
+  spellingEnrol: string;
   yearLevels: number[];
   hero: {
     title: string;
@@ -74,13 +87,26 @@ export interface RegionConfig {
 export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
   au: {
     code: "au",
+    basePath: "",
+    label: "Australia",
+    flag: "au",
+    flagUrl: "https://flagcdn.com/80x60/au.png",
+    locale: "en-AU",
+    phone: "+61 470-330-548",
+    phoneText: "+61 470-330-548",
+    phoneHref: "https://wa.me/61470330548",
+    curriculumLabel: "Australian Curriculum (ACARA)",
+    testNames: ["NAPLAN", "ICAS"],
     name: "Australia",
     countryName: "Australia",
     demonym: "Australian",
     currency: "AUD",
     currencySymbol: "$",
     yearLabel: "Year",
-    yearLevels: [2, 3, 4, 5, 6, 7],
+    mathLabel: "Maths",
+    spellingPersonalised: "personalised",
+    spellingEnrol: "Enrol",
+    yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",
@@ -128,39 +154,39 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       ],
     },
     pricing: {
-      title: "Choose Your Plan",
-      discountText: "Get up to 20% discount - Enrol Today!",
-      subtitle: "No contracts. No hidden fees. Cancel anytime.",
+      title: "Pick the Right Plan",
+      discountText: "Save up to 20%. Enrol today!",
+      subtitle: "Pay monthly in AUD. No lock-in. Cancel anytime.",
       footnote: "Prices shown in AUD. See pricing for USA, Canada and New Zealand",
       plans: [
         {
           id: "live-online-coaching",
-          name: "Live Online Coaching",
-          subtitle: "Mathematics, English, Science",
+          name: "Live Online Tutoring",
+          subtitle: "Maths, English, Science",
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
           amount: 84,
           periodText: "AUD/month per subject",
           features: [
-            "1 hour personalized sessions",
-            "4 sessions per month per subject",
-            "1:1 personalised tutoring available",
-            "Group sessions available (max 3 students)",
+            "1-hour personalised live lessons",
+            "4 lessons per month, per subject",
+            "1:1 tutoring available",
+            "Small groups available (max 3 students)",
             "Weekly practice worksheets",
           ],
           moreFeatures: [
-            "Free assessment & report",
-            "Regular progress tests",
-            "Flexible scheduling",
-            "Recorded session access",
+            "Free assessment and progress report",
+            "Regular term progress tests",
+            "After-school and weekend times",
+            "Recorded lesson access",
             "WhatsApp support",
           ],
         },
         {
           id: "co-curricular",
-          name: "Co-Curricular",
-          subtitle: "Music & Creative Arts, Piano & Guitar",
+          name: "Music Lessons",
+          subtitle: "Piano and Guitar",
           featured: false,
           themeCategory: "study",
           amount: 79,
@@ -168,14 +194,14 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           features: [
             "Piano lessons",
             "Guitar lessons",
-            "One-on-one instruction",
-            "Flexible scheduling",
-            "Recorded session access",
+            "One-on-one tuition",
+            "Flexible lesson times",
+            "Recorded lesson access",
           ],
           moreFeatures: [
             "WhatsApp support",
-            "All skill levels welcome",
-            "Personalized curriculum",
+            "Beginners to advanced welcome",
+            "Personalised music plan",
           ],
         },
         {
@@ -186,14 +212,14 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           themeCategory: "parents",
           amount: 219,
           originalAmount: 299,
-          discountBadge: "Save 27%",
+          discountBadge: "SAVE 27%",
           periodText: "AUD/month",
           features: [
             "12 live classes per month",
-            "3 Subjects: Maths, English & Science",
-            "1:1 personalised tutoring available",
-            "Group sessions available (max 3 students)",
-            "Recorded session access",
+            "All 3 subjects: Maths, English and Science",
+            "1:1 tutoring available",
+            "Small groups available (max 3 students)",
+            "Recorded lesson access",
           ],
           moreFeatures: [
             "Weekly progress reports",
@@ -203,10 +229,10 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       ],
     },
     finalCta: {
-      heading: "Ready to See Your Child Excel?",
-      lede: "Join hundreds of Australian families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
-      btnText: "Book Online Now",
-      btnHref: "/enroll",
+      heading: "Ready to Help Your Child Excel?",
+      lede: "Join the Australian families who trust TutorExel with their child's learning. Book your FREE trial class today, no credit card required.",
+      btnText: "Book My Free Trial",
+      btnHref: "/free-trial",
       phoneText: "+61 470-330-548",
       phoneHref: "https://wa.me/61470330548",
     },
@@ -214,28 +240,41 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
 
   us: {
     code: "us",
+    basePath: "/us",
+    label: "USA",
+    flag: "us",
+    flagUrl: "https://flagcdn.com/80x60/us.png",
+    locale: "en-US",
+    phone: null,
+    phoneText: "",
+    phoneHref: "",
+    curriculumLabel: "US Common Core & State Standards",
+    testNames: ["State Assessments", "Standardized Tests"],
     name: "USA",
     countryName: "United States",
     demonym: "American",
     currency: "USD",
     currencySymbol: "$",
     yearLabel: "Grade",
+    mathLabel: "Math",
+    spellingPersonalised: "personalized",
+    spellingEnrol: "Enroll",
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",
       subtitle:
-        "Tips, guides, and insights for American parents and students. From SAT/ACT preparation to everyday study strategies.",
-      searchPlaceholder: "Search guides, e.g. SAT, ACT, math foundations",
-      popularTags: ["SAT & ACT", "Choosing a tutor", "One-on-one vs group", "Study habits"],
+        "Tips, guides, and insights for American parents and students. From state assessment prep to everyday study strategies.",
+      searchPlaceholder: "Search guides, e.g. state tests, math foundations",
+      popularTags: ["State Standards", "Choosing a tutor", "One-on-one vs group", "Study habits"],
     },
     spotlight: {
-      title: "Getting ready for SAT, ACT and State Benchmarks",
-      lede: "What standardized assessments measure, where students lose marks, and how steady practice through the year beats last-minute cramming.",
+      title: "Getting ready for State Assessments",
+      lede: "What state standards measure, where students lose marks, and how steady practice through the year beats last-minute cramming.",
       assessmentBtnText: "Take the free assessment",
       assessmentBtnHref: "/free-assessment",
-      programBtnText: "Test prep programs",
-      programBtnHref: "/free-trial",
+      programBtnText: "Academic programs",
+      programBtnHref: "/pricing",
       subTitle: "Practice by grade level",
       practiceLinks: [
         { label: "Grade 3 Math", href: "/subjects/year-3/maths" },
@@ -248,44 +287,45 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         {
           step: "1",
           title: "Know the format",
-          desc: "From multiple choice to structured responses, nothing feels unfamiliar.",
+          desc: "Multiple choice to written response, nothing feels unfamiliar on test day.",
         },
         {
           step: "2",
           title: "Build strategies",
-          desc: "Eliminating distractors, pacing questions, and double-checking work.",
+          desc: "Eliminating wrong answers, managing time and double-checking work.",
         },
         {
           step: "3",
           title: "Close the gaps",
-          desc: "Diagnostic tests highlight where extra support is needed early on.",
+          desc: "Practice assessments show where extra support is needed early.",
         },
         {
           step: "4",
           title: "Walk in calm",
-          desc: "Consistent practice under timed conditions replaces test anxiety with confidence.",
+          desc: "Regular practice under testing conditions replaces anxiety with confidence.",
         },
       ],
     },
+    // TODO: Pending client input for exact regional pricing numbers.
     pricing: {
       title: "Choose Your Plan",
-      discountText: "Get up to 20% discount - Enrol Today!",
+      discountText: "Get up to 20% discount - Enroll Today!",
       subtitle: "No contracts. No hidden fees. Cancel anytime.",
       footnote: "Prices shown in USD. See pricing for Australia, Canada and New Zealand",
       plans: [
         {
           id: "live-online-coaching",
           name: "Live Online Coaching",
-          subtitle: "Mathematics, English, Science",
+          subtitle: "Math, English, Science",
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84,
+          amount: 84, // TODO: Replace with US market rate once provided by client
           periodText: "USD/month per subject",
           features: [
             "1 hour personalized sessions",
             "4 sessions per month per subject",
-            "1:1 personalised tutoring available",
+            "1:1 personalized tutoring available",
             "Group sessions available (max 3 students)",
             "Weekly practice worksheets",
           ],
@@ -294,7 +334,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Regular progress tests",
             "Flexible scheduling",
             "Recorded session access",
-            "WhatsApp support",
+            "Email support",
           ],
         },
         {
@@ -303,7 +343,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Music & Creative Arts, Piano & Guitar",
           featured: false,
           themeCategory: "study",
-          amount: 79,
+          amount: 79, // TODO: Replace with US market rate once provided by client
           periodText: "USD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -313,7 +353,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Recorded session access",
           ],
           moreFeatures: [
-            "WhatsApp support",
+            "Email support",
             "All skill levels welcome",
             "Personalized curriculum",
           ],
@@ -324,20 +364,20 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Complete Learning Package, 3 Subjects",
           featured: false,
           themeCategory: "parents",
-          amount: 219,
+          amount: 219, // TODO: Replace with US market rate once provided by client
           originalAmount: 299,
           discountBadge: "Save 27%",
           periodText: "USD/month",
           features: [
             "12 live classes per month",
-            "3 Subjects: Maths, English & Science",
-            "1:1 personalised tutoring available",
+            "3 Subjects: Math, English & Science",
+            "1:1 personalized tutoring available",
             "Group sessions available (max 3 students)",
             "Recorded session access",
           ],
           moreFeatures: [
             "Weekly progress reports",
-            "WhatsApp support",
+            "Email support",
           ],
         },
       ],
@@ -347,25 +387,38 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join hundreds of American families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
       btnText: "Book Online Now",
       btnHref: "/enroll",
-      phoneText: "+61 470-330-548",
-      phoneHref: "https://wa.me/61470330548",
+      phoneText: "",
+      phoneHref: "",
     },
   },
 
   ca: {
     code: "ca",
+    basePath: "/ca",
+    label: "Canada",
+    flag: "ca",
+    flagUrl: "https://flagcdn.com/80x60/ca.png",
+    locale: "en-CA",
+    phone: null,
+    phoneText: "",
+    phoneHref: "",
+    curriculumLabel: "Canadian Provincial Curricula",
+    testNames: ["EQAO", "Provincial Assessments"],
     name: "Canada",
     countryName: "Canada",
     demonym: "Canadian",
     currency: "CAD",
     currencySymbol: "$",
     yearLabel: "Grade",
+    mathLabel: "Math",
+    spellingPersonalised: "personalized",
+    spellingEnrol: "Enroll",
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",
       subtitle:
-        "Tips, guides, and insights for Canadian parents and students. From EQAO preparation to everyday study strategies.",
+        "Tips, guides, and insights for Canadian parents and students. From provincial assessment prep to everyday study strategies.",
       searchPlaceholder: "Search guides, e.g. EQAO, Ontario curriculum, math",
       popularTags: ["EQAO Prep", "Choosing a tutor", "One-on-one vs group", "Study habits"],
     },
@@ -407,25 +460,26 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
       ],
     },
+    // TODO: Pending client input for exact regional pricing numbers.
     pricing: {
       title: "Choose Your Plan",
-      discountText: "Get up to 20% discount - Enrol Today!",
+      discountText: "Get up to 20% discount - Enroll Today!",
       subtitle: "No contracts. No hidden fees. Cancel anytime.",
       footnote: "Prices shown in CAD. See pricing for Australia, USA and New Zealand",
       plans: [
         {
           id: "live-online-coaching",
           name: "Live Online Coaching",
-          subtitle: "Mathematics, English, Science",
+          subtitle: "Math, English, Science",
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84,
+          amount: 84, // TODO: Replace with CA market rate once provided by client
           periodText: "CAD/month per subject",
           features: [
             "1 hour personalized sessions",
             "4 sessions per month per subject",
-            "1:1 personalised tutoring available",
+            "1:1 personalized tutoring available",
             "Group sessions available (max 3 students)",
             "Weekly practice worksheets",
           ],
@@ -434,7 +488,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Regular progress tests",
             "Flexible scheduling",
             "Recorded session access",
-            "WhatsApp support",
+            "Email support",
           ],
         },
         {
@@ -443,7 +497,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Music & Creative Arts, Piano & Guitar",
           featured: false,
           themeCategory: "study",
-          amount: 79,
+          amount: 79, // TODO: Replace with CA market rate once provided by client
           periodText: "CAD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -453,7 +507,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Recorded session access",
           ],
           moreFeatures: [
-            "WhatsApp support",
+            "Email support",
             "All skill levels welcome",
             "Personalized curriculum",
           ],
@@ -464,20 +518,20 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Complete Learning Package, 3 Subjects",
           featured: false,
           themeCategory: "parents",
-          amount: 219,
+          amount: 219, // TODO: Replace with CA market rate once provided by client
           originalAmount: 299,
           discountBadge: "Save 27%",
           periodText: "CAD/month",
           features: [
             "12 live classes per month",
-            "3 Subjects: Maths, English & Science",
-            "1:1 personalised tutoring available",
+            "3 Subjects: Math, English & Science",
+            "1:1 personalized tutoring available",
             "Group sessions available (max 3 students)",
             "Recorded session access",
           ],
           moreFeatures: [
             "Weekly progress reports",
-            "WhatsApp support",
+            "Email support",
           ],
         },
       ],
@@ -487,31 +541,44 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join hundreds of Canadian families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
       btnText: "Book Online Now",
       btnHref: "/enroll",
-      phoneText: "+61 470-330-548",
-      phoneHref: "https://wa.me/61470330548",
+      phoneText: "",
+      phoneHref: "",
     },
   },
 
   nz: {
     code: "nz",
+    basePath: "/nz",
+    label: "New Zealand",
+    flag: "nz",
+    flagUrl: "https://flagcdn.com/80x60/nz.png",
+    locale: "en-NZ",
+    phone: null,
+    phoneText: "",
+    phoneHref: "",
+    curriculumLabel: "New Zealand Curriculum (NZC)",
+    testNames: ["PAT", "NZC Assessments"],
     name: "New Zealand",
     countryName: "New Zealand",
     demonym: "New Zealand",
     currency: "NZD",
     currencySymbol: "$",
     yearLabel: "Year",
+    mathLabel: "Maths",
+    spellingPersonalised: "personalised",
+    spellingEnrol: "Enrol",
     yearLevels: [2, 3, 4, 5, 6, 7],
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",
       subtitle:
-        "Tips, guides, and insights for New Zealand parents and students. From NCEA preparation to everyday study strategies.",
-      searchPlaceholder: "Search guides, e.g. NCEA, numeracy, literacy",
-      popularTags: ["NCEA & Literacy", "Choosing a tutor", "One-on-one vs group", "Study habits"],
+        "Tips, guides, and insights for Kiwi parents and students. From NZ curriculum support to everyday study habits.",
+      searchPlaceholder: "Search guides, e.g. PAT, NZ curriculum, maths",
+      popularTags: ["NZC Framework", "Choosing a tutor", "One-on-one vs group", "Study habits"],
     },
     spotlight: {
-      title: "Getting ready for NCEA and Curriculum Standards",
-      lede: "Mastering numeracy and literacy standards, tracking progress, and building strong study foundations early on.",
+      title: "Getting ready for NZ Curriculum Assessments",
+      lede: "Understanding NZC curriculum benchmarks, building problem-solving strategies, and steady practice through the school year.",
       assessmentBtnText: "Take the free assessment",
       assessmentBtnHref: "/free-assessment",
       programBtnText: "Tutoring programs",
@@ -528,25 +595,26 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         {
           step: "1",
           title: "Know the format",
-          desc: "Understanding curriculum assessment criteria and question formats early.",
+          desc: "Familiarity with assessment styles and question types builds comfort.",
         },
         {
           step: "2",
           title: "Build strategies",
-          desc: "Developing clear problem-solving routines and reasoning skills.",
+          desc: "Developing clear problem-solving steps and checking calculations.",
         },
         {
           step: "3",
           title: "Close the gaps",
-          desc: "Regular diagnostic milestones show where extra support is needed.",
+          desc: "Targeted practice reveals concept gaps before term assessments.",
         },
         {
           step: "4",
           title: "Walk in calm",
-          desc: "Continuous term-by-term practice ensures steady, confident growth.",
+          desc: "Consistent practice through the terms replaces anxiety with mastery.",
         },
       ],
     },
+    // TODO: Pending client input for exact regional pricing numbers.
     pricing: {
       title: "Choose Your Plan",
       discountText: "Get up to 20% discount - Enrol Today!",
@@ -556,11 +624,11 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         {
           id: "live-online-coaching",
           name: "Live Online Coaching",
-          subtitle: "Mathematics, English, Science",
+          subtitle: "Maths, English, Science",
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84,
+          amount: 84, // TODO: Replace with NZ market rate once provided by client
           periodText: "NZD/month per subject",
           features: [
             "1 hour personalized sessions",
@@ -574,7 +642,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Regular progress tests",
             "Flexible scheduling",
             "Recorded session access",
-            "WhatsApp support",
+            "Email support",
           ],
         },
         {
@@ -583,7 +651,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Music & Creative Arts, Piano & Guitar",
           featured: false,
           themeCategory: "study",
-          amount: 79,
+          amount: 79, // TODO: Replace with NZ market rate once provided by client
           periodText: "NZD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -593,7 +661,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
             "Recorded session access",
           ],
           moreFeatures: [
-            "WhatsApp support",
+            "Email support",
             "All skill levels welcome",
             "Personalized curriculum",
           ],
@@ -604,7 +672,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           subtitle: "Complete Learning Package, 3 Subjects",
           featured: false,
           themeCategory: "parents",
-          amount: 219,
+          amount: 219, // TODO: Replace with NZ market rate once provided by client
           originalAmount: 299,
           discountBadge: "Save 27%",
           periodText: "NZD/month",
@@ -617,7 +685,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
           ],
           moreFeatures: [
             "Weekly progress reports",
-            "WhatsApp support",
+            "Email support",
           ],
         },
       ],
@@ -627,13 +695,15 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join hundreds of New Zealand families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
       btnText: "Book Online Now",
       btnHref: "/enroll",
-      phoneText: "+61 470-330-548",
-      phoneHref: "https://wa.me/61470330548",
+      phoneText: "",
+      phoneHref: "",
     },
   },
 };
 
-export function getRegionConfig(regionCode: string = "us"): RegionConfig {
+export const REGIONS: RegionConfig[] = Object.values(REGIONS_CONFIG);
+
+export function getRegionConfig(regionCode: string = "au"): RegionConfig {
   const code = (regionCode.toLowerCase() as RegionCode);
-  return REGIONS_CONFIG[code] || REGIONS_CONFIG.us;
+  return REGIONS_CONFIG[code] || REGIONS_CONFIG.au;
 }

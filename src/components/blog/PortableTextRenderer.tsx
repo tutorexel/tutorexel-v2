@@ -278,7 +278,7 @@ export function createPortableTextComponents(region: string = 'au'): PortableTex
           <blockquote className={isBig ? "pull pull--big" : "pull"}>
             “{value.quote}”
             {value.attribution && (
-              <cite className="pull-attribution">— {value.attribution}</cite>
+              <cite className="pull-attribution">- {value.attribution}</cite>
             )}
           </blockquote>
         );

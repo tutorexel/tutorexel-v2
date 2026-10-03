@@ -3,6 +3,7 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  skipTrailingSlashRedirect: true,
   turbopack: {
     root: path.resolve(__dirname),
   },
@@ -26,38 +27,125 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
-      // Old US paths redirect to root (US is now root)
+      // AU-only pages redirected from US, CA, and NZ directly to root
+      // NAPLAN
       {
-        source: "/us",
-        destination: "/",
+        source: "/us/naplan-preparation",
+        destination: "/naplan-preparation",
         permanent: true,
       },
       {
-        source: "/us/:path*",
-        destination: "/:path*",
-        permanent: true,
-      },
-      // AU-only paths redirect to /au/
-      {
-        source: "/naplan-preparation",
-        destination: "/au/naplan-preparation",
+        source: "/us/naplan-preparation/:path*",
+        destination: "/naplan-preparation/:path*",
         permanent: true,
       },
       {
-        source: "/naplan-preparation/:path*",
-        destination: "/au/naplan-preparation/:path*",
+        source: "/ca/naplan-preparation",
+        destination: "/naplan-preparation",
         permanent: true,
       },
       {
-        source: "/online-tutoring/:city",
-        destination: "/au/online-tutoring/:city",
+        source: "/ca/naplan-preparation/:path*",
+        destination: "/naplan-preparation/:path*",
         permanent: true,
       },
       {
-        source: "/research/australian-tutoring-report-2026",
-        destination: "/au/research/australian-tutoring-report-2026",
+        source: "/nz/naplan-preparation",
+        destination: "/naplan-preparation",
+        permanent: true,
+      },
+      {
+        source: "/nz/naplan-preparation/:path*",
+        destination: "/naplan-preparation/:path*",
+        permanent: true,
+      },
+      // Online Tutoring
+      {
+        source: "/us/online-tutoring",
+        destination: "/online-tutoring",
+        permanent: true,
+      },
+      {
+        source: "/us/online-tutoring/:path*",
+        destination: "/online-tutoring/:path*",
+        permanent: true,
+      },
+      {
+        source: "/ca/online-tutoring",
+        destination: "/online-tutoring",
+        permanent: true,
+      },
+      {
+        source: "/ca/online-tutoring/:path*",
+        destination: "/online-tutoring/:path*",
+        permanent: true,
+      },
+      {
+        source: "/nz/online-tutoring",
+        destination: "/online-tutoring",
+        permanent: true,
+      },
+      {
+        source: "/nz/online-tutoring/:path*",
+        destination: "/online-tutoring/:path*",
+        permanent: true,
+      },
+      // Research
+      {
+        source: "/us/research",
+        destination: "/research",
+        permanent: true,
+      },
+      {
+        source: "/us/research/:path*",
+        destination: "/research/:path*",
+        permanent: true,
+      },
+      {
+        source: "/ca/research",
+        destination: "/research",
+        permanent: true,
+      },
+      {
+        source: "/ca/research/:path*",
+        destination: "/research/:path*",
+        permanent: true,
+      },
+      {
+        source: "/nz/research",
+        destination: "/research",
+        permanent: true,
+      },
+      {
+        source: "/nz/research/:path*",
+        destination: "/research/:path*",
         permanent: true,
       },
     ];

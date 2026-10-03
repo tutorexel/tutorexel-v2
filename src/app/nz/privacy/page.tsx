@@ -1,31 +1,11 @@
-import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata } from "@/utils/seo";
 import Image from "next/image";
 import "../styles/legal.css";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | TutorExel",
-  description:
-    "Learn how TutorExel collects, uses, and protects your personal information. We are committed to safeguarding your privacy.",
-  openGraph: {
-    title: "Privacy Policy | TutorExel",
-    description:
-      "Learn how TutorExel collects, uses, and protects your personal information. We are committed to safeguarding your privacy.",
-    url: "https://tutorexel.com/privacy",
-    siteName: "TutorExel",
-    locale: "en",
-    type: "website",
-    images: [{ url: "/images/banner/og-image.webp", width: 1200, height: 630, alt: "TutorExel - Australian Online Tutoring" }],
-  },
-  twitter: {
-    card: "summary",
-    title: "Privacy Policy | TutorExel",
-    description:
-      "Learn how TutorExel collects, uses, and protects your personal information.",
-    images: ["/images/banner/og-image.webp"],
-  },
-  alternates: getRegionalAlternates('/privacy', 'nz'),
-};
+export const metadata = buildMetadata({
+  path: "/privacy",
+  region: "nz",
+});
 
 export default function PrivacyPolicyPage() {
   return (
@@ -56,7 +36,7 @@ export default function PrivacyPolicyPage() {
             <span className="legal-content__updated">Effective Date: 19th January 2026</span>
 
             <p>
-              This Privacy Policy (&quot;<strong>Privacy Policy</strong>&quot; or &quot;<strong>Policy</strong>&quot;) discloses the privacy practices of <strong>TutorExel LLP</strong>, a limited liability partnership registered under the laws of India (&quot;<strong>TutorExel</strong>&quot;, &quot;<strong>We</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>Us</strong>&quot; or &quot;<strong>us</strong>&quot;), with respect to the collection, use, storage, processing, and disclosure of Personal Information (as defined below) of parents, guardians, students, instructors, vendors, employees, and users (&quot;<strong>You</strong>&quot;, &quot;<strong>you</strong>&quot;, &quot;<strong>Your</strong>&quot; or &quot;<strong>your</strong>&quot;) through its online platform <a href="https://tutorexel.com/">www.tutorexel.com</a> (&quot;<strong>Website</strong>&quot;), TutorExel&apos;s white-labelled learning platforms, applications, and related digital interfaces (collectively, the &quot;<strong>Platform</strong>&quot;).
+              This Privacy Policy (&quot;<strong>Privacy Policy</strong>&quot; or &quot;<strong>Policy</strong>&quot;) discloses the privacy practices of <strong>TutorExel LLP</strong>, a limited liability partnership registered under the laws of India (&quot;<strong>TutorExel</strong>&quot;, &quot;<strong>We</strong>&quot;, &quot;<strong>we</strong>&quot;, &quot;<strong>Us</strong>&quot; or &quot;<strong>us</strong>&quot;), with respect to the collection, use, storage, processing, and disclosure of Personal Information (as defined below) of parents, guardians, students, instructors, vendors, employees, and users (&quot;<strong>You</strong>&quot;, &quot;<strong>you</strong>&quot;, &quot;<strong>Your</strong>&quot; or &quot;<strong>your</strong>&quot;) through its online platform <a href="https://www.tutorexel.com/nz">www.tutorexel.com</a> (&quot;<strong>Website</strong>&quot;), TutorExel&apos;s white-labelled learning platforms, applications, and related digital interfaces (collectively, the &quot;<strong>Platform</strong>&quot;).
             </p>
             <p>
               This Privacy Policy, together with the <strong>Terms &amp; Conditions</strong>, describes TutorExel&apos;s practices regarding how we collect, store, use, share, secure, and otherwise process your Personal Information. It also explains your choices with respect to access, correction, and use of your Personal Information, your rights under applicable laws, and how you may contact TutorExel in case of any grievance or complaint.

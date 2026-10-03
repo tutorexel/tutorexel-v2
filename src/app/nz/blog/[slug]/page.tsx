@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getRegionalAlternates } from "@/utils/seo";
+import { buildMetadata, getRegionalAlternates, REGION_OG_LOCALE_MAP, INDEXABLE_ROBOTS, NOINDEX_ROBOTS } from "@/utils/seo";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import { createBlogPostingSchema, createBreadcrumbSchema } from "@/utils/schema";
@@ -28,22 +28,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlugAndRegion(slug, "nz");
   if (!post) return { title: "Post Not Found | TutorExel" };
 
+  const isSample = slug === "sample-article-nz" || slug.startsWith("sample-article");
+  if (isSample || post.noindex) {
+    return buildMetadata({
+      title: post.metaTitle?.trim() || `${post.title} | TutorExel`,
+      description: post.metaDescription?.trim() || post.dek?.trim() || post.excerpt || "",
+      path: `/blog/${post.slug}`,
+      region: "nz",
+      noindex: true,
+    });
+  }
+
   const imgSrc = getPostImageUrl(post.mainImage, post.imageUrl);
   const metaTitle = post.metaTitle?.trim() || `${post.title} | TutorExel`;
   const metaDescription = post.metaDescription?.trim() || post.dek?.trim() || post.excerpt || "";
+  const alternates = getRegionalAlternates('/blog/' + post.slug, 'nz');
+  const canonicalUrl = alternates.canonical;
 
   return {
     title: metaTitle,
     description: metaDescription,
-    robots: post.noindex
-      ? { index: false, follow: false }
-      : { index: true, follow: true },
+    robots: post.noindex ? NOINDEX_ROBOTS : INDEXABLE_ROBOTS,
     openGraph: {
       title: metaTitle,
       description: metaDescription,
-      url: `https://tutorexel.com/nz/blog/${post.slug}`,
+      url: canonicalUrl,
       siteName: "TutorExel",
-      locale: "en",
+      locale: REGION_OG_LOCALE_MAP.nz,
       type: "article",
       images: [{ url: imgSrc, width: 1200, height: 630, alt: post.title }],
     },
@@ -53,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: metaDescription,
       images: [imgSrc],
     },
-    alternates: getRegionalAlternates('/blog/' + post.slug, 'nz'),
+    alternates,
   };
 }
 
@@ -73,19 +84,27 @@ export default async function NzBlogPostPage({ params }: Props) {
     ? new Date(post.publishedAt).toISOString().split('T')[0]
     : new Date().toISOString().split('T')[0];
 
+  const dateModified = post._updatedAt
+    ? new Date(post._updatedAt).toISOString().split('T')[0]
+    : datePublished;
+
   const blogPostSchema = createBlogPostingSchema({
     title: post.title,
     excerpt: post.excerpt || post.dek || "",
     image: featuredImgSrc,
     datePublished,
+    dateModified,
     slug: post.slug,
+    region: "nz",
+    author: post.author || "TutorExel",
   });
 
   const blogBreadcrumbSchema = createBreadcrumbSchema([
-    { name: "Home", url: "https://tutorexel.com/nz" },
-    { name: "Learning Hub", url: "https://tutorexel.com/nz/blog" },
-    { name: post.title, url: `https://tutorexel.com/nz/blog/${post.slug}` },
+    { name: "Home", url: "https://www.tutorexel.com/nz" },
+    { name: "Learning Hub", url: "https://www.tutorexel.com/nz/blog" },
+    { name: post.title, url: `https://www.tutorexel.com/nz/blog/${post.slug}` },
   ]);
+
 
   return (
     <>

@@ -7,6 +7,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import RegionLink from "@/components/shared/RegionLink";
 import Image from "next/image";
 import {
   sendPianoEnquiryWebhook,
@@ -139,15 +140,15 @@ export default function CoCurricularEnquiryForm({ instrument }: Props) {
               {instrument.toLowerCase()} lessons and schedule a free trial class.
             </p>
             <div className="cc-enquiry-success__actions">
-              <Link href="/" className="btn btn-secondary btn-lg">
+              <RegionLink href="/" className="btn btn-secondary btn-lg">
                 Back to Home
-              </Link>
-              <Link
+              </RegionLink>
+              <RegionLink
                 href={`/co-curricular/${instrument.toLowerCase()}`}
                 className="btn btn-primary btn-lg"
               >
                 Back to {instrument}
-              </Link>
+              </RegionLink>
             </div>
           </div>
         </div>
@@ -208,7 +209,7 @@ export default function CoCurricularEnquiryForm({ instrument }: Props) {
                   Book Your Free {instrument} Trial
                 </h2>
                 <p className="cc-enquiry-form__subtitle">
-                  Fill in the details below — our team will get back to you
+                  Fill in the details below - our team will get back to you
                   within 24 hours.
                 </p>
 
@@ -337,13 +338,13 @@ export default function CoCurricularEnquiryForm({ instrument }: Props) {
                   <input type="checkbox" name="agreeTerms" required />
                   <span className="cc-enquiry-form__checkbox-label">
                     I agree to the{" "}
-                    <Link href="/terms" target="_blank">
+                    <RegionLink href="/terms" target="_blank">
                       Terms &amp; Conditions
-                    </Link>{" "}
+                    </RegionLink>{" "}
                     and{" "}
-                    <Link href="/privacy" target="_blank">
+                    <RegionLink href="/privacy" target="_blank">
                       Privacy Policy
-                    </Link>
+                    </RegionLink>
                   </span>
                 </label>
               </div>
