@@ -47,7 +47,7 @@ export interface MusicHubCopy {
     h2: string;
     text: string;
     button: { text: string; href: string };
-    whatsapp: { label: string; href: string };
+    whatsapp?: { label: string; href: string };
   };
 }
 

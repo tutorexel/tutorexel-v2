@@ -4,6 +4,7 @@ import Image from "next/image";
 import RegionLink from "@/components/shared/RegionLink";
 import { type RegionCode } from "@/data/regions";
 import { AU_PIANO_COPY } from "@/data/copy/au-piano";
+import { CA_PIANO_COPY } from "@/data/copy/ca-piano";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/piano/piano.css";
@@ -484,9 +485,258 @@ function AuPianoView() {
   );
 }
 
+function CaPianoView() {
+  const copy = CA_PIANO_COPY;
+  const breadcrumbs = createBreadcrumbSchema([
+    { name: "Home", url: "https://www.tutorexel.com/ca" },
+    { name: "Co-Curricular", url: "https://www.tutorexel.com/ca/co-curricular" },
+    { name: "Piano", url: "https://www.tutorexel.com/ca/co-curricular/piano" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumbs} />
+      <section className="piano-hero">
+        <div className="piano-hero__decoration piano-hero__decoration--left">
+          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="piano-hero__curve" />
+        </div>
+
+        <div className="piano-hero__decoration piano-hero__decoration--right">
+          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="piano-hero__stars" />
+          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="piano-hero__curve-right" />
+        </div>
+
+        <div className="container">
+          <div className="piano-hero__content">
+            <h1 className="piano-hero__title">
+              {copy.hero.h1}
+            </h1>
+            <p className="piano-hero__subtitle">
+              {copy.hero.text}
+            </p>
+            <div className="piano-hero__actions">
+              <RegionLink href={copy.hero.primaryCta.href} region="ca" className="btn btn-primary btn-lg">
+                {copy.hero.primaryCta.text}
+              </RegionLink>
+              <RegionLink href={copy.hero.secondaryCta.href} region="ca" className="piano-hero__btn-outline">
+                {copy.hero.secondaryCta.text}
+              </RegionLink>
+            </div>
+          </div>
+        </div>
+
+        <div className="piano-hero__keys">
+          <Image src="/images/co-curricular/piano-keys.webp" alt="Piano keys for online music lessons in Canada" width={1200} height={100} />
+        </div>
+      </section>
+
+      <section className="piano-education">
+        <div className="container">
+          <div className="piano-education__header">
+            <p className="piano-education__label">
+              <span className="piano-education__label-star">✦</span>
+              {copy.mastery.eyebrow}
+            </p>
+            <h2 className="piano-education__title">{copy.mastery.h2}</h2>
+          </div>
+
+          <div className="piano-education__grid">
+            {copy.mastery.cards.slice(0, 3).map((card) => (
+              <div key={card.title} className="piano-education__card">
+                <div className="piano-education__card-icon">
+                  <EducationIcon type={card.icon} />
+                </div>
+                <h3 className="piano-education__card-title">{card.title}</h3>
+                <p className="piano-education__card-desc">{card.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="piano-education__grid piano-education__grid--bottom">
+            {copy.mastery.cards.slice(3).map((card) => (
+              <div key={card.title} className="piano-education__card">
+                <div className="piano-education__card-icon">
+                  <EducationIcon type={card.icon} />
+                </div>
+                <h3 className="piano-education__card-title">{card.title}</h3>
+                <p className="piano-education__card-desc">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="piano-grades">
+        <div className="container">
+          <div className="piano-grades__header">
+            <p className="piano-grades__label">
+              <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="piano-grades__label-icon" />
+              {copy.gradeProgression.eyebrow}
+            </p>
+            <h2 className="piano-grades__title">{copy.gradeProgression.h2}</h2>
+          </div>
+
+          <div className="piano-grades__path">
+            <div className="piano-grades__line" />
+            <div className="piano-grades__grid">
+              {copy.gradeProgression.grades.map((grade) => (
+                <div key={grade.short} className="piano-grades__node">
+                  <div className="piano-grades__circle">
+                    <span className="piano-grades__number">{grade.short}</span>
+                  </div>
+                  <span className="piano-grades__step-label">{grade.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {copy.gradeProgression.note && (
+            <p className="piano-grades__note">
+              {copy.gradeProgression.note}
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="piano-structure">
+        <div className="container">
+          <div className="piano-structure__header">
+            <p className="piano-structure__label">
+              <span className="piano-structure__label-star">✦</span>
+              {copy.lessonStructure.eyebrow}
+            </p>
+            <h2 className="piano-structure__title">{copy.lessonStructure.h2}</h2>
+          </div>
+
+          <div className="piano-structure__grid">
+            <div className="piano-structure__timeline">
+              {copy.lessonStructure.timeline.map((item, i) => (
+                <div key={i} className="piano-structure__timeline-item">
+                  <div className="piano-structure__timeline-dot" />
+                  <div className="piano-structure__timeline-body">
+                    <h3 className="piano-structure__timeline-title">{item.title}</h3>
+                    <p className="piano-structure__timeline-desc">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="piano-structure__sidebar">
+              <div className="piano-structure__image-wrapper">
+                <Image
+                  src={copy.lessonStructure.image.src}
+                  alt={copy.lessonStructure.image.alt}
+                  width={copy.lessonStructure.image.width}
+                  height={copy.lessonStructure.image.height}
+                  className="piano-structure__image"
+                />
+              </div>
+
+              <div className="piano-structure__details">
+                {copy.lessonStructure.details.map((detail, i) => (
+                  <div key={i} className="piano-structure__detail-card">
+                    <p className="piano-structure__detail-label">{detail.label}</p>
+                    <p className="piano-structure__detail-value">{detail.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="piano-audience">
+        <div className="container">
+          <div className="piano-audience__header">
+            <p className="piano-audience__label">
+              <span className="piano-audience__label-star">✦</span>
+              {copy.audience.eyebrow}
+            </p>
+            <h2 className="piano-audience__title">{copy.audience.h2}</h2>
+          </div>
+
+          <div className="piano-audience__grid">
+            <div className="piano-audience__image-wrapper">
+              <Image
+                src={copy.audience.image.src}
+                alt={copy.audience.image.alt}
+                width={copy.audience.image.width}
+                height={copy.audience.image.height}
+                className="piano-audience__image"
+              />
+            </div>
+
+            <div className="piano-audience__list">
+              {copy.audience.items.map((item, i) => (
+                <div key={i} className="piano-audience__item">
+                  <h3 className="piano-audience__item-title">
+                    {item.title}
+                  </h3>
+                  <p className="piano-audience__item-desc">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="piano-requirements">
+        <div className="container">
+          <div className="piano-requirements__header">
+            <h2 className="piano-requirements__title">{copy.requirements.h2}</h2>
+          </div>
+
+          <div className="piano-requirements__grid">
+            {copy.requirements.items.map((req, i) => (
+              <div
+                key={i}
+                className={`piano-requirements__card${req.highlighted ? " piano-requirements__card--highlighted" : ""}`}
+              >
+                <div className="piano-requirements__card-icon">
+                  <RequirementIcon type={req.icon} highlighted={req.highlighted} />
+                </div>
+                <p className="piano-requirements__card-label">{req.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {copy.requirements.note && (
+            <p className="piano-requirements__note">
+              {copy.requirements.note}
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="piano-cta">
+        <div className="container">
+          <div className="piano-cta__content">
+            <h2 className="piano-cta__title">{copy.finalCta.h2}</h2>
+            {copy.finalCta.text && (
+              <p className="piano-cta__subtitle">
+                {copy.finalCta.text}
+              </p>
+            )}
+            <div className="piano-cta__actions">
+              <RegionLink href={copy.finalCta.primaryButton.href} region="ca" className="btn btn-primary btn-lg">
+                {copy.finalCta.primaryButton.text}
+              </RegionLink>
+              <RegionLink href={copy.finalCta.secondaryButton.href} region="ca" className="piano-cta__btn-outline">
+                {copy.finalCta.secondaryButton.text}
+              </RegionLink>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 export default function PianoView({ region }: { region: RegionCode }) {
   if (region === "au") {
     return <AuPianoView />;
+  }
+  if (region === "ca") {
+    return <CaPianoView />;
   }
 
   return (
