@@ -418,8 +418,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Discover live online music lessons in piano and guitar for students. Personalized instruction from experienced music educators for all beginners and beyond."
     },
     "ca": {
-      "title": "Online Music Lessons | TutorExel Canada",
-      "description": "Discover live online music lessons in piano and guitar for students. Personalized instruction from dedicated music teachers for all beginners and beyond."
+      "title": "Online Music Lessons Canada | Piano and Guitar | TutorExel",
+      "description": "Live one-on-one piano and guitar lessons for Canadian students, following the Trinity College London syllabus. Initial to Grade 8. Book a free trial lesson."
     },
     "nz": {
       "title": "Online Music Lessons | TutorExel New Zealand",
@@ -436,8 +436,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Interactive one-on-one guitar lessons for students. Learn chords, technique, and contemporary songs with patient and encouraging modern music instructors."
     },
     "ca": {
-      "title": "Online Guitar Lessons for Kids | TutorExel Canada",
-      "description": "Interactive one-on-one guitar lessons for young learners. Learn chords, technique, and popular melodies with encouraging Canadian music teachers online."
+      "title": "Online Guitar Lessons Canada | Trinity Syllabus | TutorExel",
+      "description": "Live one-on-one online guitar lessons for Canadian students aged 8 and up, Initial to Grade 8 on the Trinity College London syllabus. Book a free trial."
     },
     "nz": {
       "title": "Online Guitar Lessons for Kids | TutorExel NZ",
@@ -472,8 +472,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Interactive live online piano lessons for young learners. Master notation, scales, and enjoyable pieces with skilled and patient American music educators."
     },
     "ca": {
-      "title": "Online Piano Lessons for Kids | TutorExel Canada",
-      "description": "Interactive live online piano lessons for young learners. Master notation, rhythm, and melodic repertoire with skilled Canadian piano teachers online."
+      "title": "Online Piano Lessons Canada | Trinity Syllabus | TutorExel",
+      "description": "Live one-on-one online piano lessons for Canadian kids and adults, Initial to Grade 8 on the Trinity College London syllabus. Book a free trial lesson."
     },
     "nz": {
       "title": "Online Piano Lessons for Kids | TutorExel NZ",
@@ -508,8 +508,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 2 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 2 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 2 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 2 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 English tutoring matched to your province's curriculum. Phonics, reading, writing and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 2 English Tutoring | TutorExel New Zealand",
@@ -526,8 +526,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 2 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 2 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 2 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 2 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 math tutoring matched to your province's curriculum. 40 sessions, one on one or small groups, termly mock tests. Book a free trial."
     },
     "nz": {
       "title": "Year 2 Maths Tutoring | TutorExel New Zealand",
@@ -544,8 +544,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 2 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 2 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 2 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 2 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 science tutoring matched to your province's curriculum. Animals, materials, water and machines in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 2 Science Tutoring | TutorExel New Zealand",
