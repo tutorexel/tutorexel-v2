@@ -1,4 +1,4 @@
-import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
+import { REGIONS_CONFIG, COMPANY_POSTAL_ADDRESS, type RegionCode } from "@/data/regions";
 import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
 
 export function getOrganizationSchema(region: RegionCode = "au"): Record<string, unknown> {
@@ -19,6 +19,7 @@ export function getOrganizationSchema(region: RegionCode = "au"): Record<string,
     logo: "https://www.tutorexel.com/images/logo.svg",
     description: descriptions[region] || descriptions.au,
     foundingDate: "2009",
+    address: COMPANY_POSTAL_ADDRESS,
     areaServed: {
       "@type": "Country",
       name: config.countryName,
@@ -30,13 +31,16 @@ export function getOrganizationSchema(region: RegionCode = "au"): Record<string,
     ],
   };
 
-  if (config.phone) {
+  const telephone = config.phoneE164 || (config.phone ? `+${config.phone.replace(/[^0-9]/g, "")}` : null);
+
+  if (telephone) {
+    schema.telephone = telephone;
     schema.contactPoint = {
       "@type": "ContactPoint",
-      telephone: config.phone,
+      telephone,
       contactType: "customer service",
-      availableLanguage: "English",
       areaServed: config.code.toUpperCase(),
+      availableLanguage: "English",
     };
   }
 

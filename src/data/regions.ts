@@ -2,6 +2,24 @@ export type RegionCode = "au" | "us" | "ca" | "nz";
 
 export const COMPANY_ADDRESS = "17 Statham View, Crambourne West, Victoria 3977, Australia";
 
+export interface CompanyPostalAddress {
+  "@type": "PostalAddress";
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  addressCountry: string;
+}
+
+export const COMPANY_POSTAL_ADDRESS: CompanyPostalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: "17 Statham View",
+  addressLocality: "Crambourne West",
+  addressRegion: "VIC",
+  postalCode: "3977",
+  addressCountry: "AU",
+};
+
 export interface PricingPlanConfig {
   id: string;
   name: string;
@@ -38,6 +56,7 @@ export interface RegionConfig {
   phone: string | null;
   phoneText: string;
   phoneHref: string;
+  phoneE164: string | null;
   curriculumLabel: string;
   testNames: string[];
   name: string;
@@ -103,6 +122,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     phone: "+61 470-330-548",
     phoneText: "+61 470-330-548",
     phoneHref: "https://wa.me/61470330548",
+    phoneE164: "+61470330548",
     curriculumLabel: "Australian Curriculum (ACARA)",
     testNames: ["NAPLAN", "ICAS"],
     name: "Australia",
@@ -257,6 +277,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     phone: "+1 (206) 797 7387",
     phoneText: "+1 (206) 797 7387",
     phoneHref: "tel:+12067977387",
+    phoneE164: "+12067977387",
     curriculumLabel: "US Common Core & State Standards",
     testNames: ["State Assessments", "Standardized Tests"],
     name: "USA",
@@ -412,6 +433,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     phone: null,
     phoneText: "",
     phoneHref: "",
+    phoneE164: null,
     curriculumLabel: "Canadian Provincial Curricula",
     testNames: ["EQAO", "Provincial Assessments"],
     name: "Canada",
@@ -567,6 +589,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     phone: null,
     phoneText: "",
     phoneHref: "",
+    phoneE164: null,
     curriculumLabel: "New Zealand Curriculum (NZC)",
     testNames: ["PAT", "NZC Assessments"],
     name: "New Zealand",
