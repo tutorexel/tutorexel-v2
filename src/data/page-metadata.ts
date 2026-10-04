@@ -26,8 +26,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online math, English and science tutoring for Grades 2 to 10, matched to your province's curriculum, with EQAO and test prep. Book a free trial class."
     },
     "nz": {
-      "title": "Online Tutoring Years 2-7 | TutorExel NZ",
-      "description": "Connect with expert New Zealand online tutors for Years 2 to 7. Live structured classes in Maths, English and Science aligned with the NZC school framework."
+      "title": "Online Tutoring in New Zealand | Years 2-10 | TutorExel",
+      "description": "Live online maths, English and science tutoring for Years 2 to 10. Aligned to the New Zealand Curriculum, with small classes. Book a free trial class."
     }
   },
   "/about": {
@@ -422,8 +422,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live one-on-one piano and guitar lessons for Canadian students, following the Trinity College London syllabus. Initial to Grade 8. Book a free trial lesson."
     },
     "nz": {
-      "title": "Online Music Lessons | TutorExel New Zealand",
-      "description": "Discover live online music lessons in piano and guitar for young learners. Dedicated instruction from qualified music tutors for all foundational skill levels."
+      "title": "Online Music Lessons NZ | Piano and Guitar | TutorExel",
+      "description": "Live one-on-one piano and guitar lessons for Kiwi students, following the Trinity College London syllabus. Initial to Grade 8. Book a free trial lesson."
     }
   },
   "/co-curricular/guitar": {
@@ -440,8 +440,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live one-on-one online guitar lessons for Canadian students aged 8 and up, Initial to Grade 8 on the Trinity College London syllabus. Book a free trial."
     },
     "nz": {
-      "title": "Online Guitar Lessons for Kids | TutorExel NZ",
-      "description": "Interactive one-on-one guitar classes for school students. Learn chords, rhythm, and favorite songs with patient and supportive modern music instructors."
+      "title": "Online Guitar Lessons NZ | Trinity Syllabus | TutorExel",
+      "description": "Live one-on-one online guitar lessons for Kiwi students aged 8 and up, Initial to Grade 8 on the Trinity College London syllabus. Book a free trial lesson."
     }
   },
   "/co-curricular/guitar/enquire": {
@@ -476,8 +476,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live one-on-one online piano lessons for Canadian kids and adults, Initial to Grade 8 on the Trinity College London syllabus. Book a free trial lesson."
     },
     "nz": {
-      "title": "Online Piano Lessons for Kids | TutorExel NZ",
-      "description": "Interactive live online piano lessons for school students. Learn notation, keys, and musical pieces with encouraging New Zealand piano tutors and teachers."
+      "title": "Online Piano Lessons NZ | Trinity Syllabus | TutorExel",
+      "description": "Live one-on-one online piano lessons for Kiwi kids and adults, from Initial to Grade 8 on the Trinity College London syllabus. Book a free trial lesson."
     }
   },
   "/co-curricular/piano/enquire": {
@@ -512,8 +512,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 2 English tutoring matched to your province's curriculum. Phonics, reading, writing and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 2 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 2 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 2 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 2 English tutoring aligned to the New Zealand Curriculum. Phonics, reading and writing in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-2/maths": {
@@ -530,8 +530,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 2 math tutoring matched to your province's curriculum. 40 sessions, one on one or small groups, termly mock tests. Book a free trial."
     },
     "nz": {
-      "title": "Year 2 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 2 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 2 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 2 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-2/science": {
@@ -548,8 +548,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 2 science tutoring matched to your province's curriculum. Animals, materials, water and machines in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 2 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 2 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 2 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 2 science tutoring aligned to the New Zealand Curriculum. Animals, materials, water and machines in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-3/english": {
@@ -566,8 +566,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 3 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 3 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 3 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 3 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 3 English tutoring aligned to the New Zealand Curriculum. Reading, writing and grammar in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-3/maths": {
@@ -584,8 +584,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 3 math tutoring matched to your province's curriculum. Multiplication, fractions, money and time in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 3 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 3 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 3 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 3 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-3/science": {
@@ -602,8 +602,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 3 science tutoring matched to your province's curriculum. Plants, structures, forces and soil in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 3 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 3 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 3 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 3 science tutoring aligned to the New Zealand Curriculum. Plants, structures, forces and soil in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-4/english": {
@@ -620,8 +620,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 4 English tutoring matched to your province's curriculum. Reading, writing, grammar and Canadian spelling in 40 sessions. Book a free trial."
     },
     "nz": {
-      "title": "Year 4 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 4 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 4 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 4 English tutoring aligned to the New Zealand Curriculum. Reading, writing and grammar in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-4/maths": {
@@ -638,8 +638,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 4 math tutoring matched to your province's curriculum. Multiplication, fractions, decimals and money in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 4 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 4 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 4 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 4 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-4/science": {
@@ -656,8 +656,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 4 science tutoring matched to your province's curriculum. Habitats, light, sound, gears and rocks in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 4 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 4 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 4 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 4 science tutoring aligned to the New Zealand Curriculum. Habitats, light, sound, gears and rocks in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-5/english": {
@@ -674,8 +674,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 5 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 5 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 5 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 5 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 5 English tutoring aligned to the New Zealand Curriculum. Reading, writing and grammar in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-5/maths": {
@@ -692,8 +692,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 5 math tutoring matched to your province's curriculum. Decimals, fractions, percent and volume in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 5 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 5 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 5 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 5 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-5/science": {
@@ -710,8 +710,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 5 science tutoring matched to your province's curriculum. Body systems, matter, forces and energy in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 5 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 5 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 5 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 5 science tutoring aligned to the New Zealand Curriculum. Body systems, matter, forces and energy in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-6/english": {
@@ -728,8 +728,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 6 English tutoring matched to your province's curriculum. Reading, essays, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 6 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 6 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 6 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 6 English tutoring aligned to the New Zealand Curriculum. Reading, writing and grammar in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-6/maths": {
@@ -746,8 +746,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 6 math tutoring matched to your province's curriculum. Fractions, percent, ratios and algebra in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 6 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 6 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 6 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 6 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-6/science": {
@@ -764,8 +764,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 6 science tutoring matched to your province's curriculum. Biodiversity, electricity, flight and space in 40 sessions. Book a free trial."
     },
     "nz": {
-      "title": "Year 6 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 6 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 6 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 6 science tutoring aligned to the New Zealand Curriculum. Biodiversity, electricity, flight and space in 40 sessions. Book a free trial."
     }
   },
   "/subjects/year-7/english": {
@@ -782,8 +782,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 7 English tutoring matched to your province's curriculum. Analysis, essays, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 7 English Tutoring | TutorExel New Zealand",
-      "description": "Online Year 7 English tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 7 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 7 English tutoring aligned to the New Zealand Curriculum. Reading, writing and grammar in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-7/maths": {
@@ -800,8 +800,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 7 math tutoring matched to your province's curriculum. Integers, ratios, percent and algebra in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 7 Maths Tutoring | TutorExel New Zealand",
-      "description": "Online Year 7 Maths tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 7 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 7 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-7/science": {
@@ -818,8 +818,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online Grade 7 science tutoring matched to your province's curriculum. Ecosystems, mixtures, mechanisms and heat in 40 sessions. Book a free trial class."
     },
     "nz": {
-      "title": "Year 7 Science Tutoring | TutorExel New Zealand",
-      "description": "Online Year 7 Science tutoring aligned with the New Zealand Curriculum. 40 structured lessons, weekly practice worksheets, and dedicated local educators."
+      "title": "Year 7 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 7 science tutoring aligned to the New Zealand Curriculum. Ecosystems, mixtures, machines and Earth in 40 sessions. Book a free trial."
     }
   },
   "/subjects/year-8/english": {
@@ -830,6 +830,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 8 English Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 8 English tutoring matched to your province's curriculum. Literary analysis, argument and writing in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 8 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 8 English tutoring aligned to the New Zealand Curriculum. Analysis, argument and writing in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-8/maths": {
@@ -840,6 +844,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 8 Math Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 8 math tutoring matched to your province's curriculum. Linear relations, Pythagoras and probability in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 8 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 8 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-8/science": {
@@ -850,6 +858,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 8 Science Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 8 science tutoring matched to your province's curriculum. Cells, Earth science, energy and matter in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 8 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 8 science tutoring aligned to the New Zealand Curriculum. Cells, Earth science, energy and matter in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-9/english": {
@@ -860,6 +872,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 9 English Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 9 English tutoring matched to your province's curriculum. Analysis, argument and essay writing in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 9 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 9 English tutoring aligned to the New Zealand Curriculum. Analysis, argument and writing in 40 sessions. Book your free trial class today."
     }
   },
   "/subjects/year-9/maths": {
@@ -870,6 +886,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 9 Math Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 9 math tutoring matched to your province's curriculum. Quadratics, trigonometry and probability in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 9 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 9 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-9/science": {
@@ -880,6 +900,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 9 Science Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 9 science tutoring matched to your province's curriculum. Body systems, carbon cycle, energy and atoms in 40 sessions. Book a free trial."
+    },
+    "nz": {
+      "title": "Year 9 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 9 science tutoring aligned to the New Zealand Curriculum. Body systems, carbon cycle, energy and atoms in 40 sessions. Book a free trial."
     }
   },
   "/subjects/year-10/english": {
@@ -890,6 +914,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 10 English Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 10 English tutoring matched to your province's curriculum. Analysis, argument and literacy test skills in 40 sessions. Book a free trial."
+    },
+    "nz": {
+      "title": "Year 10 English Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 10 English tutoring aligned to the New Zealand Curriculum. Analysis, argument and writing in 40 sessions. Book your free trial class."
     }
   },
   "/subjects/year-10/maths": {
@@ -900,6 +928,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 10 Math Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 10 math tutoring matched to your province's curriculum. Quadratics, trigonometry and geometry in 40 sessions. Book a free trial class."
+    },
+    "nz": {
+      "title": "Year 10 Maths Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 10 maths tutoring aligned to the New Zealand Curriculum. 40 sessions, 1-on-1 or small groups, termly mock tests. Book a free trial class."
     }
   },
   "/subjects/year-10/science": {
@@ -910,6 +942,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Grade 10 Science Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 10 science tutoring matched to your province's curriculum. Genetics, space, climate, forces and chemistry in 40 sessions. Book a free trial."
+    },
+    "nz": {
+      "title": "Year 10 Science Tutoring in New Zealand | TutorExel",
+      "description": "Live online Year 10 science tutoring aligned to the New Zealand Curriculum. Genetics, space, climate, forces and chemistry in 40 sessions. Book a free trial."
     }
   }
 };

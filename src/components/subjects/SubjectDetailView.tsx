@@ -283,7 +283,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const rootUrl = "https://www.tutorexel.com";
   const homeHref = getHref("/");
   const homeUrl = homeHref === "/" ? rootUrl : `${rootUrl}${homeHref}`;
-  const breadcrumbItems = effectiveRegion === "ca"
+  const breadcrumbItems = (effectiveRegion === "ca" || effectiveRegion === "nz")
     ? [
         { name: "Home", url: homeUrl },
         { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },

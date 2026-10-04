@@ -6,6 +6,7 @@ import { createBreadcrumbSchema } from "@/utils/schema";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_HOME_COPY } from "@/data/copy/au-home";
 import { CA_HOME_COPY } from "@/data/copy/ca-home";
+import { NZ_HOME_COPY } from "@/data/copy/nz-home";
 import "@/app/subjects/subjects.css";
 
 const structuredSteps = [
@@ -94,7 +95,10 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
   const yearPrefix = regConfig.yearLabel.toUpperCase();
   const isAu = region === "au";
   const isCa = region === "ca";
-  const displayedYearLevels = isCa
+  const isNz = region === "nz";
+  const displayedYearLevels = isNz
+    ? NZ_HOME_COPY.yearLevels.years
+    : isCa
     ? CA_HOME_COPY.yearLevels.years
     : isAu
     ? AU_HOME_COPY.yearLevels.years
