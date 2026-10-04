@@ -17,13 +17,13 @@ export const metadata = buildMetadata({
 export default function Home() {
   return (
     <>
-      <Hero />
-      <YearLevels />
-      <HowItWorks />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
+      <Hero region="nz" />
+      <YearLevels region="nz" />
+      <HowItWorks region="nz" />
+      <Testimonials region="nz" />
+      <Pricing region="nz" />
+      <FAQ region="nz" />
+      <CTA region="nz" />
     </>
   );
 }

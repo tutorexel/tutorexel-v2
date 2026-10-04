@@ -6,6 +6,7 @@ import { getCurrentRegion } from '@/utils/regionalLinks';
 import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
+import { NZ_HOME_COPY } from '@/data/copy/nz-home';
 import './HowItWorks.css';
 
 interface HowItWorksProps {
@@ -44,26 +45,35 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
   const currentRegion = region || getCurrentRegion(pathname);
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
+  const isNz = currentRegion === 'nz';
 
-  const steps = isCa
+  const steps = isNz
+    ? NZ_HOME_COPY.howItWorks.steps
+    : isCa
     ? CA_HOME_COPY.howItWorks.steps
     : isAu
     ? AU_HOME_COPY.howItWorks.steps
     : defaultSteps;
 
-  const eyebrow = isCa
+  const eyebrow = isNz
+    ? NZ_HOME_COPY.howItWorks.eyebrow
+    : isCa
     ? CA_HOME_COPY.howItWorks.eyebrow
     : isAu
     ? AU_HOME_COPY.howItWorks.eyebrow
     : 'Simple Process';
 
-  const title = isCa
+  const title = isNz
+    ? NZ_HOME_COPY.howItWorks.title
+    : isCa
     ? CA_HOME_COPY.howItWorks.title
     : isAu
     ? AU_HOME_COPY.howItWorks.title
     : 'How TutorExel Works';
 
-  const intro = isCa
+  const intro = isNz
+    ? NZ_HOME_COPY.howItWorks.intro
+    : isCa
     ? CA_HOME_COPY.howItWorks.intro
     : isAu
     ? AU_HOME_COPY.howItWorks.intro

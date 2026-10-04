@@ -7,6 +7,7 @@ import { getCurrentRegion } from '@/utils/regionalLinks';
 import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
+import { NZ_HOME_COPY } from '@/data/copy/nz-home';
 import { createFaqSchema } from '@/utils/schema';
 import './FAQ.css';
 
@@ -52,6 +53,7 @@ export default function FAQ({ region }: FAQProps = {}) {
   const currentRegion = region || getCurrentRegion(pathname);
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
+  const isNz = currentRegion === 'nz';
 
   const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -59,25 +61,33 @@ export default function FAQ({ region }: FAQProps = {}) {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
-  const faqs = isCa
+  const faqs = isNz
+    ? NZ_HOME_COPY.faq.items
+    : isCa
     ? CA_HOME_COPY.faq.items
     : isAu
     ? AU_HOME_COPY.faq.items
     : defaultFaqData;
 
-  const eyebrow = isCa
+  const eyebrow = isNz
+    ? NZ_HOME_COPY.faq.eyebrow
+    : isCa
     ? CA_HOME_COPY.faq.eyebrow
     : isAu
     ? AU_HOME_COPY.faq.eyebrow
     : 'Got Questions?';
 
-  const title = isCa
+  const title = isNz
+    ? NZ_HOME_COPY.faq.title
+    : isCa
     ? CA_HOME_COPY.faq.title
     : isAu
     ? AU_HOME_COPY.faq.title
     : 'Frequently Asked Questions';
 
-  const intro = isCa
+  const intro = isNz
+    ? NZ_HOME_COPY.faq.intro
+    : isCa
     ? CA_HOME_COPY.faq.intro
     : isAu
     ? AU_HOME_COPY.faq.intro

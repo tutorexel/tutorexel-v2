@@ -7,6 +7,7 @@ import { REGIONS, type RegionCode } from '@/data/regions';
 import { getCurrentRegion } from '@/utils/regionalLinks';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
+import { NZ_HOME_COPY } from '@/data/copy/nz-home';
 import BookTrialButton from './BookTrialButton';
 import ProvinceChips from '@/components/shared/ProvinceChips';
 import './Hero.css';
@@ -21,6 +22,7 @@ export default function Hero({ region }: HeroProps = {}) {
   const currentRegion = REGIONS.find((r) => r.code === currentRegionCode) || REGIONS[0];
   const isAu = currentRegionCode === 'au';
   const isCa = currentRegionCode === 'ca';
+  const isNz = currentRegionCode === 'nz';
 
   return (
     <section className="hero">
@@ -42,11 +44,21 @@ export default function Hero({ region }: HeroProps = {}) {
           {/* Left Content */}
           <div className="hero__content">
             <p className="hero__countries-label">
-              {isCa ? CA_HOME_COPY.hero.eyebrow : "Now teaching families in"}
+              {isCa ? CA_HOME_COPY.hero.eyebrow : isNz ? NZ_HOME_COPY.hero.eyebrow : "Now teaching families in"}
             </p>
             {isCa ? (
               <div className="hero__countries">
                 <ProvinceChips />
+              </div>
+            ) : isNz ? (
+              <div className="hero__countries">
+                <div className="hero__nz-chips">
+                  {NZ_HOME_COPY.hero.regions.map((regionName) => (
+                    <span key={regionName} className="hero__nz-chip">
+                      {regionName}
+                    </span>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="hero__countries">
@@ -64,7 +76,45 @@ export default function Hero({ region }: HeroProps = {}) {
               </div>
             )}
 
-            {isCa ? (
+            {isNz ? (
+              <>
+                <h1 className="hero__title">
+                  {NZ_HOME_COPY.hero.titlePrefix}
+                  <span className="hero__title-gradient">{NZ_HOME_COPY.hero.titleHighlight}</span>
+                  <span className="hero__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={24} height={24} />
+                  </span>
+                </h1>
+                <p className="hero__description">
+                  {NZ_HOME_COPY.hero.subtext}
+                </p>
+                <div className="hero__cta">
+                  <BookTrialButton className="hero__btn-primary">
+                    {NZ_HOME_COPY.hero.primaryCta}
+                  </BookTrialButton>
+                  <RegionLink href={NZ_HOME_COPY.hero.secondaryCtaHref} region="nz" className="hero__btn-secondary">
+                    {NZ_HOME_COPY.hero.secondaryCta}
+                  </RegionLink>
+                </div>
+                <div className="hero__social-proof">
+                  <div className="hero__avatars">
+                    <div className="hero__avatar">
+                      <Image src="/avatar-priya.png" alt="Student Priya" width={40} height={40} />
+                    </div>
+                    <div className="hero__avatar">
+                      <Image src="/avatar-rohit.png" alt="Student Rohit" width={40} height={40} />
+                    </div>
+                    <div className="hero__avatar">
+                      <Image src="/avatar-sarah.png" alt="Student Sarah" width={40} height={40} />
+                    </div>
+                    <div className="hero__avatar">
+                      <Image src="/avatar-michael.png" alt="Student Michael" width={40} height={40} />
+                    </div>
+                    <div className="hero__avatar hero__avatar--count"><span>+9k</span></div>
+                  </div>
+                </div>
+              </>
+            ) : isCa ? (
               <>
                 <h1 className="hero__title">
                   {CA_HOME_COPY.hero.titlePrefix}
@@ -168,7 +218,39 @@ export default function Hero({ region }: HeroProps = {}) {
 
           {/* Right Side - Badges */}
           <div className="hero__image-wrapper">
-            {isCa ? (
+            {isNz ? (
+              <>
+                <div className="hero__badge hero__badge--prep">
+                  <div className="hero__badge-icon hero__badge-icon--purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </div>
+                  <div className="hero__badge-content">
+                    <span className="hero__badge-title">{NZ_HOME_COPY.hero.badges[0].title}</span>
+                    <span className="hero__badge-subtitle">{NZ_HOME_COPY.hero.badges[0].subtitle}</span>
+                  </div>
+                </div>
+                <div className="hero__badge hero__badge--verified">
+                  <div className="hero__badge-icon">
+                    <Image src="/images/banner/tick_icon.webp" alt="" aria-hidden="true" width={24} height={24} />
+                  </div>
+                  <div className="hero__badge-content">
+                    <span className="hero__badge-title">{NZ_HOME_COPY.hero.badges[1].title}</span>
+                    <span className="hero__badge-subtitle">{NZ_HOME_COPY.hero.badges[1].subtitle}</span>
+                  </div>
+                </div>
+                <div className="hero__badge hero__badge--experience">
+                  <div className="hero__badge-icon hero__badge-icon--orange">
+                    <Image src="/images/banner/book_icon.webp" alt="" aria-hidden="true" width={24} height={24} />
+                  </div>
+                  <div className="hero__badge-content">
+                    <span className="hero__badge-title">{NZ_HOME_COPY.hero.badges[2].title}</span>
+                    <span className="hero__badge-subtitle">{NZ_HOME_COPY.hero.badges[2].subtitle}</span>
+                  </div>
+                </div>
+              </>
+            ) : isCa ? (
               <>
                 <div className="hero__badge hero__badge--verified">
                   <div className="hero__badge-icon">
@@ -271,7 +353,24 @@ export default function Hero({ region }: HeroProps = {}) {
         {/* Banner Cards Section */}
         <div className="hero__cards">
           <div className="hero__cards-inner">
-            {isCa ? (
+            {isNz ? (
+              <>
+                {NZ_HOME_COPY.hero.serviceCards.map((card) => (
+                  <div key={card.id} className={`hero-card ${card.variantClass}`}>
+                    <div className={`hero-card__icon ${card.iconClass}`}>
+                      <Image src={card.iconSrc} alt="" aria-hidden="true" width={card.iconWidth} height={card.iconHeight} />
+                    </div>
+                    <div className="hero-card__content">
+                      <h3 className="hero-card__title">{card.title}</h3>
+                      <p className="hero-card__subtitle">{card.subtitle}</p>
+                      <RegionLink href={card.href} region="nz" className="hero-card__link" aria-label={card.ariaLabel}>
+                        {card.linkText}
+                      </RegionLink>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : isCa ? (
               <>
                 {CA_HOME_COPY.hero.serviceCards.map((card) => (
                   <div key={card.id} className={`hero-card ${card.variantClass}`}>
