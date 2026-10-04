@@ -113,7 +113,7 @@ export const nzYear4EnglishCopy: SubjectCopyData = {
           {
             "no": "15",
             "topic": "NZ Spelling Patterns",
-            "whatWeCover": "Learn NZ spellings such as colour, neighbour, centre, theatre and defence, and when they differ from American ones."
+            "whatWeCover": "Learn NZ spellings such as colour, neighbour, centre, theatre and defence, and when they differ from US ones."
           },
           {
             "no": "16",

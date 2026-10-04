@@ -164,7 +164,7 @@ export const nzYear6MathsCopy: SubjectCopyData = {
           {
             "no": "24",
             "topic": "Money and Exchange Rates",
-            "whatWeCover": "Convert between NZ and Australian dollars with an exchange rate and see why rates change."
+            "whatWeCover": "Convert between NZ and overseas currencies with an exchange rate and see why rates change."
           },
           {
             "no": "25",
