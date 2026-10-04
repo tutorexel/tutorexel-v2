@@ -5,6 +5,7 @@ import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_HOME_COPY } from "@/data/copy/au-home";
+import { CA_HOME_COPY } from "@/data/copy/ca-home";
 import "@/app/subjects/subjects.css";
 
 const structuredSteps = [
@@ -92,7 +93,12 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
   const basePath = regConfig.basePath;
   const yearPrefix = regConfig.yearLabel.toUpperCase();
   const isAu = region === "au";
-  const displayedYearLevels = isAu ? AU_HOME_COPY.yearLevels.years : defaultYearLevels;
+  const isCa = region === "ca";
+  const displayedYearLevels = isCa
+    ? CA_HOME_COPY.yearLevels.years
+    : isAu
+    ? AU_HOME_COPY.yearLevels.years
+    : defaultYearLevels;
 
   const subjectsBreadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: `https://www.tutorexel.com${basePath}` },
@@ -139,19 +145,19 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
               <span className="subject-banner__title-highlight">
                 Academic Curriculum
               </span>{" "}
-              {isAu ? "Years 2 to 10" : "Years 2 to 7"}{" "}
+              {isCa ? "Grades 2 to 10" : isAu ? "Years 2 to 10" : "Years 2 to 7"}{" "}
               <span className="subject-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="subject-banner__subtitle">
-              Structured Maths and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.
+              Structured {regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.
             </p>
 
             <div className="subject-banner__features">
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Small Groups or 1-on-1</h3>
-                <p className="subject-banner__feature-desc">Maximum 3 students per group for personalised attention, or dedicated 1-on-1 sessions</p>
+                <p className="subject-banner__feature-desc">Maximum 3 students per group for {regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions</p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">60-Minute Live Sessions</h3>
@@ -193,7 +199,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
             </p>
             <h2 className="subject-years__title">Select Your Child&apos;s {regConfig.yearLabel} Level</h2>
             <p className="subject-years__subtitle">
-              Each level includes Maths, English, and Science programs, structured across 4 terms with 10 sessions each.
+              Each level includes {regConfig.mathLabel}, English, and Science programs, structured across 4 terms with 10 sessions each.
             </p>
           </div>
 

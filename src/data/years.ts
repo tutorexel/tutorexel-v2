@@ -642,7 +642,7 @@ export function getSubjectData(yearId: string, subjectId: string): SubjectData |
 /* ------------------------------------------------------------------ */
 
 export function getAllSubjectParams(region?: string): { yearId: string; subjectId: string }[] {
-  const allowedYears = (region === "us" || region === "ca" || region === "nz")
+  const allowedYears = (region === "us" || region === "nz")
     ? yearLevels.filter((y) => y.year <= 7)
     : yearLevels;
 

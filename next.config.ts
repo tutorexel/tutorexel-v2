@@ -150,6 +150,26 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/ca/year-:year/:subject(maths|english|science)",
+        destination: "/ca/subjects/year-:year/:subject",
+      },
+      {
+        source: "/ca/year-:year",
+        destination: "/ca/subjects/year-:year/maths",
+      },
+      {
+        source: "/year-:year/:subject(maths|english|science)",
+        destination: "/subjects/year-:year/:subject",
+      },
+      {
+        source: "/year-:year",
+        destination: "/subjects/year-:year/maths",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

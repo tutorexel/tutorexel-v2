@@ -260,7 +260,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
     };
   } | undefined;
 
-  const regConfig = getRegionConfig(region);
+  const regConfig = getRegionConfig(effectiveRegion);
   const levelWord = regConfig.yearLabel;
   const mathLabel = regConfig.mathLabel;
 
@@ -283,12 +283,19 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const rootUrl = "https://www.tutorexel.com";
   const homeHref = getHref("/");
   const homeUrl = homeHref === "/" ? rootUrl : `${rootUrl}${homeHref}`;
-  const subjectBreadcrumbSchema = createBreadcrumbSchema([
-    { name: "Home", url: homeUrl },
-    { name: "Subjects", url: `${rootUrl}${getHref("/subjects")}` },
-    { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
-    { name: subjectLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/${activeSubject}`)}` },
-  ]);
+  const breadcrumbItems = effectiveRegion === "ca"
+    ? [
+        { name: "Home", url: homeUrl },
+        { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
+        { name: subjectLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/${activeSubject}`)}` },
+      ]
+    : [
+        { name: "Home", url: homeUrl },
+        { name: "Subjects", url: `${rootUrl}${getHref("/subjects")}` },
+        { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
+        { name: subjectLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/${activeSubject}`)}` },
+      ];
+  const subjectBreadcrumbSchema = createBreadcrumbSchema(breadcrumbItems);
 
   // Term tabs
   const terms = ["term1", "term2", "term3", "term4"] as const;
@@ -705,7 +712,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
       </section>
 
       {/* ===== Testimonials ===== */}
-      <Testimonials />
+      {regConfig.showTestimonials && <Testimonials region={effectiveRegion} />}
 
       {/* ===== Explore More ===== */}
       <section className="detail-explore section">

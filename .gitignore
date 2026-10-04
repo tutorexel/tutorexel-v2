@@ -55,4 +55,11 @@ coverage
 *.tmp
 
 # editor folders
-.claude
+.claude
+/docs/
+/scripts/
+/CODEBASE-AUDIT.md
+/.agents/
+/.claude/
+*.tsbuildinfo
+/scratch/

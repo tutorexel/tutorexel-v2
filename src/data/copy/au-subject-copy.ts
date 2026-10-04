@@ -45,6 +45,15 @@ import { caGrade6ScienceCopy } from "./ca-grade-6-science";
 import { caGrade7MathsCopy } from "./ca-grade-7-maths";
 import { caGrade7EnglishCopy } from "./ca-grade-7-english";
 import { caGrade7ScienceCopy } from "./ca-grade-7-science";
+import { caGrade8MathsCopy } from "./ca-grade-8-maths";
+import { caGrade8EnglishCopy } from "./ca-grade-8-english";
+import { caGrade8ScienceCopy } from "./ca-grade-8-science";
+import { caGrade9MathsCopy } from "./ca-grade-9-maths";
+import { caGrade9EnglishCopy } from "./ca-grade-9-english";
+import { caGrade9ScienceCopy } from "./ca-grade-9-science";
+import { caGrade10MathsCopy } from "./ca-grade-10-maths";
+import { caGrade10EnglishCopy } from "./ca-grade-10-english";
+import { caGrade10ScienceCopy } from "./ca-grade-10-science";
 
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
@@ -124,6 +133,21 @@ const CA_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
     maths: caGrade7MathsCopy,
     english: caGrade7EnglishCopy,
     science: caGrade7ScienceCopy,
+  },
+  "year-8": {
+    maths: caGrade8MathsCopy,
+    english: caGrade8EnglishCopy,
+    science: caGrade8ScienceCopy,
+  },
+  "year-9": {
+    maths: caGrade9MathsCopy,
+    english: caGrade9EnglishCopy,
+    science: caGrade9ScienceCopy,
+  },
+  "year-10": {
+    maths: caGrade10MathsCopy,
+    english: caGrade10EnglishCopy,
+    science: caGrade10ScienceCopy,
   },
 };
 

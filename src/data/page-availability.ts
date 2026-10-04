@@ -66,11 +66,11 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     { path: `/subjects/year-${y}/science`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
   ]),
 
-  // Subject detail pages: Years 8-10 (AU only)
+  // Subject detail pages: Years 8-10 (AU and CA)
   ...[8, 9, 10].flatMap((y) => [
-    { path: `/subjects/year-${y}/english`, regions: ["au"] as RegionCode[], isMarketUnique: true },
-    { path: `/subjects/year-${y}/maths`, regions: ["au"] as RegionCode[], isMarketUnique: true },
-    { path: `/subjects/year-${y}/science`, regions: ["au"] as RegionCode[], isMarketUnique: true },
+    { path: `/subjects/year-${y}/english`, regions: ["au", "ca"] as RegionCode[] },
+    { path: `/subjects/year-${y}/maths`, regions: ["au", "ca"] as RegionCode[] },
+    { path: `/subjects/year-${y}/science`, regions: ["au", "ca"] as RegionCode[] },
   ]),
 
   // Market-Unique Australian Pages (AU only: self-only hreflang)
