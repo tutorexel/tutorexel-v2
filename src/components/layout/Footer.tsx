@@ -68,22 +68,24 @@ export default function Footer() {
                 students achieve their full potential through {config.spellingPersonalised},
                 curriculum-aligned education.
               </p>
-              <div className="footer__countries">
-                <div className="footer__country">
-                  <Image
-                    src={currentRegion.flagUrl}
-                    alt={`${currentRegion.label} flag`}
-                    width={22}
-                    height={15}
-                    className="footer__country-flag"
-                    unoptimized
-                  />
-                  <span className="footer__country-name">{currentRegion.label}</span>
+              {currentRegionCode !== "ca" && (
+                <div className="footer__countries">
+                  <div className="footer__country">
+                    <Image
+                      src={currentRegion.flagUrl}
+                      alt={`${currentRegion.label} flag`}
+                      width={22}
+                      height={15}
+                      className="footer__country-flag"
+                      unoptimized
+                    />
+                    <span className="footer__country-name">{currentRegion.label}</span>
+                  </div>
                 </div>
-              </div>
+              )}
               {currentRegionCode === "ca" && (
                 <div className="footer__provinces">
-                  <ProvinceChips />
+                  <ProvinceChips provinces={["ON", "BC"]} />
                 </div>
               )}
               <div className="footer__social">

@@ -137,45 +137,6 @@ export default function Pricing({ region }: PricingProps = {}) {
             <p className="section-header__subtitle">
               {US_HOME_COPY.pricing.line2}
             </p>
-            <div className="pricing__country-row">
-              <div className="country-tabs" role="tablist" aria-label="Country pricing">
-                {US_HOME_COPY.pricing.countryTabs.map((tab) => (
-                  tab.active ? (
-                    <span
-                      key={tab.code}
-                      className="country-tabs__tab country-tabs__tab--active"
-                      aria-current="page"
-                    >
-                      <Image
-                        src={tab.flag}
-                        alt={`${tab.label} flag`}
-                        width={22}
-                        height={15}
-                        className="country-tabs__flag"
-                        unoptimized
-                      />
-                      <span className="country-tabs__name">{tab.label}</span>
-                    </span>
-                  ) : (
-                    <Link
-                      key={tab.code}
-                      href={tab.href}
-                      className="country-tabs__tab"
-                    >
-                      <Image
-                        src={tab.flag}
-                        alt={`${tab.label} flag`}
-                        width={22}
-                        height={15}
-                        className="country-tabs__flag"
-                        unoptimized
-                      />
-                      <span className="country-tabs__name">{tab.label}</span>
-                    </Link>
-                  )
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="pricing__grid">
@@ -247,45 +208,6 @@ export default function Pricing({ region }: PricingProps = {}) {
             <p className="section-header__subtitle">
               {NZ_HOME_COPY.pricing.line2}
             </p>
-            <div className="pricing__country-row">
-              <div className="country-tabs" role="tablist" aria-label="Country pricing">
-                {NZ_HOME_COPY.pricing.countryTabs.map((tab) => (
-                  tab.active ? (
-                    <span
-                      key={tab.code}
-                      className="country-tabs__tab country-tabs__tab--active"
-                      aria-current="page"
-                    >
-                      <Image
-                        src={tab.flag}
-                        alt={`${tab.label} flag`}
-                        width={22}
-                        height={15}
-                        className="country-tabs__flag"
-                        unoptimized
-                      />
-                      <span className="country-tabs__name">{tab.label}</span>
-                    </span>
-                  ) : (
-                    <Link
-                      key={tab.code}
-                      href={tab.href}
-                      className="country-tabs__tab"
-                    >
-                      <Image
-                        src={tab.flag}
-                        alt={`${tab.label} flag`}
-                        width={22}
-                        height={15}
-                        className="country-tabs__flag"
-                        unoptimized
-                      />
-                      <span className="country-tabs__name">{tab.label}</span>
-                    </Link>
-                  )
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="pricing__grid">
@@ -306,11 +228,12 @@ export default function Pricing({ region }: PricingProps = {}) {
                 <div className="pricing-card__price-wrapper">
                   {plan.originalAmount && (
                     <div className="pricing-card__original-price">
-                      <span className="original-price">{plan.originalAmount}</span>
+                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
                       <span className="discount-badge">{plan.discountBadge}</span>
                     </div>
                   )}
                   <div className="pricing-card__price">
+                    <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
                     <span className="period">{plan.period}</span>
                   </div>

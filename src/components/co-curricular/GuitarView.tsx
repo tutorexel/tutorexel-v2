@@ -621,7 +621,27 @@ function CaGuitarView() {
         </div>
       </section>
 
-      {/* Testimonials block hidden for Canada */}
+      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: "28px" }}>
+            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
+            {AU_GUITAR_COPY.testimonials.items.map((item) => (
+              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
+                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
+                  </div>
+                </div>
+                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="music-cta">
         <div className="container">
@@ -825,6 +845,28 @@ function NzGuitarView() {
         </div>
       </section>
 
+      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: "28px" }}>
+            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
+            {AU_GUITAR_COPY.testimonials.items.map((item) => (
+              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
+                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
+                  </div>
+                </div>
+                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="music-cta">
         <div className="container">
           <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
@@ -1021,6 +1063,28 @@ function UsGuitarView() {
                   <RequirementIcon type={item.icon} />
                 </div>
                 <p className="requirement-card__label">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: "28px" }}>
+            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
+            {AU_GUITAR_COPY.testimonials.items.map((item) => (
+              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
+                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
+                  </div>
+                </div>
+                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
               </div>
             ))}
           </div>

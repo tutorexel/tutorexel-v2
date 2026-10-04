@@ -49,6 +49,11 @@ export interface RegionConfig {
   spellingEnrol: string;
   showTestimonials: boolean;
   yearLevels: number[];
+  homePricing?: {
+    tutoring: { amount: string; currency: string; period: string };
+    music: { amount: string; currency: string; period: string };
+    premium: { amount: string; originalAmount?: string; discountBadge?: string; currency: string; period: string };
+  };
   hero: {
     title: string;
     titleHighlight: string;
@@ -261,7 +266,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Math",
     spellingPersonalised: "personalized",
     spellingEnrol: "Enroll",
-    showTestimonials: false,
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     hero: {
       title: "TutorExel",
@@ -416,7 +421,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Math",
     spellingPersonalised: "personalized",
     spellingEnrol: "Enrol",
-    showTestimonials: false,
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     hero: {
       title: "TutorExel",
@@ -571,8 +576,27 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     mathLabel: "Maths",
     spellingPersonalised: "personalised",
     spellingEnrol: "Enrol",
-    showTestimonials: false,
+    showTestimonials: true,
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    homePricing: {
+      tutoring: {
+        amount: "92",
+        currency: "NZ$",
+        period: "NZD/month per subject",
+      },
+      music: {
+        amount: "87",
+        currency: "NZ$",
+        period: "NZD/month (4 classes)",
+      },
+      premium: {
+        amount: "241",
+        originalAmount: "329",
+        discountBadge: "SAVE 27%",
+        currency: "NZ$",
+        period: "NZD/month",
+      },
+    },
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",

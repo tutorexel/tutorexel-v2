@@ -43,12 +43,17 @@ export const CANADIAN_PROVINCES: ProvinceInfo[] = [
 
 interface ProvinceChipsProps {
   className?: string;
+  provinces?: string[];
 }
 
-export default function ProvinceChips({ className = "" }: ProvinceChipsProps) {
+export default function ProvinceChips({ className = "", provinces }: ProvinceChipsProps) {
+  const chips = provinces
+    ? CANADIAN_PROVINCES.filter((prov) => provinces.includes(prov.code))
+    : CANADIAN_PROVINCES;
+
   return (
     <div className={`province-chips ${className}`.trim()}>
-      {CANADIAN_PROVINCES.map((prov) => (
+      {chips.map((prov) => (
         <div
           key={prov.code}
           className="province-chip"

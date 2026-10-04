@@ -3,6 +3,7 @@ import Hero from '@/components/home/Hero';
 import HowItWorks from '@/components/home/HowItWorks';
 import YearLevels from '@/components/home/YearLevels';
 import '@/app/subjects/subjects.css';
+import Testimonials from '@/components/home/Testimonials';
 import Pricing from '@/components/home/Pricing';
 import FAQ from '@/components/home/FAQ';
 import CTA from '@/components/home/CTA';
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero region="us" />
       <YearLevels region="us" />
       <HowItWorks region="us" />
+      <Testimonials region="us" />
       <Pricing region="us" />
       <FAQ region="us" />
       <CTA region="us" />

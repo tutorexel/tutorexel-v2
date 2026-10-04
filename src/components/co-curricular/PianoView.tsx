@@ -709,6 +709,29 @@ function CaPianoView() {
         </div>
       </section>
 
+      <section className="piano-testimonials">
+        <div className="container">
+          <div className="piano-testimonials__header">
+            <h2 className="piano-testimonials__title">{AU_PIANO_COPY.testimonials.h2}</h2>
+          </div>
+
+          <div className="piano-testimonials__grid">
+            {AU_PIANO_COPY.testimonials.items.map((item, i) => (
+              <div key={i} className="piano-testimonials__card">
+                <div className="piano-testimonials__card-header">
+                  <div className="piano-testimonials__avatar-initials">{item.initials}</div>
+                  <div>
+                    <h4 className="piano-testimonials__name">{item.name}</h4>
+                    <p className="piano-testimonials__role">{item.role}</p>
+                  </div>
+                </div>
+                <p className="piano-testimonials__text">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="piano-cta">
         <div className="container">
           <div className="piano-cta__content">
@@ -949,6 +972,29 @@ function NzPianoView() {
         </div>
       </section>
 
+      <section className="piano-testimonials">
+        <div className="container">
+          <div className="piano-testimonials__header">
+            <h2 className="piano-testimonials__title">{AU_PIANO_COPY.testimonials.h2}</h2>
+          </div>
+
+          <div className="piano-testimonials__grid">
+            {AU_PIANO_COPY.testimonials.items.map((item, i) => (
+              <div key={i} className="piano-testimonials__card">
+                <div className="piano-testimonials__card-header">
+                  <div className="piano-testimonials__avatar-initials">{item.initials}</div>
+                  <div>
+                    <h4 className="piano-testimonials__name">{item.name}</h4>
+                    <p className="piano-testimonials__role">{item.role}</p>
+                  </div>
+                </div>
+                <p className="piano-testimonials__text">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="piano-cta">
         <div className="container">
           <div className="piano-cta__content">
@@ -1186,6 +1232,29 @@ function UsPianoView() {
               {copy.requirements.note}
             </p>
           )}
+        </div>
+      </section>
+
+      <section className="piano-testimonials">
+        <div className="container">
+          <div className="piano-testimonials__header">
+            <h2 className="piano-testimonials__title">{AU_PIANO_COPY.testimonials.h2}</h2>
+          </div>
+
+          <div className="piano-testimonials__grid">
+            {AU_PIANO_COPY.testimonials.items.map((item, i) => (
+              <div key={i} className="piano-testimonials__card">
+                <div className="piano-testimonials__card-header">
+                  <div className="piano-testimonials__avatar-initials">{item.initials}</div>
+                  <div>
+                    <h4 className="piano-testimonials__name">{item.name}</h4>
+                    <p className="piano-testimonials__role">{item.role}</p>
+                  </div>
+                </div>
+                <p className="piano-testimonials__text">{item.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
