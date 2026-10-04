@@ -20,6 +20,8 @@ export const COMPANY_POSTAL_ADDRESS: CompanyPostalAddress = {
   addressCountry: "AU",
 };
 
+export const ORGANIZATION_IMAGE = "https://www.tutorexel.com/images/og-hero.jpg";
+
 export interface PricingPlanConfig {
   id: string;
   name: string;

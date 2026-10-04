@@ -1,4 +1,4 @@
-import { REGIONS_CONFIG, COMPANY_POSTAL_ADDRESS, type RegionCode } from "@/data/regions";
+import { REGIONS_CONFIG, COMPANY_POSTAL_ADDRESS, ORGANIZATION_IMAGE, type RegionCode } from "@/data/regions";
 import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
 
 export function getOrganizationSchema(region: RegionCode = "au"): Record<string, unknown> {
@@ -17,6 +17,7 @@ export function getOrganizationSchema(region: RegionCode = "au"): Record<string,
     name: "TutorExel",
     url: "https://www.tutorexel.com",
     logo: "https://www.tutorexel.com/images/logo.svg",
+    image: ORGANIZATION_IMAGE,
     description: descriptions[region] || descriptions.au,
     foundingDate: "2009",
     address: COMPANY_POSTAL_ADDRESS,
