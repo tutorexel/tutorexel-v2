@@ -83,6 +83,25 @@ import { nzYear10MathsCopy } from "./nz-year-10-maths";
 import { nzYear10EnglishCopy } from "./nz-year-10-english";
 import { nzYear10ScienceCopy } from "./nz-year-10-science";
 
+import { usGrade2MathsCopy } from "./us-grade-2-maths";
+import { usGrade2EnglishCopy } from "./us-grade-2-english";
+import { usGrade2ScienceCopy } from "./us-grade-2-science";
+import { usGrade3MathsCopy } from "./us-grade-3-maths";
+import { usGrade3EnglishCopy } from "./us-grade-3-english";
+import { usGrade3ScienceCopy } from "./us-grade-3-science";
+import { usGrade4MathsCopy } from "./us-grade-4-maths";
+import { usGrade4EnglishCopy } from "./us-grade-4-english";
+import { usGrade4ScienceCopy } from "./us-grade-4-science";
+import { usGrade5MathsCopy } from "./us-grade-5-maths";
+import { usGrade5EnglishCopy } from "./us-grade-5-english";
+import { usGrade5ScienceCopy } from "./us-grade-5-science";
+import { usGrade6MathsCopy } from "./us-grade-6-maths";
+import { usGrade6EnglishCopy } from "./us-grade-6-english";
+import { usGrade6ScienceCopy } from "./us-grade-6-science";
+import { usGrade7MathsCopy } from "./us-grade-7-maths";
+import { usGrade7EnglishCopy } from "./us-grade-7-english";
+import { usGrade7ScienceCopy } from "./us-grade-7-science";
+
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
     maths: auYear2MathsCopy,
@@ -227,6 +246,39 @@ const NZ_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   },
 };
 
+const US_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
+  "year-2": {
+    maths: usGrade2MathsCopy,
+    english: usGrade2EnglishCopy,
+    science: usGrade2ScienceCopy,
+  },
+  "year-3": {
+    maths: usGrade3MathsCopy,
+    english: usGrade3EnglishCopy,
+    science: usGrade3ScienceCopy,
+  },
+  "year-4": {
+    maths: usGrade4MathsCopy,
+    english: usGrade4EnglishCopy,
+    science: usGrade4ScienceCopy,
+  },
+  "year-5": {
+    maths: usGrade5MathsCopy,
+    english: usGrade5EnglishCopy,
+    science: usGrade5ScienceCopy,
+  },
+  "year-6": {
+    maths: usGrade6MathsCopy,
+    english: usGrade6EnglishCopy,
+    science: usGrade6ScienceCopy,
+  },
+  "year-7": {
+    maths: usGrade7MathsCopy,
+    english: usGrade7EnglishCopy,
+    science: usGrade7ScienceCopy,
+  },
+};
+
 export function getSubjectCopy(
   region: string | undefined,
   year: string | number,
@@ -239,6 +291,9 @@ export function getSubjectCopy(
   }
   if (region === "nz") {
     return NZ_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+  }
+  if (region === "us") {
+    return US_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   if (region === "au" || !region) {
     return AU_SUBJECT_COPY[yearKey]?.[subject] ?? null;
