@@ -7,6 +7,7 @@ import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
+import { US_HOME_COPY } from '@/data/copy/us-home';
 import BookTrialButton from './BookTrialButton';
 import './CTA.css';
 
@@ -30,22 +31,29 @@ export default function CTA({ region, title, description, buttonText }: CTAProps
   const isAuHome = currentRegion === 'au' && (pathname === '/' || pathname === '');
   const isCaHome = currentRegion === 'ca' && (pathname === '/ca' || pathname === '/ca/');
   const isNzHome = currentRegion === 'nz' && (pathname === '/nz' || pathname === '/nz/');
+  const isUsHome = currentRegion === 'us' && (pathname === '/us' || pathname === '/us/');
 
-  const resolvedTitle = title || (isNzHome
+  const resolvedTitle = title || (isUsHome
+    ? US_HOME_COPY.cta.title
+    : isNzHome
     ? NZ_HOME_COPY.cta.title
     : isCaHome
     ? CA_HOME_COPY.cta.title
     : isAuHome
     ? AU_HOME_COPY.cta.title
     : "Ready to See Your Child Excel?");
-  const resolvedDescription = description || (isNzHome
+  const resolvedDescription = description || (isUsHome
+    ? US_HOME_COPY.cta.description
+    : isNzHome
     ? NZ_HOME_COPY.cta.description
     : isCaHome
     ? CA_HOME_COPY.cta.description
     : isAuHome
     ? AU_HOME_COPY.cta.description
     : `Join hundreds of ${config.demonym} families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.`);
-  const resolvedButtonText = buttonText || (isNzHome
+  const resolvedButtonText = buttonText || (isUsHome
+    ? US_HOME_COPY.cta.buttonText
+    : isNzHome
     ? NZ_HOME_COPY.cta.buttonText
     : isCaHome
     ? CA_HOME_COPY.cta.buttonText

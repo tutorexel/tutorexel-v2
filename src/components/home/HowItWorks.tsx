@@ -7,6 +7,7 @@ import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
+import { US_HOME_COPY } from '@/data/copy/us-home';
 import './HowItWorks.css';
 
 interface HowItWorksProps {
@@ -46,8 +47,11 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
   const isNz = currentRegion === 'nz';
+  const isUs = currentRegion === 'us';
 
-  const steps = isNz
+  const steps = isUs
+    ? US_HOME_COPY.howItWorks.steps
+    : isNz
     ? NZ_HOME_COPY.howItWorks.steps
     : isCa
     ? CA_HOME_COPY.howItWorks.steps
@@ -55,7 +59,9 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
     ? AU_HOME_COPY.howItWorks.steps
     : defaultSteps;
 
-  const eyebrow = isNz
+  const eyebrow = isUs
+    ? US_HOME_COPY.howItWorks.eyebrow
+    : isNz
     ? NZ_HOME_COPY.howItWorks.eyebrow
     : isCa
     ? CA_HOME_COPY.howItWorks.eyebrow
@@ -63,7 +69,9 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
     ? AU_HOME_COPY.howItWorks.eyebrow
     : 'Simple Process';
 
-  const title = isNz
+  const title = isUs
+    ? US_HOME_COPY.howItWorks.title
+    : isNz
     ? NZ_HOME_COPY.howItWorks.title
     : isCa
     ? CA_HOME_COPY.howItWorks.title
@@ -71,7 +79,9 @@ export default function HowItWorks({ region }: HowItWorksProps = {}) {
     ? AU_HOME_COPY.howItWorks.title
     : 'How TutorExel Works';
 
-  const intro = isNz
+  const intro = isUs
+    ? US_HOME_COPY.howItWorks.intro
+    : isNz
     ? NZ_HOME_COPY.howItWorks.intro
     : isCa
     ? CA_HOME_COPY.howItWorks.intro

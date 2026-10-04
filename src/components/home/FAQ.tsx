@@ -8,6 +8,7 @@ import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
+import { US_HOME_COPY } from '@/data/copy/us-home';
 import { createFaqSchema } from '@/utils/schema';
 import './FAQ.css';
 
@@ -54,6 +55,7 @@ export default function FAQ({ region }: FAQProps = {}) {
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
   const isNz = currentRegion === 'nz';
+  const isUs = currentRegion === 'us';
 
   const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -61,7 +63,9 @@ export default function FAQ({ region }: FAQProps = {}) {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
-  const faqs = isNz
+  const faqs = isUs
+    ? US_HOME_COPY.faq.items
+    : isNz
     ? NZ_HOME_COPY.faq.items
     : isCa
     ? CA_HOME_COPY.faq.items
@@ -69,7 +73,9 @@ export default function FAQ({ region }: FAQProps = {}) {
     ? AU_HOME_COPY.faq.items
     : defaultFaqData;
 
-  const eyebrow = isNz
+  const eyebrow = isUs
+    ? US_HOME_COPY.faq.eyebrow
+    : isNz
     ? NZ_HOME_COPY.faq.eyebrow
     : isCa
     ? CA_HOME_COPY.faq.eyebrow
@@ -77,7 +83,9 @@ export default function FAQ({ region }: FAQProps = {}) {
     ? AU_HOME_COPY.faq.eyebrow
     : 'Got Questions?';
 
-  const title = isNz
+  const title = isUs
+    ? US_HOME_COPY.faq.title
+    : isNz
     ? NZ_HOME_COPY.faq.title
     : isCa
     ? CA_HOME_COPY.faq.title
@@ -85,7 +93,9 @@ export default function FAQ({ region }: FAQProps = {}) {
     ? AU_HOME_COPY.faq.title
     : 'Frequently Asked Questions';
 
-  const intro = isNz
+  const intro = isUs
+    ? US_HOME_COPY.faq.intro
+    : isNz
     ? NZ_HOME_COPY.faq.intro
     : isCa
     ? CA_HOME_COPY.faq.intro

@@ -8,6 +8,7 @@ import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
+import { US_HOME_COPY } from '@/data/copy/us-home';
 
 interface YearLevelsProps {
   region?: RegionCode;
@@ -20,6 +21,7 @@ export default function YearLevels({ region }: YearLevelsProps) {
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
   const isNz = currentRegion === 'nz';
+  const isUs = currentRegion === 'us';
 
   const levelWord = config.yearLabel;
   const mathLabel = config.mathLabel;
@@ -58,7 +60,9 @@ export default function YearLevels({ region }: YearLevelsProps) {
     },
   ];
 
-  const yearLevels = isNz
+  const yearLevels = isUs
+    ? US_HOME_COPY.yearLevels.years
+    : isNz
     ? NZ_HOME_COPY.yearLevels.years
     : isCa
     ? CA_HOME_COPY.yearLevels.years
@@ -66,7 +70,9 @@ export default function YearLevels({ region }: YearLevelsProps) {
     ? AU_HOME_COPY.yearLevels.years
     : defaultYearLevels;
 
-  const eyebrowText = isNz
+  const eyebrowText = isUs
+    ? US_HOME_COPY.yearLevels.eyebrow
+    : isNz
     ? NZ_HOME_COPY.yearLevels.eyebrow
     : isCa
     ? CA_HOME_COPY.yearLevels.eyebrow
@@ -74,7 +80,9 @@ export default function YearLevels({ region }: YearLevelsProps) {
     ? AU_HOME_COPY.yearLevels.eyebrow
     : `Choose Your ${levelWord} Level`;
 
-  const titleText = isNz
+  const titleText = isUs
+    ? US_HOME_COPY.yearLevels.title
+    : isNz
     ? NZ_HOME_COPY.yearLevels.title
     : isCa
     ? CA_HOME_COPY.yearLevels.title
@@ -82,7 +90,9 @@ export default function YearLevels({ region }: YearLevelsProps) {
     ? AU_HOME_COPY.yearLevels.title
     : `Select Your Child's ${levelWord} Level`;
 
-  const introText = isNz
+  const introText = isUs
+    ? US_HOME_COPY.yearLevels.intro
+    : isNz
     ? NZ_HOME_COPY.yearLevels.intro
     : isCa
     ? CA_HOME_COPY.yearLevels.intro

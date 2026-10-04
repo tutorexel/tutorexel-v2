@@ -10,6 +10,7 @@ import { type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
+import { US_HOME_COPY } from '@/data/copy/us-home';
 import { COUNTRIES, type Country } from '@/components/shared/CountryTabs';
 import './Pricing.css';
 
@@ -109,6 +110,7 @@ export default function Pricing({ region }: PricingProps = {}) {
   const isAu = currentRegion === 'au';
   const isCa = currentRegion === 'ca';
   const isNz = currentRegion === 'nz';
+  const isUs = currentRegion === 'us';
   const initialCountry = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
   const [selectedCountry, setSelectedCountry] = useState<Country>(initialCountry);
 
@@ -116,6 +118,116 @@ export default function Pricing({ region }: PricingProps = {}) {
     const current = COUNTRIES.find((c) => c.code === currentRegion) || COUNTRIES[0];
     setSelectedCountry(current);
   }, [currentRegion]);
+
+  if (isUs) {
+    return (
+      <section className="pricing section" id="pricing">
+        <div className="pricing__bg"></div>
+        <div className="container">
+          <div className="section-header section-header--center">
+            <p className="section-header__label section-header__label--no-before">
+              <Image src="/images/icons/circle_icon.webp" alt="" className="section-header__label-icon" width={20} height={20} />
+              {US_HOME_COPY.pricing.eyebrow}
+            </p>
+            <h2 className="section-header__title">{US_HOME_COPY.pricing.title}</h2>
+            <div className="pricing__discount-badge">
+              <span className="pricing__discount-pulse" aria-hidden="true"></span>
+              {US_HOME_COPY.pricing.line1}
+            </div>
+            <p className="section-header__subtitle">
+              {US_HOME_COPY.pricing.line2}
+            </p>
+            <div className="pricing__country-row">
+              <div className="country-tabs" role="tablist" aria-label="Country pricing">
+                {US_HOME_COPY.pricing.countryTabs.map((tab) => (
+                  tab.active ? (
+                    <span
+                      key={tab.code}
+                      className="country-tabs__tab country-tabs__tab--active"
+                      aria-current="page"
+                    >
+                      <Image
+                        src={tab.flag}
+                        alt={`${tab.label} flag`}
+                        width={22}
+                        height={15}
+                        className="country-tabs__flag"
+                        unoptimized
+                      />
+                      <span className="country-tabs__name">{tab.label}</span>
+                    </span>
+                  ) : (
+                    <Link
+                      key={tab.code}
+                      href={tab.href}
+                      className="country-tabs__tab"
+                    >
+                      <Image
+                        src={tab.flag}
+                        alt={`${tab.label} flag`}
+                        width={22}
+                        height={15}
+                        className="country-tabs__flag"
+                        unoptimized
+                      />
+                      <span className="country-tabs__name">{tab.label}</span>
+                    </Link>
+                  )
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pricing__grid">
+            {US_HOME_COPY.pricing.plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`pricing-card pricing-card--${plan.borderColor}`}
+              >
+                {plan.popular && (
+                  <span className="pricing-card__badge">Most Popular</span>
+                )}
+
+                <div className="pricing-card__header">
+                  <div className="pricing-card__name">{plan.name}</div>
+                  <div className="pricing-card__subtitle">{plan.subtitle}</div>
+                </div>
+
+                <div className="pricing-card__price-wrapper">
+                  {plan.originalAmount && (
+                    <div className="pricing-card__original-price">
+                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
+                      <span className="discount-badge">{plan.discountBadge}</span>
+                    </div>
+                  )}
+                  <div className="pricing-card__price">
+                    <span className="currency">{plan.currency}</span>
+                    <span className="amount">{plan.amount}</span>
+                    <span className="period">{plan.period}</span>
+                  </div>
+                </div>
+
+                <div className="pricing-card__features">
+                  {plan.features.map((feature) => (
+                    <div className="pricing-card__feature" key={feature}>
+                      <span className="feature-check">
+                        <CheckIcon />
+                      </span>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                <RegionLink href={plan.ctaHref} region="us" className="pricing-card__button">
+                  {plan.ctaText}
+                </RegionLink>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (isNz) {
     return (
