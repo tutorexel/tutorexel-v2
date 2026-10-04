@@ -73,6 +73,15 @@ import { nzYear6ScienceCopy } from "./nz-year-6-science";
 import { nzYear7MathsCopy } from "./nz-year-7-maths";
 import { nzYear7EnglishCopy } from "./nz-year-7-english";
 import { nzYear7ScienceCopy } from "./nz-year-7-science";
+import { nzYear8MathsCopy } from "./nz-year-8-maths";
+import { nzYear8EnglishCopy } from "./nz-year-8-english";
+import { nzYear8ScienceCopy } from "./nz-year-8-science";
+import { nzYear9MathsCopy } from "./nz-year-9-maths";
+import { nzYear9EnglishCopy } from "./nz-year-9-english";
+import { nzYear9ScienceCopy } from "./nz-year-9-science";
+import { nzYear10MathsCopy } from "./nz-year-10-maths";
+import { nzYear10EnglishCopy } from "./nz-year-10-english";
+import { nzYear10ScienceCopy } from "./nz-year-10-science";
 
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
@@ -200,6 +209,21 @@ const NZ_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
     maths: nzYear7MathsCopy,
     english: nzYear7EnglishCopy,
     science: nzYear7ScienceCopy,
+  },
+  "year-8": {
+    maths: nzYear8MathsCopy,
+    english: nzYear8EnglishCopy,
+    science: nzYear8ScienceCopy,
+  },
+  "year-9": {
+    maths: nzYear9MathsCopy,
+    english: nzYear9EnglishCopy,
+    science: nzYear9ScienceCopy,
+  },
+  "year-10": {
+    maths: nzYear10MathsCopy,
+    english: nzYear10EnglishCopy,
+    science: nzYear10ScienceCopy,
   },
 };
 
