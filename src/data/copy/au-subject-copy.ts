@@ -55,6 +55,25 @@ import { caGrade10MathsCopy } from "./ca-grade-10-maths";
 import { caGrade10EnglishCopy } from "./ca-grade-10-english";
 import { caGrade10ScienceCopy } from "./ca-grade-10-science";
 
+import { nzYear2MathsCopy } from "./nz-year-2-maths";
+import { nzYear2EnglishCopy } from "./nz-year-2-english";
+import { nzYear2ScienceCopy } from "./nz-year-2-science";
+import { nzYear3MathsCopy } from "./nz-year-3-maths";
+import { nzYear3EnglishCopy } from "./nz-year-3-english";
+import { nzYear3ScienceCopy } from "./nz-year-3-science";
+import { nzYear4MathsCopy } from "./nz-year-4-maths";
+import { nzYear4EnglishCopy } from "./nz-year-4-english";
+import { nzYear4ScienceCopy } from "./nz-year-4-science";
+import { nzYear5MathsCopy } from "./nz-year-5-maths";
+import { nzYear5EnglishCopy } from "./nz-year-5-english";
+import { nzYear5ScienceCopy } from "./nz-year-5-science";
+import { nzYear6MathsCopy } from "./nz-year-6-maths";
+import { nzYear6EnglishCopy } from "./nz-year-6-english";
+import { nzYear6ScienceCopy } from "./nz-year-6-science";
+import { nzYear7MathsCopy } from "./nz-year-7-maths";
+import { nzYear7EnglishCopy } from "./nz-year-7-english";
+import { nzYear7ScienceCopy } from "./nz-year-7-science";
+
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
     maths: auYear2MathsCopy,
@@ -151,6 +170,39 @@ const CA_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   },
 };
 
+const NZ_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
+  "year-2": {
+    maths: nzYear2MathsCopy,
+    english: nzYear2EnglishCopy,
+    science: nzYear2ScienceCopy,
+  },
+  "year-3": {
+    maths: nzYear3MathsCopy,
+    english: nzYear3EnglishCopy,
+    science: nzYear3ScienceCopy,
+  },
+  "year-4": {
+    maths: nzYear4MathsCopy,
+    english: nzYear4EnglishCopy,
+    science: nzYear4ScienceCopy,
+  },
+  "year-5": {
+    maths: nzYear5MathsCopy,
+    english: nzYear5EnglishCopy,
+    science: nzYear5ScienceCopy,
+  },
+  "year-6": {
+    maths: nzYear6MathsCopy,
+    english: nzYear6EnglishCopy,
+    science: nzYear6ScienceCopy,
+  },
+  "year-7": {
+    maths: nzYear7MathsCopy,
+    english: nzYear7EnglishCopy,
+    science: nzYear7ScienceCopy,
+  },
+};
+
 export function getSubjectCopy(
   region: string | undefined,
   year: string | number,
@@ -160,6 +212,9 @@ export function getSubjectCopy(
 
   if (region === "ca") {
     return CA_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+  }
+  if (region === "nz") {
+    return NZ_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   if (region === "au" || !region) {
     return AU_SUBJECT_COPY[yearKey]?.[subject] ?? null;
