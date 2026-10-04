@@ -87,7 +87,7 @@ export default function CTA({ region, title, description, buttonText }: CTAProps
                 {resolvedButtonText}
               </BookTrialButton>
               {config.phone && (
-                <a href={`https://wa.me/${config.phone.replace(/[^0-9]/g, '')}`} className="cta__phone">
+                <a href={config.phoneHref || `tel:${config.phone.replace(/[^0-9+]/g, '')}`} className="cta__phone">
                   <span className="cta__phone-icon">
                     <PhoneIcon />
                   </span>

@@ -1,5 +1,7 @@
 export type RegionCode = "au" | "us" | "ca" | "nz";
 
+export const COMPANY_ADDRESS = "17 Statham View, Crambourne West, Victoria 3977, Australia";
+
 export interface PricingPlanConfig {
   id: string;
   name: string;
@@ -252,9 +254,9 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     flag: "us",
     flagUrl: "https://flagcdn.com/80x60/us.png",
     locale: "en-US",
-    phone: null,
-    phoneText: "",
-    phoneHref: "",
+    phone: "+1 (206) 797 7387",
+    phoneText: "+1 (206) 797 7387",
+    phoneHref: "tel:+12067977387",
     curriculumLabel: "US Common Core & State Standards",
     testNames: ["State Assessments", "Standardized Tests"],
     name: "USA",
@@ -395,8 +397,8 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join hundreds of American families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
       btnText: "Book Online Now",
       btnHref: "/enroll",
-      phoneText: "",
-      phoneHref: "",
+      phoneText: "+1 (206) 797 7387",
+      phoneHref: "tel:+12067977387",
     },
   },
 

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { REGIONS, REGIONS_CONFIG } from "@/data/regions";
+import { REGIONS, REGIONS_CONFIG, COMPANY_ADDRESS } from "@/data/regions";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
@@ -85,7 +85,7 @@ export default function Footer() {
               )}
               {currentRegionCode === "ca" && (
                 <div className="footer__provinces">
-                  <ProvinceChips provinces={["ON", "BC"]} />
+                  <ProvinceChips />
                 </div>
               )}
               <div className="footer__social">
@@ -179,6 +179,9 @@ export default function Footer() {
       {/* Copyright - Outside container for full width background */}
       <div className="footer__bottom">
         <div className="container">
+          <address className="footer__address">
+            {COMPANY_ADDRESS}
+          </address>
           <p className="footer__copyright">
             &copy; {new Date().getFullYear()} TutorExel. All rights reserved.
           </p>
