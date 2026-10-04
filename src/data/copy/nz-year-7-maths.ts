@@ -128,7 +128,7 @@ export const nzYear7MathsCopy: SubjectCopyData = {
           {
             "no": "18",
             "topic": "Currency and Rate Problems",
-            "whatWeCover": "Convert between NZ and overseas currencies and solve rate problems such as petrol price per litre."
+            "whatWeCover": "Convert between NZ and Australian dollars and solve rate problems such as petrol price per litre."
           },
           {
             "no": "19",
