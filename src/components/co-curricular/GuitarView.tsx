@@ -5,6 +5,7 @@ import RegionLink from "@/components/shared/RegionLink";
 import { type RegionCode } from "@/data/regions";
 import { AU_GUITAR_COPY } from "@/data/copy/au-guitar";
 import { CA_GUITAR_COPY } from "@/data/copy/ca-guitar";
+import { NZ_GUITAR_COPY } from "@/data/copy/nz-guitar";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/guitar/guitar.css";
@@ -638,12 +639,217 @@ function CaGuitarView() {
   );
 }
 
+function NzGuitarView() {
+  const copy = NZ_GUITAR_COPY;
+  const breadcrumbs = createBreadcrumbSchema([
+    { name: "Home", url: "https://www.tutorexel.com/nz" },
+    { name: "Music Lessons", url: "https://www.tutorexel.com/nz/co-curricular" },
+    { name: "Guitar", url: "https://www.tutorexel.com/nz/co-curricular/guitar" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumbs} />
+      <section className="guitar-hero">
+        <div className="guitar-hero__decoration guitar-hero__decoration--left">
+          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
+        </div>
+        <div className="guitar-hero__decoration guitar-hero__decoration--right">
+          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="guitar-hero__stars" />
+          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="guitar-hero__curve-right" />
+        </div>
+        <div className="container">
+          <div className="guitar-hero__content">
+            <h1 className="guitar-hero__title">
+              {copy.hero.h1}
+            </h1>
+            <p className="guitar-hero__subtitle">
+              {copy.hero.text}
+            </p>
+            <div className="guitar-hero__actions">
+              <RegionLink href={copy.hero.primaryCta.href} region="nz" className="btn btn-primary btn-lg">
+                {copy.hero.primaryCta.text}
+              </RegionLink>
+              <RegionLink href={copy.hero.secondaryCta.href} region="nz" className="guitar-hero__btn-outline">
+                {copy.hero.secondaryCta.text}
+              </RegionLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="education">
+        <div className="container">
+          <div className="section-header section-header--center">
+            <p className="section-header__label">{copy.mastery.eyebrow}</p>
+            <h2 className="section-header__title">{copy.mastery.h2}</h2>
+          </div>
+          <div className="education__grid--top">
+            {copy.mastery.cards.slice(0, 3).map((card) => (
+              <div
+                className="education-card"
+                key={card.title}
+              >
+                <div className="education-card__icon">
+                  <EducationIcon type={card.icon} />
+                </div>
+                <h3 className="education-card__title">{card.title}</h3>
+                <p className="education-card__desc">{card.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="education__grid--bottom">
+            {copy.mastery.cards.slice(3).map((card) => (
+              <div
+                className="education-card"
+                key={card.title}
+              >
+                <div className="education-card__icon">
+                  <EducationIcon type={card.icon} />
+                </div>
+                <h3 className="education-card__title">{card.title}</h3>
+                <p className="education-card__desc">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="grade-progression">
+        <div className="container">
+          <div className="section-header section-header--center">
+            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
+            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
+          </div>
+
+          <div className="grade-path">
+            {copy.gradeProgression.grades.map((grade, i) => (
+              <div key={grade.short} style={{ display: "flex", alignItems: "center" }}>
+                <div className="grade-node">
+                  <div className="grade-node__circle">{grade.short}</div>
+                  <span className="grade-node__label">{grade.label}</span>
+                </div>
+                {i < copy.gradeProgression.grades.length - 1 && <div className="grade-connector" />}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="lesson-structure">
+        <div className="container">
+          <div className="lesson-structure__grid">
+            <div className="lesson-structure__left">
+              <p className="lesson-structure__label">{copy.lessonStructure.eyebrow}</p>
+              <h2 className="lesson-structure__title">{copy.lessonStructure.h2}</h2>
+              <div className="lesson-timeline">
+                {copy.lessonStructure.timeline.map((item) => (
+                  <div className="lesson-timeline__item" key={item.title}>
+                    <div className="lesson-timeline__time">{item.time}</div>
+                    <div className="lesson-timeline__content">
+                      <h3 className="lesson-timeline__title">{item.title}</h3>
+                      <p className="lesson-timeline__desc">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="lesson-details">
+                {copy.lessonStructure.details.map((detail) => (
+                  <div className="lesson-detail" key={detail.label}>
+                    <span className="lesson-detail__label">{detail.label}</span>
+                    <span className="lesson-detail__value">{detail.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="lesson-structure__right">
+              <Image
+                src={copy.lessonStructure.image.src}
+                alt={copy.lessonStructure.image.alt}
+                width={copy.lessonStructure.image.width}
+                height={copy.lessonStructure.image.height}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="audience">
+        <div className="container">
+          <div className="audience__grid">
+            <div className="audience__left">
+              <Image
+                src={copy.audience.image.src}
+                alt={copy.audience.image.alt}
+                width={copy.audience.image.width}
+                height={copy.audience.image.height}
+              />
+            </div>
+            <div className="audience__right">
+              <p className="audience__label">{copy.audience.eyebrow}</p>
+              <h2 className="audience__title">{copy.audience.h2}</h2>
+              <div className="audience__list">
+                {copy.audience.items.map((item) => (
+                  <div className="audience__item" key={item.title}>
+                    <h3 className="audience__item-title">
+                      {item.title}
+                    </h3>
+                    <p className="audience__item-desc">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="requirements">
+        <div className="container">
+          <div className="section-header section-header--center">
+            <h2 className="section-header__title">{copy.requirements.h2}</h2>
+          </div>
+          <div className="requirements__grid">
+            {copy.requirements.items.map((item) => (
+              <div
+                className={`requirement-card${item.highlighted ? " requirement-card--highlighted" : ""}`}
+                key={item.label}
+              >
+                <div className="requirement-card__icon">
+                  <RequirementIcon type={item.icon} />
+                </div>
+                <p className="requirement-card__label">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="music-cta">
+        <div className="container">
+          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
+          <div className="music-cta__actions">
+            <RegionLink href={copy.finalCta.primaryButton.href} region="nz" className="btn btn-primary btn-lg">
+              {copy.finalCta.primaryButton.text}
+            </RegionLink>
+            <RegionLink href={copy.finalCta.secondaryButton.href} region="nz" className="music-cta__btn--outline">
+              {copy.finalCta.secondaryButton.text}
+            </RegionLink>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
 export default function GuitarView({ region }: { region: RegionCode }) {
   if (region === "au") {
     return <AuGuitarView />;
   }
   if (region === "ca") {
     return <CaGuitarView />;
+  }
+  if (region === "nz") {
+    return <NzGuitarView />;
   }
 
   return (

@@ -7,6 +7,7 @@ import BookTrialButton from "@/components/home/BookTrialButton";
 import { type RegionCode } from "@/data/regions";
 import { AU_CO_CURRICULAR_COPY } from "@/data/copy/au-co-curricular";
 import { CA_CO_CURRICULAR_COPY } from "@/data/copy/ca-co-curricular";
+import { NZ_CO_CURRICULAR_COPY } from "@/data/copy/nz-co-curricular";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/co-curricular.css";
@@ -549,12 +550,176 @@ function CaCoCurricularView() {
   );
 }
 
+function NzCoCurricularView() {
+  const copy = NZ_CO_CURRICULAR_COPY;
+  const breadcrumbs = createBreadcrumbSchema([
+    { name: "Home", url: "https://www.tutorexel.com/nz" },
+    { name: "Music Lessons", url: "https://www.tutorexel.com/nz/co-curricular" },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={breadcrumbs} />
+      <section className="cocurricular-banner">
+        <div className="cocurricular-banner__decoration cocurricular-banner__decoration--left">
+          <Image
+            src="/images/about/left-line.webp"
+            alt=""
+            width={200}
+            height={200}
+            className="cocurricular-banner__curve cocurricular-banner__curve--1"
+          />
+        </div>
+        <div className="cocurricular-banner__decoration cocurricular-banner__decoration--right">
+          <Image
+            src="/images/about/star-design.webp"
+            alt=""
+            width={200}
+            height={200}
+            className="cocurricular-banner__curve cocurricular-banner__curve--4"
+          />
+          <Image
+            src="/images/about/right-line.webp"
+            alt=""
+            width={200}
+            height={200}
+            className="cocurricular-banner__curve cocurricular-banner__curve--3"
+          />
+        </div>
+
+        <div className="container">
+          <div className="cocurricular-banner__content">
+            <h1 className="cocurricular-banner__title">
+              {copy.hero.h1}
+            </h1>
+            <p className="cocurricular-banner__subtitle">
+              {copy.hero.text}
+            </p>
+            <div className="cocurricular-banner__actions">
+              <RegionLink href={copy.hero.primaryCta.href} region="nz" className="btn btn-primary btn-lg">
+                {copy.hero.primaryCta.text}
+              </RegionLink>
+              <RegionLink href={copy.hero.secondaryCta.href} region="nz" className="btn btn-outline btn-lg">
+                {copy.hero.secondaryCta.text}
+              </RegionLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="instruments">
+        <div className="container">
+          <div className="section-header section-header--center">
+            <h2 className="section-header__title">{copy.chooseInstrument.h2}</h2>
+          </div>
+
+          <div className="instruments__grid">
+            {copy.chooseInstrument.cards.map((inst) => (
+              <div className={`instrument-card${inst.highlighted ? " instrument-card--highlighted" : ""}`} key={inst.title}>
+                <div className="instrument-card__image">
+                  <Image src={inst.image.src} alt={inst.image.alt} width={inst.image.width} height={inst.image.height} />
+                </div>
+                <div className="instrument-card__body">
+                  <h3 className="instrument-card__title">{inst.title}</h3>
+                  <p className="instrument-card__desc">{inst.text}</p>
+                  <ul className="instrument-card__features">
+                    {inst.bullets.map((feature) => (
+                      <li className="instrument-card__feature" key={feature}>
+                        <span className="instrument-card__feature-icon">
+                          <CheckIcon />
+                        </span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="instrument-card__cta">
+                    <RegionLink href={inst.button.href} region="nz" className="btn btn-primary btn-lg instrument-card__btn">
+                      {inst.button.text}
+                    </RegionLink>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="features">
+        <div className="container">
+          <div className="section-header section-header--center">
+            <h2 className="section-header__title">{copy.moreThanJustLessons.h2}</h2>
+          </div>
+
+          <div className="features__grid">
+            {copy.moreThanJustLessons.cards.map((feature) => (
+              <div className="feature-card" key={feature.title}>
+                <div className="feature-card__icon">
+                  <FeatureIcon type={feature.icon} />
+                </div>
+                <h4 className="feature-card__title">{feature.title}</h4>
+                <p className="feature-card__desc">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="music-how-it-works">
+        <div className="container">
+          <div className="music-how-it-works__content">
+            <div className="music-how-it-works__left">
+              <div className="music-how-it-works__grid">
+                {copy.howItWorks.steps.map((step) => (
+                  <div className="music-step-card" key={step.number}>
+                    <div className="music-step-card__number">{step.number}</div>
+                    <h3 className="music-step-card__title">{step.title}</h3>
+                    <p className="music-step-card__desc">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="music-how-it-works__right">
+              <h2 className="music-how-it-works__title">{copy.howItWorks.h2}</h2>
+              <div className="music-how-it-works__image">
+                <Image src={copy.howItWorks.image.src} alt={copy.howItWorks.image.alt} width={copy.howItWorks.image.width} height={copy.howItWorks.image.height} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta section">
+        <div className="container">
+          <div className="cta__grid">
+            <div className="cta__image-wrapper">
+              <Image src="/images/cta/lady_image.webp" alt="Happy student learning online" className="cta__image" width={600} height={500} />
+            </div>
+            <div className="cta__content">
+              <h2 className="cta__title">{copy.finalCta.h2}</h2>
+              <p className="cta__description">{copy.finalCta.text}</p>
+              <div className="cta__actions">
+                <RegionLink href={copy.finalCta.button.href} region="nz" className="btn btn-primary btn-lg cta__btn">
+                  {copy.finalCta.button.text}
+                </RegionLink>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Image src="/images/cta/vector.webp" alt="" className="cta__vector" width={400} height={200} />
+      </section>
+    </>
+  );
+}
+
 export default function CoCurricularView({ region }: { region: RegionCode }) {
   if (region === "au") {
     return <AuCoCurricularView />;
   }
   if (region === "ca") {
     return <CaCoCurricularView />;
+  }
+  if (region === "nz") {
+    return <NzCoCurricularView />;
   }
 
   return (
