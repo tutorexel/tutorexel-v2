@@ -30,6 +30,21 @@ import { auYear10ScienceCopy } from "./au-year-10-science";
 import { caGrade2MathsCopy } from "./ca-grade-2-maths";
 import { caGrade2EnglishCopy } from "./ca-grade-2-english";
 import { caGrade2ScienceCopy } from "./ca-grade-2-science";
+import { caGrade3MathsCopy } from "./ca-grade-3-maths";
+import { caGrade3EnglishCopy } from "./ca-grade-3-english";
+import { caGrade3ScienceCopy } from "./ca-grade-3-science";
+import { caGrade4MathsCopy } from "./ca-grade-4-maths";
+import { caGrade4EnglishCopy } from "./ca-grade-4-english";
+import { caGrade4ScienceCopy } from "./ca-grade-4-science";
+import { caGrade5MathsCopy } from "./ca-grade-5-maths";
+import { caGrade5EnglishCopy } from "./ca-grade-5-english";
+import { caGrade5ScienceCopy } from "./ca-grade-5-science";
+import { caGrade6MathsCopy } from "./ca-grade-6-maths";
+import { caGrade6EnglishCopy } from "./ca-grade-6-english";
+import { caGrade6ScienceCopy } from "./ca-grade-6-science";
+import { caGrade7MathsCopy } from "./ca-grade-7-maths";
+import { caGrade7EnglishCopy } from "./ca-grade-7-english";
+import { caGrade7ScienceCopy } from "./ca-grade-7-science";
 
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
@@ -84,6 +99,31 @@ const CA_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
     maths: caGrade2MathsCopy,
     english: caGrade2EnglishCopy,
     science: caGrade2ScienceCopy,
+  },
+  "year-3": {
+    maths: caGrade3MathsCopy,
+    english: caGrade3EnglishCopy,
+    science: caGrade3ScienceCopy,
+  },
+  "year-4": {
+    maths: caGrade4MathsCopy,
+    english: caGrade4EnglishCopy,
+    science: caGrade4ScienceCopy,
+  },
+  "year-5": {
+    maths: caGrade5MathsCopy,
+    english: caGrade5EnglishCopy,
+    science: caGrade5ScienceCopy,
+  },
+  "year-6": {
+    maths: caGrade6MathsCopy,
+    english: caGrade6EnglishCopy,
+    science: caGrade6ScienceCopy,
+  },
+  "year-7": {
+    maths: caGrade7MathsCopy,
+    english: caGrade7EnglishCopy,
+    science: caGrade7ScienceCopy,
   },
 };
 
