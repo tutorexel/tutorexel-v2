@@ -7,6 +7,7 @@ import { REGIONS, REGIONS_CONFIG } from "@/data/regions";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
+import ProvinceChips from "@/components/shared/ProvinceChips";
 import "./Footer.css";
 
 const socialLinks = [
@@ -80,6 +81,11 @@ export default function Footer() {
                   <span className="footer__country-name">{currentRegion.label}</span>
                 </div>
               </div>
+              {currentRegionCode === "ca" && (
+                <div className="footer__provinces">
+                  <ProvinceChips />
+                </div>
+              )}
               <div className="footer__social">
                 {socialLinks.map((social) => (
                   <a

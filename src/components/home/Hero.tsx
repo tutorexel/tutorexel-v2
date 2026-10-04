@@ -8,6 +8,7 @@ import { getCurrentRegion } from '@/utils/regionalLinks';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import BookTrialButton from './BookTrialButton';
+import ProvinceChips from '@/components/shared/ProvinceChips';
 import './Hero.css';
 
 interface HeroProps {
@@ -45,11 +46,7 @@ export default function Hero({ region }: HeroProps = {}) {
             </p>
             {isCa ? (
               <div className="hero__countries">
-                {CA_HOME_COPY.hero.provinces.map((prov) => (
-                  <div key={prov} className="hero__country">
-                    <span className="hero__country-name">{prov}</span>
-                  </div>
-                ))}
+                <ProvinceChips />
               </div>
             ) : (
               <div className="hero__countries">

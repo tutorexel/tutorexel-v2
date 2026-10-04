@@ -35,7 +35,12 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.footer__provinces {
   margin-bottom: var(--spacing-6);
+  max-width: 320px;
 }
 
 .footer__country {

@@ -1,0 +1,58 @@
+.province-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.province-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 5px 12px 5px 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  cursor: default;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.province-chip__flag {
+  width: 20px;
+  height: 14px;
+  object-fit: contain;
+  border-radius: 2px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.province-chip__code {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1a2e3b;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .province-chips {
+    gap: 6px;
+    max-width: 280px;
+  }
+
+  .province-chip {
+    padding: 4px 10px 4px 6px;
+    gap: 5px;
+  }
+
+  .province-chip__flag {
+    width: 18px;
+    height: 13px;
+  }
+
+  .province-chip__code {
+    font-size: 12px;
+  }
+}
