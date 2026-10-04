@@ -101,6 +101,15 @@ import { usGrade6ScienceCopy } from "./us-grade-6-science";
 import { usGrade7MathsCopy } from "./us-grade-7-maths";
 import { usGrade7EnglishCopy } from "./us-grade-7-english";
 import { usGrade7ScienceCopy } from "./us-grade-7-science";
+import { usGrade8MathsCopy } from "./us-grade-8-maths";
+import { usGrade8EnglishCopy } from "./us-grade-8-english";
+import { usGrade8ScienceCopy } from "./us-grade-8-science";
+import { usGrade9MathsCopy } from "./us-grade-9-maths";
+import { usGrade9EnglishCopy } from "./us-grade-9-english";
+import { usGrade9ScienceCopy } from "./us-grade-9-science";
+import { usGrade10MathsCopy } from "./us-grade-10-maths";
+import { usGrade10EnglishCopy } from "./us-grade-10-english";
+import { usGrade10ScienceCopy } from "./us-grade-10-science";
 
 const AU_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
   "year-2": {
@@ -276,6 +285,21 @@ const US_SUBJECT_COPY: Record<string, Record<string, SubjectCopyData>> = {
     maths: usGrade7MathsCopy,
     english: usGrade7EnglishCopy,
     science: usGrade7ScienceCopy,
+  },
+  "year-8": {
+    maths: usGrade8MathsCopy,
+    english: usGrade8EnglishCopy,
+    science: usGrade8ScienceCopy,
+  },
+  "year-9": {
+    maths: usGrade9MathsCopy,
+    english: usGrade9EnglishCopy,
+    science: usGrade9ScienceCopy,
+  },
+  "year-10": {
+    maths: usGrade10MathsCopy,
+    english: usGrade10EnglishCopy,
+    science: usGrade10ScienceCopy,
   },
 };
 
