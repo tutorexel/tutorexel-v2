@@ -59,18 +59,11 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/co-curricular/piano/enquire", regions: ["au", "us", "ca", "nz"] },
   { path: "/home-v1", regions: ["au", "us", "ca", "nz"] },
 
-  // Subject detail pages: Years 2-7 across English, Maths, Science
-  ...[2, 3, 4, 5, 6, 7].flatMap((y) => [
+  // Subject detail pages: Years 2-10 across English, Maths, Science (all 4 regions)
+  ...[2, 3, 4, 5, 6, 7, 8, 9, 10].flatMap((y) => [
     { path: `/subjects/year-${y}/english`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
     { path: `/subjects/year-${y}/maths`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
     { path: `/subjects/year-${y}/science`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
-  ]),
-
-  // Subject detail pages: Years 8-10 (AU, CA, NZ)
-  ...[8, 9, 10].flatMap((y) => [
-    { path: `/subjects/year-${y}/english`, regions: ["au", "ca", "nz"] as RegionCode[] },
-    { path: `/subjects/year-${y}/maths`, regions: ["au", "ca", "nz"] as RegionCode[] },
-    { path: `/subjects/year-${y}/science`, regions: ["au", "ca", "nz"] as RegionCode[] },
   ]),
 
   // Market-Unique Australian Pages (AU only: self-only hreflang)

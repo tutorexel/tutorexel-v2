@@ -7,6 +7,7 @@ import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_HOME_COPY } from "@/data/copy/au-home";
 import { CA_HOME_COPY } from "@/data/copy/ca-home";
 import { NZ_HOME_COPY } from "@/data/copy/nz-home";
+import { US_HOME_COPY } from "@/data/copy/us-home";
 import "@/app/subjects/subjects.css";
 
 const structuredSteps = [
@@ -96,7 +97,10 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
   const isAu = region === "au";
   const isCa = region === "ca";
   const isNz = region === "nz";
-  const displayedYearLevels = isNz
+  const isUs = region === "us";
+  const displayedYearLevels = isUs
+    ? US_HOME_COPY.yearLevels.years
+    : isNz
     ? NZ_HOME_COPY.yearLevels.years
     : isCa
     ? CA_HOME_COPY.yearLevels.years
@@ -290,7 +294,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      <CTA />
+      <CTA region={region} />
     </>
   );
 }

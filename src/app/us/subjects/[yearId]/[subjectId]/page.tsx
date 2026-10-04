@@ -14,7 +14,7 @@ type Props = {
 export default async function UsSubjectDetailPage({ params }: Props) {
   const { yearId, subjectId } = await params;
   const yearNum = parseInt(yearId.replace("year-", ""), 10);
-  if (isNaN(yearNum) || yearNum < 2 || yearNum > 7) {
+  if (isNaN(yearNum) || yearNum < 2 || yearNum > 10) {
     notFound();
   }
   const yearData = (subjectsData as Record<string, Record<string, unknown>>)[yearId];

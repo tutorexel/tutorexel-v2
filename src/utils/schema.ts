@@ -77,15 +77,17 @@ export function createCourseSchema(
     educationalLevel: yearLevel,
     inLanguage: config.locale,
     courseMode: "online",
-    offers: {
-      "@type": "Offer",
-      category: "Online Tutoring",
-      priceCurrency: config.currency,
-      eligibleRegion: {
-        "@type": "Country",
-        name: config.countryName,
+    ...(region !== "us" && {
+      offers: {
+        "@type": "Offer",
+        category: "Online Tutoring",
+        priceCurrency: config.currency,
+        eligibleRegion: {
+          "@type": "Country",
+          name: config.countryName,
+        },
       },
-    },
+    }),
   };
 }
 

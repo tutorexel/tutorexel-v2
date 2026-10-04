@@ -283,7 +283,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const rootUrl = "https://www.tutorexel.com";
   const homeHref = getHref("/");
   const homeUrl = homeHref === "/" ? rootUrl : `${rootUrl}${homeHref}`;
-  const breadcrumbItems = (effectiveRegion === "ca" || effectiveRegion === "nz")
+  const breadcrumbItems = (effectiveRegion === "ca" || effectiveRegion === "nz" || effectiveRegion === "us")
     ? [
         { name: "Home", url: homeUrl },
         { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
@@ -298,8 +298,11 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const subjectBreadcrumbSchema = createBreadcrumbSchema(breadcrumbItems);
 
   // Term tabs
+  const isUsRegion = effectiveRegion === "us";
   const terms = ["term1", "term2", "term3", "term4"] as const;
-  const termLabels = { term1: "Term 1", term2: "Term 2", term3: "Term 3", term4: "Term 4" };
+  const termLabels = isUsRegion
+    ? { term1: "Quarter 1", term2: "Quarter 2", term3: "Quarter 3", term4: "Quarter 4" }
+    : { term1: "Term 1", term2: "Term 2", term3: "Term 3", term4: "Term 4" };
   const [activeTerm, setActiveTerm] = useState<typeof terms[number]>("term1");
 
   // Handle subject toggle

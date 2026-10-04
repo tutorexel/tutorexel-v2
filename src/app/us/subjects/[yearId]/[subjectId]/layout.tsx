@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { yearId, subjectId } = await params;
   const yearNum = parseInt(yearId.replace("year-", ""), 10);
-  if (isNaN(yearNum) || yearNum < 2 || yearNum > 7) {
+  if (isNaN(yearNum) || yearNum < 2 || yearNum > 10) {
     notFound();
   }
   return buildMetadata({

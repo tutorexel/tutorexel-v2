@@ -153,6 +153,14 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/us/year-:year/:subject(maths|english|science)",
+        destination: "/us/subjects/year-:year/:subject",
+      },
+      {
+        source: "/us/year-:year",
+        destination: "/us/subjects/year-:year/maths",
+      },
+      {
         source: "/nz/year-:year/:subject(maths|english|science)",
         destination: "/nz/subjects/year-:year/:subject",
       },
