@@ -562,8 +562,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 3 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 3 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 3 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 3 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 3 English Tutoring | TutorExel New Zealand",
@@ -580,8 +580,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 3 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 3 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 3 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 3 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 math tutoring matched to your province's curriculum. Multiplication, fractions, money and time in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 3 Maths Tutoring | TutorExel New Zealand",
@@ -598,8 +598,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 3 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 3 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 3 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 3 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 science tutoring matched to your province's curriculum. Plants, structures, forces and soil in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 3 Science Tutoring | TutorExel New Zealand",
@@ -616,8 +616,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 4 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 4 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 4 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 4 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 English tutoring matched to your province's curriculum. Reading, writing, grammar and Canadian spelling in 40 sessions. Book a free trial."
     },
     "nz": {
       "title": "Year 4 English Tutoring | TutorExel New Zealand",
@@ -634,8 +634,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 4 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 4 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 4 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 4 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 math tutoring matched to your province's curriculum. Multiplication, fractions, decimals and money in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 4 Maths Tutoring | TutorExel New Zealand",
@@ -652,8 +652,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 4 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 4 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 4 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 4 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 science tutoring matched to your province's curriculum. Habitats, light, sound, gears and rocks in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 4 Science Tutoring | TutorExel New Zealand",
@@ -670,8 +670,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 5 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 5 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 5 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 5 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 5 English Tutoring | TutorExel New Zealand",
@@ -688,8 +688,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 5 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 5 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 5 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 5 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 math tutoring matched to your province's curriculum. Decimals, fractions, percent and volume in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 5 Maths Tutoring | TutorExel New Zealand",
@@ -706,8 +706,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 5 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 5 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 5 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 5 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 science tutoring matched to your province's curriculum. Body systems, matter, forces and energy in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 5 Science Tutoring | TutorExel New Zealand",
@@ -724,8 +724,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 6 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 6 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 6 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 6 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 English tutoring matched to your province's curriculum. Reading, essays, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 6 English Tutoring | TutorExel New Zealand",
@@ -742,8 +742,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 6 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 6 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 6 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 6 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 math tutoring matched to your province's curriculum. Fractions, percent, ratios and algebra in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 6 Maths Tutoring | TutorExel New Zealand",
@@ -760,8 +760,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 6 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 6 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 6 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 6 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 science tutoring matched to your province's curriculum. Biodiversity, electricity, flight and space in 40 sessions. Book a free trial."
     },
     "nz": {
       "title": "Year 6 Science Tutoring | TutorExel New Zealand",
@@ -778,8 +778,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 7 English tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 7 English Tutoring | TutorExel Canada",
-      "description": "Online Grade 7 English tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 7 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 English tutoring matched to your province's curriculum. Analysis, essays, grammar and spelling in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 7 English Tutoring | TutorExel New Zealand",
@@ -796,8 +796,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 7 Math tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 7 Math Tutoring | TutorExel Canada",
-      "description": "Online Grade 7 Math tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 7 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 math tutoring matched to your province's curriculum. Integers, ratios, percent and algebra in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 7 Maths Tutoring | TutorExel New Zealand",
@@ -814,8 +814,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Online Grade 7 Science tutoring aligned with US Common Core standards. 40 structured lessons, weekly practice worksheets, and certified American educators."
     },
     "ca": {
-      "title": "Grade 7 Science Tutoring | TutorExel Canada",
-      "description": "Online Grade 7 Science tutoring aligned with provincial curriculum standards. 40 structured lessons, weekly practice worksheets, and top Canadian teachers."
+      "title": "Grade 7 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 science tutoring matched to your province's curriculum. Ecosystems, mixtures, mechanisms and heat in 40 sessions. Book a free trial class."
     },
     "nz": {
       "title": "Year 7 Science Tutoring | TutorExel New Zealand",
@@ -826,54 +826,90 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "au": {
       "title": "Year 8 English Tutoring Online Australia | TutorExel",
       "description": "Live online Year 8 English tutoring aligned to the Australian Curriculum. Analytical reading, persuasive writing and literature. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 8 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 English tutoring matched to your province's curriculum. Literary analysis, argument and writing in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-8/maths": {
     "au": {
       "title": "Year 8 Maths Tutoring Online Australia | TutorExel",
       "description": "Live online Year 8 maths tutoring aligned to the Australian Curriculum. Integers, linear algebra, Pythagoras, ratios and probability. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 8 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 math tutoring matched to your province's curriculum. Linear relations, Pythagoras and probability in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-8/science": {
     "au": {
       "title": "Year 8 Science Tutoring Online Australia | TutorExel",
       "description": "Live online Year 8 science tutoring aligned to the Australian Curriculum. Cells, organ systems, plate tectonics, energy and matter. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 8 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 science tutoring matched to your province's curriculum. Cells, Earth science, energy and matter in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-9/english": {
     "au": {
       "title": "Year 9 English Tutoring Online Australia | TutorExel",
       "description": "Live online Year 9 English tutoring aligned to the Australian Curriculum. Analytical writing, representation and NAPLAN writing. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 9 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 English tutoring matched to your province's curriculum. Analysis, argument and essay writing in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-9/maths": {
     "au": {
       "title": "Year 9 Maths Tutoring Online Australia | TutorExel",
       "description": "Live online Year 9 maths tutoring aligned to the Australian Curriculum. Quadratics, trigonometry, exponents and probability for NAPLAN. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 9 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 math tutoring matched to your province's curriculum. Quadratics, trigonometry and probability in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-9/science": {
     "au": {
       "title": "Year 9 Science Tutoring Online Australia | TutorExel",
       "description": "Live online Year 9 science tutoring aligned to the Australian Curriculum. Body regulation, the carbon cycle, atoms and chemical reactions. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 9 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 science tutoring matched to your province's curriculum. Body systems, carbon cycle, energy and atoms in 40 sessions. Book a free trial."
     }
   },
   "/subjects/year-10/english": {
     "au": {
       "title": "Year 10 English Tutoring Online Australia | TutorExel",
       "description": "Live online Year 10 English tutoring aligned to the Australian Curriculum. Sustained argument, literary analysis and senior pathways. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 10 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 English tutoring matched to your province's curriculum. Analysis, argument and literacy test skills in 40 sessions. Book a free trial."
     }
   },
   "/subjects/year-10/maths": {
     "au": {
       "title": "Year 10 Maths Tutoring Online Australia | TutorExel",
       "description": "Live online Year 10 maths tutoring aligned to the Australian Curriculum. Simultaneous equations, trigonometry and senior pathways. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 10 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 math tutoring matched to your province's curriculum. Quadratics, trigonometry and geometry in 40 sessions. Book a free trial class."
     }
   },
   "/subjects/year-10/science": {
     "au": {
       "title": "Year 10 Science Tutoring Online Australia | TutorExel",
       "description": "Live online Year 10 science tutoring aligned to the Australian Curriculum. Genetics, evolution, the Big Bang, Newton's laws and chemistry. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 10 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 science tutoring matched to your province's curriculum. Genetics, space, climate, forces and chemistry in 40 sessions. Book a free trial."
     }
   }
 };

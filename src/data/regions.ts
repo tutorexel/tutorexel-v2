@@ -417,7 +417,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     spellingPersonalised: "personalized",
     spellingEnrol: "Enrol",
     showTestimonials: false,
-    yearLevels: [2, 3, 4, 5, 6, 7],
+    yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     hero: {
       title: "TutorExel",
       titleHighlight: "Learning Hub",

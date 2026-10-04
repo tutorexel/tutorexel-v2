@@ -146,6 +146,25 @@ export default function Footer() {
               </div>
             </div>
           </div>
+
+          {config.yearLevels && config.yearLevels.length > 0 && (
+            <div className="footer__grades-row">
+              <span className="footer__grades-label">
+                {config.yearLabel === "Grade" ? "Grades:" : "Years:"}
+              </span>
+              <div className="footer__grades-links">
+                {config.yearLevels.map((lvl) => (
+                  <Link
+                    key={lvl}
+                    href={toHref(`/year-${lvl}`)}
+                    className="footer__grade-link"
+                  >
+                    {config.yearLabel} {lvl}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

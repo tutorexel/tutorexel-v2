@@ -296,3 +296,36 @@
     font-size: 13px;
   }
 }
+
+.footer__grades-row {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__grades-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer__grades-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__grade-link {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.footer__grade-link:hover {
+  color: #FF6B35;
+}

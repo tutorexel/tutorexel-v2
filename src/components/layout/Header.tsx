@@ -118,7 +118,7 @@ export default function Header() {
                     {subjectYears.map((sy) => (
                       <div key={sy.id} className="navbar__mega-col">
                         <Link
-                          href={toHref(`/subjects/${sy.id}/maths`)}
+                          href={toHref(`/${sy.id}`)}
                           className="navbar__mega-year"
                           onClick={() => setMenuOpen(false)}
                         >

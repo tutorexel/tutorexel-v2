@@ -127,22 +127,19 @@ export const CA_HOME_COPY = {
         year: 8,
         ages: "13-14",
         description: "Math: Linear relations, the Pythagorean theorem, exponents, volume, data, Grade 9 math readiness. English: Essays, literary analysis, research, media literacy, high school writing skills. Science: Cells, fluids, optics, water systems.",
-        // TODO: Grade 8 subject pages do not exist yet. Render card text without subject buttons.
-        hasButtons: false,
+        hasButtons: true,
       },
       {
         year: 9,
         ages: "14-15",
         description: "Math: Algebra, linear relations, geometry, financial literacy, data, Grade 9 EQAO math. English: Essays, analyzing literary and informational texts, media and research skills. Science: Atoms and elements, cells, electricity, space.",
-        // TODO: Grade 9 subject pages do not exist yet. Render card text without subject buttons.
-        hasButtons: false,
+        hasButtons: true,
       },
       {
         year: 10,
         ages: "15-16",
         description: "Math: Quadratics, linear systems, trigonometry, similar triangles, analytic geometry, exam prep. English: Analytical and persuasive essays, literary texts, media studies, OSSLT-style literacy skills. Science: Chemical reactions, climate change, optics, tissues and organs.",
-        // TODO: Grade 10 subject pages do not exist yet. Render card text without subject buttons.
-        hasButtons: false,
+        hasButtons: true,
       },
     ],
   },
