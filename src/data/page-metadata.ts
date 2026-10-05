@@ -36,8 +36,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Built by educators and trusted by Australian families. Discover our mission, structured approach, and dedicated team providing quality online tutoring."
     },
     "us": {
-      "title": "About Our Online Tutors | TutorExel United States",
-      "description": "Built by educators and trusted by American families. Discover our mission, structured methodology, and certified educators delivering quality online tutoring."
+      "title": "About TutorExel | Online Tutoring for U.S. Students",
+      "description": "Meet TutorExel, online tutoring for U.S. students in Grades 2 to 10. Structured, standards-aligned lessons with progress reports. Book a free trial today."
     },
     "ca": {
       "title": "About Our Dedicated Tutors | TutorExel Canada",
@@ -54,8 +54,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Explore transparent online tutoring packages for Australian students. Flexible group and one-on-one sessions in Maths, English and Science with no lock-ins."
     },
     "us": {
-      "title": "Tutoring Plans & Pricing | TutorExel United States",
-      "description": "Explore transparent online tutoring options for American students. Flexible group and private sessions in Math, English and Science with zero contracts."
+      "title": "Online Tutoring Pricing | Monthly Plans | TutorExel USA",
+      "description": "Simple monthly online tutoring plans for U.S. students in Grades 2 to 10. No long-term contracts, free assessment first. See plans and book a free trial."
     },
     "ca": {
       "title": "Tutoring Plans & Pricing | TutorExel Canada",
@@ -72,8 +72,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Get in touch with the TutorExel Australia academic team. Ask questions regarding curriculum programs, tutor allocation, or book a free trial class today."
     },
     "us": {
-      "title": "Contact Our Tutoring Team | TutorExel US",
-      "description": "Get in touch with our American tutoring support team. Inquire about state-aligned tutoring programs, schedule matching, or set up a free trial class today."
+      "title": "Contact TutorExel | Online Tutoring USA | Free Trial",
+      "description": "Questions about online tutoring for your child in Grades 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class. We reply in 2 hours."
     },
     "ca": {
       "title": "Contact Our Academic Team | TutorExel Canada",

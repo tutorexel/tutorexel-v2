@@ -211,3 +211,28 @@ export function createBreadcrumbSchema(
     })),
   };
 }
+
+export function createContactPageSchema(
+  url: string = "https://www.tutorexel.com/us/contact"
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact TutorExel",
+    url,
+    description: "Questions about online tutoring for your child in Grades 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class.",
+  };
+}
+
+export function createAboutPageSchema(
+  url: string = "https://www.tutorexel.com/us/about"
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About TutorExel",
+    url,
+    description: "Meet TutorExel, online tutoring for U.S. students in Grades 2 to 10. Structured, standards-aligned lessons with progress reports.",
+  };
+}
+

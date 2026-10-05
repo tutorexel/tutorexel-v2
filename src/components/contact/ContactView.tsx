@@ -8,6 +8,7 @@ import { sendContactWebhook } from "@/utils/webhook";
 import { pushUTMToGHL } from "@/utils/utm";
 import { trackContactSubmit } from "@/utils/analytics";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
+import { US_CONTACT_COPY } from "@/data/copy/us-contact";
 import "@/app/contact/contact.css";
 
 const phonePrefixes: Record<RegionCode, string> = {
@@ -42,6 +43,7 @@ const afterSubmitSteps = [
 ];
 
 export default function ContactView({ region }: { region: RegionCode }) {
+  const isUs = region === "us";
   const regConfig = getRegionConfig(region);
   const yearLevels = regConfig.yearLevels.map(
     (lvl) => `${regConfig.yearLabel} ${lvl}`
@@ -50,7 +52,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
   const [formData, setFormData] = useState({
     parentName: "",
     email: "",
-    phone: phonePrefixes[region] || "+61 ",
+    phone: isUs ? "" : (phonePrefixes[region] || "+61 "),
     childName: "",
     yearLevel: "",
     interests: [] as string[],
@@ -58,6 +60,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
     message: "",
     agreedTerms: false,
   });
+
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -72,13 +75,16 @@ export default function ContactView({ region }: { region: RegionCode }) {
     }));
   };
 
+  const activeInterests = isUs ? US_CONTACT_COPY.form.subjects : interests;
+  const activeHearAbout = isUs ? US_CONTACT_COPY.form.hearAboutOptions : hearAboutOptions;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (submitting) return;
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/contact-inquiry", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -132,16 +138,32 @@ export default function ContactView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="contact-banner__content">
             <h1 className="contact-banner__title">
-              Thinking of{" "}
-              <span className="contact-banner__title-highlight">
-                Excelling Your Child?
-              </span>
-              <span className="contact-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-              </span>
+              {isUs ? (
+                <>
+                  Ready to Help Your{" "}
+                  <span className="contact-banner__title-highlight">
+                    Child Get Ahead?
+                  </span>
+                  <span className="contact-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              ) : (
+                <>
+                  Thinking of{" "}
+                  <span className="contact-banner__title-highlight">
+                    Excelling Your Child?
+                  </span>
+                  <span className="contact-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              )}
             </h1>
             <p className="contact-banner__subtitle">
-              Fill out the form below and we will get back to you. Or reach out directly via email or WhatsApp
+              {isUs
+                ? US_CONTACT_COPY.hero.subtitle
+                : "Fill out the form below and we will get back to you. Or reach out directly via email or WhatsApp"}
             </p>
           </div>
         </div>
@@ -164,7 +186,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                   </div>
                 </div>
 
-                {region === "au" && (
+                {(region === "au" || region === "us") && regConfig.phone && (
                   <div className="contact-info-card">
                     <div className="contact-info-card__icon">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
@@ -172,9 +194,13 @@ export default function ContactView({ region }: { region: RegionCode }) {
                       </svg>
                     </div>
                     <div>
-                      <p className="contact-info-card__label">Message us on WhatsApp</p>
+                      <p className="contact-info-card__label">
+                        {isUs ? US_CONTACT_COPY.details.whatsappLabel : "Message us on WhatsApp"}
+                      </p>
                       <p className="contact-info-card__value">
-                        <a href="https://wa.me/61470330548">+61 470-330-548</a>
+                        <a href={`https://wa.me/${regConfig.phone.replace(/[^0-9]/g, "")}`}>
+                          {regConfig.phone}
+                        </a>
                       </p>
                     </div>
                   </div>
@@ -185,9 +211,11 @@ export default function ContactView({ region }: { region: RegionCode }) {
                     <Clock size={20} />
                   </div>
                   <div>
-                    <p className="contact-info-card__label">Response Time</p>
+                    <p className="contact-info-card__label">
+                      {isUs ? US_CONTACT_COPY.details.replyTimeLabel : "Response Time"}
+                    </p>
                     <p className="contact-info-card__value">
-                      We typically respond within 2 hours
+                      {isUs ? US_CONTACT_COPY.details.replyTimeText : "We typically respond within 2 hours"}
                     </p>
                   </div>
                 </div>
@@ -207,9 +235,13 @@ export default function ContactView({ region }: { region: RegionCode }) {
                 </div>
               ) : (
                 <>
-                  <h2 className="contact-form-card__title">Want to Make Inquiry?</h2>
+                  <h2 className="contact-form-card__title">
+                    {isUs ? US_CONTACT_COPY.form.title : "Want to Make Inquiry?"}
+                  </h2>
                   <p className="contact-form-card__subtitle">
-                    Have a question or need assistance? Fill out the form below, and we&apos;ll get back to you as soon as possible.
+                    {isUs
+                      ? US_CONTACT_COPY.form.subtitle
+                      : "Have a question or need assistance? Fill out the form below, and we'll get back to you as soon as possible."}
                   </p>
 
                   <form onSubmit={handleSubmit}>
@@ -223,7 +255,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             setFormData({ ...formData, parentName: e.target.value })
                           }
                           className="contact-form__input"
-                          placeholder="Parent's Full Name *"
+                          placeholder={isUs ? US_CONTACT_COPY.form.parentNamePlaceholder : "Parent's Full Name *"}
                         />
                       </div>
 
@@ -236,7 +268,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             setFormData({ ...formData, email: e.target.value })
                           }
                           className="contact-form__input"
-                          placeholder="Email Address *"
+                          placeholder={isUs ? US_CONTACT_COPY.form.emailPlaceholder : "Email Address *"}
                         />
                       </div>
 
@@ -249,7 +281,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             setFormData({ ...formData, phone: e.target.value })
                           }
                           className="contact-form__input"
-                          placeholder="Phone / WhatsApp Number *"
+                          placeholder={isUs ? US_CONTACT_COPY.form.phonePlaceholder : "Phone / WhatsApp Number *"}
                         />
                       </div>
 
@@ -262,14 +294,14 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             setFormData({ ...formData, childName: e.target.value })
                           }
                           className="contact-form__input"
-                          placeholder="Child's Full Name *"
+                          placeholder={isUs ? US_CONTACT_COPY.form.childNamePlaceholder : "Child's Full Name *"}
                         />
                       </div>
                     </div>
 
                     <div className="contact-form__field contact-form__field--full">
                       <label className="contact-form__label">
-                        Child&apos;s {regConfig.yearLabel} Level *
+                        {isUs ? US_CONTACT_COPY.form.gradeLabel : `Child's ${regConfig.yearLabel} Level *`}
                       </label>
                       <div className="contact-form__year-chips">
                         {yearLevels.map((lvl) => (
@@ -293,10 +325,10 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
                     <div className="contact-form__field contact-form__field--full">
                       <label className="contact-form__label">
-                        Area(s) of Interest * (Select all that apply)
+                        {isUs ? US_CONTACT_COPY.form.helpWithLabel : "Area(s) of Interest * (Select all that apply)"}
                       </label>
                       <div className="contact-form__interests-grid">
-                        {interests.map((interest) => (
+                        {activeInterests.map((interest) => (
                           <label
                             key={interest}
                             className="contact-form__checkbox-label"
@@ -321,8 +353,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                         }
                         className="contact-form__select"
                       >
-                        <option value="">How did you hear about us?</option>
-                        {hearAboutOptions.map((opt) => (
+                        <option value="">{isUs ? US_CONTACT_COPY.form.hearAboutPlaceholder : "How did you hear about us?"}</option>
+                        {activeHearAbout.map((opt) => (
                           <option key={opt} value={opt}>
                             {opt}
                           </option>
@@ -338,18 +370,28 @@ export default function ContactView({ region }: { region: RegionCode }) {
                           setFormData({ ...formData, message: e.target.value })
                         }
                         className="contact-form__textarea"
-                        placeholder="Your Message (How Can We Help You?) *"
+                        placeholder={isUs ? US_CONTACT_COPY.form.messagePlaceholder : "Your Message (How Can We Help You?) *"}
                       />
                     </div>
 
                     <button type="submit" className="contact-form__submit" disabled={submitting}>
-                      {submitting ? "Sending..." : "Book Your Free Trial Class"}
+                      {submitting ? "Sending..." : (isUs ? US_CONTACT_COPY.form.submitButtonText : "Book Your Free Trial Class")}
                     </button>
 
                     <p className="contact-form__terms">
-                      By submitting, you agree to our{" "}
-                      <RegionLink href="/terms" region={region}>Terms &amp; Conditions</RegionLink> and{" "}
-                      <RegionLink href="/privacy" region={region}>Privacy Policy</RegionLink>.
+                      {isUs ? (
+                        <>
+                          By submitting this form, you agree to our{" "}
+                          <RegionLink href="/terms" region={region}>Terms &amp; Conditions</RegionLink> and{" "}
+                          <RegionLink href="/privacy" region={region}>Privacy Policy</RegionLink>.
+                        </>
+                      ) : (
+                        <>
+                          By submitting, you agree to our{" "}
+                          <RegionLink href="/terms" region={region}>Terms &amp; Conditions</RegionLink> and{" "}
+                          <RegionLink href="/privacy" region={region}>Privacy Policy</RegionLink>.
+                        </>
+                      )}
                     </p>
                   </form>
                 </>
@@ -363,7 +405,9 @@ export default function ContactView({ region }: { region: RegionCode }) {
         <div className="contact-after__bg"></div>
         <div className="contact-after__overlay"></div>
         <div className="container">
-          <h2 className="contact-after__title">After You Submit</h2>
+          <h2 className="contact-after__title">
+            {isUs ? US_CONTACT_COPY.whatHappensNext.title : "After You Submit"}
+          </h2>
           <div className="contact-after__grid">
             <div className="contact-after__image">
               <Image
@@ -376,11 +420,33 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
             <div className="contact-after__card">
               <ul className="contact-after__steps">
-                {afterSubmitSteps.map((step, i) => (
+                {(isUs ? US_CONTACT_COPY.whatHappensNext.steps : afterSubmitSteps).map((step, i) => (
                   <li key={i} className="contact-after__step">
-                    <span className="contact-after__step-icon">
-                      <CheckCircle size={22} />
-                    </span>
+                    {isUs ? (
+                      <span
+                        className="contact-after__step-num"
+                        style={{
+                          minWidth: "24px",
+                          height: "24px",
+                          borderRadius: "50%",
+                          background: "#22C55E",
+                          color: "#fff",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: "600",
+                          fontSize: "13px",
+                          flexShrink: 0,
+                          marginTop: "2px",
+                        }}
+                      >
+                        {i + 1}
+                      </span>
+                    ) : (
+                      <span className="contact-after__step-icon">
+                        <CheckCircle size={22} />
+                      </span>
+                    )}
                     <span className="contact-after__step-text">{step}</span>
                   </li>
                 ))}

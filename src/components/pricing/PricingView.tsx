@@ -9,6 +9,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import { type RegionCode } from "@/data/regions";
+import { US_PRICING_COPY } from "@/data/copy/us-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -23,6 +24,44 @@ type PricingPlan = {
   borderColor: string;
   features: string[];
 };
+
+const usPricingPlans: PricingPlan[] = [
+  {
+    id: "live-online-coaching",
+    name: "Live Online Coaching",
+    subtitle: "Math, English, Science",
+    currency: "$",
+    amount: "84",
+    period: "per month, per subject",
+    popular: true,
+    borderColor: "orange",
+    features: US_PRICING_COPY.plansSection.plans[0].features,
+  },
+  {
+    id: "co-curricular",
+    name: "Co-Curricular",
+    subtitle: "Music and Creative Arts, Piano and Guitar",
+    currency: "$",
+    amount: "79",
+    period: "per month (4 lessons)",
+    popular: false,
+    borderColor: "dark",
+    features: US_PRICING_COPY.plansSection.plans[1].features,
+  },
+  {
+    id: "premium-plan",
+    name: "Premium Plan",
+    subtitle: "Complete Learning Package, 3 Subjects",
+    currency: "$",
+    amount: "219",
+    originalAmount: "299",
+    period: "per month",
+    popular: false,
+    borderColor: "dark",
+    features: US_PRICING_COPY.plansSection.plans[2].features,
+  },
+];
+
 
 const pricingPlans: PricingPlan[] = [
   {
@@ -213,6 +252,7 @@ function PricingUrlParams({
 }
 
 function PricingContent({ region }: { region: RegionCode }) {
+  const isUs = region === "us";
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
 
@@ -227,8 +267,10 @@ function PricingContent({ region }: { region: RegionCode }) {
     }
   }, [region]);
 
+  const activePlans = isUs ? usPricingPlans : pricingPlans;
+
   const handlePlanParam = (planParam: string) => {
-    if (pricingPlans.some((p) => p.id === planParam)) {
+    if (activePlans.some((p) => p.id === planParam)) {
       setSelectedOffering(planParam);
       setTimeout(() => {
         subOptionsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -258,19 +300,24 @@ function PricingContent({ region }: { region: RegionCode }) {
     }, 100);
   };
 
+  const activeFaqItems = isUs ? US_PRICING_COPY.faq.items : faqItems;
+  const activeIncludedFeatures = isUs ? US_PRICING_COPY.included.features : includedFeatures;
+
   return (
     <>
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      <div className="pricing-flash" role="region" aria-label="Promotion">
-        <div className="container">
-          <p className="pricing-flash__text">
-            <span className="pricing-flash__pulse" aria-hidden="true"></span>
-            Get up to <strong>20% discount</strong> - Enrol Today!
-          </p>
+      {!isUs && (
+        <div className="pricing-flash" role="region" aria-label="Promotion">
+          <div className="container">
+            <p className="pricing-flash__text">
+              <span className="pricing-flash__pulse" aria-hidden="true"></span>
+              Get up to <strong>20% discount</strong> - Enrol Today!
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <section className="pricing-banner">
         <div className="pricing-banner__decoration pricing-banner__decoration--left">
@@ -302,14 +349,28 @@ function PricingContent({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="pricing-banner__content">
             <h1 className="pricing-banner__title">
-              Simple, Transparent{" "}
-              <span className="pricing-banner__title-highlight">Pricing</span>{" "}
-              <span className="pricing-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-              </span>
+              {isUs ? (
+                <>
+                  Clear, Fair{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              ) : (
+                <>
+                  Simple, Transparent{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              )}
             </h1>
             <p className="pricing-banner__subtitle">
-              No contracts. No hidden fees. Cancel anytime with 2 weeks notice.
+              {isUs
+                ? US_PRICING_COPY.hero.subtitle
+                : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
         </div>
@@ -322,7 +383,7 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing__grid">
-            {pricingPlans.map((plan) => (
+            {activePlans.map((plan) => (
               <div
                 key={plan.name}
                 className={`pricing-card pricing-card--${plan.borderColor} ${
@@ -348,7 +409,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-card__price">
                     <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
-                    <span className="period">{selectedCountry.currency}/{plan.period}</span>
+                    <span className="period">{isUs ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
                   </div>
                 </div>
 
@@ -388,10 +449,14 @@ function PricingContent({ region }: { region: RegionCode }) {
                 </h2>
                 <p className="pricing-suboptions__subtitle">
                   {selectedOffering === "live-online-coaching"
-                    ? "Select between personalised one-on-one coaching or affordable group sessions."
+                    ? (isUs
+                        ? "Select between personalized one-on-one coaching or affordable group sessions."
+                        : "Select between personalised one-on-one coaching or affordable group sessions.")
                     : selectedOffering === "co-curricular"
                       ? "Choose from our music programs: learn Piano, Guitar, or both at a discount."
-                      : "Get the complete learning package with both Maths and English included."}
+                      : (isUs
+                          ? "Get the complete learning package with Math, English and Science included."
+                          : "Get the complete learning package with both Maths and English included.")}
                 </p>
               </div>
 
@@ -400,7 +465,9 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-subcard pricing-subcard--teal">
                     <h3 className="pricing-subcard__title">1:1 Coaching</h3>
                     <p className="pricing-subcard__desc">
-                      Personalised one-on-one sessions with a dedicated tutor
+                      {isUs
+                        ? "Personalized one-on-one sessions with a dedicated tutor"
+                        : "Personalised one-on-one sessions with a dedicated tutor"}
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
@@ -526,8 +593,9 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-subcard pricing-subcard--navy">
                     <h3 className="pricing-subcard__title">Complete Learning Package</h3>
                     <p className="pricing-subcard__desc">
-                      12 live classes per month covering Maths, English and Science, with recorded
-                      session access, monthly reports, and WhatsApp support.
+                      {isUs
+                        ? "12 live classes per month covering Math, English and Science, with recorded session access, monthly reports, and WhatsApp support."
+                        : "12 live classes per month covering Maths, English and Science, with recorded session access, monthly reports, and WhatsApp support."}
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__original-row">
@@ -564,7 +632,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <span>Everything Included</span>
                 </div>
                 <h2 className="pricing-includes__title">
-                  Every TutorExel Student Gets
+                  {isUs ? US_PRICING_COPY.included.title : "Every TutorExel Student Gets"}
                 </h2>
               </div>
               <Image
@@ -578,7 +646,7 @@ function PricingContent({ region }: { region: RegionCode }) {
 
             <div className="pricing-includes__card">
               <ul className="pricing-includes__list">
-                {includedFeatures.map((feature) => (
+                {activeIncludedFeatures.map((feature) => (
                   <li key={feature} className="pricing-includes__item">
                     <span className="pricing-includes__item-check">
                       <GreenCheckIcon />
@@ -603,7 +671,7 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing-faq__list">
-            {faqItems.map((item, index) => (
+            {activeFaqItems.map((item, index) => (
               <div
                 key={index}
                 className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""}`}
@@ -627,12 +695,18 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      <JsonLd data={createFaqSchema(faqItems)} />
+      {!isUs && <JsonLd data={createFaqSchema(faqItems)} />}
 
-      <CTA />
+      <CTA
+        region={region}
+        title={isUs ? US_PRICING_COPY.cta.title : undefined}
+        description={isUs ? US_PRICING_COPY.cta.description : undefined}
+        buttonText={isUs ? US_PRICING_COPY.cta.buttonText : undefined}
+      />
     </>
   );
 }
+
 
 export default function PricingView({ region }: { region: RegionCode }) {
   return <PricingContent region={region} />;
