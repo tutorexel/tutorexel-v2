@@ -211,3 +211,29 @@ export function createBreadcrumbSchema(
     })),
   };
 }
+
+export function createContactPageSchema(
+  url: string,
+  description?: string
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact TutorExel",
+    url,
+    ...(description && { description }),
+  };
+}
+
+export function createAboutPageSchema(
+  url: string,
+  description?: string
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About TutorExel",
+    url,
+    ...(description && { description }),
+  };
+}

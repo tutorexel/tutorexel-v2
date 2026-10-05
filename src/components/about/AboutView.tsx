@@ -2,8 +2,9 @@ import Image from "next/image";
 import Testimonials from "@/components/home/Testimonials";
 import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
-import { createBreadcrumbSchema } from "@/utils/schema";
+import { createBreadcrumbSchema, createAboutPageSchema } from "@/utils/schema";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
+import { NZ_ABOUT_COPY } from "@/data/copy/nz-about";
 import "@/components/home/HowItWorks.css";
 import "@/app/about/about.css";
 
@@ -57,17 +58,26 @@ const heroAvatars = [
 ];
 
 export default function AboutView({ region }: { region: RegionCode }) {
+  const isNz = region === "nz";
   const regConfig = getRegionConfig(region);
   const basePath = regConfig.basePath;
 
   const aboutBreadcrumbSchema = createBreadcrumbSchema([
     { name: "Home", url: `https://www.tutorexel.com${basePath}` },
-    { name: "About", url: `https://www.tutorexel.com${basePath}/about` },
+    { name: isNz ? "About Us" : "About", url: `https://www.tutorexel.com${basePath}/about` },
   ]);
+
+  const aboutPageSchema = isNz
+    ? createAboutPageSchema(
+        "https://www.tutorexel.com/nz/about",
+        "Meet TutorExel, online tutoring for Kiwi students in Years 2 to 10. Structured, curriculum-aligned lessons with progress reports. Book a free trial today."
+      )
+    : null;
 
   return (
     <>
       <JsonLd data={aboutBreadcrumbSchema} />
+      {aboutPageSchema && <JsonLd data={aboutPageSchema} />}
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero__decoration about-hero__decoration--left">
@@ -102,13 +112,17 @@ export default function AboutView({ region }: { region: RegionCode }) {
               Built by Educators. Trusted{" "}
               <br />
               by{" "}
-              <span className="about-hero__title-highlight">Families Worldwide</span>{" "}
+              <span className="about-hero__title-highlight">
+                {isNz ? "Kiwi Families" : "Families Worldwide"}
+              </span>{" "}
               <span className="about-hero__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="about-hero__subtitle">
-              We started TutorExel with one belief: every child deserves structured, personalised learning that actually works.
+              {isNz
+                ? NZ_ABOUT_COPY.hero.subtitle
+                : "We started TutorExel with one belief: every child deserves structured, personalised learning that actually works."}
             </p>
             <div className="about-hero__avatars">
               {heroAvatars.map((src, i) => (
@@ -133,19 +147,31 @@ export default function AboutView({ region }: { region: RegionCode }) {
                 <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="about-story__label-icon" />
                 Our Story
               </p>
-              <h2 className="about-story__title">Why TutorExel Exists</h2>
+              <h2 className="about-story__title">
+                {isNz ? NZ_ABOUT_COPY.ourStory.title : "Why TutorExel Exists"}
+              </h2>
               <p className="about-story__text">
-                As parents and educators, we saw a gap in online tutoring. Most platforms are marketplaces: they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability.
+                {isNz
+                  ? NZ_ABOUT_COPY.ourStory.text1
+                  : "As parents and educators, we saw a gap in online tutoring. Most platforms are marketplaces: they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability."}
               </p>
               <p className="about-story__text about-story__text--bold about-story__text--italic">
-                TutorExel was built to be different.
+                {isNz ? NZ_ABOUT_COPY.ourStory.highlight : "TutorExel was built to be different."}
               </p>
               <p className="about-story__text">
-                We hire, train, and manage every educator on our platform. We align every lesson to your child&apos;s own school curriculum - whatever system they are learning under. And we track every student&apos;s progress so parents always know exactly where their child stands.
+                {isNz
+                  ? NZ_ABOUT_COPY.ourStory.text2
+                  : "We hire, train, and manage every educator on our platform. We align every lesson to your child's own school curriculum - whatever system they are learning under. And we track every student's progress so parents always know exactly where their child stands."}
               </p>
               <div className="about-story__founder-quote">
                 <p className="about-story__text">
-                  With a team of educators bringing over <strong>15 years of combined teaching experience</strong>, TutorExel combines the personal attention of a private tutor with the structure of a professional learning system.
+                  {isNz ? (
+                    NZ_ABOUT_COPY.ourStory.founderQuote
+                  ) : (
+                    <>
+                      With a team of educators bringing over <strong>15 years of combined teaching experience</strong>, TutorExel combines the personal attention of a private tutor with the structure of a professional learning system.
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -169,7 +195,9 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   />
                   Our Approach
                 </div>
-                <h2 className="how-it-works__title">How We Do Things Differently</h2>
+                <h2 className="how-it-works__title">
+                  {isNz ? NZ_ABOUT_COPY.ourApproach.title : "How We Do Things Differently"}
+                </h2>
               </div>
               <div className="how-it-works__image">
                 <Image
@@ -183,7 +211,7 @@ export default function AboutView({ region }: { region: RegionCode }) {
             </div>
 
             <div className="how-it-works__steps">
-              {approachSteps.map((step) => (
+              {(isNz ? NZ_ABOUT_COPY.ourApproach.steps : approachSteps).map((step) => (
                 <div className="step-card" key={step.number}>
                   <div className="step-card__number">{step.number}</div>
                   <h3 className="step-card__title">{step.title}</h3>
@@ -203,7 +231,9 @@ export default function AboutView({ region }: { region: RegionCode }) {
               <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="about-impact__label-icon" />
               By the Numbers
             </p>
-            <h2 className="about-impact__title">The TutorExel Impact</h2>
+            <h2 className="about-impact__title">
+              {isNz ? NZ_ABOUT_COPY.byTheNumbers.title : "The TutorExel Impact"}
+            </h2>
           </div>
           <div className="about-impact__grid">
             {stats.map((stat, index) => (
@@ -235,17 +265,25 @@ export default function AboutView({ region }: { region: RegionCode }) {
             </div>
             <div className="about-curriculum__content">
               <h2 className="about-curriculum__title">
-                Structured to Match Your Child&apos;s School Curriculum
+                {isNz
+                  ? NZ_ABOUT_COPY.curriculum.title
+                  : "Structured to Match Your Child's School Curriculum"}
               </h2>
               <p className="about-curriculum__text">
-                Every TutorExel session starts with understanding your child&apos;s school curriculum, grade/year level, learning goals, and academic needs. Our tutors tailor lessons, pacing, and practice to complement what your child is learning at school.
+                {isNz
+                  ? NZ_ABOUT_COPY.curriculum.text1
+                  : "Every TutorExel session starts with understanding your child's school curriculum, grade/year level, learning goals, and academic needs. Our tutors tailor lessons, pacing, and practice to complement what your child is learning at school."}
               </p>
               <p className="about-curriculum__text">
-                Whether your child studies in Australia, the USA, Canada, or New Zealand, we help ensure that learning with TutorExel stays relevant to their school journey.
+                {isNz
+                  ? NZ_ABOUT_COPY.curriculum.text2
+                  : "Whether your child studies in Australia, the USA, Canada, or New Zealand, we help ensure that learning with TutorExel stays relevant to their school journey."}
               </p>
-              <p className="about-curriculum__means-title">This means:</p>
+              <p className="about-curriculum__means-title">
+                {isNz ? NZ_ABOUT_COPY.curriculum.meansTitle : "This means:"}
+              </p>
               <div className="about-curriculum__list">
-                {acaraPoints.map((item) => (
+                {(isNz ? NZ_ABOUT_COPY.curriculum.points : acaraPoints).map((item) => (
                   <div className="about-curriculum__list-item" key={item}>
                     <svg className="about-curriculum__check-icon" width="33" height="33" viewBox="0 0 33 33" fill="none">
                       <circle cx="16.5" cy="16.5" r="12" fill="#10B981" />
@@ -264,7 +302,12 @@ export default function AboutView({ region }: { region: RegionCode }) {
       <Testimonials />
 
       {/* CTA Section */}
-      <CTA />
+      <CTA
+        region={region}
+        title={isNz ? NZ_ABOUT_COPY.cta.title : undefined}
+        description={isNz ? NZ_ABOUT_COPY.cta.description : undefined}
+        buttonText={isNz ? NZ_ABOUT_COPY.cta.buttonText : undefined}
+      />
     </>
   );
 }

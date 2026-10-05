@@ -8,6 +8,7 @@ import { sendContactWebhook } from "@/utils/webhook";
 import { pushUTMToGHL } from "@/utils/utm";
 import { trackContactSubmit } from "@/utils/analytics";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
+import { NZ_CONTACT_COPY } from "@/data/copy/nz-contact";
 import "@/app/contact/contact.css";
 
 const phonePrefixes: Record<RegionCode, string> = {
@@ -42,15 +43,20 @@ const afterSubmitSteps = [
 ];
 
 export default function ContactView({ region }: { region: RegionCode }) {
+  const isNz = region === "nz";
   const regConfig = getRegionConfig(region);
   const yearLevels = regConfig.yearLevels.map(
     (lvl) => `${regConfig.yearLabel} ${lvl}`
   );
 
+  const activeInterests = isNz ? NZ_CONTACT_COPY.form.helpOptions : interests;
+  const activeHearAboutOptions = isNz ? NZ_CONTACT_COPY.form.hearAboutOptions : hearAboutOptions;
+  const activeSteps = isNz ? NZ_CONTACT_COPY.whatHappensNext.steps : afterSubmitSteps;
+
   const [formData, setFormData] = useState({
     parentName: "",
     email: "",
-    phone: phonePrefixes[region] || "+61 ",
+    phone: isNz ? "" : (phonePrefixes[region] || "+61 "),
     childName: "",
     yearLevel: "",
     interests: [] as string[],
@@ -78,7 +84,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/contact-inquiry", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -93,6 +99,9 @@ export default function ContactView({ region }: { region: RegionCode }) {
         trackContactSubmit(formData.interests);
         setSubmitting(false);
         setSubmitted(true);
+      } else {
+        setSubmitting(false);
+        alert("Something went wrong. Please try again.");
       }
     } catch {
       setSubmitting(false);
@@ -132,16 +141,29 @@ export default function ContactView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="contact-banner__content">
             <h1 className="contact-banner__title">
-              Thinking of{" "}
-              <span className="contact-banner__title-highlight">
-                Excelling Your Child?
-              </span>
+              {isNz ? (
+                <>
+                  Ready to Help Your Child{" "}
+                  <span className="contact-banner__title-highlight">
+                    Get Ahead?
+                  </span>
+                </>
+              ) : (
+                <>
+                  Thinking of{" "}
+                  <span className="contact-banner__title-highlight">
+                    Excelling Your Child?
+                  </span>
+                </>
+              )}
               <span className="contact-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="contact-banner__subtitle">
-              Fill out the form below and we will get back to you. Or reach out directly via email or WhatsApp
+              {isNz
+                ? NZ_CONTACT_COPY.hero.subtitle
+                : "Fill out the form below and we will get back to you. Or reach out directly via email or WhatsApp"}
             </p>
           </div>
         </div>
@@ -164,7 +186,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                   </div>
                 </div>
 
-                {region === "au" && (
+                {(region === "au" || isNz) && (
                   <div className="contact-info-card">
                     <div className="contact-info-card__icon">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
@@ -185,9 +207,9 @@ export default function ContactView({ region }: { region: RegionCode }) {
                     <Clock size={20} />
                   </div>
                   <div>
-                    <p className="contact-info-card__label">Response Time</p>
+                    <p className="contact-info-card__label">{isNz ? "Reply Time" : "Response Time"}</p>
                     <p className="contact-info-card__value">
-                      We typically respond within 2 hours
+                      {isNz ? NZ_CONTACT_COPY.contactDetails.replyTime : "We typically respond within 2 hours"}
                     </p>
                   </div>
                 </div>
@@ -207,9 +229,13 @@ export default function ContactView({ region }: { region: RegionCode }) {
                 </div>
               ) : (
                 <>
-                  <h2 className="contact-form-card__title">Want to Make Inquiry?</h2>
+                  <h2 className="contact-form-card__title">
+                    {isNz ? NZ_CONTACT_COPY.form.title : "Want to Make Inquiry?"}
+                  </h2>
                   <p className="contact-form-card__subtitle">
-                    Have a question or need assistance? Fill out the form below, and we&apos;ll get back to you as soon as possible.
+                    {isNz
+                      ? NZ_CONTACT_COPY.form.subtitle
+                      : "Have a question or need assistance? Fill out the form below, and we'll get back to you as soon as possible."}
                   </p>
 
                   <form onSubmit={handleSubmit}>
@@ -249,7 +275,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             setFormData({ ...formData, phone: e.target.value })
                           }
                           className="contact-form__input"
-                          placeholder="Phone / WhatsApp Number *"
+                          placeholder={isNz ? NZ_CONTACT_COPY.form.placeholders.phone : "Phone / WhatsApp Number *"}
                         />
                       </div>
 
@@ -293,10 +319,12 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
                     <div className="contact-form__field contact-form__field--full">
                       <label className="contact-form__label">
-                        Area(s) of Interest * (Select all that apply)
+                        {isNz
+                          ? "What Would You Like Help With? * (select all that apply)"
+                          : "Area(s) of Interest * (Select all that apply)"}
                       </label>
                       <div className="contact-form__interests-grid">
-                        {interests.map((interest) => (
+                        {activeInterests.map((interest) => (
                           <label
                             key={interest}
                             className="contact-form__checkbox-label"
@@ -322,7 +350,7 @@ export default function ContactView({ region }: { region: RegionCode }) {
                         className="contact-form__select"
                       >
                         <option value="">How did you hear about us?</option>
-                        {hearAboutOptions.map((opt) => (
+                        {activeHearAboutOptions.map((opt) => (
                           <option key={opt} value={opt}>
                             {opt}
                           </option>
@@ -338,12 +366,12 @@ export default function ContactView({ region }: { region: RegionCode }) {
                           setFormData({ ...formData, message: e.target.value })
                         }
                         className="contact-form__textarea"
-                        placeholder="Your Message (How Can We Help You?) *"
+                        placeholder={isNz ? NZ_CONTACT_COPY.form.placeholders.message : "Your Message (How Can We Help You?) *"}
                       />
                     </div>
 
                     <button type="submit" className="contact-form__submit" disabled={submitting}>
-                      {submitting ? "Sending..." : "Book Your Free Trial Class"}
+                      {submitting ? "Sending..." : (isNz ? NZ_CONTACT_COPY.form.submitButton : "Book Your Free Trial Class")}
                     </button>
 
                     <p className="contact-form__terms">
@@ -363,7 +391,9 @@ export default function ContactView({ region }: { region: RegionCode }) {
         <div className="contact-after__bg"></div>
         <div className="contact-after__overlay"></div>
         <div className="container">
-          <h2 className="contact-after__title">After You Submit</h2>
+          <h2 className="contact-after__title">
+            {isNz ? NZ_CONTACT_COPY.whatHappensNext.title : "After You Submit"}
+          </h2>
           <div className="contact-after__grid">
             <div className="contact-after__image">
               <Image
@@ -376,10 +406,14 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
             <div className="contact-after__card">
               <ul className="contact-after__steps">
-                {afterSubmitSteps.map((step, i) => (
+                {activeSteps.map((step, i) => (
                   <li key={i} className="contact-after__step">
                     <span className="contact-after__step-icon">
-                      <CheckCircle size={22} />
+                      {isNz ? (
+                        <span style={{ fontWeight: 700, fontSize: "1.1rem", color: "#E56031" }}>{i + 1}.</span>
+                      ) : (
+                        <CheckCircle size={22} />
+                      )}
                     </span>
                     <span className="contact-after__step-text">{step}</span>
                   </li>

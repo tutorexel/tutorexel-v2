@@ -8,7 +8,8 @@ import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
-import { type RegionCode } from "@/data/regions";
+import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
+import { NZ_PRICING_COPY } from "@/data/copy/nz-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -18,6 +19,7 @@ type PricingPlan = {
   currency: string;
   amount: string;
   originalAmount?: string;
+  discountBadge?: string;
   period: string;
   popular: boolean;
   borderColor: string;
@@ -213,6 +215,7 @@ function PricingUrlParams({
 }
 
 function PricingContent({ region }: { region: RegionCode }) {
+  const isNz = region === "nz";
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
 
@@ -227,8 +230,51 @@ function PricingContent({ region }: { region: RegionCode }) {
     }
   }, [region]);
 
+  const nzPlansConfig = REGIONS_CONFIG.nz.pricing?.plans;
+  const nzPlans: PricingPlan[] = [
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[0].id,
+      name: NZ_PRICING_COPY.plansSection.plans[0].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[0].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[0]?.amount || 84),
+      period: NZ_PRICING_COPY.plansSection.plans[0].periodText,
+      popular: true,
+      borderColor: "orange",
+      features: NZ_PRICING_COPY.plansSection.plans[0].features,
+    },
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[1].id,
+      name: NZ_PRICING_COPY.plansSection.plans[1].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[1].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[1]?.amount || 79),
+      period: NZ_PRICING_COPY.plansSection.plans[1].periodText,
+      popular: false,
+      borderColor: "dark",
+      features: NZ_PRICING_COPY.plansSection.plans[1].features,
+    },
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[2].id,
+      name: NZ_PRICING_COPY.plansSection.plans[2].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[2].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[2]?.amount || 219),
+      originalAmount: String(nzPlansConfig?.[2]?.originalAmount || 299),
+      discountBadge: nzPlansConfig?.[2]?.discountBadge || "Save 27%",
+      period: NZ_PRICING_COPY.plansSection.plans[2].periodText,
+      popular: false,
+      borderColor: "dark",
+      features: NZ_PRICING_COPY.plansSection.plans[2].features,
+    },
+  ];
+
+  const activePlans = isNz ? nzPlans : pricingPlans;
+  const activeFaqItems = isNz ? NZ_PRICING_COPY.faq.items : faqItems;
+  const activeIncludedFeatures = isNz ? NZ_PRICING_COPY.included.features : includedFeatures;
+
   const handlePlanParam = (planParam: string) => {
-    if (pricingPlans.some((p) => p.id === planParam)) {
+    if (activePlans.some((p) => p.id === planParam)) {
       setSelectedOffering(planParam);
       setTimeout(() => {
         subOptionsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -263,14 +309,16 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      <div className="pricing-flash" role="region" aria-label="Promotion">
-        <div className="container">
-          <p className="pricing-flash__text">
-            <span className="pricing-flash__pulse" aria-hidden="true"></span>
-            Get up to <strong>20% discount</strong> - Enrol Today!
-          </p>
+      {!isNz && (
+        <div className="pricing-flash" role="region" aria-label="Promotion">
+          <div className="container">
+            <p className="pricing-flash__text">
+              <span className="pricing-flash__pulse" aria-hidden="true"></span>
+              Get up to <strong>20% discount</strong> - Enrol Today!
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <section className="pricing-banner">
         <div className="pricing-banner__decoration pricing-banner__decoration--left">
@@ -302,14 +350,25 @@ function PricingContent({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="pricing-banner__content">
             <h1 className="pricing-banner__title">
-              Simple, Transparent{" "}
-              <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+              {isNz ? (
+                <>
+                  Clear, Fair{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                </>
+              ) : (
+                <>
+                  Simple, Transparent{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                </>
+              )}
               <span className="pricing-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="pricing-banner__subtitle">
-              No contracts. No hidden fees. Cancel anytime with 2 weeks notice.
+              {isNz
+                ? NZ_PRICING_COPY.hero.subtitle
+                : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
         </div>
@@ -322,7 +381,7 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing__grid">
-            {pricingPlans.map((plan) => (
+            {activePlans.map((plan) => (
               <div
                 key={plan.name}
                 className={`pricing-card pricing-card--${plan.borderColor} ${
@@ -342,13 +401,13 @@ function PricingContent({ region }: { region: RegionCode }) {
                   {plan.originalAmount && (
                     <div className="pricing-card__original-price">
                       <span className="original-price">{plan.currency}{plan.originalAmount}</span>
-                      <span className="discount-badge">Save 27%</span>
+                      <span className="discount-badge">{plan.discountBadge || "Save 27%"}</span>
                     </div>
                   )}
                   <div className="pricing-card__price">
                     <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
-                    <span className="period">{selectedCountry.currency}/{plan.period}</span>
+                    <span className="period">{isNz ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
                   </div>
                 </div>
 
@@ -564,7 +623,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <span>Everything Included</span>
                 </div>
                 <h2 className="pricing-includes__title">
-                  Every TutorExel Student Gets
+                  {isNz ? NZ_PRICING_COPY.included.title : "Every TutorExel Student Gets"}
                 </h2>
               </div>
               <Image
@@ -578,7 +637,7 @@ function PricingContent({ region }: { region: RegionCode }) {
 
             <div className="pricing-includes__card">
               <ul className="pricing-includes__list">
-                {includedFeatures.map((feature) => (
+                {activeIncludedFeatures.map((feature) => (
                   <li key={feature} className="pricing-includes__item">
                     <span className="pricing-includes__item-check">
                       <GreenCheckIcon />
@@ -599,11 +658,13 @@ function PricingContent({ region }: { region: RegionCode }) {
               <StarIcon />
               <span>Got Questions?</span>
             </div>
-            <h2 className="pricing-faq__title">Frequently Asked Questions</h2>
+            <h2 className="pricing-faq__title">
+              {isNz ? NZ_PRICING_COPY.faq.title : "Frequently Asked Questions"}
+            </h2>
           </div>
 
           <div className="pricing-faq__list">
-            {faqItems.map((item, index) => (
+            {activeFaqItems.map((item, index) => (
               <div
                 key={index}
                 className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""}`}
@@ -627,9 +688,14 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      <JsonLd data={createFaqSchema(faqItems)} />
+      {!isNz && <JsonLd data={createFaqSchema(faqItems)} />}
 
-      <CTA />
+      <CTA
+        region={region}
+        title={isNz ? NZ_PRICING_COPY.cta.title : undefined}
+        description={isNz ? NZ_PRICING_COPY.cta.description : undefined}
+        buttonText={isNz ? NZ_PRICING_COPY.cta.buttonText : undefined}
+      />
     </>
   );
 }

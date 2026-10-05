@@ -44,8 +44,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Built by educators and trusted by Canadian families. Discover our mission, curriculum focus, and dedicated educators providing trusted online tutoring."
     },
     "nz": {
-      "title": "About Our Qualified Tutors | TutorExel New Zealand",
-      "description": "Built by educators and trusted by Kiwi families. Discover our teaching mission, structured lessons, and experienced tutors delivering online education."
+      "title": "About TutorExel | Online Tutoring in New Zealand",
+      "description": "Meet TutorExel, online tutoring for Kiwi students in Years 2 to 10. Structured, curriculum-aligned lessons with progress reports. Book a free trial today."
     }
   },
   "/pricing": {
@@ -62,8 +62,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Explore transparent online tutoring options for Canadian students. Flexible group and private sessions in Math, English and Science with zero contracts."
     },
     "nz": {
-      "title": "Tutoring Plans & Pricing | TutorExel New Zealand",
-      "description": "Explore transparent online tutoring packages for New Zealand students. Flexible group and individual classes in Maths, English and Science without lock-ins."
+      "title": "Online Tutoring Pricing | Monthly Plans | TutorExel NZ",
+      "description": "Simple monthly online tutoring plans for Kiwi students in Years 2 to 10. No long-term contracts, free assessment first. See plans and book a free trial."
     }
   },
   "/contact": {
@@ -80,8 +80,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Get in touch with our Canadian educational support team. Inquire about provincial curriculum tutoring, scheduling, or arrange a free trial class today."
     },
     "nz": {
-      "title": "Contact Our Learning Team | TutorExel NZ",
-      "description": "Get in touch with our New Zealand tutoring team. Inquire about curriculum programs, term timings, or schedule your child a free trial class right away."
+      "title": "Contact TutorExel | Online Tutoring New Zealand | Free Trial",
+      "description": "Questions about online tutoring for your child in Years 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class. We reply in 2 hours."
     }
   },
   "/careers": {
