@@ -9,19 +9,23 @@ import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import { type RegionCode } from "@/data/regions";
+import { AU_PRICING_COPY } from "@/data/copy/au-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
   id: string;
   name: string;
   subtitle: string;
+  badge?: string;
   currency: string;
   amount: string;
   originalAmount?: string;
+  discountBadge?: string;
   period: string;
   popular: boolean;
   borderColor: string;
   features: string[];
+  buttonText?: string;
 };
 
 const pricingPlans: PricingPlan[] = [
@@ -213,6 +217,13 @@ function PricingUrlParams({
 }
 
 function PricingContent({ region }: { region: RegionCode }) {
+  const isAu = region === "au";
+  const activePlans = isAu ? AU_PRICING_COPY.plans : pricingPlans;
+  const activeIncludedFeatures = isAu ? AU_PRICING_COPY.included.features : includedFeatures;
+  const activeIncludedTitle = isAu ? AU_PRICING_COPY.included.h2 : "Every TutorExel Student Gets";
+  const activeFaqTitle = isAu ? AU_PRICING_COPY.faq.h2 : "Frequently Asked Questions";
+  const activeFaqItems = isAu ? AU_PRICING_COPY.faq.items : faqItems;
+
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
 
@@ -228,7 +239,7 @@ function PricingContent({ region }: { region: RegionCode }) {
   }, [region]);
 
   const handlePlanParam = (planParam: string) => {
-    if (pricingPlans.some((p) => p.id === planParam)) {
+    if (activePlans.some((p) => p.id === planParam)) {
       setSelectedOffering(planParam);
       setTimeout(() => {
         subOptionsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -263,14 +274,16 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      <div className="pricing-flash" role="region" aria-label="Promotion">
-        <div className="container">
-          <p className="pricing-flash__text">
-            <span className="pricing-flash__pulse" aria-hidden="true"></span>
-            Get up to <strong>20% discount</strong> - Enrol Today!
-          </p>
+      {!isAu && (
+        <div className="pricing-flash" role="region" aria-label="Promotion">
+          <div className="container">
+            <p className="pricing-flash__text">
+              <span className="pricing-flash__pulse" aria-hidden="true"></span>
+              Get up to <strong>20% discount</strong> - Enrol Today!
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <section className="pricing-banner">
         <div className="pricing-banner__decoration pricing-banner__decoration--left">
@@ -302,14 +315,26 @@ function PricingContent({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="pricing-banner__content">
             <h1 className="pricing-banner__title">
-              Simple, Transparent{" "}
-              <span className="pricing-banner__title-highlight">Pricing</span>{" "}
-              <span className="pricing-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-              </span>
+              {isAu ? (
+                <>
+                  Clear, Fair{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              ) : (
+                <>
+                  Simple, Transparent{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              )}
             </h1>
             <p className="pricing-banner__subtitle">
-              No contracts. No hidden fees. Cancel anytime with 2 weeks notice.
+              {isAu ? AU_PRICING_COPY.hero.subtitle : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
         </div>
@@ -322,7 +347,7 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing__grid">
-            {pricingPlans.map((plan) => (
+            {activePlans.map((plan) => (
               <div
                 key={plan.name}
                 className={`pricing-card pricing-card--${plan.borderColor} ${
@@ -330,7 +355,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                 }`}
               >
                 {plan.popular && (
-                  <span className="pricing-card__badge">Most Popular</span>
+                  <span className="pricing-card__badge">{plan.badge || "Most Popular"}</span>
                 )}
 
                 <div className="pricing-card__header">
@@ -342,13 +367,13 @@ function PricingContent({ region }: { region: RegionCode }) {
                   {plan.originalAmount && (
                     <div className="pricing-card__original-price">
                       <span className="original-price">{plan.currency}{plan.originalAmount}</span>
-                      <span className="discount-badge">Save 27%</span>
+                      <span className="discount-badge">{plan.discountBadge || "Save 27%"}</span>
                     </div>
                   )}
                   <div className="pricing-card__price">
                     <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
-                    <span className="period">{selectedCountry.currency}/{plan.period}</span>
+                    <span className="period">{isAu ? `AUD ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
                   </div>
                 </div>
 
@@ -369,7 +394,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                     selectedOffering === plan.id ? "pricing-card__button--selected" : ""
                   }`}
                 >
-                  {selectedOffering === plan.id ? "Selected" : "Get Started"}
+                  {selectedOffering === plan.id ? "Selected" : (plan.buttonText || "Get Started")}
                 </button>
               </div>
             ))}
@@ -564,7 +589,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <span>Everything Included</span>
                 </div>
                 <h2 className="pricing-includes__title">
-                  Every TutorExel Student Gets
+                  {activeIncludedTitle}
                 </h2>
               </div>
               <Image
@@ -578,7 +603,7 @@ function PricingContent({ region }: { region: RegionCode }) {
 
             <div className="pricing-includes__card">
               <ul className="pricing-includes__list">
-                {includedFeatures.map((feature) => (
+                {activeIncludedFeatures.map((feature) => (
                   <li key={feature} className="pricing-includes__item">
                     <span className="pricing-includes__item-check">
                       <GreenCheckIcon />
@@ -599,11 +624,11 @@ function PricingContent({ region }: { region: RegionCode }) {
               <StarIcon />
               <span>Got Questions?</span>
             </div>
-            <h2 className="pricing-faq__title">Frequently Asked Questions</h2>
+            <h2 className="pricing-faq__title">{activeFaqTitle}</h2>
           </div>
 
           <div className="pricing-faq__list">
-            {faqItems.map((item, index) => (
+            {activeFaqItems.map((item, index) => (
               <div
                 key={index}
                 className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""}`}
@@ -627,9 +652,14 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      <JsonLd data={createFaqSchema(faqItems)} />
+      {!isAu && <JsonLd data={createFaqSchema(faqItems)} />}
 
-      <CTA />
+      <CTA
+        region={region}
+        title={isAu ? AU_PRICING_COPY.cta.h2 : undefined}
+        description={isAu ? AU_PRICING_COPY.cta.description : undefined}
+        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : undefined}
+      />
     </>
   );
 }

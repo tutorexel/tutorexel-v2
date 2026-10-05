@@ -211,3 +211,26 @@ export function createBreadcrumbSchema(
     })),
   };
 }
+
+export function createContactPageSchema(
+  url: string = "https://www.tutorexel.com/contact"
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact TutorExel",
+    url,
+  };
+}
+
+export function createAboutPageSchema(
+  url: string = "https://www.tutorexel.com/about"
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About TutorExel",
+    url,
+  };
+}
+

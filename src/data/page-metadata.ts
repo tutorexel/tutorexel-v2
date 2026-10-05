@@ -32,8 +32,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/about": {
     "au": {
-      "title": "About Us & Expert Educators | TutorExel Australia",
-      "description": "Built by educators and trusted by Australian families. Discover our mission, structured approach, and dedicated team providing quality online tutoring."
+      "title": "About TutorExel | Online Tutoring Australia | ACARA-Aligned",
+      "description": "Meet TutorExel, online tutoring for Australian students in Years 2 to 10. Structured, curriculum-aligned lessons with progress reports. Book a free trial."
     },
     "us": {
       "title": "About Our Online Tutors | TutorExel United States",
@@ -50,8 +50,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/pricing": {
     "au": {
-      "title": "Tutoring Plans & Tuition Rates | TutorExel Australia",
-      "description": "Explore transparent online tutoring packages for Australian students. Flexible group and one-on-one sessions in Maths, English and Science with no lock-ins."
+      "title": "Online Tutoring Pricing Australia | Monthly Plans | TutorExel",
+      "description": "Simple monthly online tutoring plans for Australian students in Years 2 to 10. No lock-in contracts, free assessment first. See plans and book a free trial."
     },
     "us": {
       "title": "Tutoring Plans & Pricing | TutorExel United States",
@@ -68,8 +68,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/contact": {
     "au": {
-      "title": "Contact Our Support Team | TutorExel Australia",
-      "description": "Get in touch with the TutorExel Australia academic team. Ask questions regarding curriculum programs, tutor allocation, or book a free trial class today."
+      "title": "Contact TutorExel | Online Tutoring Australia | Free Trial",
+      "description": "Questions about online tutoring for your child in Years 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class. We reply in 2 hours."
     },
     "us": {
       "title": "Contact Our Tutoring Team | TutorExel US",
