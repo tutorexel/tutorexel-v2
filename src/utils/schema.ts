@@ -211,3 +211,42 @@ export function createBreadcrumbSchema(
     })),
   };
 }
+
+export function createContactPageSchema(
+  region: RegionCode = "ca"
+): Record<string, unknown> {
+  const config = REGIONS_CONFIG[region] || REGIONS_CONFIG.ca;
+  const prefix = config.basePath;
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: `Contact TutorExel${region === "au" ? "" : ` ${config.countryName}`}`,
+    url: `https://www.tutorexel.com${prefix}/contact`,
+    description: "Questions about online tutoring? Contact TutorExel by form, email or WhatsApp.",
+    publisher: {
+      "@type": "EducationalOrganization",
+      name: "TutorExel",
+      url: "https://www.tutorexel.com",
+    },
+  };
+}
+
+export function createAboutPageSchema(
+  region: RegionCode = "ca"
+): Record<string, unknown> {
+  const config = REGIONS_CONFIG[region] || REGIONS_CONFIG.ca;
+  const prefix = config.basePath;
+  return {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: `About TutorExel${region === "au" ? "" : ` ${config.countryName}`}`,
+    url: `https://www.tutorexel.com${prefix}/about`,
+    description: "Built by educators and trusted by families. Structured, curriculum-aligned online tutoring.",
+    publisher: {
+      "@type": "EducationalOrganization",
+      name: "TutorExel",
+      url: "https://www.tutorexel.com",
+    },
+  };
+}
+

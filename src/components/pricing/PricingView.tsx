@@ -9,6 +9,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import { type RegionCode } from "@/data/regions";
+import { CA_PRICING_COPY } from "@/data/copy/ca-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -263,14 +264,16 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      <div className="pricing-flash" role="region" aria-label="Promotion">
-        <div className="container">
-          <p className="pricing-flash__text">
-            <span className="pricing-flash__pulse" aria-hidden="true"></span>
-            Get up to <strong>20% discount</strong> - Enrol Today!
-          </p>
+      {region !== "ca" && (
+        <div className="pricing-flash" role="region" aria-label="Promotion">
+          <div className="container">
+            <p className="pricing-flash__text">
+              <span className="pricing-flash__pulse" aria-hidden="true"></span>
+              Get up to <strong>20% discount</strong> - Enrol Today!
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <section className="pricing-banner">
         <div className="pricing-banner__decoration pricing-banner__decoration--left">
@@ -302,14 +305,22 @@ function PricingContent({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="pricing-banner__content">
             <h1 className="pricing-banner__title">
-              Simple, Transparent{" "}
-              <span className="pricing-banner__title-highlight">Pricing</span>{" "}
-              <span className="pricing-banner__title-star">
-                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-              </span>
+              {region === "ca" ? (
+                CA_PRICING_COPY.hero.title
+              ) : (
+                <>
+                  Simple, Transparent{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
+              )}
             </h1>
             <p className="pricing-banner__subtitle">
-              No contracts. No hidden fees. Cancel anytime with 2 weeks notice.
+              {region === "ca"
+                ? CA_PRICING_COPY.hero.subtitle
+                : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
         </div>
@@ -322,60 +333,113 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing__grid">
-            {pricingPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`pricing-card pricing-card--${plan.borderColor} ${
-                  selectedOffering === plan.id ? "pricing-card--selected" : ""
-                }`}
-              >
-                {plan.popular && (
-                  <span className="pricing-card__badge">Most Popular</span>
-                )}
+            {region === "ca"
+              ? CA_PRICING_COPY.plans.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={`pricing-card pricing-card--${
+                      plan.id === "live-online-coaching" ? "orange" : "dark"
+                    }`}
+                  >
+                    {plan.badge && (
+                      <span className="pricing-card__badge">{plan.badge}</span>
+                    )}
 
-                <div className="pricing-card__header">
-                  <div className="pricing-card__name">{plan.name}</div>
-                  <div className="pricing-card__subtitle">{plan.subtitle}</div>
-                </div>
-
-                <div className="pricing-card__price-wrapper">
-                  {plan.originalAmount && (
-                    <div className="pricing-card__original-price">
-                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
-                      <span className="discount-badge">Save 27%</span>
+                    <div className="pricing-card__header">
+                      <div className="pricing-card__name">{plan.name}</div>
+                      <div className="pricing-card__subtitle">{plan.subtitle}</div>
                     </div>
-                  )}
-                  <div className="pricing-card__price">
-                    <span className="currency">{plan.currency}</span>
-                    <span className="amount">{plan.amount}</span>
-                    <span className="period">{selectedCountry.currency}/{plan.period}</span>
+
+                    <div className="pricing-card__price-wrapper">
+                      {plan.originalAmount && (
+                        <div className="pricing-card__original-price">
+                          <span className="original-price">${plan.originalAmount} CAD</span>
+                          {plan.discountBadge && (
+                            <span className="discount-badge">{plan.discountBadge}</span>
+                          )}
+                        </div>
+                      )}
+                      <div className="pricing-card__price">
+                        <span className="currency">$</span>
+                        <span className="amount">{plan.amount}</span>
+                        <span className="period">{plan.periodText}</span>
+                      </div>
+                    </div>
+
+                    <div className="pricing-card__features">
+                      {plan.features.map((feature) => (
+                        <div className="pricing-card__feature" key={feature}>
+                          <span className="feature-check">
+                            <CheckIcon />
+                          </span>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    <RegionLink
+                      href="/enroll"
+                      region={region}
+                      className="pricing-card__button"
+                    >
+                      {plan.buttonText}
+                    </RegionLink>
                   </div>
-                </div>
+                ))
+              : pricingPlans.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={`pricing-card pricing-card--${plan.borderColor} ${
+                      selectedOffering === plan.id ? "pricing-card--selected" : ""
+                    }`}
+                  >
+                    {plan.popular && (
+                      <span className="pricing-card__badge">Most Popular</span>
+                    )}
 
-                <div className="pricing-card__features">
-                  {plan.features.map((feature) => (
-                    <div className="pricing-card__feature" key={feature}>
-                      <span className="feature-check">
-                        <CheckIcon />
-                      </span>
-                      {feature}
+                    <div className="pricing-card__header">
+                      <div className="pricing-card__name">{plan.name}</div>
+                      <div className="pricing-card__subtitle">{plan.subtitle}</div>
                     </div>
-                  ))}
-                </div>
 
-                <button
-                  onClick={() => handleSelect(plan.id)}
-                  className={`pricing-card__button ${
-                    selectedOffering === plan.id ? "pricing-card__button--selected" : ""
-                  }`}
-                >
-                  {selectedOffering === plan.id ? "Selected" : "Get Started"}
-                </button>
-              </div>
-            ))}
+                    <div className="pricing-card__price-wrapper">
+                      {plan.originalAmount && (
+                        <div className="pricing-card__original-price">
+                          <span className="original-price">{plan.currency}{plan.originalAmount}</span>
+                          <span className="discount-badge">Save 27%</span>
+                        </div>
+                      )}
+                      <div className="pricing-card__price">
+                        <span className="currency">{plan.currency}</span>
+                        <span className="amount">{plan.amount}</span>
+                        <span className="period">{selectedCountry.currency}/{plan.period}</span>
+                      </div>
+                    </div>
+
+                    <div className="pricing-card__features">
+                      {plan.features.map((feature) => (
+                        <div className="pricing-card__feature" key={feature}>
+                          <span className="feature-check">
+                            <CheckIcon />
+                          </span>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => handleSelect(plan.id)}
+                      className={`pricing-card__button ${
+                        selectedOffering === plan.id ? "pricing-card__button--selected" : ""
+                      }`}
+                    >
+                      {selectedOffering === plan.id ? "Selected" : "Get Started"}
+                    </button>
+                  </div>
+                ))}
           </div>
 
-          {selectedOffering && (
+          {region !== "ca" && selectedOffering && (
             <div ref={subOptionsRef} className="pricing-suboptions">
               <div className="pricing-suboptions__header">
                 <h2 className="pricing-suboptions__title">
@@ -564,7 +628,9 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <span>Everything Included</span>
                 </div>
                 <h2 className="pricing-includes__title">
-                  Every TutorExel Student Gets
+                  {region === "ca"
+                    ? CA_PRICING_COPY.included.title
+                    : "Every TutorExel Student Gets"}
                 </h2>
               </div>
               <Image
@@ -578,7 +644,10 @@ function PricingContent({ region }: { region: RegionCode }) {
 
             <div className="pricing-includes__card">
               <ul className="pricing-includes__list">
-                {includedFeatures.map((feature) => (
+                {(region === "ca"
+                  ? CA_PRICING_COPY.included.features
+                  : includedFeatures
+                ).map((feature) => (
                   <li key={feature} className="pricing-includes__item">
                     <span className="pricing-includes__item-check">
                       <GreenCheckIcon />
@@ -603,33 +672,46 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing-faq__list">
-            {faqItems.map((item, index) => (
-              <div
-                key={index}
-                className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""}`}
-              >
-                <button
-                  className="pricing-faq__question"
-                  onClick={() => toggleFaq(index)}
-                  aria-expanded={openFaqIndex === index}
+            {(region === "ca" ? CA_PRICING_COPY.faqs : faqItems).map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className={`pricing-faq__item ${openFaqIndex === index ? "pricing-faq__item--open" : ""}`}
                 >
-                  <span className="pricing-faq__question-text">{item.question}</span>
-                  <span className="pricing-faq__icon">
-                    {openFaqIndex === index ? <MinusIcon /> : <PlusIcon />}
-                  </span>
-                </button>
-                {openFaqIndex === index && (
-                  <div className="pricing-faq__answer">{item.answer}</div>
-                )}
-              </div>
-            ))}
+                  <button
+                    className="pricing-faq__question"
+                    onClick={() => toggleFaq(index)}
+                    aria-expanded={openFaqIndex === index}
+                  >
+                    <span className="pricing-faq__question-text">
+                      {item.question}
+                    </span>
+                    <span className="pricing-faq__icon">
+                      {openFaqIndex === index ? <MinusIcon /> : <PlusIcon />}
+                    </span>
+                  </button>
+                  {openFaqIndex === index && (
+                    <div className="pricing-faq__answer">{item.answer}</div>
+                  )}
+                </div>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      <JsonLd data={createFaqSchema(faqItems)} />
+      {region !== "ca" && <JsonLd data={createFaqSchema(faqItems)} />}
 
-      <CTA />
+      <CTA
+        region={region}
+        title={region === "ca" ? CA_PRICING_COPY.cta.title : undefined}
+        description={
+          region === "ca" ? CA_PRICING_COPY.cta.description : undefined
+        }
+        buttonText={
+          region === "ca" ? CA_PRICING_COPY.cta.buttonText : undefined
+        }
+      />
     </>
   );
 }
