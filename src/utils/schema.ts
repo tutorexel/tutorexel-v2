@@ -242,3 +242,16 @@ export function createAboutPageSchema(
   };
 }
 
+export function createWebPageSchema(
+  name: string,
+  description: string,
+  url: string
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    description,
+    url,
+  };
+}

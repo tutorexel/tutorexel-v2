@@ -22,6 +22,27 @@ export const COMPANY_POSTAL_ADDRESS: CompanyPostalAddress = {
 
 export const ORGANIZATION_IMAGE = "https://www.tutorexel.com/images/og-hero.jpg";
 
+export const LEGAL_EFFECTIVE_DATE = "6 October 2026";
+
+export const REGIONAL_REFUND_WHATSAPP: Record<RegionCode, { number: string; href: string }> = {
+  au: {
+    number: "+61 470 330 548",
+    href: "https://wa.me/61470330548",
+  },
+  us: {
+    number: "+1 (206) 797 7387",
+    href: "https://wa.me/12067977387",
+  },
+  ca: {
+    number: "+1 (206) 797 7387",
+    href: "https://wa.me/12067977387",
+  },
+  nz: {
+    number: "+61 470-330-548",
+    href: "https://wa.me/61470330548",
+  },
+};
+
 export interface PricingPlanConfig {
   id: string;
   name: string;

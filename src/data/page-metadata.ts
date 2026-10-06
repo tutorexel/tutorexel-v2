@@ -266,56 +266,56 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/privacy": {
     "au": {
-      "title": "Privacy Policy & Data Security | TutorExel Australia",
-      "description": "Read the TutorExel privacy policy. Learn how we handle student data, protect personal information, and maintain stringent online privacy security standards."
+      "title": "Privacy Policy | How TutorExel Protects Your Data",
+      "description": "How TutorExel collects, uses, stores and protects personal information of students, parents and guardians in Australia, the USA, Canada and New Zealand."
     },
     "us": {
-      "title": "Privacy Policy & Data Rights | TutorExel US",
-      "description": "Read the TutorExel privacy policy. Learn how we protect student data, uphold digital privacy rights, and adhere to strict security protocols across America."
+      "title": "Privacy Policy | How TutorExel Protects Your Data",
+      "description": "How TutorExel collects, uses, stores and protects personal information of students, parents and guardians in Australia, the USA, Canada and New Zealand."
     },
     "ca": {
-      "title": "Privacy Policy & Information | TutorExel Canada",
-      "description": "Read the TutorExel privacy policy. Learn how we collect, store, and safeguard student data in accordance with Canadian digital privacy protection standards."
+      "title": "Privacy Policy | How TutorExel Protects Your Data",
+      "description": "How TutorExel collects, uses, stores and protects personal information of students, parents and guardians in Australia, the USA, Canada and New Zealand."
     },
     "nz": {
-      "title": "Privacy Policy & Protection | TutorExel NZ",
-      "description": "Read the TutorExel privacy policy. Learn how we protect student personal data, uphold student safety, and respect digital privacy standards in New Zealand."
+      "title": "Privacy Policy | How TutorExel Protects Your Data",
+      "description": "How TutorExel collects, uses, stores and protects personal information of students, parents and guardians in Australia, the USA, Canada and New Zealand."
     }
   },
   "/terms": {
     "au": {
-      "title": "Terms & Conditions of Service | TutorExel Australia",
-      "description": "Review our terms of service for online tutoring in Australia. Understand lesson scheduling policies, user responsibilities, and service delivery commitments."
+      "title": "Terms & Conditions | TutorExel Online Tutoring",
+      "description": "Read the terms for using TutorExel online tutoring and music lessons in Australia, the USA, Canada and New Zealand, including payments and cancellations."
     },
     "us": {
-      "title": "Terms of Service & Usage | TutorExel United States",
-      "description": "Review our terms of service for online tutoring across the US. Understand lesson scheduling policies, customer responsibilities, and our tutoring commitments."
+      "title": "Terms & Conditions | TutorExel Online Tutoring",
+      "description": "Read the terms for using TutorExel online tutoring and music lessons in Australia, the USA, Canada and New Zealand, including payments and cancellations."
     },
     "ca": {
-      "title": "Terms of Service & Policies | TutorExel Canada",
-      "description": "Review our terms of service for online tutoring across Canada. Understand lesson scheduling guidelines, user responsibilities, and our learning commitments."
+      "title": "Terms & Conditions | TutorExel Online Tutoring",
+      "description": "Read the terms for using TutorExel online tutoring and music lessons in Australia, the USA, Canada and New Zealand, including payments and cancellations."
     },
     "nz": {
-      "title": "Terms & Conditions | TutorExel New Zealand",
-      "description": "Review our terms of service for online tutoring in New Zealand. Understand lesson scheduling rules, parent responsibilities, and academic service standards."
+      "title": "Terms & Conditions | TutorExel Online Tutoring",
+      "description": "Read the terms for using TutorExel online tutoring and music lessons in Australia, the USA, Canada and New Zealand, including payments and cancellations."
     }
   },
   "/refund": {
     "au": {
-      "title": "Refund & Cancellation Policy | TutorExel Australia",
-      "description": "Understand the TutorExel refund and cancellation policies. Simple terms, easy plan adjustments, and make-up session options for all Australian families."
+      "title": "Refund & Cancellation Policy | TutorExel",
+      "description": "How cancellations, rescheduling and refunds work at TutorExel online tutoring, with clear rules for monthly plans, music lessons and exam preparation programs."
     },
     "us": {
-      "title": "Refund & Cancellation Terms | TutorExel US",
-      "description": "Understand the TutorExel refund and cancellation policy. Clear terms, effortless plan modifications, and convenient make-up session options for US families."
+      "title": "Refund & Cancellation Policy | TutorExel",
+      "description": "How cancellations, rescheduling and refunds work at TutorExel online tutoring, with clear rules for monthly plans, music lessons and exam preparation programs."
     },
     "ca": {
-      "title": "Refund & Cancellation Policy | TutorExel Canada",
-      "description": "Understand the TutorExel refund and cancellation policy. Clear terms, simple plan adjustments, and flexible make-up tutoring options for Canadian families."
+      "title": "Refund & Cancellation Policy | TutorExel",
+      "description": "How cancellations, rescheduling and refunds work at TutorExel online tutoring, with clear rules for monthly plans, music lessons and exam preparation programs."
     },
     "nz": {
-      "title": "Refund Policy & Terms | TutorExel New Zealand",
-      "description": "Understand the TutorExel refund and cancellation policy. Straightforward terms, flexible plan adjustments, and make-up tutoring sessions for Kiwi families."
+      "title": "Refund & Cancellation Policy | TutorExel",
+      "description": "How cancellations, rescheduling and refunds work at TutorExel online tutoring, with clear rules for monthly plans, music lessons and exam preparation programs."
     }
   },
   "/cookies": {
