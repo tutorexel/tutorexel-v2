@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import RegionLink from "@/components/shared/RegionLink";
-import { type RegionCode } from "@/data/regions";
+import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
 import { AU_GUITAR_COPY } from "@/data/copy/au-guitar";
 import { CA_GUITAR_COPY } from "@/data/copy/ca-guitar";
 import { NZ_GUITAR_COPY } from "@/data/copy/nz-guitar";
@@ -11,6 +11,7 @@ import { MusicPageCopy } from "@/data/copy/music-copy-types";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/guitar/guitar.css";
+import "@/components/home/CTA.css";
 
 const copyByRegion: Record<RegionCode, MusicPageCopy> = {
   au: AU_GUITAR_COPY,
@@ -105,6 +106,7 @@ function RequirementIcon({ type }: { type: string }) {
 export default function GuitarView({ region }: { region: RegionCode }) {
   const currentRegion: RegionCode = region || "au";
   const copy = copyByRegion[currentRegion] || AU_GUITAR_COPY;
+  const regConfig = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
   const basePath = currentRegion === "au" ? "" : `/${currentRegion}`;
 
   const breadcrumbs = createBreadcrumbSchema([
@@ -337,23 +339,42 @@ export default function GuitarView({ region }: { region: RegionCode }) {
         </section>
       )}
 
-      <section className="music-cta">
+      <section className="cta section">
         <div className="container">
-          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
-          {copy.finalCta.text && (
-            <p className="music-cta__subtitle" style={{ color: "rgba(255, 255, 255, 0.9)", marginBottom: "24px" }}>
-              {copy.finalCta.text}
-            </p>
-          )}
-          <div className="music-cta__actions">
-            <RegionLink href={copy.finalCta.primaryButton.href} region={currentRegion} className="btn btn-primary btn-lg">
-              {copy.finalCta.primaryButton.text}
-            </RegionLink>
-            <RegionLink href={copy.finalCta.secondaryButton.href} region={currentRegion} className="music-cta__btn--outline">
-              {copy.finalCta.secondaryButton.text}
-            </RegionLink>
+          <div className="cta__grid">
+            <div className="cta__image-wrapper">
+              <Image
+                src="/images/cta/lady_image.webp"
+                alt={`Happy ${regConfig.demonym} student learning guitar online from home`}
+                className="cta__image"
+                width={600}
+                height={500}
+              />
+            </div>
+
+            <div className="cta__content">
+              <h2 className="cta__title">
+                {copy.finalCta.h2}
+              </h2>
+              {copy.finalCta.text && (
+                <p className="cta__description">
+                  {copy.finalCta.text}
+                </p>
+              )}
+              <div className="cta__actions">
+                <RegionLink href={copy.finalCta.primaryButton.href} region={currentRegion} className="cta__btn">
+                  {copy.finalCta.primaryButton.text}
+                </RegionLink>
+                {copy.finalCta.secondaryButton && (
+                  <RegionLink href={copy.finalCta.secondaryButton.href} region={currentRegion} className="cta__btn cta__btn--outline">
+                    {copy.finalCta.secondaryButton.text}
+                  </RegionLink>
+                )}
+              </div>
+            </div>
           </div>
         </div>
+        <Image src="/images/cta/vector.webp" alt="" className="cta__vector" width={400} height={200} />
       </section>
     </>
   );

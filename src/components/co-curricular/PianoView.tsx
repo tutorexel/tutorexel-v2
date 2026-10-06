@@ -11,6 +11,7 @@ import { MusicPageCopy } from "@/data/copy/music-copy-types";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/piano/piano.css";
+import "@/components/home/CTA.css";
 
 const copyByRegion: Record<RegionCode, MusicPageCopy> = {
   au: AU_PIANO_COPY,
@@ -349,25 +350,42 @@ export default function PianoView({ region }: { region: RegionCode }) {
         </section>
       )}
 
-      <section className="piano-cta">
+      <section className="cta section">
         <div className="container">
-          <div className="piano-cta__content">
-            <h2 className="piano-cta__title">{copy.finalCta.h2}</h2>
-            {copy.finalCta.text && (
-              <p className="piano-cta__subtitle">
-                {copy.finalCta.text}
-              </p>
-            )}
-            <div className="piano-cta__actions">
-              <RegionLink href={copy.finalCta.primaryButton.href} region={currentRegion} className="btn btn-primary btn-lg">
-                {copy.finalCta.primaryButton.text}
-              </RegionLink>
-              <RegionLink href={copy.finalCta.secondaryButton.href} region={currentRegion} className="piano-cta__btn-outline">
-                {copy.finalCta.secondaryButton.text}
-              </RegionLink>
+          <div className="cta__grid">
+            <div className="cta__image-wrapper">
+              <Image
+                src="/images/cta/lady_image.webp"
+                alt={`Happy ${regConfig.demonym} student learning piano online from home`}
+                className="cta__image"
+                width={600}
+                height={500}
+              />
+            </div>
+
+            <div className="cta__content">
+              <h2 className="cta__title">
+                {copy.finalCta.h2}
+              </h2>
+              {copy.finalCta.text && (
+                <p className="cta__description">
+                  {copy.finalCta.text}
+                </p>
+              )}
+              <div className="cta__actions">
+                <RegionLink href={copy.finalCta.primaryButton.href} region={currentRegion} className="cta__btn">
+                  {copy.finalCta.primaryButton.text}
+                </RegionLink>
+                {copy.finalCta.secondaryButton && (
+                  <RegionLink href={copy.finalCta.secondaryButton.href} region={currentRegion} className="cta__btn cta__btn--outline">
+                    {copy.finalCta.secondaryButton.text}
+                  </RegionLink>
+                )}
+              </div>
             </div>
           </div>
         </div>
+        <Image src="/images/cta/vector.webp" alt="" className="cta__vector" width={400} height={200} />
       </section>
     </>
   );

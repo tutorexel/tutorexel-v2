@@ -3,7 +3,13 @@
   padding-bottom: 0;
   position: relative;
   overflow: hidden;
-  padding-top: 50px;}
+  padding-top: 50px;
+}
+
+.cta.section {
+  padding-bottom: 0;
+  padding-top: 50px;
+}
 
 .cta .container {
   position: relative;
@@ -77,6 +83,27 @@
   background-color: #D14E20;
 }
 
+.cta__btn--outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cta__btn--outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
 .cta__phone {
   display: flex;
   align-items: center;
@@ -92,16 +119,11 @@
   color: #FF6B35;
 }
 
-/* .cta__phone-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  display: flex;
+.cta__phone-icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-} */
+}
 
 .cta__phone-icon img {
   width: 20px;
@@ -201,7 +223,8 @@
     gap: 16px;
   }
 
-  .cta__btn {
+  .cta__btn,
+  .cta__btn--outline {
     width: 100%;
     padding: 14px 28px;
   }
@@ -226,7 +249,8 @@
     padding: 0;
   }
 
-  .cta__btn {
+  .cta__btn,
+  .cta__btn--outline {
     font-size: 15px;
     padding: 12px 24px;
   }

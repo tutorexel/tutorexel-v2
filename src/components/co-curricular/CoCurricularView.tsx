@@ -11,6 +11,7 @@ import { MusicHubCopy } from "@/data/copy/music-copy-types";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/co-curricular.css";
+import "@/components/home/CTA.css";
 
 const copyByRegion: Record<RegionCode, MusicHubCopy> = {
   au: AU_CO_CURRICULAR_COPY,
