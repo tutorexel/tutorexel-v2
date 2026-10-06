@@ -12,7 +12,7 @@ import Testimonials from "@/components/home/Testimonials";
 import CTA from "@/components/home/CTA";
 import BookTrialButton from "@/components/home/BookTrialButton";
 import { createCourseSchema, createBreadcrumbSchema } from "@/utils/schema";
-import { type RegionCode } from "@/utils/regionalLinks";
+import { type RegionCode, getSubjectHref, getYearSlug, getSubjectSlug, getYearHubHref } from "@/utils/regionalLinks";
 import { getRegionConfig } from "@/data/regions";
 import { getSubjectCopy } from "@/data/copy/au-subject-copy";
 import "@/app/subjects/[yearId]/[subjectId]/subject-detail.css";
@@ -230,15 +230,18 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const effectiveRegion = region || currentRegion || "au";
   const isAu = effectiveRegion === "au";
 
-  // Determine active subject
-  const [activeSubject, setActiveSubject] = useState<"maths" | "english" | "science">(
-    subjectId === "english" ? "english" : subjectId === "science" ? "science" : "maths"
-  );
+  const yearNum = parseInt(yearId.replace(/^(year|grade)-/, ""), 10);
+  const normYearId = `year-${yearNum}`;
 
-  const auCopy = getSubjectCopy(effectiveRegion, yearId, activeSubject);
+  // Determine active subject
+  const normSubjectId: "maths" | "english" | "science" =
+    subjectId === "math" || subjectId === "maths" ? "maths" : subjectId === "science" ? "science" : "english";
+  const [activeSubject, setActiveSubject] = useState<"maths" | "english" | "science">(normSubjectId);
+
+  const auCopy = getSubjectCopy(effectiveRegion, normYearId, activeSubject);
 
   // Get year data
-  const yearData = (subjectsData as Record<string, Record<string, unknown>>)[yearId];
+  const yearData = (subjectsData as Record<string, Record<string, unknown>>)[normYearId];
 
   // Get subject data
   const data = yearData?.[activeSubject] as {
@@ -269,7 +272,6 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
     notFound();
   }
 
-  const yearNum = yearId.replace("year-", "");
   const yearLabel = `${levelWord} ${yearNum}`;
   const subjectLabel = activeSubject === "maths" ? mathLabel : activeSubject === "science" ? "Science" : "English";
 
@@ -283,17 +285,22 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const rootUrl = "https://www.tutorexel.com";
   const homeHref = getHref("/");
   const homeUrl = homeHref === "/" ? rootUrl : `${rootUrl}${homeHref}`;
+  const yearBreadcrumbPath = (effectiveRegion === "ca" || effectiveRegion === "us")
+    ? getYearHubHref(yearNum, effectiveRegion)
+    : `/subjects/${normYearId}/maths`;
+  const yearBreadcrumbHref = getHref(yearBreadcrumbPath);
+  const subjectBreadcrumbHref = getHref(getSubjectHref(yearNum, activeSubject, effectiveRegion));
   const breadcrumbItems = (effectiveRegion === "ca" || effectiveRegion === "nz" || effectiveRegion === "us")
     ? [
         { name: "Home", url: homeUrl },
-        { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
-        { name: subjectLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/${activeSubject}`)}` },
+        { name: yearLabel, url: `${rootUrl}${yearBreadcrumbHref}` },
+        { name: subjectLabel, url: `${rootUrl}${subjectBreadcrumbHref}` },
       ]
     : [
         { name: "Home", url: homeUrl },
         { name: "Subjects", url: `${rootUrl}${getHref("/subjects")}` },
-        { name: yearLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/maths`)}` },
-        { name: subjectLabel, url: `${rootUrl}${getHref(`/subjects/${yearId}/${activeSubject}`)}` },
+        { name: yearLabel, url: `${rootUrl}${yearBreadcrumbHref}` },
+        { name: subjectLabel, url: `${rootUrl}${subjectBreadcrumbHref}` },
       ];
   const subjectBreadcrumbSchema = createBreadcrumbSchema(breadcrumbItems);
 
@@ -309,20 +316,20 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
   const handleSubjectToggle = (subject: "maths" | "english" | "science") => {
     setActiveSubject(subject);
     setActiveTerm("term1");
-    router.push(`/subjects/${yearId}/${subject}`, { scroll: false });
+    router.push(getSubjectHref(yearNum, subject, effectiveRegion), { scroll: false });
   };
 
   // Get current term data
   const currentTermData = data[activeTerm];
 
   // Get learning outcomes from years.ts
-  const subjectDataFromYears = getSubjectData(yearId, activeSubject);
+  const subjectDataFromYears = getSubjectData(normYearId, activeSubject);
   const learningOutcomes = subjectDataFromYears?.learningOutcomes ?? [];
 
   // Explore More: other subjects in same year
   const otherSubjects = (["maths", "english", "science"] as const).filter(s => s !== activeSubject);
   const otherSubjectId = otherSubjects[0];
-  const otherSubjectLabel = otherSubjectId === "maths" ? "Maths" : otherSubjectId === "science" ? "Science" : "English";
+  const otherSubjectLabel = otherSubjectId === "maths" ? mathLabel : otherSubjectId === "science" ? "Science" : "English";
 
   return (
     <>
@@ -405,7 +412,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
 
       {/* ===== Unique Year+Subject Introduction ===== */}
       {(() => {
-        const key = `${yearId}-${activeSubject}`;
+        const key = `${normYearId}-${activeSubject}`;
         const intro = subjectIntros[key];
         const resolvedIntro = auCopy ? auCopy.intro.text : intro?.intro;
         const resolvedKeyTopics = auCopy ? auCopy.intro.keyTopics : intro?.keyTopics;
@@ -740,7 +747,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
               <>
                 <div className="detail-explore__card">
                   <span className="detail-explore__badge">
-                    SAME YEAR
+                    {effectiveRegion === "ca" || effectiveRegion === "us" ? "SAME GRADE" : "SAME YEAR"}
                   </span>
                   <h3 className="detail-explore__card-title">
                     {yearLabel} {otherSubjectLabel}
@@ -750,7 +757,7 @@ export default function SubjectDetailView({ region }: SubjectDetailViewProps) {
                     structured sessions aligned to the school curriculum.
                   </p>
                   <RegionLink
-                    href={`/subjects/${yearId}/${otherSubjectId}`}
+                    href={getSubjectHref(yearNum, otherSubjectId, effectiveRegion)}
                     region={region}
                     className="detail-explore__btn"
                   >

@@ -8,8 +8,11 @@ export async function generateMetadata({
   params: Promise<{ yearId: string; subjectId: string }>;
 }): Promise<Metadata> {
   const { yearId, subjectId } = await params;
-  const yearNum = parseInt(yearId.replace("year-", ""), 10);
+  const yearNum = parseInt(yearId.replace("grade-", "").replace("year-", ""), 10);
   if (isNaN(yearNum) || yearNum < 2 || yearNum > 10) {
+    notFound();
+  }
+  if (!["math", "english", "science"].includes(subjectId)) {
     notFound();
   }
   return buildMetadata({

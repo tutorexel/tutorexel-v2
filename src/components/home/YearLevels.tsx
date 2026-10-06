@@ -3,7 +3,7 @@
 import RegionLink from '@/components/shared/RegionLink';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { getCurrentRegion } from '@/utils/regionalLinks';
+import { getCurrentRegion, getSubjectHref, getYearHubHref } from '@/utils/regionalLinks';
 import { REGIONS_CONFIG, type RegionCode } from '@/data/regions';
 import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
@@ -123,7 +123,8 @@ export default function YearLevels({ region }: YearLevelsProps) {
               <div key={level.year} className={`subject-years__card ${level.featured ? 'subject-years__card--featured' : ''}`}>
                 <div className="subject-years__card-header">
                   <RegionLink
-                    href={`/year-${level.year}`}
+                    href={getYearHubHref(level.year, currentRegion)}
+                    region={currentRegion}
                     className={`subject-years__card-year ${level.featured ? 'subject-years__card-year--featured' : ''}`}
                   >
                     {levelWord.toUpperCase()} {level.year}
@@ -133,13 +134,13 @@ export default function YearLevels({ region }: YearLevelsProps) {
                 <p className="subject-years__card-description">{level.description}</p>
                 {showButtons ? (
                   <div className="subject-years__card-buttons">
-                    <RegionLink href={`/subjects/year-${level.year}/english`} className="subject-years__card-btn subject-years__card-btn--english">
+                    <RegionLink href={getSubjectHref(level.year, "english", currentRegion)} region={currentRegion} className="subject-years__card-btn subject-years__card-btn--english">
                       English
                     </RegionLink>
-                    <RegionLink href={`/subjects/year-${level.year}/maths`} className="subject-years__card-btn subject-years__card-btn--maths">
+                    <RegionLink href={getSubjectHref(level.year, "math", currentRegion)} region={currentRegion} className="subject-years__card-btn subject-years__card-btn--maths">
                       {mathLabel}
                     </RegionLink>
-                    <RegionLink href={`/subjects/year-${level.year}/science`} className="subject-years__card-btn subject-years__card-btn--science">
+                    <RegionLink href={getSubjectHref(level.year, "science", currentRegion)} region={currentRegion} className="subject-years__card-btn subject-years__card-btn--science">
                       Science
                     </RegionLink>
                   </div>

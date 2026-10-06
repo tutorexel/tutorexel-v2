@@ -300,7 +300,7 @@ export const caGrade5EnglishCopy: SubjectCopyData = {
         "title": "Grade 5 Math",
         "text": "See the full Grade 5 Math program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-5/maths"
+        "href": "/subjects/grade-5/math"
       },
       {
         "tag": "PRICING",

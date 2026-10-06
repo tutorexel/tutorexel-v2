@@ -300,7 +300,7 @@ export const usGrade3MathsCopy: SubjectCopyData = {
         "title": "3rd Grade English",
         "text": "See the full 3rd grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-3/english"
+        "href": "/subjects/grade-3/english"
       },
       {
         "tag": "PRICING",

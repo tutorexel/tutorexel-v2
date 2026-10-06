@@ -300,7 +300,7 @@ export const usGrade8MathsCopy: SubjectCopyData = {
         "title": "8th Grade English",
         "text": "See the full 8th grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-8/english"
+        "href": "/subjects/grade-8/english"
       },
       {
         "tag": "PRICING",

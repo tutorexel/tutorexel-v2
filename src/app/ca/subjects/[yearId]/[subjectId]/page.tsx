@@ -13,12 +13,17 @@ type Props = {
 
 export default async function CaSubjectDetailPage({ params }: Props) {
   const { yearId, subjectId } = await params;
-  const yearNum = parseInt(yearId.replace("year-", ""), 10);
+  const yearNum = parseInt(yearId.replace("grade-", "").replace("year-", ""), 10);
   if (isNaN(yearNum) || yearNum < 2 || yearNum > 10) {
     notFound();
   }
-  const yearData = (subjectsData as Record<string, Record<string, unknown>>)[yearId];
-  if (!yearData || !yearData[subjectId]) {
+  if (!["math", "english", "science"].includes(subjectId)) {
+    notFound();
+  }
+  const yearKey = `year-${yearNum}`;
+  const subjectKey = subjectId === "math" ? "maths" : subjectId;
+  const yearData = (subjectsData as Record<string, Record<string, unknown>>)[yearKey];
+  if (!yearData || !yearData[subjectKey]) {
     notFound();
   }
   return <SubjectDetailView region="ca" />;

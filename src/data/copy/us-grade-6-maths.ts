@@ -300,7 +300,7 @@ export const usGrade6MathsCopy: SubjectCopyData = {
         "title": "6th Grade English",
         "text": "See the full 6th grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-6/english"
+        "href": "/subjects/grade-6/english"
       },
       {
         "tag": "PRICING",

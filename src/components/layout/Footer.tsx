@@ -6,7 +6,7 @@ import Image from "next/image";
 import { REGIONS, REGIONS_CONFIG, COMPANY_ADDRESS } from "@/data/regions";
 import { useFreeTrialModal } from "./FreeTrialModalProvider";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
-import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
+import { getRegionalHref, getCurrentRegion, getYearHubHref } from "@/utils/regionalLinks";
 import ProvinceChips from "@/components/shared/ProvinceChips";
 import "./Footer.css";
 
@@ -164,7 +164,7 @@ export default function Footer() {
                 {config.yearLevels.map((lvl) => (
                   <Link
                     key={lvl}
-                    href={toHref(`/year-${lvl}`)}
+                    href={toHref(getYearHubHref(lvl, currentRegionCode))}
                     className="footer__grade-link"
                   >
                     {config.yearLabel} {lvl}

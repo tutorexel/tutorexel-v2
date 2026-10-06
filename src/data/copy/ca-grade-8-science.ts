@@ -300,7 +300,7 @@ export const caGrade8ScienceCopy: SubjectCopyData = {
         "title": "Grade 8 English",
         "text": "See the full Grade 8 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-8/english"
+        "href": "/subjects/grade-8/english"
       },
       {
         "tag": "PRICING",

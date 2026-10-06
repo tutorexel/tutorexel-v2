@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { trackPhoneClick, trackEnrollClick } from "@/utils/analytics";
 import { LOGIN_URL } from "@/utils/externalLinks";
-import { getRegionalHref, getCurrentRegion } from "@/utils/regionalLinks";
+import { getRegionalHref, getCurrentRegion, getSubjectHref, getYearHubHref } from "@/utils/regionalLinks";
 import { REGIONS_CONFIG } from "@/data/regions";
 import "./Header.css";
 
@@ -37,7 +37,7 @@ export default function Header() {
 
   const subjectYears = config.yearLevels.map((lvl) => ({
     year: `${levelWord} ${lvl}`,
-    id: `year-${lvl}`,
+    lvl,
   }));
 
   const toHref = (path: string) => getRegionalHref(path, pathname);
@@ -116,30 +116,30 @@ export default function Header() {
                 <div className="navbar__mega">
                   <div className="navbar__mega-inner">
                     {subjectYears.map((sy) => (
-                      <div key={sy.id} className="navbar__mega-col">
+                      <div key={sy.lvl} className="navbar__mega-col">
                         <Link
-                          href={toHref(`/${sy.id}`)}
+                          href={toHref(getYearHubHref(sy.lvl, currentRegion))}
                           className="navbar__mega-year"
                           onClick={() => setMenuOpen(false)}
                         >
                           {sy.year}
                         </Link>
                         <Link
-                          href={toHref(`/subjects/${sy.id}/maths`)}
+                          href={toHref(getSubjectHref(sy.lvl, "math", currentRegion))}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >
                           {mathLabel}
                         </Link>
                         <Link
-                          href={toHref(`/subjects/${sy.id}/english`)}
+                          href={toHref(getSubjectHref(sy.lvl, "english", currentRegion))}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >
                           English
                         </Link>
                         <Link
-                          href={toHref(`/subjects/${sy.id}/science`)}
+                          href={toHref(getSubjectHref(sy.lvl, "science", currentRegion))}
                           className="navbar__mega-subject"
                           onClick={() => setMenuOpen(false)}
                         >

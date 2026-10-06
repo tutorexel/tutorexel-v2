@@ -212,7 +212,7 @@ export function buildMetadata({
   };
 
   const normalized = normalizePath(path);
-  const isYear8to10Subject = /^\/subjects\/year-(8|9|10)\/(maths|english|science)$/.test(normalized);
+  const isYear8to10Subject = /^\/subjects\/(year|grade)-(8|9|10)\/(maths|math|english|science)$/.test(normalized);
   const shouldNoindex = noindex || (!INDEX_YEAR_8_10 && isYear8to10Subject);
 
   if (shouldNoindex) {

@@ -983,6 +983,276 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "title": "10th Grade Science Tutoring in the USA | TutorExel",
       "description": "Live online 10th grade science tutoring aligned to NGSS. Chemistry, physics, space and climate in 40 sessions. Book your free trial class today, no card needed."
     }
+  },
+  "/subjects/grade-2/english": {
+    "us": {
+      "title": "2nd Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 2nd grade English tutoring aligned to Common Core ELA. Phonics, fluent reading and early writing in 40 sessions. Book a free trial class today."
+    },
+    "ca": {
+      "title": "Grade 2 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 English tutoring matched to your province's curriculum. Phonics, reading, writing and spelling in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-2/math": {
+    "us": {
+      "title": "2nd Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 2nd grade math tutoring aligned to Common Core. 40 sessions, 1-on-1 or small groups, quarterly mock tests. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 2 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 math tutoring matched to your province's curriculum. 40 sessions, one on one or small groups, termly mock tests. Book a free trial."
+    }
+  },
+  "/subjects/grade-2/science": {
+    "us": {
+      "title": "2nd Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 2nd grade science tutoring aligned to NGSS. Matter, plants, habitats and landforms in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 2 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 2 science tutoring matched to your province's curriculum. Animals, materials, water and machines in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-3/english": {
+    "us": {
+      "title": "3rd Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 3rd grade English tutoring aligned to Common Core ELA. Reading, writing and grammar in 40 sessions, with state test skills. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 3 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-3/math": {
+    "us": {
+      "title": "3rd Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 3rd grade math tutoring aligned to Common Core. Multiplication, fractions and more in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 3 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 math tutoring matched to your province's curriculum. Multiplication, fractions, money and time in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-3/science": {
+    "us": {
+      "title": "3rd Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 3rd grade science tutoring aligned to NGSS. Life cycles, forces, weather and more in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 3 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 3 science tutoring matched to your province's curriculum. Plants, structures, forces and soil in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-4/english": {
+    "us": {
+      "title": "4th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 4th grade English tutoring aligned to Common Core ELA. Reading, writing and grammar in 40 sessions, with 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 4 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 English tutoring matched to your province's curriculum. Reading, writing, grammar and Canadian spelling in 40 sessions. Book a free trial."
+    }
+  },
+  "/subjects/grade-4/math": {
+    "us": {
+      "title": "4th Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 4th grade math tutoring aligned to Common Core. Fractions, decimals and multi-digit operations in 40 sessions. Book your free trial class."
+    },
+    "ca": {
+      "title": "Grade 4 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 math tutoring matched to your province's curriculum. Multiplication, fractions, decimals and money in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-4/science": {
+    "us": {
+      "title": "4th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 4th grade science tutoring aligned to NGSS. Energy, waves, Earth's surface and design in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 4 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 4 science tutoring matched to your province's curriculum. Habitats, light, sound, gears and rocks in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-5/english": {
+    "us": {
+      "title": "5th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 5th grade English tutoring aligned to Common Core ELA. Reading, writing and grammar in 40 sessions, with 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 5 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 English tutoring matched to your province's curriculum. Reading, writing, grammar and spelling in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-5/math": {
+    "us": {
+      "title": "5th Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 5th grade math tutoring aligned to Common Core. Decimals, fractions and volume in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 5 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 math tutoring matched to your province's curriculum. Decimals, fractions, percent and volume in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-5/science": {
+    "us": {
+      "title": "5th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 5th grade science tutoring aligned to NGSS. Matter, ecosystems, Earth and space in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 5 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 5 science tutoring matched to your province's curriculum. Body systems, matter, forces and energy in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-6/english": {
+    "us": {
+      "title": "6th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 6th grade English tutoring aligned to Common Core ELA. Reading, argument writing and grammar in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 6 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 English tutoring matched to your province's curriculum. Reading, essays, grammar and spelling in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-6/math": {
+    "us": {
+      "title": "6th Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 6th grade math tutoring aligned to Common Core. Ratios, integers, algebra and statistics in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 6 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 math tutoring matched to your province's curriculum. Fractions, percent, ratios and algebra in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-6/science": {
+    "us": {
+      "title": "6th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 6th grade science tutoring aligned to NGSS. Ecosystems, space, matter and energy in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 6 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 6 science tutoring matched to your province's curriculum. Biodiversity, electricity, flight and space in 40 sessions. Book a free trial."
+    }
+  },
+  "/subjects/grade-7/english": {
+    "us": {
+      "title": "7th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 7th grade English tutoring aligned to Common Core ELA. Analysis, argument writing and grammar in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 7 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 English tutoring matched to your province's curriculum. Analysis, essays, grammar and spelling in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-7/math": {
+    "us": {
+      "title": "7th Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 7th grade math tutoring aligned to Common Core. Proportions, rational numbers and equations in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 7 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 math tutoring matched to your province's curriculum. Integers, ratios, percent and algebra in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-7/science": {
+    "us": {
+      "title": "7th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 7th grade science tutoring aligned to NGSS. Cells, body systems, genetics and evolution in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 7 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 7 science tutoring matched to your province's curriculum. Ecosystems, mixtures, mechanisms and heat in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-8/english": {
+    "us": {
+      "title": "8th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 8th grade English tutoring aligned to Common Core ELA. Analysis, argument writing and grammar in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 8 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 English tutoring matched to your province's curriculum. Literary analysis, argument and writing in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-8/math": {
+    "us": {
+      "title": "8th Grade Math Tutoring in the USA | TutorExel",
+      "description": "Live online 8th grade math tutoring aligned to Common Core. Linear equations, functions and geometry in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 8 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 math tutoring matched to your province's curriculum. Linear relations, Pythagoras and probability in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-8/science": {
+    "us": {
+      "title": "8th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 8th grade science tutoring aligned to NGSS. Matter, forces, energy, waves and Earth science in 40 sessions. Book your free trial class today."
+    },
+    "ca": {
+      "title": "Grade 8 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 8 science tutoring matched to your province's curriculum. Cells, Earth science, energy and matter in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-9/english": {
+    "us": {
+      "title": "9th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 9th grade English tutoring aligned to Common Core ELA. Analysis, argument and writing in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 9 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 English tutoring matched to your province's curriculum. Analysis, argument and essay writing in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-9/math": {
+    "us": {
+      "title": "9th Grade Algebra 1 Tutoring in the USA | TutorExel",
+      "description": "Live online 9th grade Algebra 1 tutoring aligned to Common Core. Quadratics, systems and modeling in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 9 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 math tutoring matched to your province's curriculum. Quadratics, trigonometry and probability in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-9/science": {
+    "us": {
+      "title": "9th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 9th grade science tutoring with high school biology aligned to NGSS. Cells, genetics and evolution in 40 sessions. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 9 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 9 science tutoring matched to your province's curriculum. Body systems, carbon cycle, energy and atoms in 40 sessions. Book a free trial."
+    }
+  },
+  "/subjects/grade-10/english": {
+    "us": {
+      "title": "10th Grade English Tutoring in the USA | TutorExel",
+      "description": "Live online 10th grade English tutoring aligned to Common Core ELA. Rhetoric, analysis and essays in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 10 English Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 English tutoring matched to your province's curriculum. Analysis, argument and literacy test skills in 40 sessions. Book a free trial."
+    }
+  },
+  "/subjects/grade-10/math": {
+    "us": {
+      "title": "10th Grade Geometry Tutoring in the USA | TutorExel",
+      "description": "Live online 10th grade Geometry tutoring aligned to Common Core. Proofs, trigonometry and circles in 40 sessions, 1-on-1 or small groups. Book a free trial."
+    },
+    "ca": {
+      "title": "Grade 10 Math Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 math tutoring matched to your province's curriculum. Quadratics, trigonometry and geometry in 40 sessions. Book a free trial class."
+    }
+  },
+  "/subjects/grade-10/science": {
+    "us": {
+      "title": "10th Grade Science Tutoring in the USA | TutorExel",
+      "description": "Live online 10th grade science tutoring aligned to NGSS. Chemistry, physics, space and climate in 40 sessions. Book your free trial class today, no card needed."
+    },
+    "ca": {
+      "title": "Grade 10 Science Tutoring Online Canada | TutorExel",
+      "description": "Live online Grade 10 science tutoring matched to your province's curriculum. Genetics, space, climate, forces and chemistry in 40 sessions. Book a free trial."
+    }
   }
 };
 
@@ -1046,6 +1316,22 @@ export function getPageMetadataItem(rawPath: string, region: RegionCode = "au"):
   const entry = PAGE_META_REGISTRY[cleanPath];
   if (entry && entry[region]) {
     return entry[region];
+  }
+
+  // Fallback for grade-N / year-N or math / maths aliases
+  let altPath = cleanPath;
+  if (cleanPath.includes("/grade-") || cleanPath.endsWith("/math")) {
+    altPath = cleanPath
+      .replace(/\/grade-(\d+)/, "/year-$1")
+      .replace(/\/math$/, "/maths");
+  } else if (cleanPath.includes("/year-") || cleanPath.endsWith("/maths")) {
+    altPath = cleanPath
+      .replace(/\/year-(\d+)/, "/grade-$1")
+      .replace(/\/maths$/, "/math");
+  }
+  const altEntry = PAGE_META_REGISTRY[altPath];
+  if (altEntry && altEntry[region]) {
+    return altEntry[region];
   }
 
   return null;

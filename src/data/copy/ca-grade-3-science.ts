@@ -300,7 +300,7 @@ export const caGrade3ScienceCopy: SubjectCopyData = {
         "title": "Grade 3 English",
         "text": "See the full Grade 3 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-3/english"
+        "href": "/subjects/grade-3/english"
       },
       {
         "tag": "PRICING",

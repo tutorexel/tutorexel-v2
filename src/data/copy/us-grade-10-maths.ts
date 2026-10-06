@@ -300,7 +300,7 @@ export const usGrade10MathsCopy: SubjectCopyData = {
         "title": "10th Grade English",
         "text": "See the full 10th grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-10/english"
+        "href": "/subjects/grade-10/english"
       },
       {
         "tag": "PRICING",

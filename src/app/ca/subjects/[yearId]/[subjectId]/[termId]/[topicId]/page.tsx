@@ -40,17 +40,18 @@ const getTopicData = (
 
 export default function PracticeTestPage({ params }: PageProps) {
   const { yearId, subjectId, termId, topicId } = use(params);
-  const yearNum = parseInt(yearId.replace("year-", ""), 10);
+  const yearNum = parseInt(yearId.replace("grade-", "").replace("year-", ""), 10);
   if (isNaN(yearNum) || yearNum < 2 || yearNum > 7) {
     notFound();
   }
-  const yearKey = yearId.replace("-", "");
+  const yearKey = `year${yearNum}`;
+  const normSubjectId = subjectId === "math" ? "maths" : subjectId;
   const termKey = termId.replace("-", "");
   const topicKey = topicId.replace("-", "");
 
   const topicData =
-    getTopicData(yearKey, subjectId, termKey, topicKey) ||
-    getTopicData(yearKey, subjectId, termId, topicId);
+    getTopicData(yearKey, normSubjectId, termKey, topicKey) ||
+    getTopicData(yearKey, normSubjectId, termId, topicId);
 
   const [userAnswers, setUserAnswers] = useState<UserAnswers>({});
   const [showPopup, setShowPopup] = useState(true);

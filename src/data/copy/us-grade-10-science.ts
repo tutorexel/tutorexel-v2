@@ -300,7 +300,7 @@ export const usGrade10ScienceCopy: SubjectCopyData = {
         "title": "10th Grade Math",
         "text": "See the full 10th grade math program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-10/maths"
+        "href": "/subjects/grade-10/math"
       },
       {
         "tag": "PRICING",

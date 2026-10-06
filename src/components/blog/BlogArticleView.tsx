@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { SanityPost, ArticleSection } from "@/sanity/types";
 import { getPostImageUrl } from "@/sanity/image";
-import { getRegionalHref } from "@/utils/regionalLinks";
+import { getRegionalHref, getSubjectHref } from "@/utils/regionalLinks";
 import {
   getHtmlCatKey,
   getCategoryDisplayName,
@@ -1329,34 +1329,41 @@ export default function BlogArticleView({
           </div>
 
           {/* Explore Our Subjects */}
-          <div className="subj">
-            <b>Explore Our Subjects</b>
-            <div className="subj-links">
-              <Link href={getRegionalHref("/subjects/year-3/maths", region)}>
-                Year 3 Maths
-              </Link>
-              <Link href={getRegionalHref("/subjects/year-5/maths", region)}>
-                Year 5 Maths
-              </Link>
-              <Link href={getRegionalHref("/subjects/year-5/english", region)}>
-                Year 5 English
-              </Link>
-              <Link href={getRegionalHref("/subjects/year-7/english", region)}>
-                Year 7 English
-              </Link>
-              {region === "au" && (
-                <Link href="/naplan-preparation">
-                  NAPLAN Prep
-                </Link>
-              )}
-              <Link href={getRegionalHref("/pricing", region)}>
-                Pricing
-              </Link>
-              <Link href={getRegionalHref("/free-trial", region)} className="hot">
-                Free Trial
-              </Link>
-            </div>
-          </div>
+          {(() => {
+            const blogRegConfig = getRegionConfig(region || "au");
+            const blogLevelLabel = blogRegConfig.yearLabel;
+            const blogMathLabel = blogRegConfig.mathLabel;
+            return (
+              <div className="subj">
+                <b>Explore Our Subjects</b>
+                <div className="subj-links">
+                  <Link href={getRegionalHref(getSubjectHref(3, "math", region), region)}>
+                    {blogLevelLabel} 3 {blogMathLabel}
+                  </Link>
+                  <Link href={getRegionalHref(getSubjectHref(5, "math", region), region)}>
+                    {blogLevelLabel} 5 {blogMathLabel}
+                  </Link>
+                  <Link href={getRegionalHref(getSubjectHref(5, "english", region), region)}>
+                    {blogLevelLabel} 5 English
+                  </Link>
+                  <Link href={getRegionalHref(getSubjectHref(7, "english", region), region)}>
+                    {blogLevelLabel} 7 English
+                  </Link>
+                  {region === "au" && (
+                    <Link href="/naplan-preparation">
+                      NAPLAN Prep
+                    </Link>
+                  )}
+                  <Link href={getRegionalHref("/pricing", region)}>
+                    Pricing
+                  </Link>
+                  <Link href={getRegionalHref("/free-trial", region)} className="hot">
+                    Free Trial
+                  </Link>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
       )}

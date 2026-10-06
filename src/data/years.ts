@@ -602,10 +602,12 @@ const scienceOutcomes: Record<string, LearningOutcome[]> = {
 /* ------------------------------------------------------------------ */
 
 export function getSubjectData(yearId: string, subjectId: string): SubjectData | null {
-  const yearLevel = yearLevels.find((y) => y.id === yearId);
+  const normYearId = yearId.replace("grade-", "year-");
+  const normSubjectId = subjectId === "math" ? "maths" : subjectId;
+  const yearLevel = yearLevels.find((y) => y.id === normYearId);
   if (!yearLevel) return null;
 
-  const subject = yearLevel.subjects.find((s) => s.id === subjectId);
+  const subject = yearLevel.subjects.find((s) => s.id === normSubjectId);
   if (!subject) return null;
 
   const yearLabel = yearLevel.label;
@@ -613,17 +615,17 @@ export function getSubjectData(yearId: string, subjectId: string): SubjectData |
 
   // Use real data for Year 2 Maths; placeholder for everything else
   let curriculum: Record<string, CurriculumTopic[]>;
-  if (yearId === "year-2" && subjectId === "maths") {
+  if (normYearId === "year-2" && normSubjectId === "maths") {
     curriculum = year2MathsCurriculum;
   } else {
     curriculum = generatePlaceholderCurriculum(yearLabel, subjectLabel);
   }
 
   const outcomeMap =
-    subjectId === "maths" ? mathsOutcomes
-      : subjectId === "science" ? scienceOutcomes
+    normSubjectId === "maths" ? mathsOutcomes
+      : normSubjectId === "science" ? scienceOutcomes
       : englishOutcomes;
-  const outcomes = outcomeMap[yearId] ?? outcomeMap["year-2"];
+  const outcomes = outcomeMap[normYearId] ?? outcomeMap["year-2"];
 
   return {
     yearId,
@@ -643,12 +645,23 @@ export function getSubjectData(yearId: string, subjectId: string): SubjectData |
 
 export function getAllSubjectParams(region?: string): { yearId: string; subjectId: string }[] {
   const allowedYears = yearLevels;
+  const isGradeRegion = region === "ca" || region === "us";
 
   const params: { yearId: string; subjectId: string }[] = [];
   for (const year of allowedYears) {
+    const yearSlug = isGradeRegion ? `grade-${year.year}` : year.id;
     for (const subject of year.subjects) {
-      params.push({ yearId: year.id, subjectId: subject.id });
+      const subjectSlug = (isGradeRegion && subject.id === "maths") ? "math" : subject.id;
+      params.push({ yearId: yearSlug, subjectId: subjectSlug });
     }
   }
   return params;
 }
+
+export {
+  getYearSlug,
+  getMathSlug,
+  getSubjectSlug,
+  getSubjectHref,
+  getYearHubHref,
+} from "@/utils/regionalLinks";

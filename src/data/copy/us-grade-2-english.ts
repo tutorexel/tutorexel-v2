@@ -300,7 +300,7 @@ export const usGrade2EnglishCopy: SubjectCopyData = {
         "title": "2nd Grade Math",
         "text": "See the full 2nd grade math program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-2/maths"
+        "href": "/subjects/grade-2/math"
       },
       {
         "tag": "PRICING",
