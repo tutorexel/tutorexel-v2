@@ -300,7 +300,7 @@ export const caGrade9MathsCopy: SubjectCopyData = {
         "title": "Grade 9 English",
         "text": "See the full Grade 9 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-9/english"
+        "href": "/subjects/grade-9/english"
       },
       {
         "tag": "PRICING",

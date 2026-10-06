@@ -108,6 +108,23 @@ export function getEquivalentRegionalUrl(
     cleanPath = cleanPath.slice(0, -1);
   }
 
+  // Convert year/grade slugs between regions:
+  if (target === "ca" || target === "us") {
+    cleanPath = cleanPath
+      .replace(/\/subjects\/year-(\d+)\/(maths|math)/i, "/subjects/grade-$1/math")
+      .replace(/\/subjects\/year-(\d+)\/([^/?#]+)/i, "/subjects/grade-$1/$2")
+      .replace(/\/subjects\/grade-(\d+)\/maths/i, "/subjects/grade-$1/math")
+      .replace(/\/subjects\/year-(\d+)/i, "/subjects/grade-$1")
+      .replace(/\/year-(\d+)/i, "/grade-$1");
+  } else {
+    cleanPath = cleanPath
+      .replace(/\/subjects\/grade-(\d+)\/(math|maths)/i, "/subjects/year-$1/maths")
+      .replace(/\/subjects\/grade-(\d+)\/([^/?#]+)/i, "/subjects/year-$1/$2")
+      .replace(/\/subjects\/year-(\d+)\/math\b/i, "/subjects/year-$1/maths")
+      .replace(/\/subjects\/grade-(\d+)/i, "/subjects/year-$1")
+      .replace(/\/grade-(\d+)/i, "/year-$1");
+  }
+
   // Check if this is an AU-only market-unique route
   const isAuOnly = Array.from(AU_ONLY_BASE_ROUTES).some(
     (prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`)
@@ -224,6 +241,23 @@ export function getRegionalHref(
     normalizedPath = normalizedPath.slice(0, -1);
   }
 
+  // Region-aware slug normalization on internal path
+  if (region === "ca" || region === "us") {
+    normalizedPath = normalizedPath
+      .replace(/\/subjects\/year-(\d+)\/(maths|math)/i, "/subjects/grade-$1/math")
+      .replace(/\/subjects\/year-(\d+)\/([^/?#]+)/i, "/subjects/grade-$1/$2")
+      .replace(/\/subjects\/grade-(\d+)\/maths/i, "/subjects/grade-$1/math")
+      .replace(/\/subjects\/year-(\d+)/i, "/subjects/grade-$1")
+      .replace(/^\/year-(\d+)/i, "/grade-$1");
+  } else {
+    normalizedPath = normalizedPath
+      .replace(/\/subjects\/grade-(\d+)\/(math|maths)/i, "/subjects/year-$1/maths")
+      .replace(/\/subjects\/grade-(\d+)\/([^/?#]+)/i, "/subjects/year-$1/$2")
+      .replace(/\/subjects\/year-(\d+)\/math\b/i, "/subjects/year-$1/maths")
+      .replace(/\/subjects\/grade-(\d+)/i, "/subjects/year-$1")
+      .replace(/^\/grade-(\d+)/i, "/year-$1");
+  }
+
   // Market-unique AU routes only exist at root
   const isAuOnly = Array.from(AU_ONLY_BASE_ROUTES).some(
     (prefix) => normalizedPath === prefix || normalizedPath.startsWith(`${prefix}/`)
@@ -263,4 +297,43 @@ export function getRegionalHref(
   }
 
   return `${finalPath}${query}${hash}`;
+}
+
+/**
+ * Slug helpers for region-aware Grade / Year and Math / Maths slugs.
+ * - AU and NZ use "year-N" and "maths"
+ * - CA and US use "grade-N" and "math"
+ */
+export function getYearSlug(year: number | string, regionOrPathname: RegionCode | string = "au"): string {
+  const reg = getRegionFromPathname(regionOrPathname);
+  const match = String(year).match(/\d+/);
+  const num = match ? match[0] : year;
+  return (reg === "ca" || reg === "us") ? `grade-${num}` : `year-${num}`;
+}
+
+export function getMathSlug(regionOrPathname: RegionCode | string = "au"): string {
+  const reg = getRegionFromPathname(regionOrPathname);
+  return (reg === "ca" || reg === "us") ? "math" : "maths";
+}
+
+export function getSubjectSlug(subject: string, regionOrPathname: RegionCode | string = "au"): string {
+  if (subject === "math" || subject === "maths") {
+    return getMathSlug(regionOrPathname);
+  }
+  return subject;
+}
+
+export function getSubjectHref(
+  year: number | string,
+  subject: string,
+  regionOrPathname: RegionCode | string = "au"
+): string {
+  return `/subjects/${getYearSlug(year, regionOrPathname)}/${getSubjectSlug(subject, regionOrPathname)}`;
+}
+
+export function getYearHubHref(year: number | string, regionOrPathname: RegionCode | string = "au"): string {
+  const reg = getRegionFromPathname(regionOrPathname);
+  const match = String(year).match(/\d+/);
+  const num = match ? match[0] : year;
+  return (reg === "ca" || reg === "us") ? `/grade-${num}` : `/year-${num}`;
 }

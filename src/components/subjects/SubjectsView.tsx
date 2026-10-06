@@ -3,6 +3,7 @@ import RegionLink from "@/components/shared/RegionLink";
 import CTA from "@/components/home/CTA";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { createBreadcrumbSchema } from "@/utils/schema";
+import { getSubjectHref } from "@/utils/regionalLinks";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_HOME_COPY } from "@/data/copy/au-home";
 import { CA_HOME_COPY } from "@/data/copy/ca-home";
@@ -226,21 +227,21 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                 <p className="subject-years__card-description">{level.description}</p>
                 <div className="subject-years__card-buttons">
                   <RegionLink
-                    href={`/subjects/year-${level.year}/english`}
+                    href={getSubjectHref(level.year, "english", region)}
                     region={region}
                     className="subject-years__card-btn subject-years__card-btn--english"
                   >
                     English
                   </RegionLink>
                   <RegionLink
-                    href={`/subjects/year-${level.year}/maths`}
+                    href={getSubjectHref(level.year, "math", region)}
                     region={region}
                     className="subject-years__card-btn subject-years__card-btn--maths"
                   >
                     {regConfig.mathLabel}
                   </RegionLink>
                   <RegionLink
-                    href={`/subjects/year-${level.year}/science`}
+                    href={getSubjectHref(level.year, "science", region)}
                     region={region}
                     className="subject-years__card-btn subject-years__card-btn--science"
                   >

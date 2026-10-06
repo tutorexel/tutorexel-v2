@@ -308,19 +308,21 @@ export function getSubjectCopy(
   year: string | number,
   subject: string
 ): SubjectCopyData | null {
-  const yearKey = typeof year === "number" ? `year-${year}` : year.startsWith("year-") ? year : `year-${year}`;
+  const yearMatch = String(year).match(/\d+/);
+  const yearKey = yearMatch ? `year-${yearMatch[0]}` : typeof year === "number" ? `year-${year}` : year;
+  const normSubject = subject === "math" ? "maths" : subject;
 
   if (region === "ca") {
-    return CA_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+    return CA_SUBJECT_COPY[yearKey]?.[normSubject] ?? CA_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   if (region === "nz") {
-    return NZ_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+    return NZ_SUBJECT_COPY[yearKey]?.[normSubject] ?? NZ_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   if (region === "us") {
-    return US_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+    return US_SUBJECT_COPY[yearKey]?.[normSubject] ?? US_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   if (region === "au" || !region) {
-    return AU_SUBJECT_COPY[yearKey]?.[subject] ?? null;
+    return AU_SUBJECT_COPY[yearKey]?.[normSubject] ?? AU_SUBJECT_COPY[yearKey]?.[subject] ?? null;
   }
   return null;
 }

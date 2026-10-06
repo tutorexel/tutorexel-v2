@@ -300,7 +300,7 @@ export const caGrade7ScienceCopy: SubjectCopyData = {
         "title": "Grade 7 English",
         "text": "See the full Grade 7 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-7/english"
+        "href": "/subjects/grade-7/english"
       },
       {
         "tag": "PRICING",

@@ -300,7 +300,7 @@ export const caGrade2EnglishCopy: SubjectCopyData = {
         title: "Grade 2 Math",
         text: "See the full Grade 2 Math program, with 40 live sessions matched to your province's curriculum.",
         buttonText: "View Program",
-        href: "/subjects/year-2/maths",
+        href: "/subjects/grade-2/math",
       },
       {
         tag: "PRICING",

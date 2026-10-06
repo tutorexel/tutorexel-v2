@@ -300,7 +300,7 @@ export const usGrade5MathsCopy: SubjectCopyData = {
         "title": "5th Grade English",
         "text": "See the full 5th grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-5/english"
+        "href": "/subjects/grade-5/english"
       },
       {
         "tag": "PRICING",

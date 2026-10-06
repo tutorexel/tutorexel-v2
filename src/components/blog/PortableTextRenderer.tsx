@@ -69,12 +69,17 @@ export function createPortableTextComponents(region: string = 'au'): PortableTex
       'strike-through': ({ children }) => <s>{children}</s>,
       code: ({ children }) => <code>{children}</code>,
       link: ({ value, children }) => {
+        const rawHref = value?.href || '#';
         const target = value?.blank ? '_blank' : undefined;
         const rel = value?.blank ? 'noopener noreferrer' : undefined;
+        const isInternal = rawHref.startsWith('/') || rawHref.includes('tutorexel.com');
+        const href = isInternal
+          ? getRegionalHref(rawHref.replace(/^https?:\/\/[^\/]+/, '') || '/', region)
+          : rawHref;
         return (
-          <a href={value?.href} target={target} rel={rel}>
+          <Link href={href} target={target} rel={rel}>
             {children}
-          </a>
+          </Link>
         );
       },
     },

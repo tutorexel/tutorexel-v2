@@ -300,7 +300,7 @@ export const caGrade6ScienceCopy: SubjectCopyData = {
         "title": "Grade 6 English",
         "text": "See the full Grade 6 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-6/english"
+        "href": "/subjects/grade-6/english"
       },
       {
         "tag": "PRICING",

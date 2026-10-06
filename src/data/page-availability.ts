@@ -59,11 +59,18 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/co-curricular/piano/enquire", regions: ["au", "us", "ca", "nz"] },
   { path: "/home-v1", regions: ["au", "us", "ca", "nz"] },
 
-  // Subject detail pages: Years 2-10 across English, Maths, Science (all 4 regions)
+  // Subject detail pages: Years 2-10 across English, Maths, Science for AU and NZ
   ...[2, 3, 4, 5, 6, 7, 8, 9, 10].flatMap((y) => [
-    { path: `/subjects/year-${y}/english`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
-    { path: `/subjects/year-${y}/maths`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
-    { path: `/subjects/year-${y}/science`, regions: ["au", "us", "ca", "nz"] as RegionCode[] },
+    { path: `/subjects/year-${y}/english`, regions: ["au", "nz"] as RegionCode[] },
+    { path: `/subjects/year-${y}/maths`, regions: ["au", "nz"] as RegionCode[] },
+    { path: `/subjects/year-${y}/science`, regions: ["au", "nz"] as RegionCode[] },
+  ]),
+
+  // Subject detail pages: Grades 2-10 across English, Math, Science for CA and US
+  ...[2, 3, 4, 5, 6, 7, 8, 9, 10].flatMap((y) => [
+    { path: `/subjects/grade-${y}/english`, regions: ["ca", "us"] as RegionCode[] },
+    { path: `/subjects/grade-${y}/math`, regions: ["ca", "us"] as RegionCode[] },
+    { path: `/subjects/grade-${y}/science`, regions: ["ca", "us"] as RegionCode[] },
   ]),
 
   // Market-Unique Australian Pages (AU only: self-only hreflang)

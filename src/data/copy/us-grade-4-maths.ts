@@ -300,7 +300,7 @@ export const usGrade4MathsCopy: SubjectCopyData = {
         "title": "4th Grade English",
         "text": "See the full 4th grade English program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-4/english"
+        "href": "/subjects/grade-4/english"
       },
       {
         "tag": "PRICING",

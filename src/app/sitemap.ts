@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       continue;
     }
 
-    const isYear8to10 = /^\/subjects\/year-(8|9|10)\//.test(entry.path);
+    const isYear8to10 = /^\/subjects\/(year|grade)-(8|9|10)\//.test(entry.path);
     if (!INDEX_YEAR_8_10 && isYear8to10) {
       continue;
     }

@@ -148,18 +148,170 @@ const nextConfig: NextConfig = {
         destination: "/research/:path*",
         permanent: true,
       },
+      // CA Grade and Math redirects
+      {
+        source: "/ca/subjects/year-:year/maths/:term/:topic",
+        destination: "/ca/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year/math/:term/:topic",
+        destination: "/ca/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/grade-:year/maths/:term/:topic",
+        destination: "/ca/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year/:subject(english|science)/:term/:topic",
+        destination: "/ca/subjects/grade-:year/:subject/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year/maths",
+        destination: "/ca/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year/math",
+        destination: "/ca/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/grade-:year/maths",
+        destination: "/ca/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year/:subject(english|science)",
+        destination: "/ca/subjects/grade-:year/:subject",
+        permanent: true,
+      },
+      {
+        source: "/ca/subjects/year-:year",
+        destination: "/ca/subjects/grade-:year",
+        permanent: true,
+      },
+      {
+        source: "/ca/year-:year/maths",
+        destination: "/ca/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/ca/year-:year/math",
+        destination: "/ca/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/ca/year-:year/:subject(english|science)",
+        destination: "/ca/subjects/grade-:year/:subject",
+        permanent: true,
+      },
+      {
+        source: "/ca/year-:year",
+        destination: "/ca/grade-:year",
+        permanent: true,
+      },
+
+      // US Grade and Math redirects
+      {
+        source: "/us/subjects/year-:year/maths/:term/:topic",
+        destination: "/us/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year/math/:term/:topic",
+        destination: "/us/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/grade-:year/maths/:term/:topic",
+        destination: "/us/subjects/grade-:year/math/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year/:subject(english|science)/:term/:topic",
+        destination: "/us/subjects/grade-:year/:subject/:term/:topic",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year/maths",
+        destination: "/us/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year/math",
+        destination: "/us/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/grade-:year/maths",
+        destination: "/us/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year/:subject(english|science)",
+        destination: "/us/subjects/grade-:year/:subject",
+        permanent: true,
+      },
+      {
+        source: "/us/subjects/year-:year",
+        destination: "/us/subjects/grade-:year",
+        permanent: true,
+      },
+      {
+        source: "/us/year-:year/maths",
+        destination: "/us/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/us/year-:year/math",
+        destination: "/us/subjects/grade-:year/math",
+        permanent: true,
+      },
+      {
+        source: "/us/year-:year/:subject(english|science)",
+        destination: "/us/subjects/grade-:year/:subject",
+        permanent: true,
+      },
+      {
+        source: "/us/year-:year",
+        destination: "/us/grade-:year",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
     return [
+      // US Grade rewrites
       {
-        source: "/us/year-:year/:subject(maths|english|science)",
-        destination: "/us/subjects/year-:year/:subject",
+        source: "/us/grade-:grade/:subject(math|english|science)",
+        destination: "/us/subjects/grade-:grade/:subject",
       },
       {
-        source: "/us/year-:year",
-        destination: "/us/subjects/year-:year/maths",
+        source: "/us/grade-:grade",
+        destination: "/us/subjects/grade-:grade/math",
       },
+      {
+        source: "/us/subjects/grade-:grade",
+        destination: "/us/subjects/grade-:grade/math",
+      },
+      // CA Grade rewrites
+      {
+        source: "/ca/grade-:grade/:subject(math|english|science)",
+        destination: "/ca/subjects/grade-:grade/:subject",
+      },
+      {
+        source: "/ca/grade-:grade",
+        destination: "/ca/subjects/grade-:grade/math",
+      },
+      {
+        source: "/ca/subjects/grade-:grade",
+        destination: "/ca/subjects/grade-:grade/math",
+      },
+      // Existing NZ Year rewrites
       {
         source: "/nz/year-:year/:subject(maths|english|science)",
         destination: "/nz/subjects/year-:year/:subject",
@@ -168,14 +320,7 @@ const nextConfig: NextConfig = {
         source: "/nz/year-:year",
         destination: "/nz/subjects/year-:year/maths",
       },
-      {
-        source: "/ca/year-:year/:subject(maths|english|science)",
-        destination: "/ca/subjects/year-:year/:subject",
-      },
-      {
-        source: "/ca/year-:year",
-        destination: "/ca/subjects/year-:year/maths",
-      },
+      // Existing AU Year rewrites
       {
         source: "/year-:year/:subject(maths|english|science)",
         destination: "/subjects/year-:year/:subject",

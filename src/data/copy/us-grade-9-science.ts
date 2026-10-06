@@ -300,7 +300,7 @@ export const usGrade9ScienceCopy: SubjectCopyData = {
         "title": "9th Grade Math",
         "text": "See the full 9th grade math program, with 40 live sessions mapped to Common Core.",
         "buttonText": "View Program",
-        "href": "/subjects/year-9/maths"
+        "href": "/subjects/grade-9/math"
       },
       {
         "tag": "PRICING",

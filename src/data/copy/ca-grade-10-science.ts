@@ -300,7 +300,7 @@ export const caGrade10ScienceCopy: SubjectCopyData = {
         "title": "Grade 10 English",
         "text": "See the full Grade 10 English program, with 40 live sessions matched to your province's curriculum.",
         "buttonText": "View Program",
-        "href": "/subjects/year-10/english"
+        "href": "/subjects/grade-10/english"
       },
       {
         "tag": "PRICING",

@@ -310,10 +310,10 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       programBtnHref: "/pricing",
       subTitle: "Practice by grade level",
       practiceLinks: [
-        { label: "Grade 3 Math", href: "/subjects/year-3/maths" },
-        { label: "Grade 5 Math", href: "/subjects/year-5/maths" },
-        { label: "Grade 5 English", href: "/subjects/year-5/english" },
-        { label: "Grade 7 English", href: "/subjects/year-7/english" },
+        { label: "Grade 3 Math", href: "/subjects/grade-3/math" },
+        { label: "Grade 5 Math", href: "/subjects/grade-5/math" },
+        { label: "Grade 5 English", href: "/subjects/grade-5/english" },
+        { label: "Grade 7 English", href: "/subjects/grade-7/english" },
       ],
       railTitle: "How steady prep builds test-day confidence",
       railSteps: [
@@ -466,10 +466,10 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       programBtnHref: "/pricing",
       subTitle: "Practice by grade level",
       practiceLinks: [
-        { label: "Grade 3 Math", href: "/subjects/year-3/maths" },
-        { label: "Grade 5 Math", href: "/subjects/year-5/maths" },
-        { label: "Grade 5 English", href: "/subjects/year-5/english" },
-        { label: "Grade 7 English", href: "/subjects/year-7/english" },
+        { label: "Grade 3 Math", href: "/subjects/grade-3/math" },
+        { label: "Grade 5 Math", href: "/subjects/grade-5/math" },
+        { label: "Grade 5 English", href: "/subjects/grade-5/english" },
+        { label: "Grade 7 English", href: "/subjects/grade-7/english" },
       ],
       railTitle: "How steady prep builds test-day confidence",
       railSteps: [
@@ -763,3 +763,11 @@ export function getRegionConfig(regionCode: string = "au"): RegionConfig {
   const code = (regionCode.toLowerCase() as RegionCode);
   return REGIONS_CONFIG[code] || REGIONS_CONFIG.au;
 }
+
+export {
+  getYearSlug,
+  getMathSlug,
+  getSubjectSlug,
+  getSubjectHref,
+  getYearHubHref,
+} from "@/utils/regionalLinks";
