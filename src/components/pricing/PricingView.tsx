@@ -799,7 +799,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                 </h2>
               </div>
               <Image
-                src="/images/pricing/pricing-vector.webp"
+                src="/images/pricing/student-tutor.webp"
                 alt="Student learning online with TutorExel"
                 width={500}
                 height={400}
