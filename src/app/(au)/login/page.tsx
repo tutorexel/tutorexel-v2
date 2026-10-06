@@ -1,6 +1,6 @@
 import { buildMetadata } from "@/utils/seo";
 import { LOGIN_URL } from "@/utils/externalLinks";
-import "./login.css";
+import "@/app/login/login.css";
 
 export const metadata = buildMetadata({
   path: "/login",

@@ -3,35 +3,48 @@ import { computePricing, type ClassType, type Offering } from "@/lib/pricing";
 import { findActiveByCode, incrementUsage } from "@/lib/coupons-store";
 import { applyCoupon } from "@/lib/coupons-apply";
 import { logSubmission } from "@/lib/submissions-store";
-import { sendNotificationEmail } from "@/utils/send-notification-email";
+import { getRegionConfig, type RegionCode } from "@/data/regions";
+import {
+  sendEnrollmentWelcomeEmail,
+  sendEnrollmentTeamNotification,
+  type EnrollmentEmailParams,
+} from "@/utils/enrollment-emails";
 
 /**
- * Formats a phone number into Razorpay-compatible E.164 format.
- * Handles common Australian input formats like:
- *   "+61 0412 345 678"  → "+61412345678"
- *   "0412345678"        → "+61412345678"
+ * Formats a phone number for Razorpay without overriding existing country codes.
+ * If no leading '+' is present, applies the region calling code.
  */
-function formatPhoneForRazorpay(phone: string): string {
+function formatPhoneForRazorpay(phone: string, region: RegionCode): string {
   if (!phone) return "";
   let cleaned = phone.replace(/[^\d+]/g, "");
 
   if (!cleaned.startsWith("+")) {
-    if (cleaned.startsWith("61")) cleaned = "+" + cleaned;
-    else if (cleaned.startsWith("0")) cleaned = "+61" + cleaned.substring(1);
-    else cleaned = "+61" + cleaned;
+    const regionCallingCodes: Record<RegionCode, string> = {
+      au: "+61",
+      us: "+1",
+      ca: "+1",
+      nz: "+64",
+    };
+    const prefix = regionCallingCodes[region] || "+61";
+    if (cleaned.startsWith("0")) {
+      cleaned = prefix + cleaned.substring(1);
+    } else {
+      cleaned = prefix + cleaned;
+    }
   }
 
-  // Strip leading zero after +61: "+610412..." → "+61412..."
-  if (cleaned.startsWith("+610")) cleaned = "+61" + cleaned.substring(4);
+  // Strip leading zero after Australian country code if present (+610412... -> +61412...)
+  if (cleaned.startsWith("+610")) {
+    cleaned = "+61" + cleaned.substring(4);
+  }
 
   return cleaned;
 }
 
 /**
  * Generates a deterministic reference_id for deduplication.
- * Same email + amount + currency + day → same reference_id.
+ * Same email + amount + currency + day -> same reference_id.
  * Razorpay rejects duplicate reference_ids, which we catch to return the existing link.
- * Currency is included so switching between INR (test) and AUD (live) creates fresh links.
  */
 function generateReferenceId(email: string, amount: number, currency: string): string {
   const today = new Date().toISOString().split("T")[0].replace(/-/g, ""); // YYYYMMDD
@@ -48,7 +61,7 @@ function getRazorpayAuthHeader(): string | null {
 
 /**
  * Fetches an existing payment link by reference_id.
- * Used when Razorpay rejects a duplicate reference_id — we return the existing link.
+ * Used when Razorpay rejects a duplicate reference_id so we return the existing link.
  */
 async function fetchPaymentLinkByReferenceId(referenceId: string): Promise<string | null> {
   const auth = getRazorpayAuthHeader();
@@ -66,6 +79,8 @@ async function fetchPaymentLinkByReferenceId(referenceId: string): Promise<strin
 
 async function createRazorpayPaymentLink(params: {
   amount: number;
+  currency: string;
+  region: RegionCode;
   description: string;
   customerName: string;
   customerEmail: string;
@@ -73,20 +88,19 @@ async function createRazorpayPaymentLink(params: {
   studentName: string;
   yearGroup: string;
   offering: string;
-}): Promise<string | null> {
+}): Promise<{ paymentUrl: string | null; referenceId: string }> {
+  const currency = params.currency;
+  const referenceId = generateReferenceId(params.customerEmail, params.amount, currency);
+
   const auth = getRazorpayAuthHeader();
   if (!auth) {
     console.error("[Razorpay] credentials not configured");
-    return null;
+    return { paymentUrl: null, referenceId };
   }
 
-  const callbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL || "https://tutorexel.com.au"}/thank-you`;
-  const formattedPhone = formatPhoneForRazorpay(params.customerPhone);
-
-  // Currency controlled via env: use INR for testing (Indian test cards work),
-  // AUD for production (requires International Payments enabled on Razorpay).
-  const currency = process.env.RAZORPAY_CURRENCY || "AUD";
-  const referenceId = generateReferenceId(params.customerEmail, params.amount, currency);
+  const regConfig = getRegionConfig(params.region);
+  const callbackUrl = `${process.env.NEXT_PUBLIC_SITE_URL || "https://tutorexel.com.au"}${regConfig.basePath}/thank-you`;
+  const formattedPhone = formatPhoneForRazorpay(params.customerPhone, params.region);
 
   const requestBody = {
     amount: Math.round(params.amount * 100),
@@ -94,15 +108,15 @@ async function createRazorpayPaymentLink(params: {
     accept_partial: false,
     reference_id: referenceId,
     description: params.description,
-    reminder_enable: true,
+    reminder_enable: false,
     customer: {
       name: params.customerName,
       email: params.customerEmail,
       contact: formattedPhone,
     },
     notify: {
-      sms: true,
-      email: true,
+      sms: false,
+      email: false,
     },
     notes: {
       studentName: params.studentName,
@@ -110,6 +124,9 @@ async function createRazorpayPaymentLink(params: {
       offering: params.offering,
       parentName: params.customerName,
       email: params.customerEmail,
+      region: params.region,
+      currency: params.currency,
+      displayAmount: `${params.currency} ${params.amount}`,
       displayAmountAUD: String(params.amount),
     },
     callback_url: callbackUrl,
@@ -128,8 +145,6 @@ async function createRazorpayPaymentLink(params: {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    // Razorpay returns "payment link with given reference_id: ... already exists"
-    // when the reference_id has been used before. We fetch and reuse that link.
     const description = data?.error?.description?.toLowerCase?.() || "";
     const isDuplicate = description.includes("already exists");
 
@@ -137,21 +152,22 @@ async function createRazorpayPaymentLink(params: {
       const existingUrl = await fetchPaymentLinkByReferenceId(referenceId);
       if (existingUrl) {
         console.log("[Razorpay] Returning existing link for", referenceId);
-        return existingUrl;
+        return { paymentUrl: existingUrl, referenceId };
       }
     }
 
     console.error("[Razorpay] API error:", JSON.stringify(data));
-    return null;
+    return { paymentUrl: null, referenceId };
   }
 
-  return data.short_url;
+  return { paymentUrl: data.short_url, referenceId };
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
+      region: rawRegion,
       parentName,
       email,
       phone,
@@ -163,6 +179,7 @@ export async function POST(request: NextRequest) {
       couponCode,
       pricingSelection,
     } = body as {
+      region?: string;
       parentName?: string;
       email?: string;
       phone?: string;
@@ -184,9 +201,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Log submission and notify
-    // Derive the authoritative price server-side from the user's selection.
-    // Fall back to the client total only if pricingSelection is missing (older client).
+    // Validate region strictly server-side
+    const validRegions: RegionCode[] = ["au", "us", "ca", "nz"];
+    const region: RegionCode = validRegions.includes((rawRegion || "").toLowerCase() as RegionCode)
+      ? ((rawRegion || "").toLowerCase() as RegionCode)
+      : "au";
+    const regConfig = getRegionConfig(region);
+    const currency = regConfig.currency;
+
+    // Derive authoritative price server-side from user selection
     let serverTotal: number | null = null;
     if (pricingSelection && typeof pricingSelection === "object") {
       const result = computePricing({
@@ -199,17 +222,15 @@ export async function POST(request: NextRequest) {
     }
 
     if (serverTotal == null) {
-      // No pricingSelection — accept the client total as-is for backwards compatibility.
       serverTotal = typeof clientTotal === "number" && clientTotal > 0 ? clientTotal : null;
     } else if (typeof clientTotal === "number" && Math.abs(serverTotal - clientTotal) > 0.01) {
       console.warn(
-        "[Enroll] client/server total mismatch — using server value.",
-        { clientTotal, serverTotal, email, offering }
+        "[Enroll] client/server total mismatch - using server value.",
+        { clientTotal, serverTotal, email, offering, region }
       );
     }
 
-    // Server-side coupon re-validation. Even if the client applied a discount,
-    // we re-validate here and ignore any client-side discountAmount.
+    // Server-side coupon re-validation
     let validatedCouponCode: string | null = null;
     let validatedCouponId: string | null = null;
     let discountAmount = 0;
@@ -235,33 +256,48 @@ export async function POST(request: NextRequest) {
     }
 
     const chargeAmount = finalAmount;
-    const amount = String(chargeAmount || 99);
 
-    // Log submission with full pricing data
+    // Build subject and activity lists
     const activityList = pricingSelection?.activities
-      ? Object.entries(pricingSelection.activities).filter(([, v]) => v).map(([k]) => k.charAt(0).toUpperCase() + k.slice(1)).join(", ")
+      ? Object.entries(pricingSelection.activities)
+          .filter(([, v]) => v)
+          .map(([k]) => k.charAt(0).toUpperCase() + k.slice(1))
+          .join(", ")
       : null;
     const subjectList = pricingSelection?.subjects
-      ? Object.entries(pricingSelection.subjects).filter(([, v]) => v).map(([k]) => k.charAt(0).toUpperCase() + k.slice(1)).join(", ")
+      ? Object.entries(pricingSelection.subjects)
+          .filter(([, v]) => v)
+          .map(([k]) => k.charAt(0).toUpperCase() + k.slice(1))
+          .join(", ")
       : null;
+
     const enrollData = {
-      parentName, email, phone, studentName, yearGroup, offering,
+      region,
+      currency,
+      parentName,
+      email,
+      phone,
+      studentName,
+      yearGroup,
+      offering,
       ...(planDetails ? { planDetails } : {}),
       ...(subjectList ? { subjects: subjectList } : {}),
       ...(activityList ? { activities: activityList } : {}),
       ...(validatedCouponCode ? { couponCode: validatedCouponCode } : couponCode ? { couponCode } : {}),
-      ...(serverTotal != null ? { originalPrice: `$${serverTotal}` } : {}),
-      ...(discountAmount > 0 ? { discount: `-$${discountAmount.toFixed(2)}` } : {}),
-      ...(chargeAmount != null ? { finalPrice: `$${chargeAmount}` } : {}),
+      ...(serverTotal != null ? { originalPrice: `${currency} $${serverTotal}` } : {}),
+      ...(discountAmount > 0 ? { discount: `-${currency} $${discountAmount.toFixed(2)}` } : {}),
+      ...(chargeAmount != null ? { finalPrice: `${currency} $${chargeAmount}` } : {}),
     };
-    logSubmission("enroll", enrollData).catch(() => {});
-    sendNotificationEmail("enroll", enrollData).catch(() => {});
 
-    // Run GHL automation async (don't block the response)
+    // Log submission to database store
+    logSubmission("enroll", enrollData).catch((err) => {
+      console.error("[Enroll] Database log submission failed:", err);
+    });
 
-    // Create Razorpay Payment Link with the discounted amount
+    // Create Razorpay Payment Link (with customer notification disabled)
     let paymentUrl: string | null = null;
     let paymentError: string | null = null;
+    let referenceId = generateReferenceId(email, chargeAmount || 0, currency);
 
     if (chargeAmount && chargeAmount > 0) {
       const description = [
@@ -273,8 +309,10 @@ export async function POST(request: NextRequest) {
         .join(" ")
         .trim();
 
-      paymentUrl = await createRazorpayPaymentLink({
+      const linkResult = await createRazorpayPaymentLink({
         amount: chargeAmount,
+        currency,
+        region,
         description,
         customerName: parentName,
         customerEmail: email,
@@ -284,14 +322,16 @@ export async function POST(request: NextRequest) {
         offering,
       });
 
+      paymentUrl = linkResult.paymentUrl;
+      referenceId = linkResult.referenceId;
+
       if (!paymentUrl) {
         paymentError = "Payment link creation failed. Check server logs.";
         console.error(
           "[Enroll] Payment link creation returned null.",
-          { chargeAmount, email, offering }
+          { chargeAmount, currency, region, email, offering }
         );
       } else if (validatedCouponId) {
-        // Only burn a coupon use if the link was actually created.
         try {
           await incrementUsage(validatedCouponId);
         } catch (err) {
@@ -299,15 +339,46 @@ export async function POST(request: NextRequest) {
         }
       }
     } else {
-      paymentError = `chargeAmount is ${JSON.stringify(chargeAmount)} — skipped payment link creation`;
-      console.error("[Enroll] Skipped Razorpay —", { chargeAmount });
+      paymentError = `chargeAmount is ${JSON.stringify(chargeAmount)} - skipped payment link creation`;
+      console.warn("[Enroll] Skipped Razorpay -", { chargeAmount });
     }
+
+    // Send customer welcome email and internal team notification email
+    const emailParams: EnrollmentEmailParams = {
+      parentName,
+      email,
+      phone: phone || "",
+      studentName,
+      yearGroup,
+      offering,
+      classType: pricingSelection?.classType
+        ? pricingSelection.classType === "one-to-one"
+          ? "One-to-One Session"
+          : "Group Class (3:1)"
+        : undefined,
+      subjects: subjectList || undefined,
+      activities: activityList || undefined,
+      planDetails: planDetails || undefined,
+      amount: chargeAmount || serverTotal || 0,
+      currency,
+      region,
+      paymentUrl,
+      referenceId,
+      couponCode: validatedCouponCode || undefined,
+      discountAmount,
+    };
+
+    await Promise.allSettled([
+      sendEnrollmentWelcomeEmail(emailParams),
+      sendEnrollmentTeamNotification(emailParams),
+    ]);
 
     return NextResponse.json({
       success: true,
       paymentUrl,
       paymentError,
-      // Echo back the values the server actually used, so the UI can reconcile.
+      currency,
+      receiptId: referenceId,
       serverTotal,
       discountAmount,
       finalAmount: chargeAmount,

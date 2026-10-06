@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "./enquire.css";
+import "@/app/co-curricular/piano/enquire/enquire.css";
 
 const BOOKING_URL = "https://api.superintech.com/widget/bookings/free-trial-guitar-and-piana-booking";
 

@@ -9,6 +9,7 @@ import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
 import { US_HOME_COPY } from '@/data/copy/us-home';
+import '@/app/subjects/subjects.css';
 
 interface YearLevelsProps {
   region?: RegionCode;

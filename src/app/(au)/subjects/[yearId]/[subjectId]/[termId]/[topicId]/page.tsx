@@ -3,7 +3,7 @@
 import { useState, use } from "react";
 import { notFound } from "next/navigation";
 import { questionData } from "@/data/questionData";
-import "./practice-test.css";
+import "@/app/subjects/[yearId]/[subjectId]/[termId]/[topicId]/practice-test.css";
 
 type PageProps = {
   params: Promise<{

@@ -1,5 +1,5 @@
 import { CALENDLY_URL } from "@/utils/externalLinks";
-import "./free-trial-booking.css";
+import "@/app/free-trial-booking/free-trial-booking.css";
 
 export default function FreeTrialBookingPage() {
   return (

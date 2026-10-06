@@ -1,6 +1,6 @@
 import { buildMetadata } from "@/utils/seo";
 import Image from "next/image";
-import "../styles/legal.css";
+import "@/app/styles/legal.css";
 
 export const metadata = buildMetadata({
   path: "/cookies",

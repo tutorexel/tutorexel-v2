@@ -367,7 +367,6 @@
   background: linear-gradient(0.67deg, #FF003B -125.55%, #FFA84A 95.62%);
   padding: 80px 0;
   overflow: hidden;
-  padding-bottom: 0;
 }
 
 .subject-structured__grid {
@@ -403,7 +402,108 @@
   font-weight: 700;
   color: #FFFFFF;
   line-height: 1.1;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+}
+
+.subject-structured__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subject-structured__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.subject-structured__step-number {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.subject-structured__step-content {
+  flex: 1;
+}
+
+.subject-structured__step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 4px 0;
+}
+
+.subject-structured__step-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.subject-structured__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subject-structured__card {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 36px 32px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.subject-structured__card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #232323;
+  margin-bottom: 20px;
+}
+
+.subject-structured__features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subject-structured__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: #515151;
+  line-height: 1.5;
+}
+
+.subject-structured__feature strong {
+  color: #232323;
+}
+
+.subject-structured__feature-check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #E8F8EE;
+  color: #16A34A;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 1px;
 }
 
 .subject-structured__image {
@@ -417,22 +517,10 @@
   object-fit: contain;
 }
 
-.subject-structured__right {
-  display: flex;
-  align-items: center;
-}
-
 .subject-structured__cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-}
-
-.subject-structured__card {
-  background: #FFFFFF;
-  border-radius: 20px;
-  padding: 32px 24px;
-  text-align: center;
 }
 
 .subject-structured__card-number {
@@ -447,13 +535,6 @@
   font-size: 28px;
   font-weight: 700;
   color: #FFFFFF;
-}
-
-.subject-structured__card-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: #232323;
-  margin-bottom: 8px;
 }
 
 .subject-structured__card-description {
@@ -710,8 +791,12 @@
     margin-top: 80px;
   }
 
-  .subject-structured__left{
+  .subject-structured__left {
     text-align: center;
+  }
+
+  .subject-structured__step {
+    text-align: left;
   }
 
   .subject-years__card {

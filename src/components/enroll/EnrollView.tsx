@@ -3,7 +3,7 @@
 import { useState, useMemo, Suspense, useRef, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import RegionLink from "@/components/shared/RegionLink";
-import { type RegionCode } from "@/utils/regionalLinks";
+import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
 import Image from "next/image";
 import { sendEnrollmentWebhook } from "@/utils/webhook";
 import { trackEnrollment } from "@/utils/analytics";
@@ -17,8 +17,6 @@ interface AppliedCoupon {
   discountAmount: number;
   finalAmount: number;
 }
-
-const yearGroupOptions = Array.from({ length: 6 }, (_, i) => `Year ${i + 2}`);
 
 const offeringOptions = [
   { value: "live-online-coaching", label: "Live Online Coaching" },
@@ -86,15 +84,30 @@ function EnrollUrlParams({
   return null;
 }
 
+const defaultCallingCodes: Record<RegionCode, string> = {
+  au: "+61 ",
+  us: "+1 ",
+  ca: "+1 ",
+  nz: "+64 ",
+};
+
 function EnrollForm({ region }: { region?: RegionCode }) {
+  const currentRegion: RegionCode = region || "au";
+  const regConfig = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
+  const yearLabel = regConfig.yearLabel || "Year";
+  const yearGroupOptions = Array.from({ length: 6 }, (_, i) => `${yearLabel} ${i + 2}`);
+
   const [couponParam, setCouponParam] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const webhookCalledRef = useRef(false);
 
-  // Country / currency selection defaults to first country (Australia)
-  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]);
+  // Country / currency selection defaults to current region
+  const initialCountry =
+    COUNTRIES.find((c) => c.code.toLowerCase() === currentRegion.toLowerCase()) ||
+    COUNTRIES[0];
+  const [selectedCountry, setSelectedCountry] = useState<Country>(initialCountry);
 
   const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const country = COUNTRIES.find((c) => c.code === e.target.value);
@@ -111,7 +124,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
   const [formData, setFormData] = useState({
     parentName: "",
     email: "",
-    phone: "+61 ",
+    phone: defaultCallingCodes[currentRegion] || "+61 ",
     studentName: "",
     yearGroup: "",
     offering: "",
@@ -360,6 +373,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
       offering: offeringLabels[formData.offering] || formData.offering,
       planDetails: planDetails,
       totalAmount: totalAmount,
+      region: currentRegion,
       // Display-only currency label the user selected  -  the numeric amount is
       // NOT converted, it's the same underlying price shown in every currency.
       displayCurrency: selectedCountry.currency,
@@ -588,7 +602,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                 {/* Year Group & Country */}
                 <div className="enroll-form__row">
                   <div className="enroll-form__field">
-                    <label className="enroll-form__label">Year Group *</label>
+                    <label className="enroll-form__label">{yearLabel} Group *</label>
                     <select
                       name="yearGroup"
                       required
@@ -597,7 +611,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                       className="enroll-form__select"
                     >
                       <option value="" disabled>
-                        Select Year Group
+                        Select {yearLabel} Group
                       </option>
                       {yearGroupOptions.map((yr) => (
                         <option key={yr} value={yr}>

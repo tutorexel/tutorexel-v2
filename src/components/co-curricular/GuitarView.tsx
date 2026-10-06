@@ -7,107 +7,17 @@ import { AU_GUITAR_COPY } from "@/data/copy/au-guitar";
 import { CA_GUITAR_COPY } from "@/data/copy/ca-guitar";
 import { NZ_GUITAR_COPY } from "@/data/copy/nz-guitar";
 import { US_GUITAR_COPY } from "@/data/copy/us-guitar";
+import { MusicPageCopy } from "@/data/copy/music-copy-types";
 import { createBreadcrumbSchema } from "@/utils/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import "@/app/co-curricular/guitar/guitar.css";
 
-const educationCards = [
-  {
-    title: "Technique",
-    description:
-      "Build proper finger positioning, strumming patterns, chord transitions, and picking techniques from day one.",
-    highlighted: false,
-    icon: "technique",
-  },
-  {
-    title: "Repertoire",
-    description:
-      "Learn a diverse range of pieces across genres (classical, pop, rock, and folk) matched to your grade level.",
-    highlighted: true,
-    icon: "repertoire",
-  },
-  {
-    title: "Theory & Musicianship",
-    description:
-      "Understand music notation, scales, keys, time signatures, and ear training alongside practical skills.",
-    highlighted: false,
-    icon: "theory",
-  },
-  {
-    title: "Creativity",
-    description:
-      "Develop improvisation and songwriting skills. Express yourself musically with confidence and originality.",
-    highlighted: false,
-    icon: "creativity",
-  },
-  {
-    title: "Performance Skills",
-    description:
-      "Build confidence performing for others. Learn stage presence, pacing, and how to manage performance nerves.",
-    highlighted: false,
-    icon: "performance",
-  },
-];
-
-const grades = [
-  { short: "IG", label: "Initial Grade" },
-  { short: "1", label: "Grade 1" },
-  { short: "2", label: "Grade 2" },
-  { short: "3", label: "Grade 3" },
-  { short: "4", label: "Grade 4" },
-  { short: "5", label: "Grade 5" },
-  { short: "6", label: "Grade 6" },
-  { short: "7", label: "Grade 7" },
-  { short: "8", label: "Grade 8" },
-];
-
-const lessonItems = [
-  { time: "10 min", title: "Warm-up", description: "Scales, finger exercises, and technique drills to build dexterity and muscle memory." },
-  { time: "20 min", title: "Repertoire", description: "Working through set pieces, refining expression, dynamics, and accuracy." },
-  { time: "15 min", title: "Theory", description: "Music theory, sight-reading, and aural training exercises." },
-  { time: "15 min", title: "Creative Time", description: "Improvisation, songwriting, or exploring a piece of the student's choice." },
-];
-
-const lessonDetails = [
-  { label: "Duration", value: "60 minutes" },
-  { label: "Format", value: "One-on-one online" },
-  { label: "Frequency", value: "Weekly" },
-  { label: "Homework", value: "Student practice assignments" },
-];
-
-const audiences = [
-  {
-    title: "Complete Beginners (Ages 8+)",
-    description:
-      "Never touched a guitar? Perfect. We start from absolute basics: how to hold the guitar, first chords, and simple tunes.",
-    underlined: true,
-  },
-  {
-    title: "Students Already Learning",
-    description:
-      "If your child is already learning guitar but needs more structure, we place them at the right level and fill in any gaps.",
-    underlined: true,
-  },
-  {
-    title: "Students Preparing for Exams",
-    description:
-      "Preparing for Trinity College London graded exams? Our tutors know the syllabus inside out and will get your child exam-ready.",
-    underlined: true,
-  },
-  {
-    title: "Adult Learners",
-    description:
-      "It is never too late to learn. We welcome adult students who want to pick up the guitar or return to playing after a break.",
-    underlined: false,
-  },
-];
-
-const requirements = [
-  { label: "A guitar pick", highlighted: false, icon: "pick" },
-  { label: "A stable internet connection", highlighted: true, icon: "wifi" },
-  { label: "A device with camera", highlighted: false, icon: "device" },
-  { label: "A quiet practice space", highlighted: false, icon: "quiet" },
-];
+const copyByRegion: Record<RegionCode, MusicPageCopy> = {
+  au: AU_GUITAR_COPY,
+  ca: CA_GUITAR_COPY,
+  nz: NZ_GUITAR_COPY,
+  us: US_GUITAR_COPY,
+};
 
 function EducationIcon({ type }: { type: string }) {
   switch (type) {
@@ -192,938 +102,20 @@ function RequirementIcon({ type }: { type: string }) {
   }
 }
 
-function AuGuitarView() {
-  const copy = AU_GUITAR_COPY;
-  const breadcrumbs = createBreadcrumbSchema([
-    { name: "Home", url: "https://www.tutorexel.com" },
-    { name: "Co-Curricular", url: "https://www.tutorexel.com/co-curricular" },
-    { name: "Guitar", url: "https://www.tutorexel.com/co-curricular/guitar" },
-  ]);
-
-  return (
-    <>
-      <JsonLd data={breadcrumbs} />
-      <section className="guitar-hero">
-        <div className="guitar-hero__decoration guitar-hero__decoration--left">
-          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
-        </div>
-        <div className="guitar-hero__decoration guitar-hero__decoration--right">
-          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="guitar-hero__stars" />
-          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="guitar-hero__curve-right" />
-        </div>
-        <div className="container">
-          <div className="guitar-hero__content">
-            <h1 className="guitar-hero__title">
-              {copy.hero.h1}
-            </h1>
-            <p className="guitar-hero__subtitle">
-              {copy.hero.text}
-            </p>
-            <div className="guitar-hero__actions">
-              <RegionLink href={copy.hero.primaryCta.href} region="au" className="btn btn-primary btn-lg">
-                {copy.hero.primaryCta.text}
-              </RegionLink>
-              <RegionLink href={copy.hero.secondaryCta.href} region="au" className="guitar-hero__btn-outline">
-                {copy.hero.secondaryCta.text}
-              </RegionLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="education">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.mastery.eyebrow}</p>
-            <h2 className="section-header__title">{copy.mastery.h2}</h2>
-          </div>
-
-          <div className="education__grid">
-            {copy.mastery.cards.slice(0, 3).map((card) => (
-              <div
-                className={`education-card${card.highlighted ? " education-card--highlighted" : ""}`}
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="education__grid--bottom">
-            {copy.mastery.cards.slice(3).map((card) => (
-              <div
-                className={`education-card${card.highlighted ? " education-card--highlighted" : ""}`}
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grade-progression">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
-            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
-          </div>
-
-          <div className="grade-path">
-            {copy.gradeProgression.grades.map((grade, i) => (
-              <div key={grade.short} style={{ display: "flex", alignItems: "center" }}>
-                <div className="grade-node">
-                  <div className="grade-node__circle">{grade.short}</div>
-                  <span className="grade-node__label">{grade.label}</span>
-                </div>
-                {i < copy.gradeProgression.grades.length - 1 && <div className="grade-connector" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lesson-structure">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.lessonStructure.eyebrow}</p>
-            <h2 className="section-header__title">{copy.lessonStructure.h2}</h2>
-          </div>
-
-          <div className="lesson-structure__layout">
-            <div>
-              <div className="lesson-timeline">
-                {copy.lessonStructure.timeline.map((item) => (
-                  <div className="lesson-item" key={item.title}>
-                    <div className="lesson-item__time">
-                      <span className="lesson-item__time-icon">&#128339;</span>
-                      {item.time}
-                    </div>
-                    <div className="lesson-item__content">
-                      <h4 className="lesson-item__title">{item.title}</h4>
-                      <p className="lesson-item__desc">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="lesson-details">
-                {copy.lessonStructure.details.map((detail) => (
-                  <div className="lesson-detail" key={detail.label}>
-                    <span className="lesson-detail__label">{detail.label}</span>
-                    <span className="lesson-detail__value">{detail.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="lesson-structure__image">
-              <Image
-                src={copy.lessonStructure.image.src}
-                alt={copy.lessonStructure.image.alt}
-                width={copy.lessonStructure.image.width}
-                height={copy.lessonStructure.image.height}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="audience">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.audience.eyebrow}</p>
-            <h2 className="section-header__title">{copy.audience.h2}</h2>
-          </div>
-
-          <div className="audience__layout">
-            <div className="audience__image">
-              <Image
-                src={copy.audience.image.src}
-                alt={copy.audience.image.alt}
-                width={copy.audience.image.width}
-                height={copy.audience.image.height}
-              />
-            </div>
-            <div className="audience__list">
-              {copy.audience.items.map((item) => (
-                <div className="audience-item" key={item.title}>
-                  <h3 className="audience-item__title">
-                    {item.title}
-                  </h3>
-                  <p className="audience-item__desc">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="requirements">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <h2 className="section-header__title">{copy.requirements.h2}</h2>
-          </div>
-
-          <div className="requirements__grid">
-            {copy.requirements.items.map((req) => (
-              <div
-                className={`requirement-card${req.highlighted ? " requirement-card--highlighted" : ""}`}
-                key={req.label}
-              >
-                <div className="requirement-card__icon">
-                  <RequirementIcon type={req.icon} />
-                </div>
-                <p className="requirement-card__label">{req.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "28px" }}>
-            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{copy.testimonials.h2}</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-            {copy.testimonials.items.map((item) => (
-              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
-                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="music-cta">
-        <div className="container">
-          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
-          <div className="music-cta__actions">
-            <RegionLink href={copy.finalCta.primaryButton.href} region="au" className="btn btn-primary btn-lg">
-              {copy.finalCta.primaryButton.text}
-            </RegionLink>
-            <RegionLink href={copy.finalCta.secondaryButton.href} region="au" className="music-cta__btn--outline">
-              {copy.finalCta.secondaryButton.text}
-            </RegionLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function CaGuitarView() {
-  const copy = CA_GUITAR_COPY;
-  const breadcrumbs = createBreadcrumbSchema([
-    { name: "Home", url: "https://www.tutorexel.com/ca" },
-    { name: "Co-Curricular", url: "https://www.tutorexel.com/ca/co-curricular" },
-    { name: "Guitar", url: "https://www.tutorexel.com/ca/co-curricular/guitar" },
-  ]);
-
-  return (
-    <>
-      <JsonLd data={breadcrumbs} />
-      <section className="guitar-hero">
-        <div className="guitar-hero__decoration guitar-hero__decoration--left">
-          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
-        </div>
-        <div className="guitar-hero__decoration guitar-hero__decoration--right">
-          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="guitar-hero__stars" />
-          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="guitar-hero__curve-right" />
-        </div>
-        <div className="container">
-          <div className="guitar-hero__content">
-            <h1 className="guitar-hero__title">
-              {copy.hero.h1}
-            </h1>
-            <p className="guitar-hero__subtitle">
-              {copy.hero.text}
-            </p>
-            <div className="guitar-hero__actions">
-              <RegionLink href={copy.hero.primaryCta.href} region="ca" className="btn btn-primary btn-lg">
-                {copy.hero.primaryCta.text}
-              </RegionLink>
-              <RegionLink href={copy.hero.secondaryCta.href} region="ca" className="guitar-hero__btn-outline">
-                {copy.hero.secondaryCta.text}
-              </RegionLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="education">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.mastery.eyebrow}</p>
-            <h2 className="section-header__title">{copy.mastery.h2}</h2>
-          </div>
-
-          <div className="education__grid">
-            {copy.mastery.cards.slice(0, 3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="education__grid--bottom">
-            {copy.mastery.cards.slice(3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="progression">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
-            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
-          </div>
-
-          <div className="progression__path">
-            <div className="progression__line" />
-            <div className="progression__nodes">
-              {copy.gradeProgression.grades.map((grade) => (
-                <div className="progression-node" key={grade.short}>
-                  <div className="progression-node__circle">
-                    <span className="progression-node__number">{grade.short}</span>
-                  </div>
-                  <span className="progression-node__label">{grade.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="lesson-structure">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.lessonStructure.eyebrow}</p>
-            <h2 className="section-header__title">{copy.lessonStructure.h2}</h2>
-          </div>
-
-          <div className="lesson-structure__layout">
-            <div className="lesson-timeline">
-              {copy.lessonStructure.timeline.map((item, index) => (
-                <div className="timeline-item" key={index}>
-                  <div className="timeline-item__badge">{item.time}</div>
-                  <div className="timeline-item__content">
-                    <h3 className="timeline-item__title">{item.title}</h3>
-                    <p className="timeline-item__desc">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="lesson-sidebar">
-              <div className="lesson-sidebar__image">
-                <Image
-                  src={copy.lessonStructure.image.src}
-                  alt={copy.lessonStructure.image.alt}
-                  width={copy.lessonStructure.image.width}
-                  height={copy.lessonStructure.image.height}
-                />
-              </div>
-              <div className="lesson-details">
-                {copy.lessonStructure.details.map((detail) => (
-                  <div className="lesson-detail-card" key={detail.label}>
-                    <span className="lesson-detail-card__label">{detail.label}</span>
-                    <span className="lesson-detail-card__value">{detail.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="audience">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.audience.eyebrow}</p>
-            <h2 className="section-header__title">{copy.audience.h2}</h2>
-          </div>
-
-          <div className="audience__layout">
-            <div className="audience__image">
-              <Image
-                src={copy.audience.image.src}
-                alt={copy.audience.image.alt}
-                width={copy.audience.image.width}
-                height={copy.audience.image.height}
-              />
-            </div>
-            <div className="audience__list">
-              {copy.audience.items.map((item) => (
-                <div className="audience-item" key={item.title}>
-                  <h3 className="audience-item__title">
-                    {item.title}
-                  </h3>
-                  <p className="audience-item__desc">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="requirements">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <h2 className="section-header__title">{copy.requirements.h2}</h2>
-          </div>
-
-          <div className="requirements__grid">
-            {copy.requirements.items.map((req) => (
-              <div
-                className={`requirement-card${req.highlighted ? " requirement-card--highlighted" : ""}`}
-                key={req.label}
-              >
-                <div className="requirement-card__icon">
-                  <RequirementIcon type={req.icon} />
-                </div>
-                <p className="requirement-card__label">{req.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "28px" }}>
-            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-            {AU_GUITAR_COPY.testimonials.items.map((item) => (
-              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
-                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="music-cta">
-        <div className="container">
-          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
-          <div className="music-cta__actions">
-            <RegionLink href={copy.finalCta.primaryButton.href} region="ca" className="btn btn-primary btn-lg">
-              {copy.finalCta.primaryButton.text}
-            </RegionLink>
-            <RegionLink href={copy.finalCta.secondaryButton.href} region="ca" className="music-cta__btn--outline">
-              {copy.finalCta.secondaryButton.text}
-            </RegionLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function NzGuitarView() {
-  const copy = NZ_GUITAR_COPY;
-  const breadcrumbs = createBreadcrumbSchema([
-    { name: "Home", url: "https://www.tutorexel.com/nz" },
-    { name: "Music Lessons", url: "https://www.tutorexel.com/nz/co-curricular" },
-    { name: "Guitar", url: "https://www.tutorexel.com/nz/co-curricular/guitar" },
-  ]);
-
-  return (
-    <>
-      <JsonLd data={breadcrumbs} />
-      <section className="guitar-hero">
-        <div className="guitar-hero__decoration guitar-hero__decoration--left">
-          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
-        </div>
-        <div className="guitar-hero__decoration guitar-hero__decoration--right">
-          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="guitar-hero__stars" />
-          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="guitar-hero__curve-right" />
-        </div>
-        <div className="container">
-          <div className="guitar-hero__content">
-            <h1 className="guitar-hero__title">
-              {copy.hero.h1}
-            </h1>
-            <p className="guitar-hero__subtitle">
-              {copy.hero.text}
-            </p>
-            <div className="guitar-hero__actions">
-              <RegionLink href={copy.hero.primaryCta.href} region="nz" className="btn btn-primary btn-lg">
-                {copy.hero.primaryCta.text}
-              </RegionLink>
-              <RegionLink href={copy.hero.secondaryCta.href} region="nz" className="guitar-hero__btn-outline">
-                {copy.hero.secondaryCta.text}
-              </RegionLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="education">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.mastery.eyebrow}</p>
-            <h2 className="section-header__title">{copy.mastery.h2}</h2>
-          </div>
-          <div className="education__grid--top">
-            {copy.mastery.cards.slice(0, 3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="education__grid--bottom">
-            {copy.mastery.cards.slice(3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grade-progression">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
-            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
-          </div>
-
-          <div className="grade-path">
-            {copy.gradeProgression.grades.map((grade, i) => (
-              <div key={grade.short} style={{ display: "flex", alignItems: "center" }}>
-                <div className="grade-node">
-                  <div className="grade-node__circle">{grade.short}</div>
-                  <span className="grade-node__label">{grade.label}</span>
-                </div>
-                {i < copy.gradeProgression.grades.length - 1 && <div className="grade-connector" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lesson-structure">
-        <div className="container">
-          <div className="lesson-structure__grid">
-            <div className="lesson-structure__left">
-              <p className="lesson-structure__label">{copy.lessonStructure.eyebrow}</p>
-              <h2 className="lesson-structure__title">{copy.lessonStructure.h2}</h2>
-              <div className="lesson-timeline">
-                {copy.lessonStructure.timeline.map((item) => (
-                  <div className="lesson-timeline__item" key={item.title}>
-                    <div className="lesson-timeline__time">{item.time}</div>
-                    <div className="lesson-timeline__content">
-                      <h3 className="lesson-timeline__title">{item.title}</h3>
-                      <p className="lesson-timeline__desc">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="lesson-details">
-                {copy.lessonStructure.details.map((detail) => (
-                  <div className="lesson-detail" key={detail.label}>
-                    <span className="lesson-detail__label">{detail.label}</span>
-                    <span className="lesson-detail__value">{detail.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lesson-structure__right">
-              <Image
-                src={copy.lessonStructure.image.src}
-                alt={copy.lessonStructure.image.alt}
-                width={copy.lessonStructure.image.width}
-                height={copy.lessonStructure.image.height}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="audience">
-        <div className="container">
-          <div className="audience__grid">
-            <div className="audience__left">
-              <Image
-                src={copy.audience.image.src}
-                alt={copy.audience.image.alt}
-                width={copy.audience.image.width}
-                height={copy.audience.image.height}
-              />
-            </div>
-            <div className="audience__right">
-              <p className="audience__label">{copy.audience.eyebrow}</p>
-              <h2 className="audience__title">{copy.audience.h2}</h2>
-              <div className="audience__list">
-                {copy.audience.items.map((item) => (
-                  <div className="audience__item" key={item.title}>
-                    <h3 className="audience__item-title">
-                      {item.title}
-                    </h3>
-                    <p className="audience__item-desc">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="requirements">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <h2 className="section-header__title">{copy.requirements.h2}</h2>
-          </div>
-          <div className="requirements__grid">
-            {copy.requirements.items.map((item) => (
-              <div
-                className={`requirement-card${item.highlighted ? " requirement-card--highlighted" : ""}`}
-                key={item.label}
-              >
-                <div className="requirement-card__icon">
-                  <RequirementIcon type={item.icon} />
-                </div>
-                <p className="requirement-card__label">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "28px" }}>
-            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-            {AU_GUITAR_COPY.testimonials.items.map((item) => (
-              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
-                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="music-cta">
-        <div className="container">
-          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
-          <div className="music-cta__actions">
-            <RegionLink href={copy.finalCta.primaryButton.href} region="nz" className="btn btn-primary btn-lg">
-              {copy.finalCta.primaryButton.text}
-            </RegionLink>
-            <RegionLink href={copy.finalCta.secondaryButton.href} region="nz" className="music-cta__btn--outline">
-              {copy.finalCta.secondaryButton.text}
-            </RegionLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-function UsGuitarView() {
-  const copy = US_GUITAR_COPY;
-  const breadcrumbs = createBreadcrumbSchema([
-    { name: "Home", url: "https://www.tutorexel.com/us" },
-    { name: "Music Lessons", url: "https://www.tutorexel.com/us/co-curricular" },
-    { name: "Guitar", url: "https://www.tutorexel.com/us/co-curricular/guitar" },
-  ]);
-
-  return (
-    <>
-      <JsonLd data={breadcrumbs} />
-      <section className="guitar-hero">
-        <div className="guitar-hero__decoration guitar-hero__decoration--left">
-          <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
-        </div>
-        <div className="guitar-hero__decoration guitar-hero__decoration--right">
-          <Image src="/images/about/star-design.webp" alt="" width={200} height={200} className="guitar-hero__stars" />
-          <Image src="/images/about/right-line.webp" alt="" width={200} height={200} className="guitar-hero__curve-right" />
-        </div>
-        <div className="container">
-          <div className="guitar-hero__content">
-            <h1 className="guitar-hero__title">
-              {copy.hero.h1}
-            </h1>
-            <p className="guitar-hero__subtitle">
-              {copy.hero.text}
-            </p>
-            <div className="guitar-hero__actions">
-              <RegionLink href={copy.hero.primaryCta.href} region="us" className="btn btn-primary btn-lg">
-                {copy.hero.primaryCta.text}
-              </RegionLink>
-              <RegionLink href={copy.hero.secondaryCta.href} region="us" className="guitar-hero__btn-outline">
-                {copy.hero.secondaryCta.text}
-              </RegionLink>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="education">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.mastery.eyebrow}</p>
-            <h2 className="section-header__title">{copy.mastery.h2}</h2>
-          </div>
-          <div className="education__grid--top">
-            {copy.mastery.cards.slice(0, 3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className="education__grid--bottom">
-            {copy.mastery.cards.slice(3).map((card) => (
-              <div
-                className="education-card"
-                key={card.title}
-              >
-                <div className="education-card__icon">
-                  <EducationIcon type={card.icon} />
-                </div>
-                <h3 className="education-card__title">{card.title}</h3>
-                <p className="education-card__desc">{card.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="grade-progression">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
-            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
-          </div>
-
-          <div className="grade-path">
-            {copy.gradeProgression.grades.map((grade, i) => (
-              <div key={grade.short} style={{ display: "flex", alignItems: "center" }}>
-                <div className="grade-node">
-                  <div className="grade-node__circle">{grade.short}</div>
-                  <span className="grade-node__label">{grade.label}</span>
-                </div>
-                {i < copy.gradeProgression.grades.length - 1 && <div className="grade-connector" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="lesson-structure">
-        <div className="container">
-          <div className="lesson-structure__grid">
-            <div className="lesson-structure__left">
-              <p className="lesson-structure__label">{copy.lessonStructure.eyebrow}</p>
-              <h2 className="lesson-structure__title">{copy.lessonStructure.h2}</h2>
-              <div className="lesson-timeline">
-                {copy.lessonStructure.timeline.map((item) => (
-                  <div className="lesson-timeline__item" key={item.title}>
-                    <div className="lesson-timeline__time">{item.time}</div>
-                    <div className="lesson-timeline__content">
-                      <h3 className="lesson-timeline__title">{item.title}</h3>
-                      <p className="lesson-timeline__desc">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="lesson-details">
-                {copy.lessonStructure.details.map((detail) => (
-                  <div className="lesson-detail" key={detail.label}>
-                    <span className="lesson-detail__label">{detail.label}</span>
-                    <span className="lesson-detail__value">{detail.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="lesson-structure__right">
-              <Image
-                src={copy.lessonStructure.image.src}
-                alt={copy.lessonStructure.image.alt}
-                width={copy.lessonStructure.image.width}
-                height={copy.lessonStructure.image.height}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="audience">
-        <div className="container">
-          <div className="audience__grid">
-            <div className="audience__left">
-              <Image
-                src={copy.audience.image.src}
-                alt={copy.audience.image.alt}
-                width={copy.audience.image.width}
-                height={copy.audience.image.height}
-              />
-            </div>
-            <div className="audience__right">
-              <p className="audience__label">{copy.audience.eyebrow}</p>
-              <h2 className="audience__title">{copy.audience.h2}</h2>
-              <div className="audience__list">
-                {copy.audience.items.map((item) => (
-                  <div className="audience__item" key={item.title}>
-                    <h3 className="audience__item-title">
-                      {item.title}
-                    </h3>
-                    <p className="audience__item-desc">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="requirements">
-        <div className="container">
-          <div className="section-header section-header--center">
-            <h2 className="section-header__title">{copy.requirements.h2}</h2>
-          </div>
-          <div className="requirements__grid">
-            {copy.requirements.items.map((item) => (
-              <div
-                className={`requirement-card${item.highlighted ? " requirement-card--highlighted" : ""}`}
-                key={item.label}
-              >
-                <div className="requirement-card__icon">
-                  <RequirementIcon type={item.icon} />
-                </div>
-                <p className="requirement-card__label">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "28px" }}>
-            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{AU_GUITAR_COPY.testimonials.h2}</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-            {AU_GUITAR_COPY.testimonials.items.map((item) => (
-              <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                  <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
-                  <div>
-                    <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
-                    <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
-                  </div>
-                </div>
-                <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="music-cta">
-        <div className="container">
-          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
-          <div className="music-cta__actions">
-            <RegionLink href={copy.finalCta.primaryButton.href} region="us" className="btn btn-primary btn-lg">
-              {copy.finalCta.primaryButton.text}
-            </RegionLink>
-            <RegionLink href={copy.finalCta.secondaryButton.href} region="us" className="music-cta__btn--outline">
-              {copy.finalCta.secondaryButton.text}
-            </RegionLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
 export default function GuitarView({ region }: { region: RegionCode }) {
-  if (region === "au") {
-    return <AuGuitarView />;
-  }
-  if (region === "ca") {
-    return <CaGuitarView />;
-  }
-  if (region === "nz") {
-    return <NzGuitarView />;
-  }
-  if (region === "us") {
-    return <UsGuitarView />;
-  }
+  const currentRegion: RegionCode = region || "au";
+  const copy = copyByRegion[currentRegion] || AU_GUITAR_COPY;
+  const basePath = currentRegion === "au" ? "" : `/${currentRegion}`;
+
+  const breadcrumbs = createBreadcrumbSchema([
+    { name: "Home", url: `https://www.tutorexel.com${basePath}` },
+    { name: "Co-Curricular", url: `https://www.tutorexel.com${basePath}/co-curricular` },
+    { name: "Guitar", url: `https://www.tutorexel.com${basePath}/co-curricular/guitar` },
+  ]);
 
   return (
     <>
+      <JsonLd data={breadcrumbs} />
       <section className="guitar-hero">
         <div className="guitar-hero__decoration guitar-hero__decoration--left">
           <Image src="/images/about/left-line.webp" alt="" width={200} height={200} className="guitar-hero__curve" />
@@ -1135,18 +127,17 @@ export default function GuitarView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="guitar-hero__content">
             <h1 className="guitar-hero__title">
-              Online <span className="guitar-hero__title-highlight">Guitar Lessons</span> Trinity
-              College London Syllabus <span className="guitar-hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="" width={20} height={20} /></span>
+              {copy.hero.h1}
             </h1>
             <p className="guitar-hero__subtitle">
-              Structured, graded guitar education from Initial to Grade 8. Live one-on-one lessons with qualified tutors. For students aged 8 and up.
+              {copy.hero.text}
             </p>
             <div className="guitar-hero__actions">
-              <RegionLink href="/co-curricular/guitar/enquire" region={region} className="btn btn-primary btn-lg">
-                Book Your Free Trial Lesson
+              <RegionLink href={copy.hero.primaryCta.href} region={currentRegion} className="btn btn-primary btn-lg">
+                {copy.hero.primaryCta.text}
               </RegionLink>
-              <RegionLink href="/pricing" region={region} className="guitar-hero__btn-outline">
-                Join Now
+              <RegionLink href={copy.hero.secondaryCta.href} region={currentRegion} className="guitar-hero__btn-outline">
+                {copy.hero.secondaryCta.text}
               </RegionLink>
             </div>
           </div>
@@ -1156,12 +147,12 @@ export default function GuitarView({ region }: { region: RegionCode }) {
       <section className="education">
         <div className="container">
           <div className="section-header section-header--center">
-            <p className="section-header__label">What Your Child Will Learn</p>
-            <h2 className="section-header__title">A Complete Guitar Education</h2>
+            <p className="section-header__label">{copy.mastery.eyebrow}</p>
+            <h2 className="section-header__title">{copy.mastery.h2}</h2>
           </div>
 
           <div className="education__grid">
-            {educationCards.slice(0, 3).map((card) => (
+            {copy.mastery.cards.slice(0, 3).map((card) => (
               <div
                 className={`education-card${card.highlighted ? " education-card--highlighted" : ""}`}
                 key={card.title}
@@ -1175,7 +166,7 @@ export default function GuitarView({ region }: { region: RegionCode }) {
             ))}
           </div>
           <div className="education__grid--bottom">
-            {educationCards.slice(3).map((card) => (
+            {copy.mastery.cards.slice(3).map((card) => (
               <div
                 className={`education-card${card.highlighted ? " education-card--highlighted" : ""}`}
                 key={card.title}
@@ -1194,35 +185,41 @@ export default function GuitarView({ region }: { region: RegionCode }) {
       <section className="grade-progression">
         <div className="container">
           <div className="section-header section-header--center">
-            <p className="section-header__label">Grade Progression Path</p>
-            <h2 className="section-header__title">Your Journey from Beginner to Advanced</h2>
+            <p className="section-header__label">{copy.gradeProgression.eyebrow}</p>
+            <h2 className="section-header__title">{copy.gradeProgression.h2}</h2>
           </div>
 
           <div className="grade-path">
-            {grades.map((grade, i) => (
+            {copy.gradeProgression.grades.map((grade, i) => (
               <div key={grade.short} style={{ display: "flex", alignItems: "center" }}>
                 <div className="grade-node">
                   <div className="grade-node__circle">{grade.short}</div>
                   <span className="grade-node__label">{grade.label}</span>
                 </div>
-                {i < grades.length - 1 && <div className="grade-connector" />}
+                {i < copy.gradeProgression.grades.length - 1 && <div className="grade-connector" />}
               </div>
             ))}
           </div>
+
+          {copy.gradeProgression.note && (
+            <p style={{ textAlign: "center", color: "#515151", fontSize: "14px", marginTop: "24px" }}>
+              {copy.gradeProgression.note}
+            </p>
+          )}
         </div>
       </section>
 
       <section className="lesson-structure">
         <div className="container">
           <div className="section-header section-header--center">
-            <p className="section-header__label">Lesson Structure</p>
-            <h2 className="section-header__title">What a Typical Lesson Looks Like</h2>
+            <p className="section-header__label">{copy.lessonStructure.eyebrow}</p>
+            <h2 className="section-header__title">{copy.lessonStructure.h2}</h2>
           </div>
 
           <div className="lesson-structure__layout">
             <div>
               <div className="lesson-timeline">
-                {lessonItems.map((item) => (
+                {copy.lessonStructure.timeline.map((item) => (
                   <div className="lesson-item" key={item.title}>
                     <div className="lesson-item__time">
                       <span className="lesson-item__time-icon">&#128339;</span>
@@ -1237,7 +234,7 @@ export default function GuitarView({ region }: { region: RegionCode }) {
               </div>
 
               <div className="lesson-details">
-                {lessonDetails.map((detail) => (
+                {copy.lessonStructure.details.map((detail) => (
                   <div className="lesson-detail" key={detail.label}>
                     <span className="lesson-detail__label">{detail.label}</span>
                     <span className="lesson-detail__value">{detail.value}</span>
@@ -1247,9 +244,11 @@ export default function GuitarView({ region }: { region: RegionCode }) {
             </div>
 
             <div className="lesson-structure__image">
-              <img
-                src="/images/co-curricular/what_a_typical_guitar.webp"
-                alt="Student playing guitar during online lesson"
+              <Image
+                src={copy.lessonStructure.image.src}
+                alt={copy.lessonStructure.image.alt}
+                width={copy.lessonStructure.image.width}
+                height={copy.lessonStructure.image.height}
               />
             </div>
           </div>
@@ -1259,24 +258,23 @@ export default function GuitarView({ region }: { region: RegionCode }) {
       <section className="audience">
         <div className="container">
           <div className="section-header section-header--center">
-            <p className="section-header__label">Who Is This For</p>
-            <h2 className="section-header__title">Guitar Lessons for Everyone</h2>
+            <p className="section-header__label">{copy.audience.eyebrow}</p>
+            <h2 className="section-header__title">{copy.audience.h2}</h2>
           </div>
 
           <div className="audience__layout">
             <div className="audience__image">
-              <img
-                src="/images/co-curricular/guitar_lessons_for_everyone.webp"
-                alt="Student learning guitar"
+              <Image
+                src={copy.audience.image.src}
+                alt={copy.audience.image.alt}
+                width={copy.audience.image.width}
+                height={copy.audience.image.height}
               />
             </div>
             <div className="audience__list">
-              {audiences.map((item) => (
+              {copy.audience.items.map((item) => (
                 <div className="audience-item" key={item.title}>
-                  <h3
-                    className="audience-item__title"
-                    style={!item.underlined ? { textDecoration: "none" } : undefined}
-                  >
+                  <h3 className="audience-item__title">
                     {item.title}
                   </h3>
                   <p className="audience-item__desc">{item.description}</p>
@@ -1290,11 +288,11 @@ export default function GuitarView({ region }: { region: RegionCode }) {
       <section className="requirements">
         <div className="container">
           <div className="section-header section-header--center">
-            <h2 className="section-header__title">What You Will Need</h2>
+            <h2 className="section-header__title">{copy.requirements.h2}</h2>
           </div>
 
           <div className="requirements__grid">
-            {requirements.map((req) => (
+            {copy.requirements.items.map((req) => (
               <div
                 className={`requirement-card${req.highlighted ? " requirement-card--highlighted" : ""}`}
                 key={req.label}
@@ -1306,48 +304,53 @@ export default function GuitarView({ region }: { region: RegionCode }) {
               </div>
             ))}
           </div>
+
+          {copy.requirements.note && (
+            <p style={{ textAlign: "center", color: "#515151", fontSize: "14px", marginTop: "24px" }}>
+              {copy.requirements.note}
+            </p>
+          )}
         </div>
       </section>
 
-      <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
-        <div className="container">
-          <div style={{ textAlign: "center", marginBottom: "28px" }}>
-            <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>What Parents Are Saying</h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
-            <div style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "#d4654a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>RK</div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>Ravi K.</div>
-                  <div style={{ fontSize: "12px", color: "#8a9aa8" }}>Father of 10-year-old, Brisbane</div>
-                </div>
-              </div>
-              <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{"My son always wanted to learn guitar but we couldn't find a good teacher nearby. TutorExel matched him with a brilliant tutor who teaches online. He is now playing full songs after just 4 months and loves every session."}</p>
+      {copy.testimonials.items && copy.testimonials.items.length > 0 && (
+        <section style={{ padding: "48px 0", background: "#f7f5f0" }}>
+          <div className="container">
+            <div style={{ textAlign: "center", marginBottom: "28px" }}>
+              <h2 style={{ fontFamily: "var(--font-poppins)", fontSize: "28px", fontWeight: 700, color: "#1a2e3b" }}>{copy.testimonials.h2}</h2>
             </div>
-            <div style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
-                <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>ST</div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>Sarah T.</div>
-                  <div style={{ fontSize: "12px", color: "#8a9aa8" }}>Mother of 13-year-old, Sydney</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: "20px", maxWidth: "800px", margin: "0 auto" }}>
+              {copy.testimonials.items.map((item) => (
+                <div key={item.name} style={{ background: "#fff", borderRadius: "12px", padding: "24px", border: "1px solid #efe9df" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+                    <div style={{ width: "42px", height: "42px", borderRadius: "50%", background: item.initials === "RK" ? "#d4654a" : "#3d8b7a", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: "14px" }}>{item.initials}</div>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: "15px", color: "#1a2e3b" }}>{item.name}</div>
+                      <div style={{ fontSize: "12px", color: "#8a9aa8" }}>{item.role}</div>
+                    </div>
+                  </div>
+                  <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{item.text}</p>
                 </div>
-              </div>
-              <p style={{ fontSize: "14px", color: "#5a6b78", lineHeight: 1.6, fontStyle: "italic" }}>{"The guitar lessons follow the Trinity College syllabus which gives my daughter a clear path to work towards. Her tutor is encouraging and really adapts to her pace. She just completed her Initial Grade exam with distinction."}</p>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="music-cta">
         <div className="container">
-          <h2 className="music-cta__title">Hear the Difference</h2>
+          <h2 className="music-cta__title">{copy.finalCta.h2}</h2>
+          {copy.finalCta.text && (
+            <p className="music-cta__subtitle" style={{ color: "rgba(255, 255, 255, 0.9)", marginBottom: "24px" }}>
+              {copy.finalCta.text}
+            </p>
+          )}
           <div className="music-cta__actions">
-            <RegionLink href="/co-curricular/guitar/enquire" region={region} className="btn btn-primary btn-lg">
-              Book Free Assessment
+            <RegionLink href={copy.finalCta.primaryButton.href} region={currentRegion} className="btn btn-primary btn-lg">
+              {copy.finalCta.primaryButton.text}
             </RegionLink>
-            <RegionLink href="/contact" region={region} className="music-cta__btn--outline">
-              Contact Us
+            <RegionLink href={copy.finalCta.secondaryButton.href} region={currentRegion} className="music-cta__btn--outline">
+              {copy.finalCta.secondaryButton.text}
             </RegionLink>
           </div>
         </div>

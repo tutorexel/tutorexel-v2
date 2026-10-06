@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { buildMetadata } from "@/utils/seo";
 import CTA from "@/components/home/CTA";
-import "./subscription.css";
+import "@/app/subscription/subscription.css";
 
 export const metadata = buildMetadata({
   path: "/subscription",
