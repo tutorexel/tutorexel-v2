@@ -11,6 +11,7 @@ import { getRegionConfig, COMPANY_ADDRESS, type RegionCode } from "@/data/region
 import { AU_CONTACT_COPY } from "@/data/copy/au-contact";
 import { US_CONTACT_COPY } from "@/data/copy/us-contact";
 import { CA_CONTACT_COPY } from "@/data/copy/ca-contact";
+import { NZ_CONTACT_COPY } from "@/data/copy/nz-contact";
 import "@/app/contact/contact.css";
 
 const phonePrefixes: Record<RegionCode, string> = {
@@ -49,38 +50,51 @@ export default function ContactView({ region }: { region: RegionCode }) {
   const isAu = region === "au";
   const isUs = region === "us";
   const isCa = region === "ca";
+  const isNz = region === "nz";
   const regConfig = getRegionConfig(region);
+
   const yearLevels = isAu
     ? AU_CONTACT_COPY.form.yearLevels
     : isCa
     ? CA_CONTACT_COPY.form.grades
+    : isNz
+    ? NZ_CONTACT_COPY.form.yearLevels
     : regConfig.yearLevels.map((lvl) => `${regConfig.yearLabel} ${lvl}`);
+
   const activeInterests = isAu
     ? AU_CONTACT_COPY.form.interests
     : isUs
     ? US_CONTACT_COPY.form.subjects
     : isCa
     ? CA_CONTACT_COPY.form.helpWithOptions
+    : isNz
+    ? NZ_CONTACT_COPY.form.helpOptions
     : interests;
+
   const activeHearAbout = isAu
     ? AU_CONTACT_COPY.form.hearAboutOptions
     : isUs
     ? US_CONTACT_COPY.form.hearAboutOptions
     : isCa
     ? CA_CONTACT_COPY.form.hearAboutOptions
+    : isNz
+    ? NZ_CONTACT_COPY.form.hearAboutOptions
     : hearAboutOptions;
+
   const activeSteps = isAu
     ? AU_CONTACT_COPY.whatHappensNext.steps
     : isUs
     ? US_CONTACT_COPY.whatHappensNext.steps
     : isCa
     ? CA_CONTACT_COPY.whatHappensNext.steps
+    : isNz
+    ? NZ_CONTACT_COPY.whatHappensNext.steps
     : afterSubmitSteps;
 
   const [formData, setFormData] = useState({
     parentName: "",
     email: "",
-    phone: isUs || isCa ? "" : (phonePrefixes[region] || "+61 "),
+    phone: isUs || isCa || isNz ? "" : (phonePrefixes[region] || "+61 "),
     childName: "",
     yearLevel: "",
     interests: [] as string[],
@@ -123,6 +137,9 @@ export default function ContactView({ region }: { region: RegionCode }) {
         trackContactSubmit(formData.interests);
         setSubmitting(false);
         setSubmitted(true);
+      } else {
+        setSubmitting(false);
+        alert("Something went wrong. Please try again.");
       }
     } catch {
       setSubmitting(false);
@@ -164,15 +181,15 @@ export default function ContactView({ region }: { region: RegionCode }) {
             <h1 className="contact-banner__title">
               {isAu ? (
                 <>
-                  Ready to Help Your Child{" "}
+                  Get in Touch with our{" "}
                   <span className="contact-banner__title-highlight">
-                    Get Ahead?
+                    Friendly Team
                   </span>
                   <span className="contact-banner__title-star">
                     <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
                   </span>
                 </>
-              ) : isUs || isCa ? (
+              ) : isUs || isCa || isNz ? (
                 <>
                   Ready to Help Your{" "}
                   <span className="contact-banner__title-highlight">
@@ -201,6 +218,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                 ? US_CONTACT_COPY.hero.subtitle
                 : isCa
                 ? CA_CONTACT_COPY.hero.subtitle
+                : isNz
+                ? NZ_CONTACT_COPY.hero.subtitle
                 : "Fill out the form below and we will get back to you. Or reach out directly via email or WhatsApp"}
             </p>
           </div>
@@ -221,14 +240,14 @@ export default function ContactView({ region }: { region: RegionCode }) {
                       {isAu ? AU_CONTACT_COPY.details.emailLabel : "Email Us"}
                     </p>
                     <p className="contact-info-card__value">
-                      <a href={isAu ? AU_CONTACT_COPY.details.emailHref : "mailto:info@tutorexel.com"}>
-                        {isAu ? AU_CONTACT_COPY.details.email : "info@tutorexel.com"}
+                      <a href={isAu ? AU_CONTACT_COPY.details.emailHref : isNz ? NZ_CONTACT_COPY.contactDetails.emailLink : "mailto:info@tutorexel.com"}>
+                        {isAu ? AU_CONTACT_COPY.details.email : isNz ? NZ_CONTACT_COPY.contactDetails.email : "info@tutorexel.com"}
                       </a>
                     </p>
                   </div>
                 </div>
 
-                {(region === "au" || region === "us") && regConfig.phone && (
+                {(region === "au" || region === "us" || isNz) && (
                   <div className="contact-info-card">
                     <div className="contact-info-card__icon">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
@@ -237,11 +256,11 @@ export default function ContactView({ region }: { region: RegionCode }) {
                     </div>
                     <div>
                       <p className="contact-info-card__label">
-                        {isAu ? AU_CONTACT_COPY.details.whatsappLabel : isUs ? US_CONTACT_COPY.details.whatsappLabel : "Message Us on WhatsApp"}
+                        {isAu ? AU_CONTACT_COPY.details.whatsappLabel : isUs ? US_CONTACT_COPY.details.whatsappLabel : isNz ? "Message us on WhatsApp" : "Message Us on WhatsApp"}
                       </p>
                       <p className="contact-info-card__value">
-                        <a href={isAu ? AU_CONTACT_COPY.details.whatsappHref : `https://wa.me/${regConfig.phone.replace(/[^0-9]/g, "")}`}>
-                          {isAu ? AU_CONTACT_COPY.details.whatsappText : regConfig.phone}
+                        <a href={isAu ? AU_CONTACT_COPY.details.whatsappHref : isNz ? NZ_CONTACT_COPY.contactDetails.whatsappLink : regConfig.phone ? `https://wa.me/${regConfig.phone.replace(/[^0-9]/g, "")}` : "#"}>
+                          {isAu ? AU_CONTACT_COPY.details.whatsappText : isNz ? NZ_CONTACT_COPY.contactDetails.whatsappNumber : regConfig.phone}
                         </a>
                       </p>
                     </div>
@@ -278,6 +297,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                         ? US_CONTACT_COPY.details.replyTimeLabel
                         : isCa
                         ? CA_CONTACT_COPY.contactDetails.replyTime.label
+                        : isNz
+                        ? "Reply Time"
                         : "Response Time"}
                     </p>
                     <p className="contact-info-card__value">
@@ -287,6 +308,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                         ? US_CONTACT_COPY.details.replyTimeText
                         : isCa
                         ? CA_CONTACT_COPY.contactDetails.replyTime.value
+                        : isNz
+                        ? NZ_CONTACT_COPY.contactDetails.replyTime
                         : "We typically respond within 2 hours"}
                     </p>
                   </div>
@@ -330,6 +353,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                       ? US_CONTACT_COPY.form.title
                       : isCa
                       ? CA_CONTACT_COPY.form.title
+                      : isNz
+                      ? NZ_CONTACT_COPY.form.title
                       : "Want to Make Inquiry?"}
                   </h2>
                   <p className="contact-form-card__subtitle">
@@ -339,6 +364,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                       ? US_CONTACT_COPY.form.subtitle
                       : isCa
                       ? CA_CONTACT_COPY.form.subtitle
+                      : isNz
+                      ? NZ_CONTACT_COPY.form.subtitle
                       : "Have a question or need assistance? Fill out the form below, and we'll get back to you as soon as possible."}
                   </p>
 
@@ -402,6 +429,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                               ? US_CONTACT_COPY.form.phonePlaceholder
                               : isCa
                               ? CA_CONTACT_COPY.form.mobilePlaceholder
+                              : isNz
+                              ? NZ_CONTACT_COPY.form.placeholders.phone
                               : "Phone / WhatsApp Number *"
                           }
                         />
@@ -467,6 +496,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                           ? US_CONTACT_COPY.form.helpWithLabel
                           : isCa
                           ? CA_CONTACT_COPY.form.helpWithLabel
+                          : isNz
+                          ? "What Would You Like Help With? * (select all that apply)"
                           : "Area(s) of Interest * (Select all that apply)"}
                       </label>
                       <div className="contact-form__interests-grid">
@@ -527,6 +558,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                             ? US_CONTACT_COPY.form.messagePlaceholder
                             : isCa
                             ? CA_CONTACT_COPY.form.messagePlaceholder
+                            : isNz
+                            ? NZ_CONTACT_COPY.form.placeholders.message
                             : "Your Message (How Can We Help You?) *"
                         }
                       />
@@ -541,6 +574,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
                         ? US_CONTACT_COPY.form.submitButtonText
                         : isCa
                         ? CA_CONTACT_COPY.form.submitButtonText
+                        : isNz
+                        ? NZ_CONTACT_COPY.form.submitButton
                         : "Book Your Free Trial Class"}
                     </button>
 
@@ -584,6 +619,8 @@ export default function ContactView({ region }: { region: RegionCode }) {
               ? US_CONTACT_COPY.whatHappensNext.title
               : isCa
               ? CA_CONTACT_COPY.whatHappensNext.title
+              : isNz
+              ? NZ_CONTACT_COPY.whatHappensNext.title
               : "After You Submit"}
           </h2>
           <div className="contact-after__grid">
@@ -649,6 +686,21 @@ export default function ContactView({ region }: { region: RegionCode }) {
                           justifyContent: "center",
                           fontWeight: 700,
                           fontSize: "1rem",
+                          flexShrink: 0,
+                        }}
+                      >
+                        {i + 1}.
+                      </span>
+                    ) : isNz ? (
+                      <span
+                        className="contact-after__step-icon"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: 700,
+                          fontSize: "1.1rem",
+                          color: "#E56031",
                           flexShrink: 0,
                         }}
                       >

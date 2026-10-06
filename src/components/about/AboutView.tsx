@@ -7,6 +7,7 @@ import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_ABOUT_COPY } from "@/data/copy/au-about";
 import { US_ABOUT_COPY } from "@/data/copy/us-about";
 import { CA_ABOUT_COPY } from "@/data/copy/ca-about";
+import { NZ_ABOUT_COPY } from "@/data/copy/nz-about";
 import "@/components/home/HowItWorks.css";
 import "@/app/about/about.css";
 
@@ -63,6 +64,7 @@ export default function AboutView({ region }: { region: RegionCode }) {
   const isAu = region === "au";
   const isUs = region === "us";
   const isCa = region === "ca";
+  const isNz = region === "nz";
   const regConfig = getRegionConfig(region);
   const basePath = regConfig.basePath;
 
@@ -72,6 +74,11 @@ export default function AboutView({ region }: { region: RegionCode }) {
     ? createAboutPageSchema("https://www.tutorexel.com/us/about")
     : isCa
     ? createAboutPageSchema("ca")
+    : isNz
+    ? createAboutPageSchema(
+        "https://www.tutorexel.com/nz/about",
+        "Meet TutorExel, online tutoring for Kiwi students in Years 2 to 10. Structured, curriculum-aligned lessons with progress reports. Book a free trial today."
+      )
     : null;
 
   const aboutBreadcrumbSchema = isAu
@@ -89,6 +96,11 @@ export default function AboutView({ region }: { region: RegionCode }) {
         { name: "Home", url: `https://www.tutorexel.com${basePath}` },
         { name: "About Us", url: `https://www.tutorexel.com${basePath}/about` },
       ])
+    : isNz
+    ? createBreadcrumbSchema([
+        { name: "Home", url: `https://www.tutorexel.com${basePath}` },
+        { name: "About Us", url: `https://www.tutorexel.com${basePath}/about` },
+      ])
     : createBreadcrumbSchema([
         { name: "Home", url: `https://www.tutorexel.com${basePath}` },
         { name: "About", url: `https://www.tutorexel.com${basePath}/about` },
@@ -100,6 +112,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
     ? US_ABOUT_COPY.ourApproach.steps
     : isCa
     ? CA_ABOUT_COPY.approach.steps
+    : isNz
+    ? NZ_ABOUT_COPY.ourApproach.steps
     : approachSteps;
   const activeCurriculumPoints = isAu
     ? AU_ABOUT_COPY.curriculum.points
@@ -107,6 +121,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
     ? US_ABOUT_COPY.curriculum.points
     : isCa
     ? CA_ABOUT_COPY.curriculum.points
+    : isNz
+    ? NZ_ABOUT_COPY.curriculum.points
     : acaraPoints;
 
   return (
@@ -167,6 +183,16 @@ export default function AboutView({ region }: { region: RegionCode }) {
                 </>
               ) : isCa ? (
                 CA_ABOUT_COPY.hero.title
+              ) : isNz ? (
+                <>
+                  Built by Educators. Trusted{" "}
+                  <br />
+                  by{" "}
+                  <span className="about-hero__title-highlight">Kiwi Families</span>{" "}
+                  <span className="about-hero__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
               ) : (
                 <>
                   Built by Educators. Trusted{" "}
@@ -194,6 +220,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                 ? US_ABOUT_COPY.hero.subtitle
                 : isCa
                 ? CA_ABOUT_COPY.hero.subtitle
+                : isNz
+                ? NZ_ABOUT_COPY.hero.subtitle
                 : "We started TutorExel with one belief: every child deserves structured, personalised learning that actually works."}
             </p>
             <div className="about-hero__avatars">
@@ -232,6 +260,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.ourStory.title
                   : isCa
                   ? CA_ABOUT_COPY.story.title
+                  : isNz
+                  ? NZ_ABOUT_COPY.ourStory.title
                   : "Why TutorExel Exists"}
               </h2>
               <p className="about-story__text">
@@ -241,6 +271,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.ourStory.p1
                   : isCa
                   ? CA_ABOUT_COPY.story.paragraph1
+                  : isNz
+                  ? NZ_ABOUT_COPY.ourStory.text1
                   : "As parents and educators, we saw a gap in online tutoring. Most platforms are marketplaces: they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability."}
               </p>
               <p className="about-story__text about-story__text--bold about-story__text--italic">
@@ -250,6 +282,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   US_ABOUT_COPY.ourStory.highlight
                 ) : isCa ? (
                   <em>{CA_ABOUT_COPY.story.highlighted}</em>
+                ) : isNz ? (
+                  NZ_ABOUT_COPY.ourStory.highlight
                 ) : (
                   "TutorExel was built to be different."
                 )}
@@ -261,6 +295,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.ourStory.p2
                   : isCa
                   ? CA_ABOUT_COPY.story.paragraph2
+                  : isNz
+                  ? NZ_ABOUT_COPY.ourStory.text2
                   : "We hire, train, and manage every educator on our platform. We align every lesson to your child's own school curriculum - whatever system they are learning under. And we track every student's progress so parents always know exactly where their child stands."}
               </p>
               <div className="about-story__founder-quote">
@@ -271,6 +307,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                     US_ABOUT_COPY.ourStory.quote
                   ) : isCa ? (
                     CA_ABOUT_COPY.story.quote
+                  ) : isNz ? (
+                    NZ_ABOUT_COPY.ourStory.founderQuote
                   ) : (
                     <>
                       With a team of educators bringing over <strong>15 years of combined teaching experience</strong>, TutorExel combines the personal attention of a private tutor with the structure of a professional learning system.
@@ -308,6 +346,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                     ? US_ABOUT_COPY.ourApproach.title
                     : isCa
                     ? CA_ABOUT_COPY.approach.title
+                    : isNz
+                    ? NZ_ABOUT_COPY.ourApproach.title
                     : "How We Do Things Differently"}
                 </h2>
               </div>
@@ -356,6 +396,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                 ? US_ABOUT_COPY.byTheNumbers.title
                 : isCa
                 ? CA_ABOUT_COPY.impact.title
+                : isNz
+                ? NZ_ABOUT_COPY.byTheNumbers.title
                 : "The TutorExel Impact"}
             </h2>
           </div>
@@ -400,6 +442,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.curriculum.title
                   : isCa
                   ? CA_ABOUT_COPY.curriculum.title
+                  : isNz
+                  ? NZ_ABOUT_COPY.curriculum.title
                   : "Structured to Match Your Child's School Curriculum"}
               </h2>
               <p className="about-curriculum__text">
@@ -409,6 +453,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.curriculum.p1
                   : isCa
                   ? CA_ABOUT_COPY.curriculum.paragraph1
+                  : isNz
+                  ? NZ_ABOUT_COPY.curriculum.text1
                   : "Every TutorExel session starts with understanding your child's school curriculum, grade/year level, learning goals, and academic needs. Our tutors tailor lessons, pacing, and practice to complement what your child is learning at school."}
               </p>
               <p className="about-curriculum__text">
@@ -418,6 +464,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.curriculum.p2
                   : isCa
                   ? CA_ABOUT_COPY.curriculum.paragraph2
+                  : isNz
+                  ? NZ_ABOUT_COPY.curriculum.text2
                   : "Whether your child studies in Australia, the USA, Canada, or New Zealand, we help ensure that learning with TutorExel stays relevant to their school journey."}
               </p>
               <p className="about-curriculum__means-title">
@@ -427,6 +475,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   ? US_ABOUT_COPY.curriculum.meansTitle
                   : isCa
                   ? CA_ABOUT_COPY.curriculum.meansTitle
+                  : isNz
+                  ? NZ_ABOUT_COPY.curriculum.meansTitle
                   : "This means:"}
               </p>
               <div className="about-curriculum__list">
@@ -467,6 +517,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
             ? US_ABOUT_COPY.cta.title
             : isCa
             ? CA_ABOUT_COPY.cta.title
+            : isNz
+            ? NZ_ABOUT_COPY.cta.title
             : undefined
         }
         description={
@@ -476,6 +528,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
             ? US_ABOUT_COPY.cta.description
             : isCa
             ? CA_ABOUT_COPY.cta.description
+            : isNz
+            ? NZ_ABOUT_COPY.cta.description
             : undefined
         }
         buttonText={
@@ -485,6 +539,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
             ? US_ABOUT_COPY.cta.buttonText
             : isCa
             ? CA_ABOUT_COPY.cta.buttonText
+            : isNz
+            ? NZ_ABOUT_COPY.cta.buttonText
             : undefined
         }
       />

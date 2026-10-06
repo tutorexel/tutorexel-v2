@@ -8,10 +8,11 @@ import CTA from "@/components/home/CTA";
 import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
-import { type RegionCode } from "@/data/regions";
+import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
 import { AU_PRICING_COPY } from "@/data/copy/au-pricing";
 import { US_PRICING_COPY } from "@/data/copy/us-pricing";
 import { CA_PRICING_COPY } from "@/data/copy/ca-pricing";
+import { NZ_PRICING_COPY } from "@/data/copy/nz-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -260,33 +261,7 @@ function PricingContent({ region }: { region: RegionCode }) {
   const isAu = region === "au";
   const isUs = region === "us";
   const isCa = region === "ca";
-  const activePlans = isAu ? AU_PRICING_COPY.plans : isUs ? usPricingPlans : pricingPlans;
-  const activeIncludedFeatures = isAu
-    ? AU_PRICING_COPY.included.features
-    : isUs
-    ? US_PRICING_COPY.included.features
-    : isCa
-    ? CA_PRICING_COPY.included.features
-    : includedFeatures;
-  const activeIncludedTitle = isAu
-    ? AU_PRICING_COPY.included.h2
-    : isUs
-    ? US_PRICING_COPY.included.title
-    : isCa
-    ? CA_PRICING_COPY.included.title
-    : "Every TutorExel Student Gets";
-  const activeFaqTitle = isAu
-    ? AU_PRICING_COPY.faq.h2
-    : isUs
-    ? US_PRICING_COPY.faq.title
-    : "Frequently Asked Questions";
-  const activeFaqItems = isAu
-    ? AU_PRICING_COPY.faq.items
-    : isUs
-    ? US_PRICING_COPY.faq.items
-    : isCa
-    ? CA_PRICING_COPY.faqs
-    : faqItems;
+  const isNz = region === "nz";
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
@@ -301,6 +276,91 @@ function PricingContent({ region }: { region: RegionCode }) {
       setSelectedCountry(matched);
     }
   }, [region]);
+
+  const nzPlansConfig = REGIONS_CONFIG.nz.pricing?.plans;
+  const nzPlans: PricingPlan[] = [
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[0].id,
+      name: NZ_PRICING_COPY.plansSection.plans[0].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[0].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[0]?.amount || 84),
+      period: NZ_PRICING_COPY.plansSection.plans[0].periodText,
+      popular: true,
+      borderColor: "orange",
+      features: NZ_PRICING_COPY.plansSection.plans[0].features,
+    },
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[1].id,
+      name: NZ_PRICING_COPY.plansSection.plans[1].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[1].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[1]?.amount || 79),
+      period: NZ_PRICING_COPY.plansSection.plans[1].periodText,
+      popular: false,
+      borderColor: "dark",
+      features: NZ_PRICING_COPY.plansSection.plans[1].features,
+    },
+    {
+      id: NZ_PRICING_COPY.plansSection.plans[2].id,
+      name: NZ_PRICING_COPY.plansSection.plans[2].name,
+      subtitle: NZ_PRICING_COPY.plansSection.plans[2].subtitle,
+      currency: "NZ$",
+      amount: String(nzPlansConfig?.[2]?.amount || 219),
+      originalAmount: String(nzPlansConfig?.[2]?.originalAmount || 299),
+      discountBadge: nzPlansConfig?.[2]?.discountBadge || "Save 27%",
+      period: NZ_PRICING_COPY.plansSection.plans[2].periodText,
+      popular: false,
+      borderColor: "dark",
+      features: NZ_PRICING_COPY.plansSection.plans[2].features,
+    },
+  ];
+
+  const activePlans = isAu
+    ? AU_PRICING_COPY.plans
+    : isUs
+    ? usPricingPlans
+    : isNz
+    ? nzPlans
+    : pricingPlans;
+
+  const activeIncludedFeatures = isAu
+    ? AU_PRICING_COPY.included.features
+    : isUs
+    ? US_PRICING_COPY.included.features
+    : isCa
+    ? CA_PRICING_COPY.included.features
+    : isNz
+    ? NZ_PRICING_COPY.included.features
+    : includedFeatures;
+
+  const activeIncludedTitle = isAu
+    ? AU_PRICING_COPY.included.h2
+    : isUs
+    ? US_PRICING_COPY.included.title
+    : isCa
+    ? CA_PRICING_COPY.included.title
+    : isNz
+    ? NZ_PRICING_COPY.included.title
+    : "Every TutorExel Student Gets";
+
+  const activeFaqTitle = isAu
+    ? AU_PRICING_COPY.faq.h2
+    : isUs
+    ? US_PRICING_COPY.faq.title
+    : isNz
+    ? NZ_PRICING_COPY.faq.title
+    : "Frequently Asked Questions";
+
+  const activeFaqItems = isAu
+    ? AU_PRICING_COPY.faq.items
+    : isUs
+    ? US_PRICING_COPY.faq.items
+    : isCa
+    ? CA_PRICING_COPY.faqs
+    : isNz
+    ? NZ_PRICING_COPY.faq.items
+    : faqItems;
 
   const handlePlanParam = (planParam: string) => {
     if (activePlans.some((p) => p.id === planParam)) {
@@ -338,7 +398,7 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      {!isAu && !isUs && !isCa && (
+      {!isAu && !isUs && !isCa && !isNz && (
         <div className="pricing-flash" role="region" aria-label="Promotion">
           <div className="container">
             <p className="pricing-flash__text">
@@ -395,6 +455,14 @@ function PricingContent({ region }: { region: RegionCode }) {
                 </>
               ) : isCa ? (
                 CA_PRICING_COPY.hero.title
+              ) : isNz ? (
+                <>
+                  Clear, Fair{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  <span className="pricing-banner__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
               ) : (
                 <>
                   Clear, Affordable{" "}
@@ -410,6 +478,8 @@ function PricingContent({ region }: { region: RegionCode }) {
                 ? US_PRICING_COPY.hero.subtitle
                 : isCa
                 ? CA_PRICING_COPY.hero.subtitle
+                : isNz
+                ? NZ_PRICING_COPY.hero.subtitle
                 : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
@@ -502,7 +572,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                       <div className="pricing-card__price">
                         <span className="currency">{plan.currency}</span>
                         <span className="amount">{plan.amount}</span>
-                        <span className="period">{isAu ? `AUD ${plan.period}` : isUs ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
+                        <span className="period">{isAu ? `AUD ${plan.period}` : isUs ? ` ${plan.period}` : isNz ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
                       </div>
                     </div>
 
@@ -788,13 +858,43 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      {!isAu && !isUs && !isCa && <JsonLd data={createFaqSchema(faqItems)} />}
+      {!isAu && !isUs && !isCa && !isNz && <JsonLd data={createFaqSchema(faqItems)} />}
 
       <CTA
         region={region}
-        title={isAu ? AU_PRICING_COPY.cta.h2 : isUs ? US_PRICING_COPY.cta.title : isCa ? CA_PRICING_COPY.cta.title : undefined}
-        description={isAu ? AU_PRICING_COPY.cta.description : isUs ? US_PRICING_COPY.cta.description : isCa ? CA_PRICING_COPY.cta.description : undefined}
-        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : isUs ? US_PRICING_COPY.cta.buttonText : isCa ? CA_PRICING_COPY.cta.buttonText : undefined}
+        title={
+          isAu
+            ? AU_PRICING_COPY.cta.h2
+            : isUs
+            ? US_PRICING_COPY.cta.title
+            : isCa
+            ? CA_PRICING_COPY.cta.title
+            : isNz
+            ? NZ_PRICING_COPY.cta.title
+            : undefined
+        }
+        description={
+          isAu
+            ? AU_PRICING_COPY.cta.description
+            : isUs
+            ? US_PRICING_COPY.cta.description
+            : isCa
+            ? CA_PRICING_COPY.cta.description
+            : isNz
+            ? NZ_PRICING_COPY.cta.description
+            : undefined
+        }
+        buttonText={
+          isAu
+            ? AU_PRICING_COPY.cta.buttonText
+            : isUs
+            ? US_PRICING_COPY.cta.buttonText
+            : isCa
+            ? CA_PRICING_COPY.cta.buttonText
+            : isNz
+            ? NZ_PRICING_COPY.cta.buttonText
+            : undefined
+        }
       />
     </>
   );

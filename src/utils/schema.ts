@@ -213,10 +213,11 @@ export function createBreadcrumbSchema(
 }
 
 export function createContactPageSchema(
-  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/contact"
+  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/contact",
+  description?: string
 ): Record<string, unknown> {
   const isRegionCode = regionOrUrl === "au" || regionOrUrl === "us" || regionOrUrl === "ca" || regionOrUrl === "nz";
-  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us/") ? "us" : regionOrUrl.includes("/ca/") ? "ca" : regionOrUrl.includes("/nz/") ? "nz" : "au";
+  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us") ? "us" : regionOrUrl.includes("/ca") ? "ca" : regionOrUrl.includes("/nz") ? "nz" : "au";
   const url = isRegionCode
     ? `https://www.tutorexel.com${REGIONS_CONFIG[region]?.basePath || ""}/contact`
     : regionOrUrl;
@@ -228,7 +229,7 @@ export function createContactPageSchema(
       "@type": "ContactPage",
       name: `Contact TutorExel ${config.countryName}`,
       url: `https://www.tutorexel.com${config.basePath}/contact`,
-      description: "Questions about online tutoring? Contact TutorExel by form, email or WhatsApp.",
+      description: description || "Questions about online tutoring? Contact TutorExel by form, email or WhatsApp.",
       publisher: {
         "@type": "EducationalOrganization",
         name: "TutorExel",
@@ -238,22 +239,30 @@ export function createContactPageSchema(
   }
 
   const isUs = region === "us";
+  const isNz = region === "nz";
+  const defaultDesc = isUs
+    ? "Questions about online tutoring for your child in Grades 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class."
+    : isNz
+    ? "Questions about online tutoring for your child in Years 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class. We reply in 2 hours."
+    : undefined;
+
+  const resolvedDesc = description || defaultDesc;
+
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact TutorExel",
     url,
-    ...(isUs && {
-      description: "Questions about online tutoring for your child in Grades 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class.",
-    }),
+    ...(resolvedDesc && { description: resolvedDesc }),
   };
 }
 
 export function createAboutPageSchema(
-  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/about"
+  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/about",
+  description?: string
 ): Record<string, unknown> {
   const isRegionCode = regionOrUrl === "au" || regionOrUrl === "us" || regionOrUrl === "ca" || regionOrUrl === "nz";
-  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us/") ? "us" : regionOrUrl.includes("/ca/") ? "ca" : regionOrUrl.includes("/nz/") ? "nz" : "au";
+  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us") ? "us" : regionOrUrl.includes("/ca") ? "ca" : regionOrUrl.includes("/nz") ? "nz" : "au";
   const url = isRegionCode
     ? `https://www.tutorexel.com${REGIONS_CONFIG[region]?.basePath || ""}/about`
     : regionOrUrl;
@@ -265,7 +274,7 @@ export function createAboutPageSchema(
       "@type": "AboutPage",
       name: `About TutorExel ${config.countryName}`,
       url: `https://www.tutorexel.com${config.basePath}/about`,
-      description: "Built by educators and trusted by families. Structured, curriculum-aligned online tutoring.",
+      description: description || "Built by educators and trusted by families. Structured, curriculum-aligned online tutoring.",
       publisher: {
         "@type": "EducationalOrganization",
         name: "TutorExel",
@@ -275,14 +284,21 @@ export function createAboutPageSchema(
   }
 
   const isUs = region === "us";
+  const isNz = region === "nz";
+  const defaultDesc = isUs
+    ? "Meet TutorExel, online tutoring for U.S. students in Grades 2 to 10. Structured, standards-aligned lessons with progress reports."
+    : isNz
+    ? "Meet TutorExel, online tutoring for Kiwi students in Years 2 to 10. Structured, curriculum-aligned lessons with progress reports. Book a free trial today."
+    : undefined;
+
+  const resolvedDesc = description || defaultDesc;
+
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About TutorExel",
     url,
-    ...(isUs && {
-      description: "Meet TutorExel, online tutoring for U.S. students in Grades 2 to 10. Structured, standards-aligned lessons with progress reports.",
-    }),
+    ...(resolvedDesc && { description: resolvedDesc }),
   };
 }
 

@@ -1,0 +1,63 @@
+export const NZ_CONTACT_COPY = {
+  hero: {
+    title: "Ready to Help Your Child Get Ahead?",
+    subtitle: "Send us your details and we will be in touch soon. Or contact us directly by email or WhatsApp.",
+    floatingBadge: "Free Assessment Test",
+    countrySelector: "NZ",
+  },
+  contactDetails: {
+    email: "info@tutorexel.com",
+    emailLink: "mailto:info@tutorexel.com",
+    whatsappNumber: "+61 470-330-548",
+    whatsappLink: "https://wa.me/61470330548",
+    replyTime: "We usually reply within 2 hours",
+  },
+  form: {
+    title: "Got a Question?",
+    subtitle: "Ask us anything about lessons, plans or the free trial. We will reply as soon as we can.",
+    placeholders: {
+      parentName: "Parent's Full Name *",
+      email: "Email Address *",
+      phone: "+64 2X XXX XXXX",
+      childName: "Child's Full Name *",
+      message: "Your Message (Tell Us How We Can Help) *",
+    },
+    yearLevels: [
+      "Year 2",
+      "Year 3",
+      "Year 4",
+      "Year 5",
+      "Year 6",
+      "Year 7",
+      "Year 8",
+      "Year 9",
+      "Year 10",
+    ],
+    helpOptions: [
+      "Maths Tutoring",
+      "English Tutoring",
+      "Science Tutoring",
+      "Piano Lessons",
+      "Guitar Lessons",
+    ],
+    hearAboutOptions: [
+      "Google search",
+      "Facebook or Instagram",
+      "Friend or family",
+      "School or community group",
+      "Other",
+    ],
+    submitButton: "Book Your Free Trial Class",
+    consentText: "By submitting this form, you agree to our Terms & Conditions and Privacy Policy.",
+  },
+  whatHappensNext: {
+    title: "What Happens Next",
+    steps: [
+      "We read your enquiry and match your child with a suitable tutor (within 2 hours).",
+      "We book a free assessment to see where your child is up to.",
+      "Your child joins a free trial class.",
+      "You get a clear assessment report and a personalised learning plan.",
+      "Happy with it? We start weekly lessons. No lock-in, no pressure to sign up.",
+    ],
+  },
+};
