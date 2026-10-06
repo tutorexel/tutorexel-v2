@@ -5,6 +5,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { createBreadcrumbSchema, createAboutPageSchema } from "@/utils/schema";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_ABOUT_COPY } from "@/data/copy/au-about";
+import { US_ABOUT_COPY } from "@/data/copy/us-about";
 import "@/components/home/HowItWorks.css";
 import "@/app/about/about.css";
 
@@ -59,23 +60,46 @@ const heroAvatars = [
 
 export default function AboutView({ region }: { region: RegionCode }) {
   const isAu = region === "au";
+  const isUs = region === "us";
   const regConfig = getRegionConfig(region);
   const basePath = regConfig.basePath;
 
-  const aboutBreadcrumbSchema = createBreadcrumbSchema([
-    { name: "Home", url: `https://www.tutorexel.com${basePath}` },
-    { name: isAu ? "About Us" : "About", url: `https://www.tutorexel.com${basePath}/about` },
-  ]);
+  const aboutPageSchema = isAu
+    ? createAboutPageSchema("https://www.tutorexel.com/about")
+    : isUs
+    ? createAboutPageSchema("https://www.tutorexel.com/us/about")
+    : null;
 
-  const aboutPageSchema = isAu ? createAboutPageSchema("https://www.tutorexel.com/about") : null;
+  const aboutBreadcrumbSchema = isAu
+    ? createBreadcrumbSchema([
+        { name: "Home", url: `https://www.tutorexel.com${basePath}` },
+        { name: "About Us", url: `https://www.tutorexel.com${basePath}/about` },
+      ])
+    : isUs
+    ? createBreadcrumbSchema([
+        { name: "Home", url: "https://www.tutorexel.com/us" },
+        { name: "About Us", url: "https://www.tutorexel.com/us/about" },
+      ])
+    : createBreadcrumbSchema([
+        { name: "Home", url: `https://www.tutorexel.com${basePath}` },
+        { name: "About", url: `https://www.tutorexel.com${basePath}/about` },
+      ]);
 
-  const activeSteps = isAu ? AU_ABOUT_COPY.approach.steps : approachSteps;
-  const activeCurriculumPoints = isAu ? AU_ABOUT_COPY.curriculum.points : acaraPoints;
+  const activeSteps = isAu
+    ? AU_ABOUT_COPY.approach.steps
+    : isUs
+    ? US_ABOUT_COPY.ourApproach.steps
+    : approachSteps;
+  const activeCurriculumPoints = isAu
+    ? AU_ABOUT_COPY.curriculum.points
+    : isUs
+    ? US_ABOUT_COPY.curriculum.points
+    : acaraPoints;
 
   return (
     <>
-      <JsonLd data={aboutBreadcrumbSchema} />
       {aboutPageSchema && <JsonLd data={aboutPageSchema} />}
+      <JsonLd data={aboutBreadcrumbSchema} />
 
       {/* Hero Section */}
       <section className="about-hero">
@@ -118,6 +142,16 @@ export default function AboutView({ region }: { region: RegionCode }) {
                     <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
                   </span>
                 </>
+              ) : isUs ? (
+                <>
+                  Built by Educators. Trusted{" "}
+                  <br />
+                  by{" "}
+                  <span className="about-hero__title-highlight">American Families</span>{" "}
+                  <span className="about-hero__title-star">
+                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
+                  </span>
+                </>
               ) : (
                 <>
                   Built by Educators. Trusted{" "}
@@ -133,6 +167,8 @@ export default function AboutView({ region }: { region: RegionCode }) {
             <p className="about-hero__subtitle">
               {isAu
                 ? AU_ABOUT_COPY.hero.subtitle
+                : isUs
+                ? US_ABOUT_COPY.hero.subtitle
                 : "We started TutorExel with one belief: every child deserves structured, personalised learning that actually works."}
             </p>
             <div className="about-hero__avatars">
@@ -159,25 +195,31 @@ export default function AboutView({ region }: { region: RegionCode }) {
                 Our Story
               </p>
               <h2 className="about-story__title">
-                {isAu ? AU_ABOUT_COPY.story.h2 : "Why TutorExel Exists"}
+                {isAu ? AU_ABOUT_COPY.story.h2 : isUs ? US_ABOUT_COPY.ourStory.title : "Why TutorExel Exists"}
               </h2>
               <p className="about-story__text">
                 {isAu
                   ? AU_ABOUT_COPY.story.paragraph1
+                  : isUs
+                  ? US_ABOUT_COPY.ourStory.p1
                   : "As parents and educators, we saw a gap in online tutoring. Most platforms are marketplaces: they connect you with random tutors and hope for the best. There is no consistency, no structure, and no accountability."}
               </p>
               <p className="about-story__text about-story__text--bold about-story__text--italic">
-                {isAu ? AU_ABOUT_COPY.story.highlight : "TutorExel was built to be different."}
+                {isAu ? AU_ABOUT_COPY.story.highlight : isUs ? US_ABOUT_COPY.ourStory.highlight : "TutorExel was built to be different."}
               </p>
               <p className="about-story__text">
                 {isAu
                   ? AU_ABOUT_COPY.story.paragraph2
+                  : isUs
+                  ? US_ABOUT_COPY.ourStory.p2
                   : "We hire, train, and manage every educator on our platform. We align every lesson to your child's own school curriculum - whatever system they are learning under. And we track every student's progress so parents always know exactly where their child stands."}
               </p>
               <div className="about-story__founder-quote">
                 <p className="about-story__text">
                   {isAu ? (
                     AU_ABOUT_COPY.story.quote
+                  ) : isUs ? (
+                    US_ABOUT_COPY.ourStory.quote
                   ) : (
                     <>
                       With a team of educators bringing over <strong>15 years of combined teaching experience</strong>, TutorExel combines the personal attention of a private tutor with the structure of a professional learning system.
@@ -207,7 +249,7 @@ export default function AboutView({ region }: { region: RegionCode }) {
                   Our Approach
                 </div>
                 <h2 className="how-it-works__title">
-                  {isAu ? AU_ABOUT_COPY.approach.h2 : "How We Do Things Differently"}
+                  {isAu ? AU_ABOUT_COPY.approach.h2 : isUs ? US_ABOUT_COPY.ourApproach.title : "How We Do Things Differently"}
                 </h2>
               </div>
               <div className="how-it-works__image">
@@ -243,7 +285,7 @@ export default function AboutView({ region }: { region: RegionCode }) {
               By the Numbers
             </p>
             <h2 className="about-impact__title">
-              {isAu ? AU_ABOUT_COPY.byTheNumbers.h2 : "The TutorExel Impact"}
+              {isAu ? AU_ABOUT_COPY.byTheNumbers.h2 : isUs ? US_ABOUT_COPY.byTheNumbers.title : "The TutorExel Impact"}
             </h2>
           </div>
           <div className="about-impact__grid">
@@ -276,20 +318,24 @@ export default function AboutView({ region }: { region: RegionCode }) {
             </div>
             <div className="about-curriculum__content">
               <h2 className="about-curriculum__title">
-                {isAu ? AU_ABOUT_COPY.curriculum.h2 : "Structured to Match Your Child's School Curriculum"}
+                {isAu ? AU_ABOUT_COPY.curriculum.h2 : isUs ? US_ABOUT_COPY.curriculum.title : "Structured to Match Your Child's School Curriculum"}
               </h2>
               <p className="about-curriculum__text">
                 {isAu
                   ? AU_ABOUT_COPY.curriculum.paragraph1
+                  : isUs
+                  ? US_ABOUT_COPY.curriculum.p1
                   : "Every TutorExel session starts with understanding your child's school curriculum, grade/year level, learning goals, and academic needs. Our tutors tailor lessons, pacing, and practice to complement what your child is learning at school."}
               </p>
               <p className="about-curriculum__text">
                 {isAu
                   ? AU_ABOUT_COPY.curriculum.paragraph2
+                  : isUs
+                  ? US_ABOUT_COPY.curriculum.p2
                   : "Whether your child studies in Australia, the USA, Canada, or New Zealand, we help ensure that learning with TutorExel stays relevant to their school journey."}
               </p>
               <p className="about-curriculum__means-title">
-                {isAu ? AU_ABOUT_COPY.curriculum.meansTitle : "This means:"}
+                {isAu ? AU_ABOUT_COPY.curriculum.meansTitle : isUs ? US_ABOUT_COPY.curriculum.meansTitle : "This means:"}
               </p>
               <div className="about-curriculum__list">
                 {activeCurriculumPoints.map((item) => (
@@ -313,10 +359,11 @@ export default function AboutView({ region }: { region: RegionCode }) {
       {/* CTA Section */}
       <CTA
         region={region}
-        title={isAu ? AU_ABOUT_COPY.cta.h2 : undefined}
-        description={isAu ? AU_ABOUT_COPY.cta.description : undefined}
-        buttonText={isAu ? AU_ABOUT_COPY.cta.buttonText : undefined}
+        title={isAu ? AU_ABOUT_COPY.cta.h2 : isUs ? US_ABOUT_COPY.cta.title : undefined}
+        description={isAu ? AU_ABOUT_COPY.cta.description : isUs ? US_ABOUT_COPY.cta.description : undefined}
+        buttonText={isAu ? AU_ABOUT_COPY.cta.buttonText : isUs ? US_ABOUT_COPY.cta.buttonText : undefined}
       />
     </>
   );
 }
+

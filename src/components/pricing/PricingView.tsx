@@ -10,6 +10,7 @@ import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import { type RegionCode } from "@/data/regions";
 import { AU_PRICING_COPY } from "@/data/copy/au-pricing";
+import { US_PRICING_COPY } from "@/data/copy/us-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -27,6 +28,44 @@ type PricingPlan = {
   features: string[];
   buttonText?: string;
 };
+
+const usPricingPlans: PricingPlan[] = [
+  {
+    id: "live-online-coaching",
+    name: "Live Online Coaching",
+    subtitle: "Math, English, Science",
+    currency: "$",
+    amount: "84",
+    period: "per month, per subject",
+    popular: true,
+    borderColor: "orange",
+    features: US_PRICING_COPY.plansSection.plans[0].features,
+  },
+  {
+    id: "co-curricular",
+    name: "Co-Curricular",
+    subtitle: "Music and Creative Arts, Piano and Guitar",
+    currency: "$",
+    amount: "79",
+    period: "per month (4 lessons)",
+    popular: false,
+    borderColor: "dark",
+    features: US_PRICING_COPY.plansSection.plans[1].features,
+  },
+  {
+    id: "premium-plan",
+    name: "Premium Plan",
+    subtitle: "Complete Learning Package, 3 Subjects",
+    currency: "$",
+    amount: "219",
+    originalAmount: "299",
+    period: "per month",
+    popular: false,
+    borderColor: "dark",
+    features: US_PRICING_COPY.plansSection.plans[2].features,
+  },
+];
+
 
 const pricingPlans: PricingPlan[] = [
   {
@@ -218,11 +257,12 @@ function PricingUrlParams({
 
 function PricingContent({ region }: { region: RegionCode }) {
   const isAu = region === "au";
-  const activePlans = isAu ? AU_PRICING_COPY.plans : pricingPlans;
-  const activeIncludedFeatures = isAu ? AU_PRICING_COPY.included.features : includedFeatures;
-  const activeIncludedTitle = isAu ? AU_PRICING_COPY.included.h2 : "Every TutorExel Student Gets";
-  const activeFaqTitle = isAu ? AU_PRICING_COPY.faq.h2 : "Frequently Asked Questions";
-  const activeFaqItems = isAu ? AU_PRICING_COPY.faq.items : faqItems;
+  const isUs = region === "us";
+  const activePlans = isAu ? AU_PRICING_COPY.plans : isUs ? usPricingPlans : pricingPlans;
+  const activeIncludedFeatures = isAu ? AU_PRICING_COPY.included.features : isUs ? US_PRICING_COPY.included.features : includedFeatures;
+  const activeIncludedTitle = isAu ? AU_PRICING_COPY.included.h2 : isUs ? US_PRICING_COPY.included.title : "Every TutorExel Student Gets";
+  const activeFaqTitle = isAu ? AU_PRICING_COPY.faq.h2 : isUs ? US_PRICING_COPY.faq.title : "Frequently Asked Questions";
+  const activeFaqItems = isAu ? AU_PRICING_COPY.faq.items : isUs ? US_PRICING_COPY.faq.items : faqItems;
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
@@ -274,7 +314,7 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      {!isAu && (
+      {!isAu && !isUs && (
         <div className="pricing-flash" role="region" aria-label="Promotion">
           <div className="container">
             <p className="pricing-flash__text">
@@ -319,22 +359,30 @@ function PricingContent({ region }: { region: RegionCode }) {
                 <>
                   Clear, Fair{" "}
                   <span className="pricing-banner__title-highlight">Pricing</span>{" "}
+                  for Australian Families
+                </>
+              ) : isUs ? (
+                <>
+                  Clear, Fair{" "}
+                  <span className="pricing-banner__title-highlight">Pricing</span>{" "}
                   <span className="pricing-banner__title-star">
                     <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
                   </span>
                 </>
               ) : (
                 <>
-                  Simple, Transparent{" "}
+                  Clear, Affordable{" "}
                   <span className="pricing-banner__title-highlight">Pricing</span>{" "}
-                  <span className="pricing-banner__title-star">
-                    <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-                  </span>
+                  for Every Family
                 </>
               )}
             </h1>
             <p className="pricing-banner__subtitle">
-              {isAu ? AU_PRICING_COPY.hero.subtitle : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
+              {isAu
+                ? AU_PRICING_COPY.hero.subtitle
+                : isUs
+                ? US_PRICING_COPY.hero.subtitle
+                : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
         </div>
@@ -373,7 +421,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-card__price">
                     <span className="currency">{plan.currency}</span>
                     <span className="amount">{plan.amount}</span>
-                    <span className="period">{isAu ? `AUD ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
+                    <span className="period">{isAu ? `AUD ${plan.period}` : isUs ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
                   </div>
                 </div>
 
@@ -413,10 +461,14 @@ function PricingContent({ region }: { region: RegionCode }) {
                 </h2>
                 <p className="pricing-suboptions__subtitle">
                   {selectedOffering === "live-online-coaching"
-                    ? "Select between personalised one-on-one coaching or affordable group sessions."
+                    ? (isUs
+                        ? "Select between personalized one-on-one coaching or affordable group sessions."
+                        : "Select between personalised one-on-one coaching or affordable group sessions.")
                     : selectedOffering === "co-curricular"
                       ? "Choose from our music programs: learn Piano, Guitar, or both at a discount."
-                      : "Get the complete learning package with both Maths and English included."}
+                      : (isUs
+                          ? "Get the complete learning package with Math, English and Science included."
+                          : "Get the complete learning package with both Maths and English included.")}
                 </p>
               </div>
 
@@ -425,7 +477,9 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-subcard pricing-subcard--teal">
                     <h3 className="pricing-subcard__title">1:1 Coaching</h3>
                     <p className="pricing-subcard__desc">
-                      Personalised one-on-one sessions with a dedicated tutor
+                      {isUs
+                        ? "Personalized one-on-one sessions with a dedicated tutor"
+                        : "Personalised one-on-one sessions with a dedicated tutor"}
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
@@ -551,8 +605,9 @@ function PricingContent({ region }: { region: RegionCode }) {
                   <div className="pricing-subcard pricing-subcard--navy">
                     <h3 className="pricing-subcard__title">Complete Learning Package</h3>
                     <p className="pricing-subcard__desc">
-                      12 live classes per month covering Maths, English and Science, with recorded
-                      session access, monthly reports, and WhatsApp support.
+                      {isUs
+                        ? "12 live classes per month covering Math, English and Science, with recorded session access, monthly reports, and WhatsApp support."
+                        : "12 live classes per month covering Maths, English and Science, with recorded session access, monthly reports, and WhatsApp support."}
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__original-row">
@@ -652,17 +707,18 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      {!isAu && <JsonLd data={createFaqSchema(faqItems)} />}
+      {!isAu && !isUs && <JsonLd data={createFaqSchema(faqItems)} />}
 
       <CTA
         region={region}
-        title={isAu ? AU_PRICING_COPY.cta.h2 : undefined}
-        description={isAu ? AU_PRICING_COPY.cta.description : undefined}
-        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : undefined}
+        title={isAu ? AU_PRICING_COPY.cta.h2 : isUs ? US_PRICING_COPY.cta.title : undefined}
+        description={isAu ? AU_PRICING_COPY.cta.description : isUs ? US_PRICING_COPY.cta.description : undefined}
+        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : isUs ? US_PRICING_COPY.cta.buttonText : undefined}
       />
     </>
   );
 }
+
 
 export default function PricingView({ region }: { region: RegionCode }) {
   return <PricingContent region={region} />;

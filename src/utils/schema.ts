@@ -215,22 +215,30 @@ export function createBreadcrumbSchema(
 export function createContactPageSchema(
   url: string = "https://www.tutorexel.com/contact"
 ): Record<string, unknown> {
+  const isUs = url.includes("/us/");
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact TutorExel",
     url,
+    ...(isUs && {
+      description: "Questions about online tutoring for your child in Grades 2 to 10? Contact TutorExel by form, email or WhatsApp and book a free trial class.",
+    }),
   };
 }
 
 export function createAboutPageSchema(
   url: string = "https://www.tutorexel.com/about"
 ): Record<string, unknown> {
+  const isUs = url.includes("/us/");
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About TutorExel",
     url,
+    ...(isUs && {
+      description: "Meet TutorExel, online tutoring for U.S. students in Grades 2 to 10. Structured, standards-aligned lessons with progress reports.",
+    }),
   };
 }
 
