@@ -213,9 +213,31 @@ export function createBreadcrumbSchema(
 }
 
 export function createContactPageSchema(
-  url: string = "https://www.tutorexel.com/contact"
+  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/contact"
 ): Record<string, unknown> {
-  const isUs = url.includes("/us/");
+  const isRegionCode = regionOrUrl === "au" || regionOrUrl === "us" || regionOrUrl === "ca" || regionOrUrl === "nz";
+  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us/") ? "us" : regionOrUrl.includes("/ca/") ? "ca" : regionOrUrl.includes("/nz/") ? "nz" : "au";
+  const url = isRegionCode
+    ? `https://www.tutorexel.com${REGIONS_CONFIG[region]?.basePath || ""}/contact`
+    : regionOrUrl;
+
+  if (region === "ca") {
+    const config = REGIONS_CONFIG.ca;
+    return {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: `Contact TutorExel ${config.countryName}`,
+      url: `https://www.tutorexel.com${config.basePath}/contact`,
+      description: "Questions about online tutoring? Contact TutorExel by form, email or WhatsApp.",
+      publisher: {
+        "@type": "EducationalOrganization",
+        name: "TutorExel",
+        url: "https://www.tutorexel.com",
+      },
+    };
+  }
+
+  const isUs = region === "us";
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -228,9 +250,31 @@ export function createContactPageSchema(
 }
 
 export function createAboutPageSchema(
-  url: string = "https://www.tutorexel.com/about"
+  regionOrUrl: RegionCode | string = "https://www.tutorexel.com/about"
 ): Record<string, unknown> {
-  const isUs = url.includes("/us/");
+  const isRegionCode = regionOrUrl === "au" || regionOrUrl === "us" || regionOrUrl === "ca" || regionOrUrl === "nz";
+  const region: RegionCode = isRegionCode ? (regionOrUrl as RegionCode) : regionOrUrl.includes("/us/") ? "us" : regionOrUrl.includes("/ca/") ? "ca" : regionOrUrl.includes("/nz/") ? "nz" : "au";
+  const url = isRegionCode
+    ? `https://www.tutorexel.com${REGIONS_CONFIG[region]?.basePath || ""}/about`
+    : regionOrUrl;
+
+  if (region === "ca") {
+    const config = REGIONS_CONFIG.ca;
+    return {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: `About TutorExel ${config.countryName}`,
+      url: `https://www.tutorexel.com${config.basePath}/about`,
+      description: "Built by educators and trusted by families. Structured, curriculum-aligned online tutoring.",
+      publisher: {
+        "@type": "EducationalOrganization",
+        name: "TutorExel",
+        url: "https://www.tutorexel.com",
+      },
+    };
+  }
+
+  const isUs = region === "us";
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",

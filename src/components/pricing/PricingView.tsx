@@ -11,6 +11,7 @@ import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/Countr
 import { type RegionCode } from "@/data/regions";
 import { AU_PRICING_COPY } from "@/data/copy/au-pricing";
 import { US_PRICING_COPY } from "@/data/copy/us-pricing";
+import { CA_PRICING_COPY } from "@/data/copy/ca-pricing";
 import "@/app/pricing/pricing.css";
 
 type PricingPlan = {
@@ -258,11 +259,34 @@ function PricingUrlParams({
 function PricingContent({ region }: { region: RegionCode }) {
   const isAu = region === "au";
   const isUs = region === "us";
+  const isCa = region === "ca";
   const activePlans = isAu ? AU_PRICING_COPY.plans : isUs ? usPricingPlans : pricingPlans;
-  const activeIncludedFeatures = isAu ? AU_PRICING_COPY.included.features : isUs ? US_PRICING_COPY.included.features : includedFeatures;
-  const activeIncludedTitle = isAu ? AU_PRICING_COPY.included.h2 : isUs ? US_PRICING_COPY.included.title : "Every TutorExel Student Gets";
-  const activeFaqTitle = isAu ? AU_PRICING_COPY.faq.h2 : isUs ? US_PRICING_COPY.faq.title : "Frequently Asked Questions";
-  const activeFaqItems = isAu ? AU_PRICING_COPY.faq.items : isUs ? US_PRICING_COPY.faq.items : faqItems;
+  const activeIncludedFeatures = isAu
+    ? AU_PRICING_COPY.included.features
+    : isUs
+    ? US_PRICING_COPY.included.features
+    : isCa
+    ? CA_PRICING_COPY.included.features
+    : includedFeatures;
+  const activeIncludedTitle = isAu
+    ? AU_PRICING_COPY.included.h2
+    : isUs
+    ? US_PRICING_COPY.included.title
+    : isCa
+    ? CA_PRICING_COPY.included.title
+    : "Every TutorExel Student Gets";
+  const activeFaqTitle = isAu
+    ? AU_PRICING_COPY.faq.h2
+    : isUs
+    ? US_PRICING_COPY.faq.title
+    : "Frequently Asked Questions";
+  const activeFaqItems = isAu
+    ? AU_PRICING_COPY.faq.items
+    : isUs
+    ? US_PRICING_COPY.faq.items
+    : isCa
+    ? CA_PRICING_COPY.faqs
+    : faqItems;
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number>(0);
   const [selectedOffering, setSelectedOffering] = useState<string | null>(null);
@@ -314,7 +338,7 @@ function PricingContent({ region }: { region: RegionCode }) {
       <Suspense fallback={null}>
         <PricingUrlParams onPlan={handlePlanParam} onCurrency={handleCurrencyParam} />
       </Suspense>
-      {!isAu && !isUs && (
+      {!isAu && !isUs && !isCa && (
         <div className="pricing-flash" role="region" aria-label="Promotion">
           <div className="container">
             <p className="pricing-flash__text">
@@ -369,6 +393,8 @@ function PricingContent({ region }: { region: RegionCode }) {
                     <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
                   </span>
                 </>
+              ) : isCa ? (
+                CA_PRICING_COPY.hero.title
               ) : (
                 <>
                   Clear, Affordable{" "}
@@ -382,6 +408,8 @@ function PricingContent({ region }: { region: RegionCode }) {
                 ? AU_PRICING_COPY.hero.subtitle
                 : isUs
                 ? US_PRICING_COPY.hero.subtitle
+                : isCa
+                ? CA_PRICING_COPY.hero.subtitle
                 : "No contracts. No hidden fees. Cancel anytime with 2 weeks notice."}
             </p>
           </div>
@@ -395,60 +423,113 @@ function PricingContent({ region }: { region: RegionCode }) {
           </div>
 
           <div className="pricing__grid">
-            {activePlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`pricing-card pricing-card--${plan.borderColor} ${
-                  selectedOffering === plan.id ? "pricing-card--selected" : ""
-                }`}
-              >
-                {plan.popular && (
-                  <span className="pricing-card__badge">{plan.badge || "Most Popular"}</span>
-                )}
+            {isCa
+              ? CA_PRICING_COPY.plans.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={`pricing-card pricing-card--${
+                      plan.id === "live-online-coaching" ? "orange" : "dark"
+                    }`}
+                  >
+                    {plan.badge && (
+                      <span className="pricing-card__badge">{plan.badge}</span>
+                    )}
 
-                <div className="pricing-card__header">
-                  <div className="pricing-card__name">{plan.name}</div>
-                  <div className="pricing-card__subtitle">{plan.subtitle}</div>
-                </div>
-
-                <div className="pricing-card__price-wrapper">
-                  {plan.originalAmount && (
-                    <div className="pricing-card__original-price">
-                      <span className="original-price">{plan.currency}{plan.originalAmount}</span>
-                      <span className="discount-badge">{plan.discountBadge || "Save 27%"}</span>
+                    <div className="pricing-card__header">
+                      <div className="pricing-card__name">{plan.name}</div>
+                      <div className="pricing-card__subtitle">{plan.subtitle}</div>
                     </div>
-                  )}
-                  <div className="pricing-card__price">
-                    <span className="currency">{plan.currency}</span>
-                    <span className="amount">{plan.amount}</span>
-                    <span className="period">{isAu ? `AUD ${plan.period}` : isUs ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
+
+                    <div className="pricing-card__price-wrapper">
+                      {plan.originalAmount && (
+                        <div className="pricing-card__original-price">
+                          <span className="original-price">${plan.originalAmount} CAD</span>
+                          {plan.discountBadge && (
+                            <span className="discount-badge">{plan.discountBadge}</span>
+                          )}
+                        </div>
+                      )}
+                      <div className="pricing-card__price">
+                        <span className="currency">$</span>
+                        <span className="amount">{plan.amount}</span>
+                        <span className="period">{plan.periodText}</span>
+                      </div>
+                    </div>
+
+                    <div className="pricing-card__features">
+                      {plan.features.map((feature) => (
+                        <div className="pricing-card__feature" key={feature}>
+                          <span className="feature-check">
+                            <CheckIcon />
+                          </span>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    <RegionLink
+                      href="/enroll"
+                      region={region}
+                      className="pricing-card__button"
+                    >
+                      {plan.buttonText}
+                    </RegionLink>
                   </div>
-                </div>
+                ))
+              : activePlans.map((plan) => (
+                  <div
+                    key={plan.name}
+                    className={`pricing-card pricing-card--${plan.borderColor} ${
+                      selectedOffering === plan.id ? "pricing-card--selected" : ""
+                    }`}
+                  >
+                    {plan.popular && (
+                      <span className="pricing-card__badge">{plan.badge || "Most Popular"}</span>
+                    )}
 
-                <div className="pricing-card__features">
-                  {plan.features.map((feature) => (
-                    <div className="pricing-card__feature" key={feature}>
-                      <span className="feature-check">
-                        <CheckIcon />
-                      </span>
-                      {feature}
+                    <div className="pricing-card__header">
+                      <div className="pricing-card__name">{plan.name}</div>
+                      <div className="pricing-card__subtitle">{plan.subtitle}</div>
                     </div>
-                  ))}
-                </div>
 
-                <button
-                  onClick={() => handleSelect(plan.id)}
-                  className={`pricing-card__button ${
-                    selectedOffering === plan.id ? "pricing-card__button--selected" : ""
-                  }`}
-                >
-                  {selectedOffering === plan.id ? "Selected" : (plan.buttonText || "Get Started")}
-                </button>
-              </div>
-            ))}
+                    <div className="pricing-card__price-wrapper">
+                      {plan.originalAmount && (
+                        <div className="pricing-card__original-price">
+                          <span className="original-price">{plan.currency}{plan.originalAmount}</span>
+                          <span className="discount-badge">{plan.discountBadge || "Save 27%"}</span>
+                        </div>
+                      )}
+                      <div className="pricing-card__price">
+                        <span className="currency">{plan.currency}</span>
+                        <span className="amount">{plan.amount}</span>
+                        <span className="period">{isAu ? `AUD ${plan.period}` : isUs ? ` ${plan.period}` : `${selectedCountry.currency}/${plan.period}`}</span>
+                      </div>
+                    </div>
+
+                    <div className="pricing-card__features">
+                      {plan.features.map((feature) => (
+                        <div className="pricing-card__feature" key={feature}>
+                          <span className="feature-check">
+                            <CheckIcon />
+                          </span>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => handleSelect(plan.id)}
+                      className={`pricing-card__button ${
+                        selectedOffering === plan.id ? "pricing-card__button--selected" : ""
+                      }`}
+                    >
+                      {selectedOffering === plan.id ? "Selected" : (plan.buttonText || "Get Started")}
+                    </button>
+                  </div>
+                ))}
           </div>
 
-          {selectedOffering && (
+          {!isCa && selectedOffering && (
             <div ref={subOptionsRef} className="pricing-suboptions">
               <div className="pricing-suboptions__header">
                 <h2 className="pricing-suboptions__title">
@@ -707,13 +788,13 @@ function PricingContent({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      {!isAu && !isUs && <JsonLd data={createFaqSchema(faqItems)} />}
+      {!isAu && !isUs && !isCa && <JsonLd data={createFaqSchema(faqItems)} />}
 
       <CTA
         region={region}
-        title={isAu ? AU_PRICING_COPY.cta.h2 : isUs ? US_PRICING_COPY.cta.title : undefined}
-        description={isAu ? AU_PRICING_COPY.cta.description : isUs ? US_PRICING_COPY.cta.description : undefined}
-        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : isUs ? US_PRICING_COPY.cta.buttonText : undefined}
+        title={isAu ? AU_PRICING_COPY.cta.h2 : isUs ? US_PRICING_COPY.cta.title : isCa ? CA_PRICING_COPY.cta.title : undefined}
+        description={isAu ? AU_PRICING_COPY.cta.description : isUs ? US_PRICING_COPY.cta.description : isCa ? CA_PRICING_COPY.cta.description : undefined}
+        buttonText={isAu ? AU_PRICING_COPY.cta.buttonText : isUs ? US_PRICING_COPY.cta.buttonText : isCa ? CA_PRICING_COPY.cta.buttonText : undefined}
       />
     </>
   );
