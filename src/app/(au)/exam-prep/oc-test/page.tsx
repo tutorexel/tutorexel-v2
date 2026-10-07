@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import ExamPrepInteractions from "@/components/exam-prep/ExamPrepInteractions";
-import "./naplan-preparation.css";
+import "./oc-test.css";
 
 export const metadata: Metadata = {
-  title: "NAPLAN Preparation Online Australia | Years 3, 5, 7, 9 | TutorExel",
+  title: "OC Test Preparation Online NSW | Year 4 | TutorExel",
   description:
-    "Online NAPLAN preparation for Years 3, 5, 7 and 9. Live maths and English lessons, practice tests and parent reports. Book a free assessment today.",
-  alternates: { canonical: "https://www.tutorexel.com/naplan-preparation" },
+    "Online Opportunity Class test preparation for NSW Year 4 students. Reading, mathematical reasoning and thinking skills with mock tests. Book a free assessment.",
+  alternates: { canonical: "https://www.tutorexel.com/exam-prep/oc-test" },
 };
 
 const jsonLd = [
@@ -27,22 +27,22 @@ const jsonLd = [
       {
         "@type": "ListItem",
         position: 3,
-        name: "NAPLAN",
-        item: "https://www.tutorexel.com/naplan-preparation",
+        name: "OC Test",
+        item: "https://www.tutorexel.com/exam-prep/oc-test",
       },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "NAPLAN preparation",
+    name: "OC Test preparation",
     provider: {
       "@type": "EducationalOrganization",
       name: "TutorExel",
       url: "https://www.tutorexel.com",
     },
     areaServed: { "@type": "Country", name: "Australia" },
-    url: "https://www.tutorexel.com/naplan-preparation",
+    url: "https://www.tutorexel.com/exam-prep/oc-test",
   },
   {
     "@context": "https://schema.org",
@@ -50,26 +50,18 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "Does my child need to prepare for NAPLAN?",
+        name: "Does my child need to be in a NSW school to sit the OC test?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "NAPLAN is not a pass or fail test and is not used for school entry. A little regular practice helps students feel calm and know what to expect.",
+          text: "Yes. The Opportunity Class test is for NSW students in Year 4 who want to join an Opportunity Class in Year 5. Families outside NSW can ask about similar programs in their state.",
         },
       },
       {
         "@type": "Question",
-        name: "What is the difference between NAPLAN and ICAS?",
+        name: "Is the OC test the same as the selective test?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "NAPLAN is sat by every student in Years 3, 5, 7 and 9. ICAS is optional and stretches students beyond the curriculum.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can my child opt out?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Parents can ask the school about withdrawal or exemption. Speak with your child's school first.",
+          text: "No. The OC test is for Year 5 entry to an Opportunity Class. The selective test is for Year 7 entry to a selective high school.",
         },
       },
       {
@@ -77,7 +69,15 @@ const jsonLd = [
         name: "When should we start preparing?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A term before the March window is a good start, with a little practice each week.",
+          text: "Many families start in Year 3 or early in Year 4, with a little practice each week.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Will test prep make my child anxious?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We keep it low pressure, with short sessions and friendly tutors.",
         },
       },
       {
@@ -92,9 +92,9 @@ const jsonLd = [
   },
 ];
 
-export default function NaplanPreparationPage() {
+export default function OcTestPreparationPage() {
   return (
-    <div className="xp xp-naplan">
+    <div className="xp xp-oc-test">
       {jsonLd.map((data, i) => (
         <script
           key={i}
@@ -123,7 +123,7 @@ export default function NaplanPreparationPage() {
               <span aria-hidden="true">/</span>
               <Link href="/exam-prep">Exam Prep</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">NAPLAN</span>
+              <span aria-current="page">OC Test</span>
             </nav>
             <span className="eyebrow">
               <svg
@@ -136,16 +136,16 @@ export default function NaplanPreparationPage() {
                 strokeWidth="1.8"
                 viewBox="0 0 24 24"
               >
-                <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                <path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0"></path>
               </svg>{" "}
-              Years 3, 5, 7 and 9
+              NSW Year 4
             </span>
             <h1 className="hub-title">
-              Online <span className="grad">NAPLAN Preparation</span> for Australian Students
+              Online <span className="grad">OC Test Preparation</span> for NSW Students
             </h1>
             <p className="hub-sub">
-              Help your child feel calm and ready for NAPLAN in Years 3, 5, 7 and 9. Live online
-              lessons build the reading, writing and numeracy skills the tests measure.
+              Get your NSW Year 4 child ready for the Opportunity Class Placement Test. Live online
+              lessons build reading, reasoning and thinking skills, one calm step at a time.
             </p>
             <div className="xd-cta">
               <Link className="btn btn-hi" href="/free-assessment">
@@ -156,8 +156,8 @@ export default function NaplanPreparationPage() {
               </Link>
             </div>
           </div>
-          <aside aria-label="NAPLAN at a Glance" className="glance">
-            <p className="glance-t">NAPLAN at a Glance</p>
+          <aside aria-label="OC Test at a Glance" className="glance">
+            <p className="glance-t">OC Test at a Glance</p>
             <ul className="xfacts">
               <li>
                 <span className="xf-ic">
@@ -176,7 +176,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>When</b>March each year, sat at school
+                  <b>When</b>Sat in Year 4 for Year 5 entry, usually in Term 2
                 </span>
               </li>
               <li>
@@ -196,8 +196,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Format</b>Online, with tests that adapt to how your child is going. Some Year 3
-                  students may write on paper
+                  <b>Format</b>Multiple choice, sat at a NSW test centre
                 </span>
               </li>
               <li>
@@ -216,7 +215,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Domains</b>Reading, Writing, Language conventions, Numeracy
+                  <b>Sections</b>Reading, Mathematical reasoning, Thinking skills
                 </span>
               </li>
               <li>
@@ -236,8 +235,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Results</b>A proficiency level for each domain: Exceeding, Strong, Developing
-                  or Needs additional support
+                  <b>Results</b>Placement offers are made from test scores and school choices
                 </span>
               </li>
             </ul>
@@ -248,10 +246,10 @@ export default function NaplanPreparationPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="dH">The NAPLAN Tests We Prepare Students For</h2>
+              <h2 id="dH">The OC Test Sections We Prepare Students For</h2>
               <p className="muted">
-                NAPLAN checks core skills from the Australian Curriculum, so steady practice beats
-                last-minute cramming.
+                The test checks how well students read, reason and solve problems, not just what
+                they have been taught.
               </p>
             </div>
           </div>
@@ -274,73 +272,15 @@ export default function NaplanPreparationPage() {
                 </span>
                 <h3>Reading</h3>
               </div>
-              <p className="dom-what">Understanding texts, from stories to information pieces.</p>
+              <p className="dom-what">Reading and understanding a range of passages.</p>
               <ul className="dom-list">
-                <li>Finding and using details in a text</li>
-                <li>Working out what is implied</li>
+                <li>Finding the main idea</li>
+                <li>Inference from stories and poems</li>
                 <li>Vocabulary in context</li>
               </ul>
               <p className="dom-how">
                 <b>How we prepare</b>Weekly reading across unfamiliar text types, with a chat about
-                how to find each answer.
-              </p>
-            </article>
-            <article className="dom">
-              <div className="dom-head">
-                <span className="tile-ic">
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M4 20h4L19 9l-4-4L4 16v4Z"></path>
-                    <path d="M14 6l4 4"></path>
-                  </svg>
-                </span>
-                <h3>Writing</h3>
-              </div>
-              <p className="dom-what">One writing task, a narrative or persuasive piece.</p>
-              <ul className="dom-list">
-                <li>Ideas and a clear point of view</li>
-                <li>Structure and paragraphing</li>
-                <li>Sentence variety and word choice</li>
-              </ul>
-              <p className="dom-how">
-                <b>How we prepare</b>Timed prompts with feedback on structure and ideas, practised
-                in the same format as the test.
-              </p>
-            </article>
-            <article className="dom">
-              <div className="dom-head">
-                <span className="tile-ic">
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                </span>
-                <h3>Language Conventions</h3>
-              </div>
-              <p className="dom-what">Spelling, grammar and punctuation.</p>
-              <ul className="dom-list">
-                <li>Spelling common and tricky words</li>
-                <li>Sentence structure and grammar</li>
-                <li>Punctuation, including commas and apostrophes</li>
-              </ul>
-              <p className="dom-how">
-                <b>How we prepare</b>Short, regular practice, so rules become habits.
+                why each answer works.
               </p>
             </article>
             <article className="dom">
@@ -359,19 +299,74 @@ export default function NaplanPreparationPage() {
                     <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path>
                   </svg>
                 </span>
-                <h3>Numeracy</h3>
+                <h3>Mathematical Reasoning</h3>
               </div>
-              <p className="dom-what">
-                Number, algebra, measurement, geometry, statistics and probability.
-              </p>
+              <p className="dom-what">Problem solving that goes beyond the Year 4 maths class.</p>
               <ul className="dom-list">
+                <li>Patterns and number puzzles</li>
                 <li>Multi-step word problems</li>
-                <li>Reading graphs and tables</li>
-                <li>Using a calculator wisely where allowed</li>
+                <li>Shapes, space and measurement</li>
               </ul>
               <p className="dom-how">
-                <b>How we prepare</b>Test-style questions practised for every strand, with a focus
-                on showing working.
+                <b>How we prepare</b>Challenge questions sit a step above the year level, with
+                strategies for problems students have not seen before.
+              </p>
+            </article>
+            <article className="dom">
+              <div className="dom-head">
+                <span className="tile-ic">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                </span>
+                <h3>Thinking Skills</h3>
+              </div>
+              <p className="dom-what">Logic, patterns and abstract reasoning.</p>
+              <ul className="dom-list">
+                <li>Spotting patterns in shapes and numbers</li>
+                <li>Using clues to find the answer</li>
+                <li>Working out the odd one out</li>
+              </ul>
+              <p className="dom-how">
+                <b>How we prepare</b>Short, regular puzzles that build speed and calm.
+              </p>
+            </article>
+            <article className="dom">
+              <div className="dom-head">
+                <span className="tile-ic">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                </span>
+                <h3>Test Technique</h3>
+              </div>
+              <p className="dom-what">Managing time and staying calm in a timed test.</p>
+              <ul className="dom-list">
+                <li>Pacing through each section</li>
+                <li>Skipping and returning to hard questions</li>
+                <li>Checking answers without panic</li>
+              </ul>
+              <p className="dom-how">
+                <b>How we prepare</b>Timed mock tests in the same format, with feedback on pacing.
               </p>
             </article>
           </div>
@@ -381,14 +376,15 @@ export default function NaplanPreparationPage() {
         <div className="wrap">
           <div className="sec-head sec-head--stack">
             <div>
-              <h2 id="yH">What to Focus on in Each NAPLAN Year</h2>
+              <h2 id="yH">What to Focus on, Stage by Stage</h2>
               <p className="muted">
-                NAPLAN is set in Years 3, 5, 7 and 9. Choose your child's year and try a question.
+                Most families start well before the test. Pick your child's stage and try a
+                question.
               </p>
             </div>
-            <div aria-label="What to focus on in each year" className="ytabs" role="tablist">
+            <div aria-label="Practise each section" className="ytabs" role="tablist">
               <button aria-controls="yp0" aria-selected="true" className="ytab" id="yt0" role="tab">
-                Year 3
+                Years 2 to 3
               </button>
               <button
                 aria-controls="yp1"
@@ -398,7 +394,7 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 5
+                Year 4, Terms 1 to 2
               </button>
               <button
                 aria-controls="yp2"
@@ -408,7 +404,7 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 7
+                Year 4, Test Term
               </button>
               <button
                 aria-controls="yp3"
@@ -418,14 +414,14 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 9
+                Test Week
               </button>
             </div>
           </div>
           <div aria-labelledby="yt0" className="ypanel" id="yp0" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 3</h3>
-              <p>The first NAPLAN. Focus on confident reading and simple, clear writing.</p>
+              <h3>Years 2 and 3</h3>
+              <p>Build the base: strong reading and a love of puzzles.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -440,7 +436,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Reading questions slowly and fully
+                  Reading for fun every day
                 </li>
                 <li>
                   <svg
@@ -455,7 +451,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Using full stops and capital letters correctly
+                  Number patterns and mental maths
                 </li>
                 <li>
                   <svg
@@ -470,36 +466,36 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Counting, place value and simple word problems
+                  Simple logic puzzles
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 48 + 27?</p>
+              <p className="q-text">What comes next? 2, 4, 6, 8, ...</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>65
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>73
+                  <span className="qk">A</span>9
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>75
+                  <span className="qk">B</span>10
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>85
+                  <span className="qk">C</span>12
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">D</span>14
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (75).
+                The correct answer is B (10).
               </p>
             </div>
           </div>
           <div aria-labelledby="yt1" className="ypanel" hidden id="yp1" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 5</h3>
-              <p>Texts get longer and maths needs more than one step.</p>
+              <h3>Year 4, early</h3>
+              <p>Practise the test question styles, one section at a time.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -514,7 +510,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Using evidence from a text
+                  Timed reading passages
                 </li>
                 <li>
                   <svg
@@ -529,7 +525,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Fractions, decimals and measurement
+                  Multi-step maths problems
                 </li>
                 <li>
                   <svg
@@ -544,177 +540,177 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Planning a short piece of writing
+                  Pattern and shape puzzles
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 3/4 of 24?</p>
+              <p className="q-text">Which number does not belong? 4, 8, 12, 15, 16</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>6
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>12
-                </button>
-                <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>18
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>20
-                </button>
-              </div>
-              <p className="q-why" hidden>
-                The correct answer is C (18).
-              </p>
-            </div>
-          </div>
-          <div aria-labelledby="yt2" className="ypanel" hidden id="yp2" role="tabpanel">
-            <div className="yp-l">
-              <h3>Year 7</h3>
-              <p>The move to secondary school brings more reasoning and a wider range of texts.</p>
-              <ul className="ticks">
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Inference and author's purpose
-                </li>
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Ratios, percentages and early algebra
-                </li>
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Writing a clear, structured argument
-                </li>
-              </ul>
-            </div>
-            <div className="qcard">
-              <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 20% of 150?</p>
-              <div className="qopts">
-                <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>20
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>25
-                </button>
-                <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>30
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>35
-                </button>
-              </div>
-              <p className="q-why" hidden>
-                The correct answer is C (30).
-              </p>
-            </div>
-          </div>
-          <div aria-labelledby="yt3" className="ypanel" hidden id="yp3" role="tabpanel">
-            <div className="yp-l">
-              <h3>Year 9</h3>
-              <p>Questions need careful reasoning, strong grammar and organised writing.</p>
-              <ul className="ticks">
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Algebra and reasoning with data
-                </li>
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Analysing the writer's tone and techniques
-                </li>
-                <li>
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                  Writing with a clear voice and evidence
-                </li>
-              </ul>
-            </div>
-            <div className="qcard">
-              <span className="q-tag">Try a sample question</span>
-              <p className="q-text">Solve for x: 2x − 6 = 14</p>
-              <div className="qopts">
-                <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>5
+                  <span className="qk">A</span>4
                 </button>
                 <button className="qopt" data-ok="0">
                   <span className="qk">B</span>8
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>10
+                  <span className="qk">C</span>15
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">D</span>16
+                </button>
+              </div>
+              <p className="q-why" hidden>
+                The correct answer is C (15).
+              </p>
+            </div>
+          </div>
+          <div aria-labelledby="yt2" className="ypanel" hidden id="yp2" role="tabpanel">
+            <div className="yp-l">
+              <h3>Year 4, test term</h3>
+              <p>Full mock tests and a steady routine.</p>
+              <ul className="ticks">
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  Full-length timed practice
+                </li>
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  Reviewing mistakes calmly
+                </li>
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  Sleep, breakfast and a calm test day
+                </li>
+              </ul>
+            </div>
+            <div className="qcard">
+              <span className="q-tag">Try a sample question</span>
+              <p className="q-text">A class has 24 students. 3/8 are boys. How many are boys?</p>
+              <div className="qopts">
+                <button className="qopt" data-ok="0">
+                  <span className="qk">A</span>6
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">B</span>8
+                </button>
+                <button className="qopt" data-ok="1">
+                  <span className="qk">C</span>9
                 </button>
                 <button className="qopt" data-ok="0">
                   <span className="qk">D</span>12
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (10).
+                The correct answer is C (9).
+              </p>
+            </div>
+          </div>
+          <div aria-labelledby="yt3" className="ypanel" hidden id="yp3" role="tabpanel">
+            <div className="yp-l">
+              <h3>Test week</h3>
+              <p>Light practice and plenty of rest.</p>
+              <ul className="ticks">
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  A short warm-up each day
+                </li>
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  Packing what the test centre asks for
+                </li>
+                <li>
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                  </svg>
+                  Staying positive and relaxed
+                </li>
+              </ul>
+            </div>
+            <div className="qcard">
+              <span className="q-tag">Try a sample question</span>
+              <p className="q-text">What is 6 × 7?</p>
+              <div className="qopts">
+                <button className="qopt" data-ok="0">
+                  <span className="qk">A</span>36
+                </button>
+                <button className="qopt" data-ok="1">
+                  <span className="qk">B</span>42
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">C</span>48
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">D</span>49
+                </button>
+              </div>
+              <p className="q-why" hidden>
+                The correct answer is B (42).
               </p>
             </div>
           </div>
@@ -723,10 +719,10 @@ export default function NaplanPreparationPage() {
       <section aria-labelledby="lH" className="sec">
         <div className="wrap lv-wrap">
           <div>
-            <h2 id="lH">Understanding NAPLAN Results</h2>
+            <h2 id="lH">How OC Placement Works</h2>
             <p className="muted">
-              NAPLAN is not a pass or fail test. Results show your child's skills against national
-              proficiency levels for their year.
+              Every family applies online, sits the test and then receives an offer. Here are the
+              steps for NSW families.
             </p>
             <Link className="btn btn-hi" href="/free-assessment">
               See Where Your Child Sits
@@ -735,23 +731,32 @@ export default function NaplanPreparationPage() {
           <ol className="levels">
             <li style={{ "--c": "#1E8E5A", "--bg": "#E4F5EC" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Exceeding</b>
-              <span>Skills are above what is expected for the year level.</span>
+              <b>Apply</b>
+              <span>
+                Apply online through the NSW Department of Education during the application window.
+              </span>
             </li>
             <li style={{ "--c": "#2E7DD1", "--bg": "#E6F0FB" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Strong</b>
-              <span>Skills meet the expected level for the year.</span>
+              <b>Sit the Test</b>
+              <span>Your child sits the Opportunity Class Placement Test in Year 4.</span>
             </li>
             <li style={{ "--c": "#C98A12", "--bg": "#FDF3DC" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Developing</b>
-              <span>Skills are on the way to the expected level.</span>
+              <b>Wait for Results</b>
+              <span>Results come out in the same year.</span>
             </li>
             <li style={{ "--c": "#C93A3A", "--bg": "#FCE6E4" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Needs additional support</b>
-              <span>Skills are below the expected level, and extra help may be useful.</span>
+              <b>Receive an Offer</b>
+              <span>
+                Offers are made to the highest-scoring students, taking school choices into account.
+              </span>
+            </li>
+            <li style={{ "--c": "#6E6E6E", "--bg": "#F1EEEC" } as CSSProperties}>
+              <span className="lv-bar"></span>
+              <b>Accept the Place</b>
+              <span>Accept the offer by the date given, or stay at your current school.</span>
             </li>
           </ol>
         </div>
@@ -779,6 +784,40 @@ export default function NaplanPreparationPage() {
             </Link>
           </div>
           <div className="rels">
+            <Link className="rel" href="/naplan-preparation">
+              <span className="topic-ic">
+                <svg
+                  aria-hidden="true"
+                  className=""
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.8"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                </svg>
+              </span>
+              <span>
+                <b>NAPLAN</b>
+                <span>National Assessment Program, Literacy and Numeracy</span>
+              </span>
+              <span className="rel-go">
+                <svg
+                  aria-hidden="true"
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2.2"
+                  viewBox="0 0 24 24"
+                  width="16"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+              </span>
+            </Link>
             <Link className="rel" href="/exam-prep/icas">
               <span className="topic-ic">
                 <svg
@@ -797,40 +836,6 @@ export default function NaplanPreparationPage() {
               <span>
                 <b>ICAS</b>
                 <span>International Competitions and Assessments for Schools</span>
-              </span>
-              <span className="rel-go">
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="16"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeWidth="2.2"
-                  viewBox="0 0 24 24"
-                  width="16"
-                >
-                  <path d="M5 12h14M13 6l6 6-6 6"></path>
-                </svg>
-              </span>
-            </Link>
-            <Link className="rel" href="/exam-prep/oc-test">
-              <span className="topic-ic">
-                <svg
-                  aria-hidden="true"
-                  className=""
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.8"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0"></path>
-                </svg>
-              </span>
-              <span>
-                <b>OC Test</b>
-                <span>NSW Opportunity Class Placement Test</span>
               </span>
               <span className="rel-go">
                 <svg
@@ -922,7 +927,7 @@ export default function NaplanPreparationPage() {
       <section aria-labelledby="fH" className="sec">
         <div className="wrap faq-wrap">
           <div>
-            <h2 id="fH">NAPLAN Questions From Parents</h2>
+            <h2 id="fH">OC Test Questions From Parents</h2>
             <p className="muted">
               Not sure where to start? Message us on WhatsApp and a real person will reply.
             </p>
@@ -933,31 +938,23 @@ export default function NaplanPreparationPage() {
           <div className="faqs">
             <details className="faq" open>
               <summary>
-                Does my child need to prepare for NAPLAN?
+                Does my child need to be in a NSW school to sit the OC test?
                 <span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                NAPLAN is not a pass or fail test and is not used for school entry. A little regular
-                practice helps students feel calm and know what to expect.
+                Yes. The Opportunity Class test is for NSW students in Year 4 who want to join an
+                Opportunity Class in Year 5. Families outside NSW can ask about similar programs in
+                their state.
               </p>
             </details>
             <details className="faq">
               <summary>
-                What is the difference between NAPLAN and ICAS?
+                Is the OC test the same as the selective test?
                 <span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                NAPLAN is sat by every student in Years 3, 5, 7 and 9. ICAS is optional and
-                stretches students beyond the curriculum.
-              </p>
-            </details>
-            <details className="faq">
-              <summary>
-                Can my child opt out?<span aria-hidden="true" className="faq-ic"></span>
-              </summary>
-              <p>
-                Parents can ask the school about withdrawal or exemption. Speak with your child's
-                school first.
+                No. The OC test is for Year 5 entry to an Opportunity Class. The selective test is
+                for Year 7 entry to a selective high school.
               </p>
             </details>
             <details className="faq">
@@ -965,8 +962,15 @@ export default function NaplanPreparationPage() {
                 When should we start preparing?<span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                A term before the March window is a good start, with a little practice each week.
+                Many families start in Year 3 or early in Year 4, with a little practice each week.
               </p>
+            </details>
+            <details className="faq">
+              <summary>
+                Will test prep make my child anxious?
+                <span aria-hidden="true" className="faq-ic"></span>
+              </summary>
+              <p>We keep it low pressure, with short sessions and friendly tutors.</p>
             </details>
             <details className="faq">
               <summary>

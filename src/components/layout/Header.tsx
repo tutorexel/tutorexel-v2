@@ -10,13 +10,32 @@ import { getRegionalHref, getCurrentRegion, getSubjectHref, getYearHubHref } fro
 import { REGIONS_CONFIG } from "@/data/regions";
 import "./Header.css";
 
-const navLinks = [
+interface NavLinkItem {
+  label: string;
+  href: string;
+  hasMegaMenu?: boolean;
+  hasDropdown?: boolean;
+  auOnly?: boolean;
+}
+
+const navLinks: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
   { label: "Subjects", href: "/subjects", hasMegaMenu: true },
+  { label: "Exam Prep", href: "/exam-prep", auOnly: true, hasDropdown: true },
   { label: "Co-Curricular", href: "/co-curricular", hasDropdown: true },
+  { label: "Online Tutoring", href: "/online-tutoring", auOnly: true },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+];
+
+const examPrepItems = [
+  { label: "Exam Prep Overview", href: "/exam-prep" },
+  { label: "NAPLAN", href: "/naplan-preparation" },
+  { label: "ICAS", href: "/exam-prep/icas" },
+  { label: "OC Test", href: "/exam-prep/oc-test" },
+  { label: "Selective", href: "/exam-prep/selective" },
+  { label: "Scholarship", href: "/exam-prep/scholarship" },
 ];
 
 const coCurricularItems = [
@@ -51,6 +70,9 @@ export default function Header() {
       regionalTarget === "/nz"
     ) {
       return pathname === regionalTarget || pathname === `${regionalTarget}/`;
+    }
+    if (href === "/exam-prep" && pathname.startsWith("/naplan-preparation")) {
+      return true;
     }
     return pathname.startsWith(regionalTarget);
   };
@@ -88,7 +110,9 @@ export default function Header() {
         </Link>
 
         <ul className={`navbar__menu${menuOpen ? " navbar__menu--open" : ""}`}>
-          {navLinks.map((link) => (
+          {navLinks
+            .filter((link) => !link.auOnly || currentRegion === "au")
+            .map((link) => (
             <li
               key={link.label}
               className={
@@ -153,11 +177,11 @@ export default function Header() {
 
               {link.hasDropdown && (
                 <div className="navbar__dropdown">
-                  {coCurricularItems.map((item) => (
+                  {(link.href === "/exam-prep" ? examPrepItems : coCurricularItems).map((item) => (
                     <Link
                       key={item.href}
                       href={toHref(item.href)}
-                      className="navbar__dropdown-link"
+                      className={`navbar__dropdown-link${pathname === toHref(item.href) ? " navbar__dropdown-link--active" : ""}`}
                       onClick={() => setMenuOpen(false)}
                     >
                       {item.label}

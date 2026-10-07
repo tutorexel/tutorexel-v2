@@ -74,6 +74,11 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   ]),
 
   // Market-Unique Australian Pages (AU only: self-only hreflang)
+  { path: "/exam-prep", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/icas", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/oc-test", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/selective", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/scholarship", regions: ["au"], isMarketUnique: true },
   { path: "/naplan-preparation", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/sydney", regions: ["au"], isMarketUnique: true },

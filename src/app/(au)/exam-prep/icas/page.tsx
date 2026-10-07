@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import ExamPrepInteractions from "@/components/exam-prep/ExamPrepInteractions";
-import "./naplan-preparation.css";
+import "./icas.css";
 
 export const metadata: Metadata = {
-  title: "NAPLAN Preparation Online Australia | Years 3, 5, 7, 9 | TutorExel",
+  title: "ICAS Preparation Online Australia | Years 2 to 10 | TutorExel",
   description:
-    "Online NAPLAN preparation for Years 3, 5, 7 and 9. Live maths and English lessons, practice tests and parent reports. Book a free assessment today.",
-  alternates: { canonical: "https://www.tutorexel.com/naplan-preparation" },
+    "Online ICAS preparation for Years 2 to 10. Live maths, English and science lessons, practice papers and mock tests. Book a free assessment today.",
+  alternates: { canonical: "https://www.tutorexel.com/exam-prep/icas" },
 };
 
 const jsonLd = [
@@ -27,22 +27,22 @@ const jsonLd = [
       {
         "@type": "ListItem",
         position: 3,
-        name: "NAPLAN",
-        item: "https://www.tutorexel.com/naplan-preparation",
+        name: "ICAS",
+        item: "https://www.tutorexel.com/exam-prep/icas",
       },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "NAPLAN preparation",
+    name: "ICAS preparation",
     provider: {
       "@type": "EducationalOrganization",
       name: "TutorExel",
       url: "https://www.tutorexel.com",
     },
     areaServed: { "@type": "Country", name: "Australia" },
-    url: "https://www.tutorexel.com/naplan-preparation",
+    url: "https://www.tutorexel.com/exam-prep/icas",
   },
   {
     "@context": "https://schema.org",
@@ -50,26 +50,26 @@ const jsonLd = [
     mainEntity: [
       {
         "@type": "Question",
-        name: "Does my child need to prepare for NAPLAN?",
+        name: "Does my child need ICAS to get into a school?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "NAPLAN is not a pass or fail test and is not used for school entry. A little regular practice helps students feel calm and know what to expect.",
+          text: "No. ICAS is an optional academic competition. It is a good way to stretch strong students and build test confidence.",
         },
       },
       {
         "@type": "Question",
-        name: "What is the difference between NAPLAN and ICAS?",
+        name: "How is ICAS different from NAPLAN?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "NAPLAN is sat by every student in Years 3, 5, 7 and 9. ICAS is optional and stretches students beyond the curriculum.",
+          text: "NAPLAN is a national test for Years 3, 5, 7 and 9 that every student sits. ICAS is optional, set by year level and aims to stretch students.",
         },
       },
       {
         "@type": "Question",
-        name: "Can my child opt out?",
+        name: "Can we enter ICAS without our school?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Parents can ask the school about withdrawal or exemption. Speak with your child's school first.",
+          text: "Entry is usually through your child's school. Ask the school office about registration, as options differ.",
         },
       },
       {
@@ -77,7 +77,7 @@ const jsonLd = [
         name: "When should we start preparing?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A term before the March window is a good start, with a little practice each week.",
+          text: "A term or two before the papers is a good start, with a little practice each week.",
         },
       },
       {
@@ -92,9 +92,9 @@ const jsonLd = [
   },
 ];
 
-export default function NaplanPreparationPage() {
+export default function IcasPreparationPage() {
   return (
-    <div className="xp xp-naplan">
+    <div className="xp xp-icas">
       {jsonLd.map((data, i) => (
         <script
           key={i}
@@ -123,7 +123,7 @@ export default function NaplanPreparationPage() {
               <span aria-hidden="true">/</span>
               <Link href="/exam-prep">Exam Prep</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">NAPLAN</span>
+              <span aria-current="page">ICAS</span>
             </nav>
             <span className="eyebrow">
               <svg
@@ -136,16 +136,16 @@ export default function NaplanPreparationPage() {
                 strokeWidth="1.8"
                 viewBox="0 0 24 24"
               >
-                <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
+                <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
               </svg>{" "}
-              Years 3, 5, 7 and 9
+              Years 2 to 10
             </span>
             <h1 className="hub-title">
-              Online <span className="grad">NAPLAN Preparation</span> for Australian Students
+              Online <span className="grad">ICAS Preparation</span> for Australian Students
             </h1>
             <p className="hub-sub">
-              Help your child feel calm and ready for NAPLAN in Years 3, 5, 7 and 9. Live online
-              lessons build the reading, writing and numeracy skills the tests measure.
+              Stretch your child beyond the classroom with ICAS prep for Years 2 to 10. Live online
+              lessons build the deeper thinking that competition-style papers reward.
             </p>
             <div className="xd-cta">
               <Link className="btn btn-hi" href="/free-assessment">
@@ -156,8 +156,8 @@ export default function NaplanPreparationPage() {
               </Link>
             </div>
           </div>
-          <aside aria-label="NAPLAN at a Glance" className="glance">
-            <p className="glance-t">NAPLAN at a Glance</p>
+          <aside aria-label="ICAS at a Glance" className="glance">
+            <p className="glance-t">ICAS at a Glance</p>
             <ul className="xfacts">
               <li>
                 <span className="xf-ic">
@@ -176,7 +176,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>When</b>March each year, sat at school
+                  <b>When</b>Mid-year, sat through your child's school
                 </span>
               </li>
               <li>
@@ -196,8 +196,7 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Format</b>Online, with tests that adapt to how your child is going. Some Year 3
-                  students may write on paper
+                  <b>Format</b>Online papers, one paper per subject
                 </span>
               </li>
               <li>
@@ -216,7 +215,8 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Domains</b>Reading, Writing, Language conventions, Numeracy
+                  <b>Subjects</b>English, Maths, Science, Writing, Spelling Bee, Digital
+                  Technologies
                 </span>
               </li>
               <li>
@@ -236,8 +236,8 @@ export default function NaplanPreparationPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Results</b>A proficiency level for each domain: Exceeding, Strong, Developing
-                  or Needs additional support
+                  <b>Results</b>A certificate for every student, with awards from Participation to
+                  High Distinction
                 </span>
               </li>
             </ul>
@@ -248,10 +248,10 @@ export default function NaplanPreparationPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="dH">The NAPLAN Tests We Prepare Students For</h2>
+              <h2 id="dH">The ICAS Papers We Prepare Students For</h2>
               <p className="muted">
-                NAPLAN checks core skills from the Australian Curriculum, so steady practice beats
-                last-minute cramming.
+                Questions go beyond the year's curriculum, so students practise thinking, not just
+                recall.
               </p>
             </div>
           </div>
@@ -272,17 +272,75 @@ export default function NaplanPreparationPage() {
                     <path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0"></path>
                   </svg>
                 </span>
-                <h3>Reading</h3>
+                <h3>English</h3>
               </div>
-              <p className="dom-what">Understanding texts, from stories to information pieces.</p>
+              <p className="dom-what">Reading and making sense of a wide range of texts.</p>
               <ul className="dom-list">
-                <li>Finding and using details in a text</li>
-                <li>Working out what is implied</li>
-                <li>Vocabulary in context</li>
+                <li>Inference across poems, ads and articles</li>
+                <li>Vocabulary and figurative language</li>
+                <li>How a text is built and why</li>
               </ul>
               <p className="dom-how">
-                <b>How we prepare</b>Weekly reading across unfamiliar text types, with a chat about
-                how to find each answer.
+                <b>How we prepare</b>Weekly reading across unfamiliar text types, then a chat about
+                why each answer works.
+              </p>
+            </article>
+            <article className="dom">
+              <div className="dom-head">
+                <span className="tile-ic">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path>
+                  </svg>
+                </span>
+                <h3>Maths</h3>
+              </div>
+              <p className="dom-what">Problem solving across every strand of the curriculum.</p>
+              <ul className="dom-list">
+                <li>Patterns and number puzzles</li>
+                <li>Spatial and measurement reasoning</li>
+                <li>Multi-step word problems</li>
+              </ul>
+              <p className="dom-how">
+                <b>How we prepare</b>Challenge questions sit a step above the year level, with
+                strategies for problems students have not seen before.
+              </p>
+            </article>
+            <article className="dom">
+              <div className="dom-head">
+                <span className="tile-ic">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
+                  </svg>
+                </span>
+                <h3>Science</h3>
+              </div>
+              <p className="dom-what">Scientific thinking using data, diagrams and experiments.</p>
+              <ul className="dom-list">
+                <li>Reading tables and graphs</li>
+                <li>Fair tests and variables</li>
+                <li>Drawing conclusions from evidence</li>
+              </ul>
+              <p className="dom-how">
+                <b>How we prepare</b>Practice with unfamiliar scientific data, so students have the
+                reasoning skills they need on the day.
               </p>
             </article>
             <article className="dom">
@@ -304,74 +362,15 @@ export default function NaplanPreparationPage() {
                 </span>
                 <h3>Writing</h3>
               </div>
-              <p className="dom-what">One writing task, a narrative or persuasive piece.</p>
+              <p className="dom-what">One extended piece: a narrative or persuasive text.</p>
               <ul className="dom-list">
-                <li>Ideas and a clear point of view</li>
+                <li>Ideas and originality</li>
                 <li>Structure and paragraphing</li>
-                <li>Sentence variety and word choice</li>
+                <li>Vocabulary and sentence control</li>
               </ul>
               <p className="dom-how">
-                <b>How we prepare</b>Timed prompts with feedback on structure and ideas, practised
-                in the same format as the test.
-              </p>
-            </article>
-            <article className="dom">
-              <div className="dom-head">
-                <span className="tile-ic">
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
-                  </svg>
-                </span>
-                <h3>Language Conventions</h3>
-              </div>
-              <p className="dom-what">Spelling, grammar and punctuation.</p>
-              <ul className="dom-list">
-                <li>Spelling common and tricky words</li>
-                <li>Sentence structure and grammar</li>
-                <li>Punctuation, including commas and apostrophes</li>
-              </ul>
-              <p className="dom-how">
-                <b>How we prepare</b>Short, regular practice, so rules become habits.
-              </p>
-            </article>
-            <article className="dom">
-              <div className="dom-head">
-                <span className="tile-ic">
-                  <svg
-                    aria-hidden="true"
-                    className=""
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.8"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path>
-                  </svg>
-                </span>
-                <h3>Numeracy</h3>
-              </div>
-              <p className="dom-what">
-                Number, algebra, measurement, geometry, statistics and probability.
-              </p>
-              <ul className="dom-list">
-                <li>Multi-step word problems</li>
-                <li>Reading graphs and tables</li>
-                <li>Using a calculator wisely where allowed</li>
-              </ul>
-              <p className="dom-how">
-                <b>How we prepare</b>Test-style questions practised for every strand, with a focus
-                on showing working.
+                <b>How we prepare</b>Timed prompts with feedback on originality and structure, the
+                two areas that help a piece stand out.
               </p>
             </article>
           </div>
@@ -381,14 +380,14 @@ export default function NaplanPreparationPage() {
         <div className="wrap">
           <div className="sec-head sec-head--stack">
             <div>
-              <h2 id="yH">What to Focus on in Each NAPLAN Year</h2>
+              <h2 id="yH">What to Focus on at Each Paper Level</h2>
               <p className="muted">
-                NAPLAN is set in Years 3, 5, 7 and 9. Choose your child's year and try a question.
+                ICAS papers are set by year level. Choose your child's band and try a question.
               </p>
             </div>
-            <div aria-label="What to focus on in each year" className="ytabs" role="tablist">
+            <div aria-label="What to focus on by paper level" className="ytabs" role="tablist">
               <button aria-controls="yp0" aria-selected="true" className="ytab" id="yt0" role="tab">
-                Year 3
+                Years 2 to 4
               </button>
               <button
                 aria-controls="yp1"
@@ -398,7 +397,7 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 5
+                Years 5 to 6
               </button>
               <button
                 aria-controls="yp2"
@@ -408,7 +407,7 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 7
+                Years 7 to 8
               </button>
               <button
                 aria-controls="yp3"
@@ -418,14 +417,14 @@ export default function NaplanPreparationPage() {
                 role="tab"
                 tabIndex={-1}
               >
-                Year 9
+                Years 9 to 10
               </button>
             </div>
           </div>
           <div aria-labelledby="yt0" className="ypanel" id="yp0" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 3</h3>
-              <p>The first NAPLAN. Focus on confident reading and simple, clear writing.</p>
+              <h3>Years 2 to 4</h3>
+              <p>Early papers reward careful reading and simple reasoning.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -440,7 +439,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Reading questions slowly and fully
+                  Reading every option before choosing
                 </li>
                 <li>
                   <svg
@@ -455,7 +454,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Using full stops and capital letters correctly
+                  Picture-based maths puzzles
                 </li>
                 <li>
                   <svg
@@ -470,36 +469,36 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Counting, place value and simple word problems
+                  Simple science observations
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 48 + 27?</p>
+              <p className="q-text">What comes next? 4, 8, 12, 16, ...</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>65
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>73
+                  <span className="qk">A</span>18
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>75
+                  <span className="qk">B</span>20
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>85
+                  <span className="qk">C</span>22
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">D</span>24
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (75).
+                The correct answer is B (20).
               </p>
             </div>
           </div>
           <div aria-labelledby="yt1" className="ypanel" hidden id="yp1" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 5</h3>
-              <p>Texts get longer and maths needs more than one step.</p>
+              <h3>Years 5 and 6</h3>
+              <p>Papers add multi-step thinking and longer texts.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -514,7 +513,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Using evidence from a text
+                  Working through two-step problems
                 </li>
                 <li>
                   <svg
@@ -529,7 +528,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Fractions, decimals and measurement
+                  Reading graphs and tables with care
                 </li>
                 <li>
                   <svg
@@ -544,36 +543,36 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Planning a short piece of writing
+                  Spotting what a writer implies
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 3/4 of 24?</p>
+              <p className="q-text">A pencil costs 40 cents. How much do 5 pencils cost?</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>6
-                </button>
-                <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>12
+                  <span className="qk">A</span>$1.50
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>18
+                  <span className="qk">B</span>$2.00
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>20
+                  <span className="qk">C</span>$2.50
+                </button>
+                <button className="qopt" data-ok="0">
+                  <span className="qk">D</span>$4.00
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (18).
+                The correct answer is B ($2.00).
               </p>
             </div>
           </div>
           <div aria-labelledby="yt2" className="ypanel" hidden id="yp2" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 7</h3>
-              <p>The move to secondary school brings more reasoning and a wider range of texts.</p>
+              <h3>Years 7 and 8</h3>
+              <p>Questions ask for reasoning and explanation, not just answers.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -588,7 +587,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Inference and author's purpose
+                  Algebraic thinking and ratios
                 </li>
                 <li>
                   <svg
@@ -603,7 +602,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Ratios, percentages and early algebra
+                  Experiment design and variables
                 </li>
                 <li>
                   <svg
@@ -618,36 +617,36 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Writing a clear, structured argument
+                  Comparing the tone of two texts
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">What is 20% of 150?</p>
+              <p className="q-text">What is 15% of 80?</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>20
+                  <span className="qk">A</span>8
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>25
+                  <span className="qk">B</span>10
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>30
+                  <span className="qk">C</span>12
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>35
+                  <span className="qk">D</span>15
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (30).
+                The correct answer is C (12).
               </p>
             </div>
           </div>
           <div aria-labelledby="yt3" className="ypanel" hidden id="yp3" role="tabpanel">
             <div className="yp-l">
-              <h3>Year 9</h3>
-              <p>Questions need careful reasoning, strong grammar and organised writing.</p>
+              <h3>Years 9 and 10</h3>
+              <p>Papers stretch the strongest students with abstract and unfamiliar problems.</p>
               <ul className="ticks">
                 <li>
                   <svg
@@ -662,7 +661,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Algebra and reasoning with data
+                  Multi-step algebra and geometry
                 </li>
                 <li>
                   <svg
@@ -677,7 +676,7 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Analysing the writer's tone and techniques
+                  Interpreting data and drawing conclusions
                 </li>
                 <li>
                   <svg
@@ -692,29 +691,29 @@ export default function NaplanPreparationPage() {
                   >
                     <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                   </svg>
-                  Writing with a clear voice and evidence
+                  Writing with a clear voice and argument
                 </li>
               </ul>
             </div>
             <div className="qcard">
               <span className="q-tag">Try a sample question</span>
-              <p className="q-text">Solve for x: 2x − 6 = 14</p>
+              <p className="q-text">Solve for x: 3x + 5 = 20</p>
               <div className="qopts">
                 <button className="qopt" data-ok="0">
-                  <span className="qk">A</span>5
+                  <span className="qk">A</span>3
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">B</span>8
+                  <span className="qk">B</span>4
                 </button>
                 <button className="qopt" data-ok="1">
-                  <span className="qk">C</span>10
+                  <span className="qk">C</span>5
                 </button>
                 <button className="qopt" data-ok="0">
-                  <span className="qk">D</span>12
+                  <span className="qk">D</span>6
                 </button>
               </div>
               <p className="q-why" hidden>
-                The correct answer is C (10).
+                The correct answer is C (5).
               </p>
             </div>
           </div>
@@ -723,10 +722,10 @@ export default function NaplanPreparationPage() {
       <section aria-labelledby="lH" className="sec">
         <div className="wrap lv-wrap">
           <div>
-            <h2 id="lH">Understanding NAPLAN Results</h2>
+            <h2 id="lH">Understanding ICAS Awards</h2>
             <p className="muted">
-              NAPLAN is not a pass or fail test. Results show your child's skills against national
-              proficiency levels for their year.
+              Every student receives a certificate. Awards show how a student performed compared
+              with others in the same year level.
             </p>
             <Link className="btn btn-hi" href="/free-assessment">
               See Where Your Child Sits
@@ -735,23 +734,28 @@ export default function NaplanPreparationPage() {
           <ol className="levels">
             <li style={{ "--c": "#1E8E5A", "--bg": "#E4F5EC" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Exceeding</b>
-              <span>Skills are above what is expected for the year level.</span>
+              <b>High Distinction</b>
+              <span>The top 1% of participants in the year level.</span>
             </li>
             <li style={{ "--c": "#2E7DD1", "--bg": "#E6F0FB" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Strong</b>
-              <span>Skills meet the expected level for the year.</span>
+              <b>Distinction</b>
+              <span>The next 10% of participants.</span>
             </li>
             <li style={{ "--c": "#C98A12", "--bg": "#FDF3DC" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Developing</b>
-              <span>Skills are on the way to the expected level.</span>
+              <b>Credit</b>
+              <span>The next 25% of participants.</span>
             </li>
             <li style={{ "--c": "#C93A3A", "--bg": "#FCE6E4" } as CSSProperties}>
               <span className="lv-bar"></span>
-              <b>Needs additional support</b>
-              <span>Skills are below the expected level, and extra help may be useful.</span>
+              <b>Merit</b>
+              <span>The next 10% of participants.</span>
+            </li>
+            <li style={{ "--c": "#6E6E6E", "--bg": "#F1EEEC" } as CSSProperties}>
+              <span className="lv-bar"></span>
+              <b>Participation</b>
+              <span>Recognises every student who sits the paper.</span>
             </li>
           </ol>
         </div>
@@ -779,7 +783,7 @@ export default function NaplanPreparationPage() {
             </Link>
           </div>
           <div className="rels">
-            <Link className="rel" href="/exam-prep/icas">
+            <Link className="rel" href="/naplan-preparation">
               <span className="topic-ic">
                 <svg
                   aria-hidden="true"
@@ -791,12 +795,12 @@ export default function NaplanPreparationPage() {
                   strokeWidth="1.8"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
+                  <path d="M9 4h6M8 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M8 12l2.5 2.5L16 9"></path>
                 </svg>
               </span>
               <span>
-                <b>ICAS</b>
-                <span>International Competitions and Assessments for Schools</span>
+                <b>NAPLAN</b>
+                <span>National Assessment Program, Literacy and Numeracy</span>
               </span>
               <span className="rel-go">
                 <svg
@@ -922,7 +926,7 @@ export default function NaplanPreparationPage() {
       <section aria-labelledby="fH" className="sec">
         <div className="wrap faq-wrap">
           <div>
-            <h2 id="fH">NAPLAN Questions From Parents</h2>
+            <h2 id="fH">ICAS Questions From Parents</h2>
             <p className="muted">
               Not sure where to start? Message us on WhatsApp and a real person will reply.
             </p>
@@ -933,31 +937,32 @@ export default function NaplanPreparationPage() {
           <div className="faqs">
             <details className="faq" open>
               <summary>
-                Does my child need to prepare for NAPLAN?
+                Does my child need ICAS to get into a school?
                 <span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                NAPLAN is not a pass or fail test and is not used for school entry. A little regular
-                practice helps students feel calm and know what to expect.
+                No. ICAS is an optional academic competition. It is a good way to stretch strong
+                students and build test confidence.
               </p>
             </details>
             <details className="faq">
               <summary>
-                What is the difference between NAPLAN and ICAS?
+                How is ICAS different from NAPLAN?
                 <span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                NAPLAN is sat by every student in Years 3, 5, 7 and 9. ICAS is optional and
-                stretches students beyond the curriculum.
+                NAPLAN is a national test for Years 3, 5, 7 and 9 that every student sits. ICAS is
+                optional, set by year level and aims to stretch students.
               </p>
             </details>
             <details className="faq">
               <summary>
-                Can my child opt out?<span aria-hidden="true" className="faq-ic"></span>
+                Can we enter ICAS without our school?
+                <span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                Parents can ask the school about withdrawal or exemption. Speak with your child's
-                school first.
+                Entry is usually through your child's school. Ask the school office about
+                registration, as options differ.
               </p>
             </details>
             <details className="faq">
@@ -965,7 +970,7 @@ export default function NaplanPreparationPage() {
                 When should we start preparing?<span aria-hidden="true" className="faq-ic"></span>
               </summary>
               <p>
-                A term before the March window is a good start, with a little practice each week.
+                A term or two before the papers is a good start, with a little practice each week.
               </p>
             </details>
             <details className="faq">

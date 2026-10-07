@@ -1257,6 +1257,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
 };
 
 export const AU_MARKET_UNIQUE_META: Record<string, PageMetaItem> = {
+  "/exam-prep": {
+    "title": "NAPLAN, ICAS, OC and Selective Test Prep | TutorExel",
+    "description": "Prep for NAPLAN and ICAS built into live online tutoring for Years 2 to 10 in Australia. Practice quizzes, mock tests and progress reports. Book a free trial."
+  },
   "/naplan-preparation": {
     "title": "NAPLAN Preparation Online | TutorExel Australia",
     "description": "Targeted NAPLAN tutoring for Years 3, 5, and 7. Master numeracy, reading, writing, and language conventions with structured tests and expert feedback."

@@ -62,4 +62,5 @@ coverage
 /.agents/
 /.claude/
 *.tsbuildinfo
-/scratch/
+/scratch/
+public/design-reference/
