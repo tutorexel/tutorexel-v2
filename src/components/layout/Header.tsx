@@ -16,26 +16,36 @@ interface NavLinkItem {
   hasMegaMenu?: boolean;
   hasDropdown?: boolean;
   auOnly?: boolean;
+  regions?: ("au" | "ca" | "us" | "nz")[];
 }
 
 const navLinks: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
   { label: "Subjects", href: "/subjects", hasMegaMenu: true },
-  { label: "Exam Prep", href: "/exam-prep", auOnly: true, hasDropdown: true },
+  { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca"], hasDropdown: true },
   { label: "Co-Curricular", href: "/co-curricular", hasDropdown: true },
-  { label: "Online Tutoring", href: "/online-tutoring", auOnly: true },
+  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca"] },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
-const examPrepItems = [
+const auExamPrepItems = [
   { label: "Exam Prep Overview", href: "/exam-prep" },
   { label: "NAPLAN", href: "/naplan-preparation" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "OC Test", href: "/exam-prep/oc-test" },
   { label: "Selective", href: "/exam-prep/selective" },
   { label: "Scholarship", href: "/exam-prep/scholarship" },
+];
+
+const caExamPrepItems = [
+  { label: "Exam Prep Overview", href: "/exam-prep" },
+  { label: "EQAO", href: "/exam-prep/eqao" },
+  { label: "OSSLT", href: "/exam-prep/osslt" },
+  { label: "Alberta PATs", href: "/exam-prep/pat" },
+  { label: "BC FSA", href: "/exam-prep/fsa" },
+  { label: "Gifted Testing", href: "/exam-prep/gifted" },
 ];
 
 const coCurricularItems = [
@@ -111,7 +121,11 @@ export default function Header() {
 
         <ul className={`navbar__menu${menuOpen ? " navbar__menu--open" : ""}`}>
           {navLinks
-            .filter((link) => !link.auOnly || currentRegion === "au")
+            .filter((link) => {
+              if (link.regions) return link.regions.includes(currentRegion);
+              if (link.auOnly) return currentRegion === "au";
+              return true;
+            })
             .map((link) => (
             <li
               key={link.label}
@@ -177,7 +191,10 @@ export default function Header() {
 
               {link.hasDropdown && (
                 <div className="navbar__dropdown">
-                  {(link.href === "/exam-prep" ? examPrepItems : coCurricularItems).map((item) => (
+                  {(link.href === "/exam-prep"
+                    ? (currentRegion === "ca" ? caExamPrepItems : auExamPrepItems)
+                    : coCurricularItems
+                  ).map((item) => (
                     <Link
                       key={item.href}
                       href={toHref(item.href)}

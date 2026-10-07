@@ -73,14 +73,16 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     { path: `/subjects/grade-${y}/science`, regions: ["ca", "us"] as RegionCode[] },
   ]),
 
-  // Market-Unique Australian Pages (AU only: self-only hreflang)
-  { path: "/exam-prep", regions: ["au"], isMarketUnique: true },
+  // Exam Prep & Tutoring Hubs (AU and CA)
+  { path: "/exam-prep", regions: ["au", "ca"] },
+  { path: "/online-tutoring", regions: ["au", "ca"] },
+
+  // Market-Unique Australian Pages
   { path: "/exam-prep/icas", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/oc-test", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/selective", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/scholarship", regions: ["au"], isMarketUnique: true },
   { path: "/naplan-preparation", regions: ["au"], isMarketUnique: true },
-  { path: "/online-tutoring", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/sydney", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/melbourne", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },
@@ -88,6 +90,13 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/online-tutoring/adelaide", regions: ["au"], isMarketUnique: true },
   { path: "/research", regions: ["au"], isMarketUnique: true },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
+
+  // Market-Unique Canadian Pages
+  { path: "/exam-prep/eqao", regions: ["ca"], isMarketUnique: true },
+  { path: "/exam-prep/osslt", regions: ["ca"], isMarketUnique: true },
+  { path: "/exam-prep/pat", regions: ["ca"], isMarketUnique: true },
+  { path: "/exam-prep/fsa", regions: ["ca"], isMarketUnique: true },
+  { path: "/exam-prep/gifted", regions: ["ca"], isMarketUnique: true },
 ];
 
 export function getPageAvailability(rawPath: string): RegionCode[] {

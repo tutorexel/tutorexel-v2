@@ -98,16 +98,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/ca/online-tutoring",
-        destination: "/online-tutoring",
-        permanent: true,
-      },
-      {
-        source: "/ca/online-tutoring/:path*",
-        destination: "/online-tutoring/:path*",
-        permanent: true,
-      },
-      {
         source: "/nz/online-tutoring",
         destination: "/online-tutoring",
         permanent: true,

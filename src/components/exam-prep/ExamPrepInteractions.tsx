@@ -11,7 +11,7 @@ import { useEffect } from "react";
  * - city search + area tabs  #cq, .atab (city hub)
  * Markup is server-rendered; this only attaches listeners and cleans up on unmount.
  */
-export default function ExamPrepInteractions() {
+export default function ExamPrepInteractions({ unit = "Year" }: { unit?: "Year" | "Grade" }) {
   useEffect(() => {
     const ac = new AbortController();
     const opt = { signal: ac.signal };
@@ -100,8 +100,8 @@ export default function ExamPrepInteractions() {
           if (es)
             es.textContent =
               y === "all"
-                ? "Choose a year level to see which tests apply."
-                : n + (n === 1 ? " test applies" : " tests apply") + " in Year " + y + ".";
+                ? "Choose a " + unit.toLowerCase() + " level to see which tests apply."
+                : n + (n === 1 ? " test applies" : " tests apply") + " in " + unit + " " + y + ".";
         },
         opt,
       ),
@@ -145,7 +145,7 @@ export default function ExamPrepInteractions() {
       ac.abort();
       timers.forEach((id) => window.clearInterval(id));
     };
-  }, []);
+  }, [unit]);
 
   return null;
 }

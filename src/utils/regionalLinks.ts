@@ -35,6 +35,8 @@ export const SHARED_BASE_ROUTES = new Set([
   "/links",
   "/login",
   "/thank-you",
+  "/exam-prep",
+  "/online-tutoring",
 ]);
 
 /**
@@ -42,7 +44,6 @@ export const SHARED_BASE_ROUTES = new Set([
  */
 export const AU_ONLY_BASE_ROUTES = new Set([
   "/naplan-preparation",
-  "/online-tutoring",
   "/research",
 ]);
 
