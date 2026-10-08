@@ -73,12 +73,12 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     { path: `/subjects/grade-${y}/science`, regions: ["ca", "us"] as RegionCode[] },
   ]),
 
-  // Exam Prep & Tutoring Hubs (AU and CA)
-  { path: "/exam-prep", regions: ["au", "ca"] },
-  { path: "/online-tutoring", regions: ["au", "ca"] },
+  // Exam Prep & Tutoring Hubs (AU, CA, NZ)
+  { path: "/exam-prep", regions: ["au", "ca", "nz"] },
+  { path: "/online-tutoring", regions: ["au", "ca", "nz"] },
 
   // Market-Unique Australian Pages
-  { path: "/exam-prep/icas", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/icas", regions: ["au", "nz"] },
   { path: "/exam-prep/oc-test", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/selective", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/scholarship", regions: ["au"], isMarketUnique: true },
@@ -91,12 +91,16 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/research", regions: ["au"], isMarketUnique: true },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
 
-  // Market-Unique Canadian Pages
+  // Canadian Pages
   { path: "/exam-prep/eqao", regions: ["ca"], isMarketUnique: true },
   { path: "/exam-prep/osslt", regions: ["ca"], isMarketUnique: true },
-  { path: "/exam-prep/pat", regions: ["ca"], isMarketUnique: true },
+  { path: "/exam-prep/pat", regions: ["ca", "nz"] },
   { path: "/exam-prep/fsa", regions: ["ca"], isMarketUnique: true },
   { path: "/exam-prep/gifted", regions: ["ca"], isMarketUnique: true },
+
+  // New Zealand Pages
+  { path: "/exam-prep/e-asttle", regions: ["nz"], isMarketUnique: true },
+  { path: "/exam-prep/ncea", regions: ["nz"], isMarketUnique: true },
 ];
 
 export function getPageAvailability(rawPath: string): RegionCode[] {

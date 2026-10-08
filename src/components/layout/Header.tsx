@@ -22,9 +22,9 @@ interface NavLinkItem {
 const navLinks: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
   { label: "Subjects", href: "/subjects", hasMegaMenu: true },
-  { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca"], hasDropdown: true },
+  { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca", "nz"], hasDropdown: true },
   { label: "Co-Curricular", href: "/co-curricular", hasDropdown: true },
-  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca"] },
+  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca", "nz"] },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -46,6 +46,14 @@ const caExamPrepItems = [
   { label: "Alberta PATs", href: "/exam-prep/pat" },
   { label: "BC FSA", href: "/exam-prep/fsa" },
   { label: "Gifted Testing", href: "/exam-prep/gifted" },
+];
+
+const nzExamPrepItems = [
+  { label: "Exam Prep Overview", href: "/exam-prep" },
+  { label: "PAT", href: "/exam-prep/pat" },
+  { label: "e-asTTle", href: "/exam-prep/e-asttle" },
+  { label: "ICAS", href: "/exam-prep/icas" },
+  { label: "NCEA", href: "/exam-prep/ncea" },
 ];
 
 const coCurricularItems = [
@@ -192,7 +200,7 @@ export default function Header() {
               {link.hasDropdown && (
                 <div className="navbar__dropdown">
                   {(link.href === "/exam-prep"
-                    ? (currentRegion === "ca" ? caExamPrepItems : auExamPrepItems)
+                    ? (currentRegion === "ca" ? caExamPrepItems : currentRegion === "nz" ? nzExamPrepItems : auExamPrepItems)
                     : coCurricularItems
                   ).map((item) => (
                     <Link

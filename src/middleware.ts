@@ -56,10 +56,10 @@ export function middleware(request: NextRequest) {
     response = NextResponse.redirect(new URL((pathname.slice(3) || "/") + search, request.url), 301);
   } else {
     // 3. Market-unique Australian routes accessed under /us, /ca, /nz redirect straight to AU root
-    // Note: Canada has its own /ca/online-tutoring, so only /us and /nz redirect online-tutoring.
+    // Note: Canada and NZ have their own online-tutoring pages, so only /us redirects online-tutoring.
     let marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation|research)(?:\/.*)?)$/i);
     if (!marketUniqueMatch) {
-      marketUniqueMatch = pathname.match(/^\/(us|nz)(\/(?:online-tutoring)(?:\/.*)?)$/i);
+      marketUniqueMatch = pathname.match(/^\/(us)(\/(?:online-tutoring)(?:\/.*)?)$/i);
     }
     if (marketUniqueMatch) {
       let target = marketUniqueMatch[2];
