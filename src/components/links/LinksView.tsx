@@ -277,12 +277,18 @@ export default function LinksView({ region }: { region: RegionCode }) {
         <div className="links-section-label">Follow Us</div>
         <div className="links-social">
           {socialLinks
-            .filter((link) => link.iconType !== "whatsapp" || region === "au")
-            .map((link, i) => (
-              <a key={i} href={link.href} target="_blank" rel="noopener noreferrer" className="links-social__btn" title={link.title}>
-                <SocialIcon type={link.iconType} />
-              </a>
-            ))}
+            .filter((link) => link.iconType !== "whatsapp" || region === "au" || region === "us")
+            .map((link, i) => {
+              const href =
+                link.iconType === "whatsapp" && region === "us"
+                  ? "https://wa.me/12067977387"
+                  : link.href;
+              return (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="links-social__btn" title={link.title}>
+                  <SocialIcon type={link.iconType} />
+                </a>
+              );
+            })}
         </div>
 
         <div className="links-footer">

@@ -22,9 +22,9 @@ interface NavLinkItem {
 const navLinks: NavLinkItem[] = [
   { label: "About Us", href: "/about" },
   { label: "Subjects", href: "/subjects", hasMegaMenu: true },
-  { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca", "nz"], hasDropdown: true },
+  { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca", "nz", "us"], hasDropdown: true },
   { label: "Co-Curricular", href: "/co-curricular", hasDropdown: true },
-  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca", "nz"] },
+  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca", "nz", "us"] },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -54,6 +54,28 @@ const nzExamPrepItems = [
   { label: "e-asTTle", href: "/exam-prep/e-asttle" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "NCEA", href: "/exam-prep/ncea" },
+];
+
+const usExamPrepItems = [
+  { label: "All Exam Prep", href: "/exam-prep" },
+  { label: "State Tests", href: "/exam-prep/state-tests" },
+  { label: "STAAR (Texas)", href: "/exam-prep/staar" },
+  { label: "CAASPP (California)", href: "/exam-prep/caaspp" },
+  { label: "FAST (Florida)", href: "/exam-prep/fast" },
+  { label: "CogAT (Gifted and Talented)", href: "/exam-prep/cogat" },
+  { label: "MAP Growth", href: "/exam-prep/map-growth" },
+];
+
+const usOnlineTutoringItems = [
+  { label: "All Cities", href: "/online-tutoring" },
+  { label: "New York", href: "/online-tutoring/new-york" },
+  { label: "Los Angeles", href: "/online-tutoring/los-angeles" },
+  { label: "San Diego", href: "/online-tutoring/san-diego" },
+  { label: "San Jose", href: "/online-tutoring/san-jose" },
+  { label: "Chicago", href: "/online-tutoring/chicago" },
+  { label: "Houston", href: "/online-tutoring/houston" },
+  { label: "Dallas", href: "/online-tutoring/dallas" },
+  { label: "Miami", href: "/online-tutoring/miami" },
 ];
 
 const coCurricularItems = [
@@ -134,88 +156,93 @@ export default function Header() {
               if (link.auOnly) return currentRegion === "au";
               return true;
             })
-            .map((link) => (
-            <li
-              key={link.label}
-              className={
-                link.hasMegaMenu
-                  ? "navbar__item--has-mega"
-                  : link.hasDropdown
-                    ? "navbar__item--has-dropdown"
-                    : ""
-              }
-            >
-              <Link
-                href={toHref(link.href)}
-                className={`navbar__link${isActive(link.href) ? " navbar__link--active" : ""}`}
-                onClick={() => setMenuOpen(false)}
+            .map((link) => {
+              const isDropdown = link.hasDropdown || (link.href === "/online-tutoring" && currentRegion === "us");
+              return (
+              <li
+                key={link.label}
+                className={
+                  link.hasMegaMenu
+                    ? "navbar__item--has-mega"
+                    : isDropdown
+                      ? "navbar__item--has-dropdown"
+                      : ""
+                }
               >
-                {link.label}
-                {(link.hasMegaMenu || link.hasDropdown) && (
-                  <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m6 9 6 6 6-6" />
-                  </svg>
-                )}
-              </Link>
+                <Link
+                  href={toHref(link.href)}
+                  className={`navbar__link${isActive(link.href) ? " navbar__link--active" : ""}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                  {(link.hasMegaMenu || isDropdown) && (
+                    <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  )}
+                </Link>
 
-              {link.hasMegaMenu && (
-                <div className="navbar__mega">
-                  <div className="navbar__mega-inner">
-                    {subjectYears.map((sy) => (
-                      <div key={sy.lvl} className="navbar__mega-col">
-                        <Link
-                          href={toHref(getYearHubHref(sy.lvl, currentRegion))}
-                          className="navbar__mega-year"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {sy.year}
-                        </Link>
-                        <Link
-                          href={toHref(getSubjectHref(sy.lvl, "math", currentRegion))}
-                          className="navbar__mega-subject"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {mathLabel}
-                        </Link>
-                        <Link
-                          href={toHref(getSubjectHref(sy.lvl, "english", currentRegion))}
-                          className="navbar__mega-subject"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          English
-                        </Link>
-                        <Link
-                          href={toHref(getSubjectHref(sy.lvl, "science", currentRegion))}
-                          className="navbar__mega-subject"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          Science
-                        </Link>
-                      </div>
+                {link.hasMegaMenu && (
+                  <div className="navbar__mega">
+                    <div className="navbar__mega-inner">
+                      {subjectYears.map((sy) => (
+                        <div key={sy.lvl} className="navbar__mega-col">
+                          <Link
+                            href={toHref(getYearHubHref(sy.lvl, currentRegion))}
+                            className="navbar__mega-year"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {sy.year}
+                          </Link>
+                          <Link
+                            href={toHref(getSubjectHref(sy.lvl, "math", currentRegion))}
+                            className="navbar__mega-subject"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            {mathLabel}
+                          </Link>
+                          <Link
+                            href={toHref(getSubjectHref(sy.lvl, "english", currentRegion))}
+                            className="navbar__mega-subject"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            English
+                          </Link>
+                          <Link
+                            href={toHref(getSubjectHref(sy.lvl, "science", currentRegion))}
+                            className="navbar__mega-subject"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            Science
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {isDropdown && (
+                  <div className="navbar__dropdown">
+                    {(link.href === "/exam-prep"
+                      ? (currentRegion === "us" ? usExamPrepItems : currentRegion === "ca" ? caExamPrepItems : currentRegion === "nz" ? nzExamPrepItems : auExamPrepItems)
+                      : link.href === "/online-tutoring" && currentRegion === "us"
+                      ? usOnlineTutoringItems
+                      : coCurricularItems
+                    ).map((item) => (
+                      <Link
+                        key={item.href}
+                        href={toHref(item.href)}
+                        className={`navbar__dropdown-link${pathname === toHref(item.href) ? " navbar__dropdown-link--active" : ""}`}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {link.hasDropdown && (
-                <div className="navbar__dropdown">
-                  {(link.href === "/exam-prep"
-                    ? (currentRegion === "ca" ? caExamPrepItems : currentRegion === "nz" ? nzExamPrepItems : auExamPrepItems)
-                    : coCurricularItems
-                  ).map((item) => (
-                    <Link
-                      key={item.href}
-                      href={toHref(item.href)}
-                      className={`navbar__dropdown-link${pathname === toHref(item.href) ? " navbar__dropdown-link--active" : ""}`}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
+                )}
+              </li>
+            );
+          })}
 
           {/* Mobile-only links inside hamburger menu */}
           <li className="navbar__mobile-auth">

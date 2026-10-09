@@ -73,9 +73,32 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     { path: `/subjects/grade-${y}/science`, regions: ["ca", "us"] as RegionCode[] },
   ]),
 
-  // Exam Prep & Tutoring Hubs (AU, CA, NZ)
-  { path: "/exam-prep", regions: ["au", "ca", "nz"] },
-  { path: "/online-tutoring", regions: ["au", "ca", "nz"] },
+  // US Grade Landing Pages: Grades 2-10
+  ...[2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => ({
+    path: `/subjects/grade-${y}`,
+    regions: ["us"] as RegionCode[],
+    isMarketUnique: true,
+  })),
+
+  // Exam Prep & Tutoring Hubs (AU, US, CA, NZ)
+  { path: "/exam-prep", regions: ["au", "us", "ca", "nz"] },
+  { path: "/online-tutoring", regions: ["au", "us", "ca", "nz"] },
+
+  // US Pages
+  { path: "/exam-prep/state-tests", regions: ["us"], isMarketUnique: true },
+  { path: "/exam-prep/staar", regions: ["us"], isMarketUnique: true },
+  { path: "/exam-prep/caaspp", regions: ["us"], isMarketUnique: true },
+  { path: "/exam-prep/fast", regions: ["us"], isMarketUnique: true },
+  { path: "/exam-prep/cogat", regions: ["us"], isMarketUnique: true },
+  { path: "/exam-prep/map-growth", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/new-york", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/los-angeles", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/san-diego", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/san-jose", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/chicago", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/houston", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/dallas", regions: ["us"], isMarketUnique: true },
+  { path: "/online-tutoring/miami", regions: ["us"], isMarketUnique: true },
 
   // Market-Unique Australian Pages
   { path: "/exam-prep/icas", regions: ["au", "nz"] },
@@ -88,7 +111,7 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/perth", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/adelaide", regions: ["au"], isMarketUnique: true },
-  { path: "/research", regions: ["au"], isMarketUnique: true },
+  { path: "/research", regions: ["au", "us"] },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
 
   // Canadian Pages

@@ -56,10 +56,10 @@ export function middleware(request: NextRequest) {
     response = NextResponse.redirect(new URL((pathname.slice(3) || "/") + search, request.url), 301);
   } else {
     // 3. Market-unique Australian routes accessed under /us, /ca, /nz redirect straight to AU root
-    // Note: Canada and NZ have their own online-tutoring pages, so only /us redirects online-tutoring.
-    let marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation|research)(?:\/.*)?)$/i);
+    // Note: US has its own /us/research page.
+    let marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation)(?:\/.*)?)$/i);
     if (!marketUniqueMatch) {
-      marketUniqueMatch = pathname.match(/^\/(us)(\/(?:online-tutoring)(?:\/.*)?)$/i);
+      marketUniqueMatch = pathname.match(/^\/(ca|nz)(\/(?:research)(?:\/.*)?)$/i);
     }
     if (marketUniqueMatch) {
       let target = marketUniqueMatch[2];
@@ -68,7 +68,13 @@ export function middleware(request: NextRequest) {
       }
       response = NextResponse.redirect(new URL(target + search, request.url), 301);
     } else {
-      // 4. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
+      // 4. Redirect /us/grade-N to /us/subjects/grade-N
+      const usGradeMatch = pathname.match(/^\/us\/grade-(\d+)$/i);
+      if (usGradeMatch) {
+        response = NextResponse.redirect(new URL(`/us/subjects/grade-${usGradeMatch[1]}` + search, request.url), 301);
+      }
+
+      // 5. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
       const blogMatch = pathname.match(/^\/(?:au\/)?blog\/(\d+)$/);
       if (blogMatch) {
         const slug = oldIdToSlug[blogMatch[1]];

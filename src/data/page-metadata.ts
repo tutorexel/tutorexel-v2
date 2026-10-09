@@ -360,8 +360,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Access complete digital study guides and workbook packs aligned to the Australian Curriculum. Comprehensive term learning resources for independent learners."
     },
     "us": {
-      "title": "Self-Study Learning Materials | TutorExel US",
-      "description": "Access complete digital study guides and worksheet collections aligned to US Common Core standards. Comprehensive term materials for self-guided study."
+      "title": "Self Learning eBooks and Worksheets | TutorExel USA",
+      "description": "Standards-aligned eBooks, worksheets and state-test-style mock tests for Grades 2 to 10 Math and English. Self-study from TutorExel online. Coming soon."
     },
     "ca": {
       "title": "Self-Study Study Guides | TutorExel Canada",
@@ -378,8 +378,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Expert academic advice, study tips, and parenting guides from Australian educators. Helpful articles on Maths, English, and effective exam preparation."
     },
     "us": {
-      "title": "Learning Hub & Study Tips | TutorExel US",
-      "description": "Expert academic guidance, study routines, and parenting resources from US educators. Helpful articles on Math, English, and essential test preparation."
+      "title": "Learning Hub: State Tests and Study Tips | TutorExel",
+      "description": "Guides and tips for US parents, from state test and MAP Growth preparation to choosing an online tutor and building study habits. Book your free trial."
     },
     "ca": {
       "title": "Learning Hub & Academic Guides | TutorExel Canada",
@@ -984,6 +984,60 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Live online 10th grade science tutoring aligned to NGSS. Chemistry, physics, space and climate in 40 sessions. Book your free trial class today, no card needed."
     }
   },
+  "/subjects/grade-2": {
+    "us": {
+      "title": "Grade 2 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 2 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-3": {
+    "us": {
+      "title": "Grade 3 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 3 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-4": {
+    "us": {
+      "title": "Grade 4 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 4 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-5": {
+    "us": {
+      "title": "Grade 5 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 5 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-6": {
+    "us": {
+      "title": "Grade 6 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 6 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-7": {
+    "us": {
+      "title": "Grade 7 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 7 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-8": {
+    "us": {
+      "title": "Grade 8 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 8 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-9": {
+    "us": {
+      "title": "Grade 9 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 9 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
+  "/subjects/grade-10": {
+    "us": {
+      "title": "Grade 10 Tutoring USA | Math, English, Science",
+      "description": "Online Grade 10 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    }
+  },
   "/subjects/grade-2/english": {
     "us": {
       "title": "2nd Grade English Tutoring in the USA | TutorExel",
@@ -1253,6 +1307,112 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "title": "Grade 10 Science Tutoring Online Canada | TutorExel",
       "description": "Live online Grade 10 science tutoring matched to your province's curriculum. Genetics, space, climate, forces and chemistry in 40 sessions. Book a free trial."
     }
+  },
+  "/research": {
+    "au": {
+      "title": "Education Research & Insights | TutorExel Australia",
+      "description": "Discover in-depth research reports and academic surveys on Australian schooling, tutoring trends, and digital learning methodologies compiled by TutorExel."
+    },
+    "us": {
+      "title": "Tutoring Research and Reports in the US | TutorExel",
+      "description": "Explore TutorExel's research on US tutoring: demand, pricing, parent preferences, online learning and state tests. Read the complete 2026 report today."
+    }
+  },
+  "/exam-prep": {
+    "us": {
+      "title": "Exam Prep Online USA | State Tests & Gifted | TutorExel",
+      "description": "Online exam prep for Grades 2 to 10: state tests, MAP Growth, gifted programs, CogAT and STAAR. Mock tests and live tutoring. Book a free assessment today."
+    }
+  },
+  "/exam-prep/state-tests": {
+    "us": {
+      "title": "State Test Prep Online | Grades 3 to 8 | TutorExel USA",
+      "description": "Online state test prep for U.S. students in Grades 3 to 8. Standards-aligned math and reading practice, practice questions and mock tests. Book a free assessment."
+    }
+  },
+  "/exam-prep/staar": {
+    "us": {
+      "title": "STAAR Test Prep Online Texas | Grades 3 to 8 | TutorExel",
+      "description": "Online STAAR test prep for Texas students in Grades 3 to 8. TEKS-aligned math and reading lessons, practice tests and mock tests. Book a free assessment today."
+    }
+  },
+  "/exam-prep/caaspp": {
+    "us": {
+      "title": "CAASPP Test Prep Online California | Grades 3 to 8",
+      "description": "Online CAASPP test prep for California students in Grades 3 to 8. California standards-aligned math and ELA lessons, SBAC practice and mock tests. Book a trial."
+    }
+  },
+  "/exam-prep/fast": {
+    "us": {
+      "title": "FAST Test Prep Online Florida | Grades 3 to 8 | TutorExel",
+      "description": "Online FAST test prep for Florida students in Grades 3 to 8. B.E.S.T. standards-aligned PM1, PM2 and PM3 progress monitoring and mock tests. Book a free trial."
+    }
+  },
+  "/exam-prep/cogat": {
+    "us": {
+      "title": "CogAT Test Prep Online | Gifted & Talented | TutorExel",
+      "description": "Online CogAT test prep for Grades 2 to 6 gifted and talented admissions. Verbal, quantitative and nonverbal battery practice questions with expert tutoring."
+    }
+  },
+  "/exam-prep/map-growth": {
+    "us": {
+      "title": "MAP Growth Test Prep Online | Grades 2 to 8 | TutorExel",
+      "description": "Online NWEA MAP Growth test prep for Grades 2 to 8. Adaptive math and reading practice by RIT score band, diagnostic assessments and targeted tutoring plans."
+    }
+  },
+  "/online-tutoring": {
+    "us": {
+      "title": "Online Tutoring Services USA | Grades 2-10 | TutorExel",
+      "description": "Personalized online tutoring across all U.S. states. Tailored elementary and middle school support in math and English from qualified American educators."
+    }
+  },
+  "/online-tutoring/new-york": {
+    "us": {
+      "title": "Online Tutoring New York | Grades 2 to 10 | TutorExel",
+      "description": "New York online tutoring for Grades 2 to 10 students. Expert NY Next Generation Learning Standards-aligned math and English classes for academic success."
+    }
+  },
+  "/online-tutoring/los-angeles": {
+    "us": {
+      "title": "Online Tutoring Los Angeles | California | TutorExel",
+      "description": "Los Angeles online tutoring for Grades 2 to 10 students. California curriculum-aligned classes in math and English designed for lasting academic excellence."
+    }
+  },
+  "/online-tutoring/san-diego": {
+    "us": {
+      "title": "Online Tutoring San Diego | California | TutorExel",
+      "description": "San Diego online tutoring for Grades 2 to 10 students. Expert California standards-aligned classes in math and English built for ongoing academic confidence."
+    }
+  },
+  "/online-tutoring/san-jose": {
+    "us": {
+      "title": "Online Tutoring San Jose | Bay Area | TutorExel",
+      "description": "San Jose online tutoring for Grades 2 to 10 students. Silicon Valley curriculum-aligned classes in math and English structured for continuous academic success."
+    }
+  },
+  "/online-tutoring/chicago": {
+    "us": {
+      "title": "Online Tutoring Chicago | Illinois Standards | TutorExel",
+      "description": "Chicago online tutoring for Grades 2 to 10 students. Expert Illinois Learning Standards-aligned classes in math and English structured to build academic mastery."
+    }
+  },
+  "/online-tutoring/houston": {
+    "us": {
+      "title": "Online Tutoring Houston | TEKS Aligned | TutorExel",
+      "description": "Houston online tutoring for Grades 2 to 10 students. Expert Texas TEKS-aligned classes in math and English designed for academic confidence and excellence."
+    }
+  },
+  "/online-tutoring/dallas": {
+    "us": {
+      "title": "Online Tutoring Dallas | Texas Curriculum | TutorExel",
+      "description": "Dallas online tutoring for Grades 2 to 10 students. Expert Texas TEKS-aligned classes in math and English designed to build lasting academic excellence today."
+    }
+  },
+  "/online-tutoring/miami": {
+    "us": {
+      "title": "Online Tutoring Miami | Florida B.E.S.T. | TutorExel",
+      "description": "Miami online tutoring for Grades 2 to 10 students. Expert Florida B.E.S.T. standards-aligned classes in math and English built for ongoing academic achievement."
+    }
   }
 };
 
@@ -1288,10 +1448,6 @@ export const AU_MARKET_UNIQUE_META: Record<string, PageMetaItem> = {
   "/online-tutoring/adelaide": {
     "title": "Online Tutoring Adelaide | SA Curriculum | TutorExel",
     "description": "Adelaide online tutoring for Years 2 to 7 students. Expert South Australian curriculum-aligned classes in Maths and English designed for academic confidence."
-  },
-  "/research": {
-    "title": "Education Research & Insights | TutorExel Australia",
-    "description": "Discover in-depth research reports and academic surveys on Australian schooling, tutoring trends, and digital learning methodologies compiled by TutorExel."
   },
   "/research/australian-tutoring-report-2026": {
     "title": "Australian Tutoring Report 2026 | TutorExel Research",

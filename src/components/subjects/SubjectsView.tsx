@@ -3,7 +3,7 @@ import RegionLink from "@/components/shared/RegionLink";
 import CTA from "@/components/home/CTA";
 import { FREE_ASSESSMENT_URL } from "@/utils/externalLinks";
 import { createBreadcrumbSchema } from "@/utils/schema";
-import { getSubjectHref } from "@/utils/regionalLinks";
+import { getSubjectHref, getYearHubHref } from "@/utils/regionalLinks";
 import { getRegionConfig, type RegionCode } from "@/data/regions";
 import { AU_HOME_COPY } from "@/data/copy/au-home";
 import { CA_HOME_COPY } from "@/data/copy/ca-home";
@@ -219,9 +219,14 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                 className={`subject-years__card ${level.featured ? "subject-years__card--featured" : ""}`}
               >
                 <div className="subject-years__card-header">
-                  <span className={`subject-years__card-year ${level.featured ? "subject-years__card-year--featured" : ""}`}>
+                  <RegionLink
+                    href={getYearHubHref(level.year, region)}
+                    region={region}
+                    className={`subject-years__card-year ${level.featured ? "subject-years__card-year--featured" : ""}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     {yearPrefix} {level.year}
-                  </span>
+                  </RegionLink>
                   <span className="subject-years__card-ages">(Ages {level.ages})</span>
                 </div>
                 <p className="subject-years__card-description">{level.description}</p>

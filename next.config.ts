@@ -86,28 +86,7 @@ const nextConfig: NextConfig = {
         destination: "/naplan-preparation/:path*",
         permanent: true,
       },
-      // Online Tutoring
-      {
-        source: "/us/online-tutoring",
-        destination: "/online-tutoring",
-        permanent: true,
-      },
-      {
-        source: "/us/online-tutoring/:path*",
-        destination: "/online-tutoring/:path*",
-        permanent: true,
-      },
-      // Research
-      {
-        source: "/us/research",
-        destination: "/research",
-        permanent: true,
-      },
-      {
-        source: "/us/research/:path*",
-        destination: "/research/:path*",
-        permanent: true,
-      },
+
       {
         source: "/ca/research",
         destination: "/research",
@@ -272,11 +251,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/us/grade-:grade",
-        destination: "/us/subjects/grade-:grade/math",
-      },
-      {
-        source: "/us/subjects/grade-:grade",
-        destination: "/us/subjects/grade-:grade/math",
+        destination: "/us/subjects/grade-:grade",
       },
       // CA Grade rewrites
       {

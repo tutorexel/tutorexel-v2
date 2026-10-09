@@ -44,7 +44,6 @@ export const SHARED_BASE_ROUTES = new Set([
  */
 export const AU_ONLY_BASE_ROUTES = new Set([
   "/naplan-preparation",
-  "/research",
 ]);
 
 export const REGIONAL_SUPPORTED_BASE_ROUTES = SHARED_BASE_ROUTES;
@@ -137,6 +136,11 @@ export function getEquivalentRegionalUrl(
     return `/${target}`;
   }
 
+  // Research is supported in AU and US only
+  if ((cleanPath === "/research" || cleanPath.startsWith("/research/")) && target !== "au" && target !== "us") {
+    return `/${target}`;
+  }
+
   // For Australia: root URL has no prefix
   if (target === "au") {
     return cleanPath || "/";
@@ -158,6 +162,7 @@ export function isRouteSupportedInRegion(
   const baseSegment = match[1].toLowerCase();
   if (SHARED_BASE_ROUTES.has(baseSegment)) return true;
   const reg = getRegionFromPathname(region);
+  if (baseSegment === "/research") return reg === "au" || reg === "us";
   if (reg === "au" && AU_ONLY_BASE_ROUTES.has(baseSegment)) return true;
   return false;
 }
@@ -249,7 +254,8 @@ export function getRegionalHref(
       .replace(/\/subjects\/year-(\d+)\/([^/?#]+)/i, "/subjects/grade-$1/$2")
       .replace(/\/subjects\/grade-(\d+)\/maths/i, "/subjects/grade-$1/math")
       .replace(/\/subjects\/year-(\d+)/i, "/subjects/grade-$1")
-      .replace(/^\/year-(\d+)/i, "/grade-$1");
+      .replace(/^\/year-(\d+)/i, region === "us" ? "/subjects/grade-$1" : "/grade-$1")
+      .replace(/^\/grade-(\d+)/i, region === "us" ? "/subjects/grade-$1" : "/grade-$1");
   } else {
     normalizedPath = normalizedPath
       .replace(/\/subjects\/grade-(\d+)\/(math|maths)/i, "/subjects/year-$1/maths")
@@ -336,5 +342,8 @@ export function getYearHubHref(year: number | string, regionOrPathname: RegionCo
   const reg = getRegionFromPathname(regionOrPathname);
   const match = String(year).match(/\d+/);
   const num = match ? match[0] : year;
-  return (reg === "ca" || reg === "us") ? `/grade-${num}` : `/year-${num}`;
+  if (reg === "us") {
+    return `/subjects/grade-${num}`;
+  }
+  return reg === "ca" ? `/grade-${num}` : `/year-${num}`;
 }

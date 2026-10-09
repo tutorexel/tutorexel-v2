@@ -38,6 +38,28 @@ const legalLinks = [
   { label: "Refund & Cancellation Policy", href: "/refund" },
 ];
 
+const usExamPrepFooterItems = [
+  { label: "All Exam Prep", href: "/exam-prep" },
+  { label: "State Tests", href: "/exam-prep/state-tests" },
+  { label: "STAAR (Texas)", href: "/exam-prep/staar" },
+  { label: "CAASPP (California)", href: "/exam-prep/caaspp" },
+  { label: "FAST (Florida)", href: "/exam-prep/fast" },
+  { label: "CogAT (Gifted and Talented)", href: "/exam-prep/cogat" },
+  { label: "MAP Growth", href: "/exam-prep/map-growth" },
+];
+
+const usOnlineTutoringFooterItems = [
+  { label: "All Cities", href: "/online-tutoring" },
+  { label: "New York", href: "/online-tutoring/new-york" },
+  { label: "Los Angeles", href: "/online-tutoring/los-angeles" },
+  { label: "San Diego", href: "/online-tutoring/san-diego" },
+  { label: "San Jose", href: "/online-tutoring/san-jose" },
+  { label: "Chicago", href: "/online-tutoring/chicago" },
+  { label: "Houston", href: "/online-tutoring/houston" },
+  { label: "Dallas", href: "/online-tutoring/dallas" },
+  { label: "Miami", href: "/online-tutoring/miami" },
+];
+
 export default function Footer() {
   const { open: openTrialModal } = useFreeTrialModal();
   const pathname = usePathname() || "";
@@ -51,7 +73,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__main">
         <div className="container">
-          <div className="footer__grid">
+          <div className={`footer__grid${currentRegionCode === "us" ? " footer__grid--us" : ""}`}>
             {/* Brand Column */}
             <div className="footer__brand">
               <Link href={toHref("/")} className="footer__logo">
@@ -113,6 +135,33 @@ export default function Footer() {
                 ))}
               </div>
             </div>
+
+            {/* US-only: Exam Prep & Online Tutoring */}
+            {currentRegionCode === "us" && (
+              <>
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Exam Prep</h4>
+                  <div className="footer__links-list">
+                    {usExamPrepFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Online Tutoring</h4>
+                  <div className="footer__links-list">
+                    {usOnlineTutoringFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Support */}
             <div className="footer__links">
