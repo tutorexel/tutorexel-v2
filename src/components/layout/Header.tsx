@@ -85,6 +85,7 @@ const nzOnlineTutoringItems = [
   { label: "Wellington", href: "/online-tutoring/wellington" },
   { label: "Christchurch", href: "/online-tutoring/christchurch" },
   { label: "Hamilton", href: "/online-tutoring/hamilton" },
+  { label: "Tauranga", href: "/online-tutoring/tauranga" },
   { label: "Dunedin", href: "/online-tutoring/dunedin" },
 ];
 

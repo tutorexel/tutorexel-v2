@@ -80,6 +80,24 @@ const caOnlineTutoringFooterItems = [
   { label: "Edmonton", href: "/online-tutoring/edmonton" },
 ];
 
+const nzExamPrepFooterItems = [
+  { label: "All Exam Prep", href: "/exam-prep" },
+  { label: "PAT", href: "/exam-prep/pat" },
+  { label: "e-asTTle", href: "/exam-prep/e-asttle" },
+  { label: "ICAS", href: "/exam-prep/icas" },
+  { label: "NCEA", href: "/exam-prep/ncea" },
+];
+
+const nzOnlineTutoringFooterItems = [
+  { label: "All Cities", href: "/online-tutoring" },
+  { label: "Auckland", href: "/online-tutoring/auckland" },
+  { label: "Wellington", href: "/online-tutoring/wellington" },
+  { label: "Christchurch", href: "/online-tutoring/christchurch" },
+  { label: "Hamilton", href: "/online-tutoring/hamilton" },
+  { label: "Tauranga", href: "/online-tutoring/tauranga" },
+  { label: "Dunedin", href: "/online-tutoring/dunedin" },
+];
+
 export default function Footer() {
   const { open: openTrialModal } = useFreeTrialModal();
   const pathname = usePathname() || "";
@@ -93,7 +111,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__main">
         <div className="container">
-          <div className={`footer__grid${currentRegionCode === "us" ? " footer__grid--us" : currentRegionCode === "ca" ? " footer__grid--ca" : ""}`}>
+          <div className={`footer__grid${currentRegionCode === "us" ? " footer__grid--us" : currentRegionCode === "ca" ? " footer__grid--ca" : currentRegionCode === "nz" ? " footer__grid--nz" : ""}`}>
             {/* Brand Column */}
             <div className="footer__brand">
               <Link href={toHref("/")} className="footer__logo">
@@ -201,6 +219,33 @@ export default function Footer() {
                   <h4 className="footer__links-title">Online Tutoring</h4>
                   <div className="footer__links-list">
                     {caOnlineTutoringFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* NZ-only: Exam Prep & Online Tutoring */}
+            {currentRegionCode === "nz" && (
+              <>
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Exam Prep</h4>
+                  <div className="footer__links-list">
+                    {nzExamPrepFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Online Tutoring</h4>
+                  <div className="footer__links-list">
+                    {nzOnlineTutoringFooterItems.map((item) => (
                       <Link key={item.href} href={toHref(item.href)}>
                         {item.label}
                       </Link>

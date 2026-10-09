@@ -79,6 +79,12 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     regions: ["us", "ca"] as RegionCode[],
   })),
 
+  // NZ Year Landing Pages: Years 2-10
+  ...[2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => ({
+    path: `/subjects/year-${y}`,
+    regions: ["nz"] as RegionCode[],
+  })),
+
   // Exam Prep & Tutoring Hubs (AU, US, CA, NZ)
   { path: "/exam-prep", regions: ["au", "us", "ca", "nz"] },
   { path: "/online-tutoring", regions: ["au", "us", "ca", "nz"] },
@@ -110,7 +116,7 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/perth", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/adelaide", regions: ["au"], isMarketUnique: true },
-  { path: "/research", regions: ["au", "us", "ca"] },
+  { path: "/research", regions: ["au", "us", "ca", "nz"] },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
 
   // Canadian Pages
@@ -130,6 +136,12 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   // New Zealand Pages
   { path: "/exam-prep/e-asttle", regions: ["nz"], isMarketUnique: true },
   { path: "/exam-prep/ncea", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/auckland", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/wellington", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/christchurch", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/hamilton", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/tauranga", regions: ["nz"], isMarketUnique: true },
+  { path: "/online-tutoring/dunedin", regions: ["nz"], isMarketUnique: true },
 ];
 
 export function getPageAvailability(rawPath: string): RegionCode[] {

@@ -368,8 +368,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Ontario and B.C. curriculum eBooks, worksheets and EQAO and FSA-style mock tests for Grades 2 to 10 Math and English. Self-study from TutorExel. Coming soon."
     },
     "nz": {
-      "title": "Self-Study Learning Packs | TutorExel NZ",
-      "description": "Access complete digital study guides and worksheet sets aligned to the New Zealand Curriculum. Comprehensive term learning resources for independent practice."
+      "title": "Self Learning eBooks and Worksheets | TutorExel NZ",
+      "description": "New Zealand Curriculum eBooks, worksheets and PAT and e-asTTle-style mock tests for Years 2 to 10 Maths and English. Self-study from TutorExel. Coming soon."
     }
   },
   "/blog": {
@@ -404,8 +404,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Browse comprehensive online tutoring subjects for Grades 2 to 7. Structured programs in Math, English and Science aligned with provincial learning standards."
     },
     "nz": {
-      "title": "Primary & Intermediate Subjects | TutorExel NZ",
-      "description": "Browse comprehensive online tutoring subjects for Years 2 to 7. Structured lessons in Maths, English and Science aligned with the complete NZC framework."
+      "title": "Online Tutoring Subjects Years 2-10 NZ | TutorExel",
+      "description": "Online maths, English and science tutoring for Years 2 to 10, matched to the New Zealand Curriculum. Small groups or 1-on-1. Book a free assessment today."
     }
   },
   "/co-curricular": {
@@ -1356,6 +1356,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Canadian Tutoring Research and Reports | TutorExel",
       "description": "Explore TutorExel's research on Canadian tutoring: demand, pricing, parent preferences, online learning and provincial tests. Read the complete 2026 report."
+    },
+    "nz": {
+      "title": "NZ Tutoring Research and Reports | TutorExel",
+      "description": "Explore TutorExel's research on New Zealand tutoring: demand, pricing, parent preferences, online learning and PAT. Read the complete 2026 report today."
     }
   },
   "/exam-prep": {
@@ -1408,6 +1412,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Online Tutoring in Canada by City | TutorExel",
       "description": "Live online math, English and science tutoring for Grades 2 to 10 across Toronto, Ottawa, Mississauga, Brampton, Vancouver, Calgary and Edmonton. Book a trial."
+    },
+    "nz": {
+      "title": "Online Tutoring in New Zealand by City | TutorExel",
+      "description": "Live online maths, English and science tutoring for Years 2 to 10 in Auckland, Wellington, Christchurch, Hamilton, Tauranga and Dunedin. Book a free assessment."
     }
   },
   "/online-tutoring/new-york": {
@@ -1498,6 +1506,96 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "ca": {
       "title": "Online Tutoring in Edmonton, AB | TutorExel",
       "description": "Online tutoring in Edmonton, AB. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/auckland": {
+    "nz": {
+      "title": "Online Tutoring in Auckland, NZ | TutorExel",
+      "description": "Online tutoring in Auckland. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/wellington": {
+    "nz": {
+      "title": "Online Tutoring in Wellington, NZ | TutorExel",
+      "description": "Online tutoring in Wellington. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/christchurch": {
+    "nz": {
+      "title": "Online Tutoring in Christchurch, NZ | TutorExel",
+      "description": "Online tutoring in Christchurch. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/hamilton": {
+    "nz": {
+      "title": "Online Tutoring in Hamilton, NZ | TutorExel",
+      "description": "Online tutoring in Hamilton. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/tauranga": {
+    "nz": {
+      "title": "Online Tutoring in Tauranga, NZ | TutorExel",
+      "description": "Online tutoring in Tauranga. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/dunedin": {
+    "nz": {
+      "title": "Online Tutoring in Dunedin, NZ | TutorExel",
+      "description": "Online tutoring in Dunedin. Live maths, English and science for Years 2 to 10 with PAT and ICAS prep. Small groups or 1-on-1. Book a free assessment today."
+    }
+  },
+  "/subjects/year-2": {
+    "nz": {
+      "title": "Year 2 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 2 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-3": {
+    "nz": {
+      "title": "Year 3 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 3 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-4": {
+    "nz": {
+      "title": "Year 4 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 4 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-5": {
+    "nz": {
+      "title": "Year 5 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 5 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-6": {
+    "nz": {
+      "title": "Year 6 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 6 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-7": {
+    "nz": {
+      "title": "Year 7 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 7 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-8": {
+    "nz": {
+      "title": "Year 8 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 8 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-9": {
+    "nz": {
+      "title": "Year 9 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 9 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
+    }
+  },
+  "/subjects/year-10": {
+    "nz": {
+      "title": "Year 10 Tutoring NZ | Maths, English, Science | TutorExel",
+      "description": "Year 10 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   }
 };

@@ -57,10 +57,7 @@ export function middleware(request: NextRequest) {
   } else {
     // 3. Market-unique Australian routes accessed under /us, /ca, /nz redirect straight to AU root
     // Note: US has its own /us/research page.
-    let marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation)(?:\/.*)?)$/i);
-    if (!marketUniqueMatch) {
-      marketUniqueMatch = pathname.match(/^\/(nz)(\/(?:research)(?:\/.*)?)$/i);
-    }
+    const marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation)(?:\/.*)?)$/i);
     if (marketUniqueMatch) {
       let target = marketUniqueMatch[2];
       if (target.endsWith("/") && target.length > 1) {
@@ -68,7 +65,7 @@ export function middleware(request: NextRequest) {
       }
       response = NextResponse.redirect(new URL(target + search, request.url), 301);
     } else {
-      // 4. Redirect /us/grade-N and /ca/grade-N to their respective /subjects/grade-N
+      // 4. Redirect /us/grade-N and /ca/grade-N to their respective /subjects/grade-N, and /nz/year-N to /nz/subjects/year-N
       const usGradeMatch = pathname.match(/^\/us\/grade-(\d+)$/i);
       if (usGradeMatch) {
         response = NextResponse.redirect(new URL(`/us/subjects/grade-${usGradeMatch[1]}` + search, request.url), 301);
@@ -76,6 +73,10 @@ export function middleware(request: NextRequest) {
       const caGradeMatch = pathname.match(/^\/ca\/grade-(\d+)$/i);
       if (caGradeMatch) {
         response = NextResponse.redirect(new URL(`/ca/subjects/grade-${caGradeMatch[1]}` + search, request.url), 301);
+      }
+      const nzYearMatch = pathname.match(/^\/nz\/year-(\d+)$/i);
+      if (nzYearMatch) {
+        response = NextResponse.redirect(new URL(`/nz/subjects/year-${nzYearMatch[1]}` + search, request.url), 301);
       }
 
       // 5. Legacy blog ID redirect (these 22 legacy posts are Australian articles)

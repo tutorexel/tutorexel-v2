@@ -158,6 +158,14 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                   </span>{" "}
                   for Grades 2 to 10
                 </>
+              ) : isNz ? (
+                <>
+                  Complete{" "}
+                  <span className="subject-banner__title-highlight">
+                    Curriculum Tutoring
+                  </span>{" "}
+                  for Years 2 to 10
+                </>
               ) : (
                 <>
                   Complete{" "}
@@ -172,7 +180,9 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
               </span>
             </h1>
             <p className="subject-banner__subtitle">
-              {isCa
+              {isNz
+                ? "Maths, English and Science programmes built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
+                : isCa
                 ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
                 : `Structured ${regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.`}
             </p>
@@ -180,30 +190,30 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
             <div className="subject-banner__features">
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Small Groups or 1-on-1</h3>
-                <p className="subject-banner__feature-desc">Maximum 3 students per group for {regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions</p>
+                <p className="subject-banner__feature-desc">{isNz ? "Up to 3 students per group for personal attention, or private 1-on-1 sessions" : `Maximum 3 students per group for ${regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions`}</p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">60-Minute Live Sessions</h3>
-                <p className="subject-banner__feature-desc">4 structured sessions per month per subject with a dedicated tutor</p>
+                <p className="subject-banner__feature-desc">{isNz ? "4 structured sessions a month per subject with a dedicated tutor" : "4 structured sessions per month per subject with a dedicated tutor"}</p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Curriculum-Aligned Learning</h3>
-                <p className="subject-banner__feature-desc">Every lesson is tailored to your child&apos;s school curriculum and grade/year level</p>
+                <p className="subject-banner__feature-desc">{isNz ? "Every lesson follows the New Zealand Curriculum, matched to your child's Year level" : "Every lesson is tailored to your child's school curriculum and grade/year level"}</p>
               </div>
             </div>
 
             <div className="subject-banner__checklist">
-              <span className="subject-banner__check-item">{"✓"} Structured lesson plans</span>
-              <span className="subject-banner__check-item">{"✓"} Weekly practice worksheets</span>
-              <span className="subject-banner__check-item">{"✓"} Progress reports for parents</span>
-              <span className="subject-banner__check-item">{"✓"} Free diagnostic assessment</span>
-              <span className="subject-banner__check-item">{"✓"} Qualified tutors experienced in adapting lessons to your child&apos;s curriculum</span>
-              <span className="subject-banner__check-item">{"✓"} Flexible scheduling</span>
+              <span className="subject-banner__check-item">{"\u2713"} Structured lesson plans</span>
+              <span className="subject-banner__check-item">{"\u2713"} Weekly practice worksheets</span>
+              <span className="subject-banner__check-item">{"\u2713"} Progress reports for parents</span>
+              <span className="subject-banner__check-item">{"\u2713"} Free diagnostic assessment</span>
+              <span className="subject-banner__check-item">{"\u2713"} Qualified tutors who adapt lessons to your child&apos;s school curriculum</span>
+              <span className="subject-banner__check-item">{"\u2713"} Flexible scheduling</span>
             </div>
 
             <div className="subject-banner__actions">
               <a href={FREE_ASSESSMENT_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-lg">
-                Book Free Assessment Test
+                Book a Free Assessment
               </a>
               <RegionLink href="/pricing" region={region} className="btn btn-outline btn-lg">
                 Join Now
@@ -221,10 +231,16 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
               Choose Your {regConfig.yearLabel} Level
             </p>
             <h2 className="subject-years__title">
-              {isCa ? "Find Your Child's Grade Level" : `Select Your Child's ${regConfig.yearLabel} Level`}
+              {isNz
+                ? "Find Your Child's Year Level"
+                : isCa
+                ? "Find Your Child's Grade Level"
+                : `Select Your Child's ${regConfig.yearLabel} Level`}
             </h2>
             <p className="subject-years__subtitle">
-              {isCa
+              {isNz
+                ? "Every level includes Maths, English and Science programs, across 4 terms of 10 sessions each."
+                : isCa
                 ? "Every level includes Math, English and Science programs, across 4 terms of 10 sessions each."
                 : `Each level includes ${regConfig.mathLabel}, English, and Science programs, structured across 4 terms with 10 sessions each.`}
             </p>

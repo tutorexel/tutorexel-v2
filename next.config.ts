@@ -86,17 +86,6 @@ const nextConfig: NextConfig = {
         destination: "/naplan-preparation/:path*",
         permanent: true,
       },
-
-      {
-        source: "/nz/research",
-        destination: "/research",
-        permanent: true,
-      },
-      {
-        source: "/nz/research/:path*",
-        destination: "/research/:path*",
-        permanent: true,
-      },
       // CA Grade and Math redirects
       {
         source: "/ca/subjects/year-:year/maths/:term/:topic",
@@ -259,7 +248,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/nz/year-:year",
-        destination: "/nz/subjects/year-:year/maths",
+        destination: "/nz/subjects/year-:year",
       },
       // Existing AU Year rewrites
       {

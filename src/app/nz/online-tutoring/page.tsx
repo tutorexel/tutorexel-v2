@@ -8,7 +8,7 @@ import "./online-tutoring.css";
 export const metadata: Metadata = {
   title: "Online Tutoring in New Zealand by City | TutorExel",
   description:
-    "Live online maths, English and science tutoring for Years 2 to 10 in Auckland, Wellington, Christchurch, Hamilton and Dunedin. Book a free assessment today.",
+    "Live online maths, English and science tutoring for Years 2 to 10 in Auckland, Wellington, Christchurch, Hamilton, Tauranga and Dunedin. Book a free assessment.",
   alternates: { canonical: "https://www.tutorexel.com/nz/online-tutoring" },
 };
 
@@ -47,7 +47,7 @@ const jsonLd = [
         name: "Does TutorExel teach in my city?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Lessons run live online, so any family in New Zealand can join from home. The five cities above have their own guides, and we also teach students in Tauranga, Napier, Nelson, Queenstown and regional towns.",
+          text: "Yes. Lessons run live online, so any family in New Zealand can join from home. The six cities above have their own guides, and we also teach students in Napier, Nelson, Queenstown and regional towns.",
         },
       },
       {
@@ -182,7 +182,7 @@ export default function NzOnlineTutoringCitiesPage() {
                 </svg>
               </span>
               <span>
-                <b>5</b> city guides
+                <b>6</b> city guides
               </span>
             </li>
             <li>
@@ -233,7 +233,7 @@ export default function NzOnlineTutoringCitiesPage() {
             <div>
               <h2 id="cH">Pick Your City</h2>
               <p className="muted" id="cStatus">
-                5 cities
+                6 cities
               </p>
             </div>
             <div aria-label="Filter by region" className="atabs" role="toolbar">
@@ -251,6 +251,9 @@ export default function NzOnlineTutoringCitiesPage() {
               </button>
               <button aria-pressed="false" className="atab" data-a="Waikato">
                 Waikato
+              </button>
+              <button aria-pressed="false" className="atab" data-a="Bay of Plenty">
+                Bay of Plenty
               </button>
               <button aria-pressed="false" className="atab" data-a="Otago">
                 Otago
@@ -508,6 +511,68 @@ export default function NzOnlineTutoringCitiesPage() {
             </Link>
             <Link
               className="city"
+              data-area="Bay of Plenty"
+              data-name="tauranga bay of plenty"
+              href="/nz/online-tutoring/tauranga"
+            >
+              <span className="city-top">
+                <span className="city-pin">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="city-area">Bay of Plenty</span>
+              </span>
+              <b className="city-name">Tauranga</b>
+              <span className="city-desc">
+                New Zealand Curriculum lessons, with PAT and e-asTTle style practice for primary,
+                intermediate and Year 9 to 10.
+              </span>
+              <span className="city-foot">
+                <span className="city-time">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  <span data-tz="Pacific/Auckland">--:--</span> local
+                </span>
+                <span className="city-go">
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
+            <Link
+              className="city"
               data-area="Otago"
               data-name="dunedin otago"
               href="/nz/online-tutoring/dunedin"
@@ -586,8 +651,8 @@ export default function NzOnlineTutoringCitiesPage() {
               </span>
               <b className="city-name">Can't Find Your City?</b>
               <span className="city-desc">
-                Families in Tauranga, Napier, Nelson, Queenstown, Palmerston North and regional
-                towns learn with us too. Every lesson is live and online.
+                Families in Napier, Nelson, Queenstown, Palmerston North and regional towns learn
+                with us too. Every lesson is live and online.
               </span>
               <Link className="btn btn-hi" href="/nz/free-assessment">
                 Book a Free Assessment
@@ -712,8 +777,8 @@ export default function NzOnlineTutoringCitiesPage() {
               </summary>
               <p>
                 Yes. Lessons run live online, so any family in New Zealand can join from home. The
-                five cities above have their own guides, and we also teach students in Tauranga,
-                Napier, Nelson, Queenstown and regional towns.
+                six cities above have their own guides, and we also teach students in Napier,
+                Nelson, Queenstown and regional towns.
               </p>
             </details>
             <details className="faq">
