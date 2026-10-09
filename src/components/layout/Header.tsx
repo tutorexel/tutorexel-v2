@@ -24,14 +24,13 @@ const navLinks: NavLinkItem[] = [
   { label: "Subjects", href: "/subjects", hasMegaMenu: true },
   { label: "Exam Prep", href: "/exam-prep", regions: ["au", "ca", "nz", "us"], hasDropdown: true },
   { label: "Co-Curricular", href: "/co-curricular", hasDropdown: true },
-  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca", "nz", "us"] },
+  { label: "Online Tutoring", href: "/online-tutoring", regions: ["au", "ca", "nz", "us"], hasDropdown: true },
   { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 
 const auExamPrepItems = [
-  { label: "Exam Prep Overview", href: "/exam-prep" },
   { label: "NAPLAN", href: "/naplan-preparation" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "OC Test", href: "/exam-prep/oc-test" },
@@ -40,16 +39,14 @@ const auExamPrepItems = [
 ];
 
 const caExamPrepItems = [
-  { label: "Exam Prep Overview", href: "/exam-prep" },
   { label: "EQAO", href: "/exam-prep/eqao" },
   { label: "OSSLT", href: "/exam-prep/osslt" },
   { label: "Alberta PATs", href: "/exam-prep/pat" },
   { label: "BC FSA", href: "/exam-prep/fsa" },
-  { label: "Gifted Testing", href: "/exam-prep/gifted" },
+  { label: "Gifted", href: "/exam-prep/gifted" },
 ];
 
 const nzExamPrepItems = [
-  { label: "Exam Prep Overview", href: "/exam-prep" },
   { label: "PAT", href: "/exam-prep/pat" },
   { label: "e-asTTle", href: "/exam-prep/e-asttle" },
   { label: "ICAS", href: "/exam-prep/icas" },
@@ -57,7 +54,6 @@ const nzExamPrepItems = [
 ];
 
 const usExamPrepItems = [
-  { label: "All Exam Prep", href: "/exam-prep" },
   { label: "State Tests", href: "/exam-prep/state-tests" },
   { label: "STAAR (Texas)", href: "/exam-prep/staar" },
   { label: "CAASPP (California)", href: "/exam-prep/caaspp" },
@@ -66,8 +62,33 @@ const usExamPrepItems = [
   { label: "MAP Growth", href: "/exam-prep/map-growth" },
 ];
 
+const auOnlineTutoringItems = [
+  { label: "Sydney", href: "/online-tutoring/sydney" },
+  { label: "Melbourne", href: "/online-tutoring/melbourne" },
+  { label: "Brisbane", href: "/online-tutoring/brisbane" },
+  { label: "Perth", href: "/online-tutoring/perth" },
+  { label: "Adelaide", href: "/online-tutoring/adelaide" },
+];
+
+const caOnlineTutoringItems = [
+  { label: "Toronto", href: "/online-tutoring/toronto" },
+  { label: "Ottawa", href: "/online-tutoring/ottawa" },
+  { label: "Mississauga", href: "/online-tutoring/mississauga" },
+  { label: "Brampton", href: "/online-tutoring/brampton" },
+  { label: "Vancouver", href: "/online-tutoring/vancouver" },
+  { label: "Calgary", href: "/online-tutoring/calgary" },
+  { label: "Edmonton", href: "/online-tutoring/edmonton" },
+];
+
+const nzOnlineTutoringItems = [
+  { label: "Auckland", href: "/online-tutoring/auckland" },
+  { label: "Wellington", href: "/online-tutoring/wellington" },
+  { label: "Christchurch", href: "/online-tutoring/christchurch" },
+  { label: "Hamilton", href: "/online-tutoring/hamilton" },
+  { label: "Dunedin", href: "/online-tutoring/dunedin" },
+];
+
 const usOnlineTutoringItems = [
-  { label: "All Cities", href: "/online-tutoring" },
   { label: "New York", href: "/online-tutoring/new-york" },
   { label: "Los Angeles", href: "/online-tutoring/los-angeles" },
   { label: "San Diego", href: "/online-tutoring/san-diego" },
@@ -157,7 +178,7 @@ export default function Header() {
               return true;
             })
             .map((link) => {
-              const isDropdown = link.hasDropdown || (link.href === "/online-tutoring" && currentRegion === "us");
+              const isDropdown = Boolean(link.hasDropdown);
               return (
               <li
                 key={link.label}
@@ -225,8 +246,8 @@ export default function Header() {
                   <div className="navbar__dropdown">
                     {(link.href === "/exam-prep"
                       ? (currentRegion === "us" ? usExamPrepItems : currentRegion === "ca" ? caExamPrepItems : currentRegion === "nz" ? nzExamPrepItems : auExamPrepItems)
-                      : link.href === "/online-tutoring" && currentRegion === "us"
-                      ? usOnlineTutoringItems
+                      : link.href === "/online-tutoring"
+                      ? (currentRegion === "us" ? usOnlineTutoringItems : currentRegion === "ca" ? caOnlineTutoringItems : currentRegion === "nz" ? nzOnlineTutoringItems : auOnlineTutoringItems)
                       : coCurricularItems
                     ).map((item) => (
                       <Link

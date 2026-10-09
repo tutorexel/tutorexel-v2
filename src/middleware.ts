@@ -59,7 +59,7 @@ export function middleware(request: NextRequest) {
     // Note: US has its own /us/research page.
     let marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation)(?:\/.*)?)$/i);
     if (!marketUniqueMatch) {
-      marketUniqueMatch = pathname.match(/^\/(ca|nz)(\/(?:research)(?:\/.*)?)$/i);
+      marketUniqueMatch = pathname.match(/^\/(nz)(\/(?:research)(?:\/.*)?)$/i);
     }
     if (marketUniqueMatch) {
       let target = marketUniqueMatch[2];
@@ -68,10 +68,14 @@ export function middleware(request: NextRequest) {
       }
       response = NextResponse.redirect(new URL(target + search, request.url), 301);
     } else {
-      // 4. Redirect /us/grade-N to /us/subjects/grade-N
+      // 4. Redirect /us/grade-N and /ca/grade-N to their respective /subjects/grade-N
       const usGradeMatch = pathname.match(/^\/us\/grade-(\d+)$/i);
       if (usGradeMatch) {
         response = NextResponse.redirect(new URL(`/us/subjects/grade-${usGradeMatch[1]}` + search, request.url), 301);
+      }
+      const caGradeMatch = pathname.match(/^\/ca\/grade-(\d+)$/i);
+      if (caGradeMatch) {
+        response = NextResponse.redirect(new URL(`/ca/subjects/grade-${caGradeMatch[1]}` + search, request.url), 301);
       }
 
       // 5. Legacy blog ID redirect (these 22 legacy posts are Australian articles)

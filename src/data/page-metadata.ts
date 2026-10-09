@@ -364,8 +364,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
       "description": "Standards-aligned eBooks, worksheets and state-test-style mock tests for Grades 2 to 10 Math and English. Self-study from TutorExel online. Coming soon."
     },
     "ca": {
-      "title": "Self-Study Study Guides | TutorExel Canada",
-      "description": "Access comprehensive study guides and practice workbooks aligned to Canadian provincial curricula. Term learning resources designed for independent students."
+      "title": "Self Learning eBooks and Worksheets | TutorExel Canada",
+      "description": "Ontario and B.C. curriculum eBooks, worksheets and EQAO and FSA-style mock tests for Grades 2 to 10 Math and English. Self-study from TutorExel. Coming soon."
     },
     "nz": {
       "title": "Self-Study Learning Packs | TutorExel NZ",
@@ -988,54 +988,90 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "us": {
       "title": "Grade 2 Tutoring USA | Math, English, Science",
       "description": "Online Grade 2 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 2 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 2 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-3": {
     "us": {
       "title": "Grade 3 Tutoring USA | Math, English, Science",
       "description": "Online Grade 3 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 3 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 3 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-4": {
     "us": {
       "title": "Grade 4 Tutoring USA | Math, English, Science",
       "description": "Online Grade 4 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 4 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 4 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-5": {
     "us": {
       "title": "Grade 5 Tutoring USA | Math, English, Science",
       "description": "Online Grade 5 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 5 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 5 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-6": {
     "us": {
       "title": "Grade 6 Tutoring USA | Math, English, Science",
       "description": "Online Grade 6 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 6 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 6 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-7": {
     "us": {
       "title": "Grade 7 Tutoring USA | Math, English, Science",
       "description": "Online Grade 7 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 7 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 7 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-8": {
     "us": {
       "title": "Grade 8 Tutoring USA | Math, English, Science",
       "description": "Online Grade 8 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 8 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 8 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-9": {
     "us": {
       "title": "Grade 9 Tutoring USA | Math, English, Science",
       "description": "Online Grade 9 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 9 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 9 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-10": {
     "us": {
       "title": "Grade 10 Tutoring USA | Math, English, Science",
       "description": "Online Grade 10 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class."
+    },
+    "ca": {
+      "title": "Grade 10 Tutoring Canada | Math, English, Science",
+      "description": "Online Grade 10 tutoring in Canada for Math, English and Science. Live 1-on-1 or small group lessons matched to your province's curriculum. Free trial."
     }
   },
   "/subjects/grade-2/english": {
@@ -1316,6 +1352,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "us": {
       "title": "Tutoring Research and Reports in the US | TutorExel",
       "description": "Explore TutorExel's research on US tutoring: demand, pricing, parent preferences, online learning and state tests. Read the complete 2026 report today."
+    },
+    "ca": {
+      "title": "Canadian Tutoring Research and Reports | TutorExel",
+      "description": "Explore TutorExel's research on Canadian tutoring: demand, pricing, parent preferences, online learning and provincial tests. Read the complete 2026 report."
     }
   },
   "/exam-prep": {
@@ -1364,6 +1404,10 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "us": {
       "title": "Online Tutoring Services USA | Grades 2-10 | TutorExel",
       "description": "Personalized online tutoring across all U.S. states. Tailored elementary and middle school support in math and English from qualified American educators."
+    },
+    "ca": {
+      "title": "Online Tutoring in Canada by City | TutorExel",
+      "description": "Live online math, English and science tutoring for Grades 2 to 10 across Toronto, Ottawa, Mississauga, Brampton, Vancouver, Calgary and Edmonton. Book a trial."
     }
   },
   "/online-tutoring/new-york": {
@@ -1412,6 +1456,48 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     "us": {
       "title": "Online Tutoring Miami | Florida B.E.S.T. | TutorExel",
       "description": "Miami online tutoring for Grades 2 to 10 students. Expert Florida B.E.S.T. standards-aligned classes in math and English built for ongoing academic achievement."
+    }
+  },
+  "/online-tutoring/toronto": {
+    "ca": {
+      "title": "Online Tutoring in Toronto, ON | TutorExel",
+      "description": "Online tutoring in Toronto, ON. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/ottawa": {
+    "ca": {
+      "title": "Online Tutoring in Ottawa, ON | TutorExel",
+      "description": "Online tutoring in Ottawa, ON. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/mississauga": {
+    "ca": {
+      "title": "Online Tutoring in Mississauga, ON | TutorExel",
+      "description": "Online tutoring in Mississauga, ON. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/brampton": {
+    "ca": {
+      "title": "Online Tutoring in Brampton, ON | TutorExel",
+      "description": "Online tutoring in Brampton, ON. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/vancouver": {
+    "ca": {
+      "title": "Online Tutoring in Vancouver, BC | TutorExel",
+      "description": "Online tutoring in Vancouver, BC. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/calgary": {
+    "ca": {
+      "title": "Online Tutoring in Calgary, AB | TutorExel",
+      "description": "Online tutoring in Calgary, AB. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
+    }
+  },
+  "/online-tutoring/edmonton": {
+    "ca": {
+      "title": "Online Tutoring in Edmonton, AB | TutorExel",
+      "description": "Online tutoring in Edmonton, AB. Live math, English and science for Grades 2 to 10 with provincial test prep. Small groups or 1-on-1. Book a free assessment."
     }
   }
 };

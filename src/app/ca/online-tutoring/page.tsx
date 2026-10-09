@@ -8,7 +8,7 @@ import "./online-tutoring.css";
 export const metadata: Metadata = {
   title: "Online Tutoring in Canada by City | TutorExel",
   description:
-    "Live online math, English and science tutoring for Grades 2 to 10 in Toronto, Vancouver, Calgary, Edmonton and Ottawa. Book a free assessment today.",
+    "Live online math, English and science tutoring for Grades 2 to 10 across Toronto, Ottawa, Mississauga, Brampton, Vancouver, Calgary and Edmonton. Book a trial.",
   alternates: { canonical: "https://www.tutorexel.com/ca/online-tutoring" },
 };
 
@@ -47,7 +47,7 @@ const jsonLd = [
         name: "Does TutorExel teach in my city?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Lessons run live online, so any family in Canada can join from home. The five cities above have their own guides, and we also teach students in Winnipeg, Halifax, Saskatoon, Victoria and smaller communities.",
+          text: "Yes. Lessons run live online, so any family in Canada can join from home. The seven cities above have their own guides, and we also teach students in Winnipeg, Halifax, Saskatoon, Victoria and smaller communities.",
         },
       },
       {
@@ -182,7 +182,7 @@ export default function CaOnlineTutoringCitiesPage() {
                 </svg>
               </span>
               <span>
-                <b>5</b> city guides
+                <b>7</b> city guides
               </span>
             </li>
             <li>
@@ -233,7 +233,7 @@ export default function CaOnlineTutoringCitiesPage() {
             <div>
               <h2 id="cH">Pick Your City</h2>
               <p className="muted" id="cStatus">
-                5 cities
+                7 cities
               </p>
             </div>
             <div aria-label="Filter by province" className="atabs" role="toolbar">
@@ -524,6 +524,128 @@ export default function CaOnlineTutoringCitiesPage() {
                 <span className="city-area">ON</span>
               </span>
               <b className="city-name">Ottawa</b>
+              <span className="city-desc">
+                Ontario Curriculum lessons, with EQAO practice for Grades 3, 6 and 9.
+              </span>
+              <span className="city-foot">
+                <span className="city-time">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  <span data-tz="America/Toronto">--:--</span> local
+                </span>
+                <span className="city-go">
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
+            <Link
+              className="city"
+              data-area="ON"
+              data-name="mississauga on"
+              href="/ca/online-tutoring/mississauga"
+            >
+              <span className="city-top">
+                <span className="city-pin">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="city-area">ON</span>
+              </span>
+              <b className="city-name">Mississauga</b>
+              <span className="city-desc">
+                Ontario Curriculum lessons, with EQAO practice for Grades 3, 6 and 9.
+              </span>
+              <span className="city-foot">
+                <span className="city-time">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  <span data-tz="America/Toronto">--:--</span> local
+                </span>
+                <span className="city-go">
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
+            <Link
+              className="city"
+              data-area="ON"
+              data-name="brampton on"
+              href="/ca/online-tutoring/brampton"
+            >
+              <span className="city-top">
+                <span className="city-pin">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="city-area">ON</span>
+              </span>
+              <b className="city-name">Brampton</b>
               <span className="city-desc">
                 Ontario Curriculum lessons, with EQAO practice for Grades 3, 6 and 9.
               </span>

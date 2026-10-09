@@ -46,6 +46,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-PW3LW3FT');`}
       </Script>
       <body suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{function c(){if(document.body&&document.body.hasAttribute('cz-shortcut-listen')){document.body.removeAttribute('cz-shortcut-listen');}}c();if(typeof MutationObserver!=='undefined'){new MutationObserver(c).observe(document.documentElement,{attributes:true,subtree:true});}}catch(e){}})();`,
+          }}
+        />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PW3LW3FT"

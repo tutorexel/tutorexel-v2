@@ -60,6 +60,26 @@ const usOnlineTutoringFooterItems = [
   { label: "Miami", href: "/online-tutoring/miami" },
 ];
 
+const caExamPrepFooterItems = [
+  { label: "All Exam Prep", href: "/exam-prep" },
+  { label: "EQAO", href: "/exam-prep/eqao" },
+  { label: "OSSLT", href: "/exam-prep/osslt" },
+  { label: "Alberta PATs", href: "/exam-prep/pat" },
+  { label: "BC FSA", href: "/exam-prep/fsa" },
+  { label: "Gifted", href: "/exam-prep/gifted" },
+];
+
+const caOnlineTutoringFooterItems = [
+  { label: "All Cities", href: "/online-tutoring" },
+  { label: "Toronto", href: "/online-tutoring/toronto" },
+  { label: "Ottawa", href: "/online-tutoring/ottawa" },
+  { label: "Mississauga", href: "/online-tutoring/mississauga" },
+  { label: "Brampton", href: "/online-tutoring/brampton" },
+  { label: "Vancouver", href: "/online-tutoring/vancouver" },
+  { label: "Calgary", href: "/online-tutoring/calgary" },
+  { label: "Edmonton", href: "/online-tutoring/edmonton" },
+];
+
 export default function Footer() {
   const { open: openTrialModal } = useFreeTrialModal();
   const pathname = usePathname() || "";
@@ -73,7 +93,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__main">
         <div className="container">
-          <div className={`footer__grid${currentRegionCode === "us" ? " footer__grid--us" : ""}`}>
+          <div className={`footer__grid${currentRegionCode === "us" ? " footer__grid--us" : currentRegionCode === "ca" ? " footer__grid--ca" : ""}`}>
             {/* Brand Column */}
             <div className="footer__brand">
               <Link href={toHref("/")} className="footer__logo">
@@ -154,6 +174,33 @@ export default function Footer() {
                   <h4 className="footer__links-title">Online Tutoring</h4>
                   <div className="footer__links-list">
                     {usOnlineTutoringFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* CA-only: Exam Prep & Online Tutoring */}
+            {currentRegionCode === "ca" && (
+              <>
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Exam Prep</h4>
+                  <div className="footer__links-list">
+                    {caExamPrepFooterItems.map((item) => (
+                      <Link key={item.href} href={toHref(item.href)}>
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="footer__links">
+                  <h4 className="footer__links-title">Online Tutoring</h4>
+                  <div className="footer__links-list">
+                    {caOnlineTutoringFooterItems.map((item) => (
                       <Link key={item.href} href={toHref(item.href)}>
                         {item.label}
                       </Link>

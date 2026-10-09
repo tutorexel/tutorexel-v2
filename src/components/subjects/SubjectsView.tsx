@@ -150,17 +150,31 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="subject-banner__content">
             <h1 className="subject-banner__title">
-              Complete{" "}
-              <span className="subject-banner__title-highlight">
-                Academic Curriculum
-              </span>{" "}
-              {isCa ? "Grades 2 to 10" : isAu ? "Years 2 to 10" : "Years 2 to 7"}{" "}
+              {isCa ? (
+                <>
+                  Complete{" "}
+                  <span className="subject-banner__title-highlight">
+                    Curriculum Tutoring
+                  </span>{" "}
+                  for Grades 2 to 10
+                </>
+              ) : (
+                <>
+                  Complete{" "}
+                  <span className="subject-banner__title-highlight">
+                    Academic Curriculum
+                  </span>{" "}
+                  {isAu ? "Years 2 to 10" : "Years 2 to 7"}{" "}
+                </>
+              )}
               <span className="subject-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="subject-banner__subtitle">
-              Structured {regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.
+              {isCa
+                ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
+                : `Structured ${regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.`}
             </p>
 
             <div className="subject-banner__features">
@@ -206,9 +220,13 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
               <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="subject-years__label-icon" />
               Choose Your {regConfig.yearLabel} Level
             </p>
-            <h2 className="subject-years__title">Select Your Child&apos;s {regConfig.yearLabel} Level</h2>
+            <h2 className="subject-years__title">
+              {isCa ? "Find Your Child's Grade Level" : `Select Your Child's ${regConfig.yearLabel} Level`}
+            </h2>
             <p className="subject-years__subtitle">
-              Each level includes {regConfig.mathLabel}, English, and Science programs, structured across 4 terms with 10 sessions each.
+              {isCa
+                ? "Every level includes Math, English and Science programs, across 4 terms of 10 sessions each."
+                : `Each level includes ${regConfig.mathLabel}, English, and Science programs, structured across 4 terms with 10 sessions each.`}
             </p>
           </div>
 

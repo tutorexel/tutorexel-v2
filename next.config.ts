@@ -88,16 +88,6 @@ const nextConfig: NextConfig = {
       },
 
       {
-        source: "/ca/research",
-        destination: "/research",
-        permanent: true,
-      },
-      {
-        source: "/ca/research/:path*",
-        destination: "/research/:path*",
-        permanent: true,
-      },
-      {
         source: "/nz/research",
         destination: "/research",
         permanent: true,
@@ -260,11 +250,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/ca/grade-:grade",
-        destination: "/ca/subjects/grade-:grade/math",
-      },
-      {
-        source: "/ca/subjects/grade-:grade",
-        destination: "/ca/subjects/grade-:grade/math",
+        destination: "/ca/subjects/grade-:grade",
       },
       // Existing NZ Year rewrites
       {

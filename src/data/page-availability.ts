@@ -73,11 +73,10 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     { path: `/subjects/grade-${y}/science`, regions: ["ca", "us"] as RegionCode[] },
   ]),
 
-  // US Grade Landing Pages: Grades 2-10
+  // US & CA Grade Landing Pages: Grades 2-10
   ...[2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => ({
     path: `/subjects/grade-${y}`,
-    regions: ["us"] as RegionCode[],
-    isMarketUnique: true,
+    regions: ["us", "ca"] as RegionCode[],
   })),
 
   // Exam Prep & Tutoring Hubs (AU, US, CA, NZ)
@@ -111,7 +110,7 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/perth", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/adelaide", regions: ["au"], isMarketUnique: true },
-  { path: "/research", regions: ["au", "us"] },
+  { path: "/research", regions: ["au", "us", "ca"] },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
 
   // Canadian Pages
@@ -120,6 +119,13 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/exam-prep/pat", regions: ["ca", "nz"] },
   { path: "/exam-prep/fsa", regions: ["ca"], isMarketUnique: true },
   { path: "/exam-prep/gifted", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/toronto", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/ottawa", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/mississauga", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/brampton", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/vancouver", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/calgary", regions: ["ca"], isMarketUnique: true },
+  { path: "/online-tutoring/edmonton", regions: ["ca"], isMarketUnique: true },
 
   // New Zealand Pages
   { path: "/exam-prep/e-asttle", regions: ["nz"], isMarketUnique: true },

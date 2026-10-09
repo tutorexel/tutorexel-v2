@@ -37,6 +37,7 @@ export const SHARED_BASE_ROUTES = new Set([
   "/thank-you",
   "/exam-prep",
   "/online-tutoring",
+  "/research",
 ]);
 
 /**
@@ -342,8 +343,8 @@ export function getYearHubHref(year: number | string, regionOrPathname: RegionCo
   const reg = getRegionFromPathname(regionOrPathname);
   const match = String(year).match(/\d+/);
   const num = match ? match[0] : year;
-  if (reg === "us") {
+  if (reg === "us" || reg === "ca") {
     return `/subjects/grade-${num}`;
   }
-  return reg === "ca" ? `/grade-${num}` : `/year-${num}`;
+  return `/year-${num}`;
 }
