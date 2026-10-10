@@ -117,7 +117,7 @@ export function generateCurriculumPdf(
         doc.setFontSize(8);
         doc.setTextColor(150, 150, 150);
         doc.text(
-          `${yearLabel} ${subjectLabel} Curriculum – TutorExel | www.tutorexel.com | +61 470-330-548`,
+          `${yearLabel} ${subjectLabel} Curriculum – TutorExel | www.tutorexel.com | +61 470 330 548`,
           pageWidth / 2,
           doc.internal.pageSize.getHeight() - 8,
           { align: "center" }
@@ -145,7 +145,7 @@ export function generateCurriculumPdf(
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
   doc.text(
-    "Book a free trial at www.tutorexel.com/free-trial or call +61 470-330-548",
+    "Book a free trial at www.tutorexel.com/free-trial or call +61 470 330 548",
     18,
     yPos + 17
   );

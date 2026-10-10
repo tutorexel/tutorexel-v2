@@ -1027,7 +1027,7 @@ export default function IcasPreparationPage() {
                   <svg aria-hidden="true" fill="#fff" height="18" viewBox="0 0 24 24" width="18">
                     <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z"></path>
                   </svg>
-                  +61 470-330-548
+                  +61 470 330 548
                 </a>
               </div>
             </div>

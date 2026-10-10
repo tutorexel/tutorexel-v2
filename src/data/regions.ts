@@ -38,7 +38,7 @@ export const REGIONAL_REFUND_WHATSAPP: Record<RegionCode, { number: string; href
     href: "https://wa.me/12067977387",
   },
   nz: {
-    number: "+61 470-330-548",
+    number: "+61 470 330 548",
     href: "https://wa.me/61470330548",
   },
 };
@@ -142,8 +142,8 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     flag: "au",
     flagUrl: "https://flagcdn.com/80x60/au.png",
     locale: "en-AU",
-    phone: "+61 470-330-548",
-    phoneText: "+61 470-330-548",
+    phone: "+61 470 330 548",
+    phoneText: "+61 470 330 548",
     phoneHref: "https://wa.me/61470330548",
     phoneE164: "+61470330548",
     curriculumLabel: "Australian Curriculum (ACARA)",
@@ -285,7 +285,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join the Australian families who trust TutorExel with their child's learning. Book your FREE trial class today, no credit card required.",
       btnText: "Book My Free Trial",
       btnHref: "/free-trial",
-      phoneText: "+61 470-330-548",
+      phoneText: "+61 470 330 548",
       phoneHref: "https://wa.me/61470330548",
     },
   },

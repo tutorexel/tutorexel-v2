@@ -134,7 +134,7 @@
 
 /* ===== Plans (content from live pricing) ===== */
 
-.xp-ca-ottawa .xd-hero{position:relative;overflow-x:clip;padding:40px 0 64px;background:linear-gradient(180deg,#FFEFE7 0%,#FFF8F4 70%,var(--page))}
+.xp-ca-ottawa .xd-hero{position:relative;overflow-x:clip;padding:120px 0 64px;background:linear-gradient(180deg,#FFEFE7 0%,#FFF8F4 70%,var(--page))}
 .xp-ca-ottawa .xd-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
 .xp-ca-ottawa .xd-hero .hub-title{margin-top:16px}.xp-ca-ottawa .xd-hero .hub-sub{margin-bottom:24px}
 .xp-ca-ottawa .xd-cta{display:flex;flex-wrap:wrap;gap:12px}

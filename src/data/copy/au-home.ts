@@ -277,6 +277,6 @@ export const AU_HOME_COPY = {
     title: "Ready to Help Your Child Excel?",
     description: "Join the Australian families who trust TutorExel with their child's learning. Book your FREE trial class today, no credit card required.",
     buttonText: "Book My Free Trial",
-    phone: "+61 470-330-548",
+    phone: "+61 470 330 548",
   },
 };

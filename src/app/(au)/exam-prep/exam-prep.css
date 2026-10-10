@@ -43,13 +43,15 @@
 /* ---------- LIBRARY ---------- */
 
 /* ---------- NAPLAN SPOTLIGHT ---------- */
-.xp-exam-hub .spot{background:var(--band);color:var(--band-ink);padding:64px 0}
+.xp-exam-hub .spot{background:var(--band);color:#FFFFFF;padding:64px 0}
 .xp-exam-hub .spot-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start}
-.xp-exam-hub .spot h2{font-size:clamp(30px,3.6vw,44px);font-weight:600;max-width:14ch}
-.xp-exam-hub .spot p.lede{opacity:.85;max-width:44ch;margin:16px 0 24px}
+.xp-exam-hub .spot h2{color:#FFFFFF !important;font-size:clamp(30px,3.6vw,44px);font-weight:600;max-width:14ch}
+.xp-exam-hub .spot p.lede{color:rgba(255,255,255,.88) !important;opacity:.85;max-width:44ch;margin:16px 0 24px}
 .xp-exam-hub .spot-actions{display:flex;gap:12px;flex-wrap:wrap}
-.xp-exam-hub .spot .btn-ghost{background:transparent;color:var(--band-ink);border-color:rgba(255,255,255,.35)}
-.xp-exam-hub .spot .btn-ghost:hover{border-color:var(--band-ink)}
+.xp-exam-hub .spot .btn-ghost{background:transparent;color:#FFFFFF !important;border-color:rgba(255,255,255,.45)}
+.xp-exam-hub .spot .btn-ghost:hover{border-color:#FFFFFF;background:rgba(255,255,255,.12)}
+.xp-exam-hub .spot .bfeat b{color:#FFFFFF !important}
+.xp-exam-hub .spot .bfeat span:last-child{color:rgba(255,255,255,.8) !important}
 @media (max-width:900px){.xp-exam-hub .spot-grid{grid-template-columns:1fr;gap:28px}}
 
 /* ---------- EXPLORE ---------- */

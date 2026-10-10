@@ -39,7 +39,6 @@ const legalLinks = [
 ];
 
 const usExamPrepFooterItems = [
-  { label: "All Exam Prep", href: "/exam-prep" },
   { label: "State Tests", href: "/exam-prep/state-tests" },
   { label: "STAAR (Texas)", href: "/exam-prep/staar" },
   { label: "CAASPP (California)", href: "/exam-prep/caaspp" },
@@ -49,7 +48,6 @@ const usExamPrepFooterItems = [
 ];
 
 const usOnlineTutoringFooterItems = [
-  { label: "All Cities", href: "/online-tutoring" },
   { label: "New York", href: "/online-tutoring/new-york" },
   { label: "Los Angeles", href: "/online-tutoring/los-angeles" },
   { label: "San Diego", href: "/online-tutoring/san-diego" },
@@ -61,7 +59,6 @@ const usOnlineTutoringFooterItems = [
 ];
 
 const caExamPrepFooterItems = [
-  { label: "All Exam Prep", href: "/exam-prep" },
   { label: "EQAO", href: "/exam-prep/eqao" },
   { label: "OSSLT", href: "/exam-prep/osslt" },
   { label: "Alberta PATs", href: "/exam-prep/pat" },
@@ -70,7 +67,6 @@ const caExamPrepFooterItems = [
 ];
 
 const caOnlineTutoringFooterItems = [
-  { label: "All Cities", href: "/online-tutoring" },
   { label: "Toronto", href: "/online-tutoring/toronto" },
   { label: "Ottawa", href: "/online-tutoring/ottawa" },
   { label: "Mississauga", href: "/online-tutoring/mississauga" },
@@ -81,7 +77,6 @@ const caOnlineTutoringFooterItems = [
 ];
 
 const nzExamPrepFooterItems = [
-  { label: "All Exam Prep", href: "/exam-prep" },
   { label: "PAT", href: "/exam-prep/pat" },
   { label: "e-asTTle", href: "/exam-prep/e-asttle" },
   { label: "ICAS", href: "/exam-prep/icas" },
@@ -89,7 +84,6 @@ const nzExamPrepFooterItems = [
 ];
 
 const nzOnlineTutoringFooterItems = [
-  { label: "All Cities", href: "/online-tutoring" },
   { label: "Auckland", href: "/online-tutoring/auckland" },
   { label: "Wellington", href: "/online-tutoring/wellington" },
   { label: "Christchurch", href: "/online-tutoring/christchurch" },
@@ -99,7 +93,6 @@ const nzOnlineTutoringFooterItems = [
 ];
 
 const auExamPrepFooterItems = [
-  { label: "All Exam Prep", href: "/exam-prep" },
   { label: "NAPLAN", href: "/naplan-preparation" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "OC Test", href: "/exam-prep/oc-test" },
@@ -108,7 +101,6 @@ const auExamPrepFooterItems = [
 ];
 
 const auOnlineTutoringFooterItems = [
-  { label: "All Cities", href: "/online-tutoring" },
   { label: "Sydney", href: "/online-tutoring/sydney" },
   { label: "Melbourne", href: "/online-tutoring/melbourne" },
   { label: "Brisbane", href: "/online-tutoring/brisbane" },

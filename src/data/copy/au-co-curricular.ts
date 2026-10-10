@@ -126,7 +126,7 @@ export const AU_CO_CURRICULAR_COPY: MusicHubCopy = {
       href: "/free-trial",
     },
     whatsapp: {
-      label: "+61 470-330-548",
+      label: "+61 470 330 548",
       href: "https://wa.me/61470330548",
     },
   },

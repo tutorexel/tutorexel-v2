@@ -8,7 +8,7 @@ export const NZ_CONTACT_COPY = {
   contactDetails: {
     email: "info@tutorexel.com",
     emailLink: "mailto:info@tutorexel.com",
-    whatsappNumber: "+61 470-330-548",
+    whatsappNumber: "+61 470 330 548",
     whatsappLink: "https://wa.me/61470330548",
     replyTime: "We usually reply within 2 hours",
   },

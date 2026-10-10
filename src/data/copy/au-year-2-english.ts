@@ -315,6 +315,6 @@ export const auYear2EnglishCopy: SubjectCopyData = {
     h2: "Ready to Help Your Child Excel?",
     text: "Join the Australian families who trust TutorExel with their child's learning. Book your FREE trial class today, no credit card required.",
     buttonText: "Book My Free Trial",
-    whatsappNumber: "+61 470-330-548",
+    whatsappNumber: "+61 470 330 548",
   },
 };
