@@ -33,7 +33,7 @@ const heroLinks = [
   },
 ];
 
-const exploreLinks = [
+const getExploreLinks = (mathLabel: string, yearOrGrade: string) => [
   {
     href: "/pricing",
     icon: "💰",
@@ -46,7 +46,7 @@ const exploreLinks = [
     icon: "📚",
     iconClass: "icon-blue",
     title: "Our Subjects",
-    subtitle: "Maths · English · Science · Years 2-7",
+    subtitle: `${mathLabel} · English · Science · ${yearOrGrade} 2-7`,
   },
   {
     href: "/co-curricular",
@@ -163,6 +163,12 @@ function SocialIcon({ type }: { type: string }) {
 }
 
 export default function LinksView({ region }: { region: RegionCode }) {
+  const isYearRegion = region === "au" || region === "nz";
+  const yearOrGrade = isYearRegion ? "Years" : "Grades";
+  const mathLabel = isYearRegion ? "Maths" : "Math";
+  const exploreLinks = getExploreLinks(mathLabel, yearOrGrade);
+  const whatsappNumber = (region === "us" || region === "ca") ? "12067977387" : "61470330548";
+
   const addUTM = (url: string, campaign: string) => {
     if (url.startsWith("http")) {
       const sep = url.includes("?") ? "&" : "?";
@@ -245,8 +251,8 @@ export default function LinksView({ region }: { region: RegionCode }) {
           <h1 className="sr-only">TutorExel Quick Links and Resources</h1>
 
           <p className="links-profile__desc">
-            🎓 Online tutoring for Years 2-7<br />
-            Maths · English · Science · Piano · Guitar<br />
+            🎓 Online tutoring for {yearOrGrade} 2-7<br />
+            {mathLabel} · English · Science · Piano · Guitar<br />
             Curriculum-aligned · Free assessment · From $39/month
           </p>
 
@@ -277,11 +283,10 @@ export default function LinksView({ region }: { region: RegionCode }) {
         <div className="links-section-label">Follow Us</div>
         <div className="links-social">
           {socialLinks
-            .filter((link) => link.iconType !== "whatsapp" || region === "au" || region === "us")
             .map((link, i) => {
               const href =
-                link.iconType === "whatsapp" && region === "us"
-                  ? "https://wa.me/12067977387"
+                link.iconType === "whatsapp"
+                  ? `https://wa.me/${whatsappNumber}`
                   : link.href;
               return (
                 <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="links-social__btn" title={link.title}>

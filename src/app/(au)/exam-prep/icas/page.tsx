@@ -783,7 +783,7 @@ export default function IcasPreparationPage() {
             </Link>
           </div>
           <div className="rels">
-            <Link className="rel" href="/naplan-preparation">
+            <Link className="rel" href="/exam-prep/naplan">
               <span className="topic-ic">
                 <svg
                   aria-hidden="true"

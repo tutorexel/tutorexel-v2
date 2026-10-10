@@ -1350,7 +1350,7 @@ export default function BlogArticleView({
                     {blogLevelLabel} 7 English
                   </Link>
                   {region === "au" && (
-                    <Link href="/naplan-preparation">
+                    <Link href="/exam-prep/naplan">
                       NAPLAN Prep
                     </Link>
                   )}

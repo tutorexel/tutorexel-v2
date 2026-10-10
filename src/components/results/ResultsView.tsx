@@ -1,90 +1,22 @@
 "use client";
 
 import RegionLink from "@/components/shared/RegionLink";
-import Testimonials from "@/components/home/Testimonials";
-import BookTrialButton from "@/components/home/BookTrialButton";
 import { type RegionCode } from "@/data/regions";
 import "@/app/results/results.css";
 
 const stats = [
-  { value: "500+", label: "Students Taught", variant: "orange" as const },
+  { value: "500+", label: "Students taught", variant: "orange" as const },
   {
     value: "15+",
-    label: "Years of Teaching Experience",
+    label: "Years of teaching experience",
     variant: "dark" as const,
   },
   {
     value: "92%",
-    label: "Students Showed Improved Grades",
+    label: "Students with improved grades",
     variant: "orange" as const,
   },
-  { value: "4.8/5", label: "Average Parent Rating", variant: "orange" as const },
-];
-
-const successStories = [
-  {
-    title: "From Struggling to Confident in One Term",
-    student: "Year 5 Maths",
-    sections: [
-      {
-        label: "Student",
-        text: "Aarav was falling behind in Year 5 Maths, particularly in fractions and decimals. He had lost confidence and was starting to avoid maths homework altogether. His parents were worried about the upcoming tests.",
-      },
-      {
-        label: "What We Did",
-        text: "We started with a diagnostic assessment to pinpoint exact gaps. His tutor created a custom plan focusing on visual fraction models, step-by-step decimal operations, and daily practice worksheets. Sessions were structured but encouraging.",
-      },
-      {
-        label: "Result",
-        text: "Within one term, Aarav moved from a C to a B+ in Maths. By the end of two terms, he was consistently scoring in the top third of his class and actually asked to do extra maths problems at home.",
-      },
-    ],
-    quote:
-      "We could not believe the change. He went from dreading maths to being excited about it. TutorExel gave him the structure and confidence he needed.",
-    author: "- Priya S.",
-  },
-  {
-    title: "Year 7 English Turnaround",
-    student: "Year 7 English",
-    sections: [
-      {
-        label: "Student",
-        text: "Maya was struggling with reading comprehension and creative writing in Year 7 English. Her school reports flagged her as needing additional support, and she was reluctant to participate in class discussions.",
-      },
-      {
-        label: "What We Did",
-        text: "Her tutor introduced a structured reading programme with levelled texts, vocabulary building activities, and guided essay writing. Sessions included real-time feedback on paragraph structure and expression.",
-      },
-      {
-        label: "Result",
-        text: "After 15 weeks, Maya improved her reading comprehension by two grade levels. She started participating more in class discussions and her teacher noticed a marked improvement in her written responses and essay structure.",
-      },
-    ],
-    quote:
-      "Her school teacher commented on the huge improvement in her writing. She is so much more confident speaking up in class now.",
-    author: "- Mark D.",
-  },
-  {
-    title: "Bridging the Gap Before High School",
-    student: "Year 6 Maths & English",
-    sections: [
-      {
-        label: "Student",
-        text: "Liam was entering Year 6 with uneven foundations. Strong in reading, but struggling with written expression and fractions. His parents wanted to ensure he was fully prepared for high school.",
-      },
-      {
-        label: "What We Did",
-        text: "Enrolled in our two-subject programme (Maths + English). Two sessions per week with dedicated tutors. We focused on algebra readiness, essay structure, and exam technique.",
-      },
-      {
-        label: "Result",
-        text: "Liam entered Year 7 in the top stream for English and the extension group for Maths. His parents credit TutorExel for making the high school transition smooth and stress-free.",
-      },
-    ],
-    quote:
-      "The transition to high school can be daunting. Having TutorExel meant Liam walked into Year 7 already knowing what was expected. Best investment we made.",
-    author: "- Sarah & James T.",
-  },
+  { value: "4.8/5", label: "Average parent rating", variant: "orange" as const },
 ];
 
 export default function ResultsView({ region }: { region: RegionCode }) {
@@ -94,12 +26,12 @@ export default function ResultsView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="results-hero__content">
             <h1 className="results-hero__title">
-              Real Students. Real Progress.{" "}
-              <span className="results-hero__title-highlight">Real Results.</span>
+              Real Learners. Real Growth.{" "}
+              <span className="results-hero__title-highlight">Real Wins.</span>
             </h1>
             <p className="results-hero__subtitle">
-              See how our structured, curriculum-aligned tutoring has helped
-              students across the country build confidence and improve their grades.
+              See how structured, curriculum-matched tutoring helps students in Australia,
+              the USA, Canada and New Zealand build confidence and lift their results.
             </p>
           </div>
         </div>
@@ -121,69 +53,27 @@ export default function ResultsView({ region }: { region: RegionCode }) {
         </div>
       </section>
 
-      <section className="case-studies">
-        <div className="container">
-          <div className="case-studies__header">
-            <span className="case-studies__badge">Case Studies</span>
-            <h2 className="case-studies__title">How We Help Students Succeed</h2>
-            <p className="case-studies__subtitle">
-              Every child starts from a different place. Here are a few stories of
-              students who turned things around with TutorExel.
-            </p>
-          </div>
-
-          <div className="case-studies__grid">
-            {successStories.map((story) => (
-              <div key={story.title} className="story-card">
-                <div className="story-card__header">
-                  <h3 className="story-card__title">{story.title}</h3>
-                  <span className="story-card__student">{story.student}</span>
-                </div>
-
-                <div className="story-card__sections">
-                  {story.sections.map((section) => (
-                    <div key={section.label} className="story-card__section">
-                      <div className="story-card__section-dot" />
-                      <div className="story-card__section-content">
-                        <div className="story-card__section-label">
-                          {section.label}
-                        </div>
-                        <p className="story-card__section-text">
-                          {section.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="story-card__quote">
-                  <span className="story-card__quote-mark">&ldquo;</span>
-                  <p className="story-card__quote-text">{story.quote}</p>
-                  <p className="story-card__quote-author">{story.author}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Testimonials />
+      {/* Case studies and testimonials hidden per instructions until content supplied */}
 
       <section className="results-cta">
         <div className="container">
           <h2 className="results-cta__title">
-            Your Child Could Be Our Next Success Story
+            Your Child&apos;s Success Story Starts Here
           </h2>
           <div className="results-cta__actions">
-            <BookTrialButton className="btn btn-primary btn-lg">
-              Book Free Trial Class
-            </BookTrialButton>
+            <RegionLink
+              href="/free-trial"
+              region={region}
+              className="btn btn-primary btn-lg"
+            >
+              Book a Free Trial
+            </RegionLink>
             <RegionLink
               href="/free-assessment"
               region={region}
               className="btn btn-outline-white btn-lg"
             >
-              Get Free Assessment
+              Get a Free Assessment
             </RegionLink>
           </div>
         </div>

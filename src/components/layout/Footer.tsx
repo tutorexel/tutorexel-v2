@@ -93,7 +93,7 @@ const nzOnlineTutoringFooterItems = [
 ];
 
 const auExamPrepFooterItems = [
-  { label: "NAPLAN", href: "/naplan-preparation" },
+  { label: "NAPLAN", href: "/exam-prep/naplan" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "OC Test", href: "/exam-prep/oc-test" },
   { label: "Selective", href: "/exam-prep/selective" },

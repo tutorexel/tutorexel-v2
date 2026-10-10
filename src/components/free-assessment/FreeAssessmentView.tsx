@@ -60,31 +60,31 @@ const levelDefinitions = [
 const howItWorksSteps = [
   {
     number: 1,
-    label: "Step 1 - Sign Up",
-    title: "Fill in a quick form",
+    label: "Step 1",
+    title: "SIGN UP",
     description:
-      "Provide your child's details and we will schedule the assessment at a time that works for you.",
+      "Fill in a quick form. Tell us about your child and we will arrange the assessment for a time that suits your family.",
     subItems: [],
   },
   {
     number: 2,
-    label: "Step 2 - Take the Assessment",
-    title: "20-minute online diagnostic",
+    label: "Step 2",
+    title: "TAKE THE ASSESSMENT",
     description:
-      "Your child completes a structured assessment with a friendly tutor. No pressure, no stress.",
+      "A 20-minute online diagnostic. Your child works through a structured assessment with a friendly tutor. It is relaxed, with no pressure.",
     subItems: [],
   },
   {
     number: 3,
-    label: "Step 3 - Get Your Report",
-    title: "Within 24 hours, detailed report showing:",
-    description: "",
+    label: "Step 3",
+    title: "GET YOUR REPORT",
+    description: "Within 24 hours, a detailed report showing:",
     subItems: [
       "Score breakdown by topic",
-      "Strengths and areas of confidence",
+      "Your child's strengths and where they feel confident",
       "Specific gaps that need attention",
-      "How your child compares to grade expectations",
-      "Personalised recommendations",
+      "How your child compares with expected levels for their grade or year",
+      "Tailored recommendations for next steps",
     ],
   },
 ];
@@ -93,30 +93,23 @@ const faqItems = [
   {
     question: "How long does the assessment take?",
     answer:
-      "The assessment typically takes 20 minutes. It is designed to be engaging and stress-free. Your child will work through a mix of questions covering key areas of their curriculum.",
+      "About 20 minutes. It is designed to be engaging and stress-free. Your child answers a mix of questions on the key areas of their school curriculum.",
   },
   {
     question: "Is it really free?",
     answer:
-      "Yes, completely free with no strings attached. We offer this because it helps us understand your child's needs and gives you valuable insight into their academic standing: whether you choose to continue with us or not.",
+      "Yes. The assessment and the report cost nothing, and there is no obligation to book lessons afterwards.",
   },
   {
     question: "What happens after I get the report?",
     answer:
-      "After reviewing the report, you can choose to discuss the results with one of our education specialists. If you decide to continue, we will create a personalised learning plan. If not, the report is yours to keep with zero obligation.",
+      "You can read it in your own time, or ask our team to walk you through it. If you would like support, we can suggest a lesson plan that matches your child's results.",
   },
   {
     question: "What subjects are assessed?",
     answer:
-      "We assess Mathematics and English by default, as these are the two core areas covered in the school curriculum. If you would like an assessment in a specific area, just let us know.",
+      "We assess Maths (Math in the USA and Canada) and English for Years or Grades 2 to 10.",
   },
-];
-
-const subjectsList = [
-  "Maths",
-  "English",
-  "Piano",
-  "Guitar",
 ];
 
 const phonePrefixes: Record<RegionCode, string> = {
@@ -132,6 +125,9 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
   const yearLevels = regConfig.yearLevels.map(
     (lvl) => `${regConfig.yearLabel} ${lvl}`
   );
+  const isMathsRegion = region === "au" || region === "nz";
+  const mathLabel = isMathsRegion ? "Maths" : "Math";
+  const subjectsList = [mathLabel, "English", `Both ${mathLabel} and English`];
 
   const [formData, setFormData] = useState({
     parentName: "",
@@ -212,21 +208,19 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="assessment-hero__content">
             <h1 className="assessment-hero__title">
-              Find Out Exactly{" "}
+              Discover Exactly{" "}
               <span className="assessment-hero__title-highlight">
-                Where Your Child Stands
+                How Your Child Is Doing
               </span>
               <span className="assessment-hero__star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
             <p className="assessment-hero__subtitle">
-              Our free diagnostic assessment identifies your child&apos;s
-              strengths and gaps against curriculum standards. No
-              cost. No obligation. Just clarity.
+              Our free diagnostic assessment shows your child&apos;s strengths and gaps against their school curriculum. It costs nothing and there is no obligation to continue.
             </p>
             <a href="#book-assessment" className="assessment-hero__cta">
-              Get Your Free Assessment
+              Book My Free Assessment
             </a>
           </div>
         </div>
@@ -431,7 +425,7 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
 
             <div className="assessment-form-card">
               <h2 className="assessment-form-card__title">
-                Get Your Free Assessment
+                Book Your Free Assessment
               </h2>
 
               <form onSubmit={handleSubmit}>
@@ -551,7 +545,7 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
                 </button>
                 {submitted && (
                   <p style={{ color: "#22C55E", textAlign: "center", marginTop: "12px", fontWeight: 600 }}>
-                    Thank you! Our team will contact you within 24 hours to schedule the assessment.
+                    Thank you! Your assessment request is in. We will contact you shortly to confirm a time.
                   </p>
                 )}
               </form>
@@ -600,14 +594,13 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="assessment-cta__content">
             <h2 className="assessment-cta__title">
-              What Are You Waiting For?
+              Ready to See the Full Picture?
             </h2>
             <p className="assessment-cta__subtitle">
-              It takes 30 seconds to fill the form. Get a clear picture of where
-              your child stands today.
+              The form takes about 30 seconds. Book now and know exactly where your child stands.
             </p>
             <a href="#book-assessment" className="assessment-cta__button">
-              Get Your Free Assessment
+              Book My Free Assessment
             </a>
           </div>
         </div>

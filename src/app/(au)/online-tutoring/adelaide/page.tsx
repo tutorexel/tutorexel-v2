@@ -383,7 +383,7 @@ export default function AuAdelaideCityPage() {
             </Link>
           </div>
           <div className="exams">
-            <Link className="exam" href="/naplan-preparation">
+            <Link className="exam" href="/exam-prep/naplan">
               <span className="exam-top">
                 <span className="topic-ic">
                   <svg

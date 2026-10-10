@@ -94,8 +94,20 @@ const defaultCallingCodes: Record<RegionCode, string> = {
 function EnrollForm({ region }: { region?: RegionCode }) {
   const currentRegion: RegionCode = region || "au";
   const regConfig = REGIONS_CONFIG[currentRegion] || REGIONS_CONFIG.au;
-  const yearLabel = regConfig.yearLabel || "Year";
-  const yearGroupOptions = Array.from({ length: 6 }, (_, i) => `${yearLabel} ${i + 2}`);
+  const isYearRegion = currentRegion === "au" || currentRegion === "nz";
+  const yearLabel = isYearRegion ? "Year" : "Grade";
+  const mathLabel = isYearRegion ? "Maths" : "Math";
+  const yearGroupOptions = Array.from({ length: 9 }, (_, i) => `${yearLabel} ${i + 2}`);
+  const helpWithOptions = [
+    mathLabel,
+    "English",
+    "Science",
+    "Piano",
+    "Guitar",
+    "Exam Preparation",
+    "Free Trial Lesson or Assessment",
+    "Not Sure Yet",
+  ];
 
   const [couponParam, setCouponParam] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -127,6 +139,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
     phone: defaultCallingCodes[currentRegion] || "+61 ",
     studentName: "",
     yearGroup: "",
+    helpWith: "",
     offering: "",
     classType: "",
     subjects: {
@@ -490,11 +503,11 @@ function EnrollForm({ region }: { region?: RegionCode }) {
         <div className="container">
           <div className="enroll-hero__content">
             <h1 className="enroll-hero__title">
-              <span className="enroll-hero__title-highlight">Enroll</span> Now
+              <span className="enroll-hero__title-highlight">Sign Up</span> Now
               <span className="enroll-hero__title-star"><Image src="/images/banner/Vector-2.webp" alt="" width={20} height={20} /></span>
             </h1>
             <p className="enroll-hero__subtitle">
-              Fill in the form below and our team will get back to you within 24 hours.
+              Complete the short form below and a member of our team will be in touch within 24 hours.
             </p>
           </div>
         </div>
@@ -507,7 +520,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
               <div className="enroll-form__card">
                 <h2 className="enroll-form__title">Let&apos;s Get Started</h2>
                 <p className="enroll-form__subtitle">
-                  Tell us about your child and choose a programme.
+                  Tell us about your child and pick a learning plan.
                 </p>
 
                 {/* Auto-apply coupon banner: shown only when arriving via /enroll?coupon=CODE
@@ -540,7 +553,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                 <div className="enroll-form__row">
                   <div className="enroll-form__field">
                     <label className="enroll-form__label">
-                      Parent&apos;s Name *
+                      Parent or Guardian Name *
                     </label>
                     <input
                       type="text"
@@ -585,7 +598,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
 
                   <div className="enroll-form__field">
                     <label className="enroll-form__label">
-                      Student&apos;s Name *
+                      Student&apos;s First Name *
                     </label>
                     <input
                       type="text"
@@ -599,10 +612,10 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                   </div>
                 </div>
 
-                {/* Year Group & Country */}
+                {/* Year/Grade Level & Country */}
                 <div className="enroll-form__row">
                   <div className="enroll-form__field">
-                    <label className="enroll-form__label">{yearLabel} Group *</label>
+                    <label className="enroll-form__label">{yearLabel} Level *</label>
                     <select
                       name="yearGroup"
                       required
@@ -611,7 +624,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                       className="enroll-form__select"
                     >
                       <option value="" disabled>
-                        Select {yearLabel} Group
+                        Select {yearLabel} Level
                       </option>
                       {yearGroupOptions.map((yr) => (
                         <option key={yr} value={yr}>
@@ -632,6 +645,28 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                       {COUNTRIES.map((country) => (
                         <option key={country.code} value={country.code}>
                           {country.name} ({country.currency})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* What Would You Like Help With */}
+                <div className="enroll-form__row">
+                  <div className="enroll-form__field">
+                    <label className="enroll-form__label">What Would You Like Help With? *</label>
+                    <select
+                      name="helpWith"
+                      value={formData.helpWith}
+                      onChange={handleChange}
+                      className="enroll-form__select"
+                    >
+                      <option value="" disabled>
+                        Select an Option
+                      </option>
+                      {helpWithOptions.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
                         </option>
                       ))}
                     </select>
@@ -902,7 +937,7 @@ function EnrollForm({ region }: { region?: RegionCode }) {
                 className="enroll-form__submit"
                 disabled={submitting}
               >
-                {submitting ? "Submitting..." : "Submit Enrolment"}{" "}
+                {submitting ? "Submitting..." : "Submit My Details"}{" "}
                 {!submitting && <ArrowRight />}
               </button>
             </form>

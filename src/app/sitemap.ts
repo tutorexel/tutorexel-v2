@@ -12,6 +12,7 @@ const NOINDEX_PATHS = new Set([
   "/free-trial-booking/thank-you",
   "/careers/apply",
   "/home-v1",
+  "/links",
 ]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

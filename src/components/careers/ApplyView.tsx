@@ -9,20 +9,6 @@ import { sendCareersWebhook } from "@/utils/webhook";
 import { type RegionCode } from "@/utils/regionalLinks";
 import "@/app/careers/apply/apply.css";
 
-const subjectOptions = [
-  "Primary Maths (Years 2-6)",
-  "Secondary Maths (Years 7-10)",
-  "Primary English (Years 2-6)",
-  "Secondary English (Years 7-10)",
-  "Piano",
-  "Guitar",
-];
-
-const availabilityOptions = [
-  "Weekday Mornings (10 AM - 2 PM)",
-  "Weekends",
-];
-
 const phonePrefixes: Record<RegionCode, string> = {
   au: "+61 ",
   us: "+1 ",
@@ -33,6 +19,22 @@ const phonePrefixes: Record<RegionCode, string> = {
 export default function ApplyView({ region: propRegion }: { region?: RegionCode }) {
   const { region: clientRegion } = useRegion();
   const region: RegionCode = propRegion || clientRegion;
+  const isYearRegion = region === "au" || region === "nz";
+  const yearOrGrade = isYearRegion ? "Years" : "Grades";
+
+  const subjectOptions = [
+    `Primary Mathematics (${yearOrGrade} 2 to 6)`,
+    `Secondary Mathematics (${yearOrGrade} 7 to 10)`,
+    `Primary English (${yearOrGrade} 2 to 6)`,
+    `Secondary English (${yearOrGrade} 7 to 10)`,
+    "Piano",
+    "Guitar",
+  ];
+
+  const availabilityOptions = [
+    "Weekday Mornings (10 AM to 2 PM, your local time)",
+    "Weekends",
+  ];
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -171,14 +173,14 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
                 </svg>
-                Back to Careers
+                ← Back to Careers
               </RegionLink>
             )}
             <h1 className="apply-hero__title">
               {submitted ? (
                 <>Thank <span className="apply-hero__highlight">You</span></>
               ) : (
-                <>Join Our <span className="apply-hero__highlight">Team</span></>
+                <>Apply to <span className="apply-hero__highlight">Teach</span></>
               )}
               <span className="apply-hero__star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
@@ -187,7 +189,7 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
             <p className="apply-hero__subtitle">
               {submitted
                 ? "Thank you for applying to join TutorExel! We have received your application and will review it carefully. You can expect to hear from us within 24 Hours."
-                : "Complete the application form below. We review every application and will be in touch within 24 hours if your profile matches our current openings."
+                : "Fill in the short form below. We read every application and will contact you if your profile suits one of our current roles."
               }
             </p>
             {submitted && (
@@ -245,11 +247,11 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
                     <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" /><path d="M6 2v20" />
                   </svg>
                 </div>
-                <h2 className="apply-form__section-title">Teaching Profile</h2>
+                <h2 className="apply-form__section-title">Your Teaching Background</h2>
               </div>
 
               <div>
-                <label className="apply-form__label">Subjects You Can Teach * (Select all that apply)</label>
+                <label className="apply-form__label">Subjects You Can Teach * (tick all that apply)</label>
                 <div className="apply-form__checkbox-grid">
                   {subjectOptions.map((subj) => (
                     <label key={subj} className="apply-form__checkbox-item">
@@ -263,34 +265,35 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
 
               <div className="apply-form__grid" style={{ marginTop: "var(--spacing-5)" }}>
                 <div>
-                  <label className="apply-form__label">Highest Relevant Qualification *</label>
+                  <label className="apply-form__label">Highest Qualification *</label>
                   <select required className="apply-form__select" value={formData.qualification}
                     onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}>
-                    <option value="">Select qualification</option>
-                    <option value="Bachelor of Education (B.Ed)">Bachelor of Education (B.Ed)</option>
-                    <option value="Master of Teaching (M.Teach)">Master of Teaching (M.Teach)</option>
-                    <option value="Master of Education (M.Ed)">Master of Education (M.Ed)</option>
-                    <option value="Bachelor's Degree in Subject Area">Bachelor&apos;s Degree in Subject Area</option>
-                    <option value="Trinity College London Graded/Diploma (Music)">Trinity College London Graded/Diploma (Music)</option>
-                    <option value="Other Teaching Qualification">Other Teaching Qualification</option>
+                    <option value="">Choose your qualification</option>
+                    <option value="Bachelor's degree">Bachelor&apos;s degree</option>
+                    <option value="Master's degree">Master&apos;s degree</option>
+                    <option value="Doctorate">Doctorate</option>
+                    <option value="Teaching certificate or diploma">Teaching certificate or diploma</option>
+                    <option value="Music qualification (for Piano or Guitar)">Music qualification (for Piano or Guitar)</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div>
                   <label className="apply-form__label">Years of Teaching Experience *</label>
                   <select required className="apply-form__select" value={formData.yearsExperience}
                     onChange={(e) => setFormData({ ...formData, yearsExperience: e.target.value })}>
-                    <option value="">Select experience</option>
-                    <option value="1-2 years">1-2 years</option>
-                    <option value="3-5 years">3-5 years</option>
-                    <option value="5-10 years">5-10 years</option>
-                    <option value="10+ years">10+ years</option>
+                    <option value="">Choose your experience</option>
+                    <option value="Less than 1 year">Less than 1 year</option>
+                    <option value="1 to 2 years">1 to 2 years</option>
+                    <option value="3 to 5 years">3 to 5 years</option>
+                    <option value="6 to 10 years">6 to 10 years</option>
+                    <option value="More than 10 years">More than 10 years</option>
                   </select>
                 </div>
               </div>
 
               <div style={{ marginTop: "var(--spacing-5)" }}>
-                <label className="apply-form__label">Current Employment / Role</label>
-                <input type="text" className="apply-form__input" placeholder="e.g. Primary School Teacher, Private Tutor"
+                <label className="apply-form__label">Current Job or Role</label>
+                <input type="text" className="apply-form__input" placeholder="School Teacher, Private Tutor"
                   value={formData.currentRole} onChange={(e) => setFormData({ ...formData, currentRole: e.target.value })} />
               </div>
             </div>
@@ -304,7 +307,7 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
                     <rect width="20" height="14" x="2" y="3" rx="2" /><line x1="8" x2="16" y1="21" y2="21" /><line x1="12" x2="12" y1="17" y2="21" />
                   </svg>
                 </div>
-                <h2 className="apply-form__section-title">Setup &amp; Availability</h2>
+                <h2 className="apply-form__section-title">Your Setup and Schedule</h2>
               </div>
 
               <div className="apply-form__radio-group">
@@ -341,19 +344,21 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
 
               <div className="apply-form__grid" style={{ marginTop: "var(--spacing-5)" }}>
                 <div>
-                  <label className="apply-form__label">Internet Connection Speed *</label>
+                  <label className="apply-form__label">Internet Speed *</label>
                   <select required className="apply-form__select" value={formData.internetSpeed}
                     onChange={(e) => setFormData({ ...formData, internetSpeed: e.target.value })}>
-                    <option value="">Select speed</option>
-                    <option value="High-speed Fibre / Broadband (50+ Mbps)">High-speed Fibre / Broadband (50+ Mbps)</option>
-                    <option value="Standard Broadband (20-50 Mbps)">Standard Broadband (20-50 Mbps)</option>
-                    <option value="Basic (Under 20 Mbps)">Basic (Under 20 Mbps)</option>
+                    <option value="">Choose your speed</option>
+                    <option value="Under 10 Mbps">Under 10 Mbps</option>
+                    <option value="10 to 25 Mbps">10 to 25 Mbps</option>
+                    <option value="25 to 50 Mbps">25 to 50 Mbps</option>
+                    <option value="Over 50 Mbps">Over 50 Mbps</option>
+                    <option value="Not sure">Not sure</option>
                   </select>
                 </div>
               </div>
 
               <div style={{ marginTop: "var(--spacing-5)" }}>
-                <label className="apply-form__label">Your Availability * (Select all that apply)</label>
+                <label className="apply-form__label">When Can You Teach? * (tick all that apply)</label>
                 <div className="apply-form__checkbox-grid">
                   {availabilityOptions.map((slot) => (
                     <label key={slot} className="apply-form__checkbox-item">
@@ -418,11 +423,11 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m22 2-7 20-4-9-9-4Z" /><path d="M22 2 11 13" />
               </svg>
-              {submitting ? "Submitting..." : "Submit Application"}
+              {submitting ? "Sending..." : "Send My Application"}
             </button>
 
             <p className="apply-form__note">
-              We review all applications and respond within 24 hours.
+              We read every application and reply to shortlisted candidates.
             </p>
           </form>
         </section>

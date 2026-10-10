@@ -148,7 +148,7 @@ export default function ExamPrepHubPage() {
             habits.
           </p>
           <div className="hero-pills">
-            <Link href="/naplan-preparation">NAPLAN</Link>
+            <Link href="/exam-prep/naplan">NAPLAN</Link>
             <Link href="/exam-prep/icas">ICAS</Link>
             <Link href="/exam-prep/oc-test">OC Test</Link>
             <Link href="/exam-prep/selective">Selective Test</Link>
@@ -199,7 +199,7 @@ export default function ExamPrepHubPage() {
             </div>
           </div>
           <div className="exams" id="exams">
-            <Link className="exam" data-y="3 5 7 9" href="/naplan-preparation">
+            <Link className="exam" data-y="3 5 7 9" href="/exam-prep/naplan">
               <span className="exam-top">
                 <span className="topic-ic">
                   <svg

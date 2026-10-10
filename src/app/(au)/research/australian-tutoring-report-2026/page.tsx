@@ -313,7 +313,7 @@ export default function AustralianTutoringReport2026Page() {
               The data shows that structured, consistent preparation - rather than last-minute cramming - delivers the best results. Students who begin NAPLAN-focused tutoring at least 8 weeks before the test show the most significant score improvements.
             </p>
 
-            <Link href="/naplan-preparation" className="report-section__link">
+            <Link href="/exam-prep/naplan" className="report-section__link">
               Learn about TutorExel&apos;s NAPLAN Preparation Program <span className="report-section__link-arrow">&rarr;</span>
             </Link>
           </div>

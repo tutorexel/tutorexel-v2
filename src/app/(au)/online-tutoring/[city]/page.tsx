@@ -241,7 +241,7 @@ export default async function CityPage({
               <p className="city-offer__card-description">
                 Targeted NAPLAN preparation for Years 3, 5, and 7. Practice tests, gap analysis, and focused tutoring to help {city.name} students perform their best.
               </p>
-              <Link href="/naplan-preparation" className="city-offer__card-btn">
+              <Link href="/exam-prep/naplan" className="city-offer__card-btn">
                 NAPLAN Prep Details
               </Link>
             </div>
@@ -330,7 +330,7 @@ export default async function CityPage({
               <Link href="/subjects" className="city-links__link">All Subjects</Link>
               <Link href="/pricing" className="city-links__link">Pricing</Link>
               <Link href="/free-assessment" className="city-links__link">Free Assessment</Link>
-              <Link href="/naplan-preparation" className="city-links__link">NAPLAN Preparation</Link>
+              <Link href="/exam-prep/naplan" className="city-links__link">NAPLAN Preparation</Link>
               <Link href="/online-tutoring" className="city-links__link">All Cities</Link>
               {cities
                 .filter((c) => c.slug !== city.slug)

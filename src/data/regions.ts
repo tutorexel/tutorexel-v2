@@ -173,7 +173,7 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       assessmentBtnText: "Take the free assessment",
       assessmentBtnHref: "/free-assessment",
       programBtnText: "NAPLAN prep program",
-      programBtnHref: "/naplan-preparation",
+      programBtnHref: "/exam-prep/naplan",
       subTitle: "Practice by year level",
       practiceLinks: [
         { label: "Year 3 Maths", href: "/subjects/year-3/maths" },

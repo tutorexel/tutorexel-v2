@@ -7,46 +7,47 @@ import {
   MessageSquare,
   CheckCircle,
 } from "lucide-react";
-import Testimonials from "@/components/home/Testimonials";
 import { CALENDLY_URL } from "@/utils/externalLinks";
 import { type RegionCode } from "@/data/regions";
 import "@/app/free-trial/free-trial.css";
 
-const trialPhases = [
-  {
-    icon: ClipboardCheck,
-    title: "Quick Assessment",
-    time: "10 min",
-    description:
-      "Your child's tutor will have a friendly conversation to understand their current level, learning style, and any areas of difficulty.",
-    highlight: false,
-  },
-  {
-    icon: BookOpen,
-    title: "Live Lesson",
-    time: "40 min",
-    description:
-      "A real teaching session covering a topic relevant to your child's year level. See exactly how our structured approach works.",
-    highlight: true,
-  },
-  {
-    icon: MessageSquare,
-    title: "Feedback & Plan",
-    time: "10 min",
-    description:
-      "The tutor will share their observations with you: strengths, gaps, and a recommended plan. There is absolutely no obligation to continue.",
-    highlight: false,
-  },
-];
+export default function FreeTrialView({ region }: { region: RegionCode }) {
+  const isGrade = region === "us" || region === "ca";
+  const levelLabel = isGrade ? "grade level" : "year level";
 
-const noRiskPromises = [
-  "No payment details required",
-  "No obligation to continue",
-  "No pushy sales calls",
-  "The assessment report is yours to keep - free",
-];
+  const trialPhases = [
+    {
+      icon: ClipboardCheck,
+      title: "Quick Check-In",
+      time: "10 min",
+      description:
+        "The tutor chats with your child to understand their level, how they like to learn and where they find things tricky.",
+      highlight: false,
+    },
+    {
+      icon: BookOpen,
+      title: "Live Lesson",
+      time: "40 min",
+      description: `A real lesson on a topic that suits your child's ${levelLabel}. See first hand how our structured approach works.`,
+      highlight: true,
+    },
+    {
+      icon: MessageSquare,
+      title: "Feedback and Plan",
+      time: "10 min",
+      description:
+        "The tutor shares what they noticed: strengths, gaps and a suggested plan. You are under no obligation to continue.",
+      highlight: false,
+    },
+  ];
 
-export default function FreeTrialView({ region: _region }: { region: RegionCode }) {
+  const noRiskPromises = [
+    "We never ask for payment details",
+    "You are never obliged to continue",
+    "No pushy sales calls, ever",
+    "Your child's feedback and plan are yours to keep, free",
+  ];
+
   return (
     <>
       <section className="trial-hero" id="book-trial">
@@ -79,16 +80,12 @@ export default function FreeTrialView({ region: _region }: { region: RegionCode 
         <div className="container">
           <div className="trial-hero__content">
             <h1 className="trial-hero__title">
-              Experience the TutorExel{" "}
-              <span className="trial-hero__title-highlight">Difference</span>
-              <span className="trial-hero__star">
-                <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
-              </span>
+              Try TutorExel Free for One Full Hour
             </h1>
             <p className="trial-hero__subtitle">
-              Book a free 60-minute trial session. Your child gets a real
-              lesson with a qualified tutor, and you get an honest assessment
-              of where they stand. Zero risk. Zero pressure.
+              Book a free 1-hour trial. Your child joins a real lesson with a
+              qualified tutor, and you get an honest view of where they are at.
+              No risk, no pressure.
             </p>
           </div>
 
@@ -109,11 +106,10 @@ export default function FreeTrialView({ region: _region }: { region: RegionCode 
           <div className="section-header section-header--center">
             <p className="section-header__label">What Happens</p>
             <h2 className="section-header__title">
-              60 Minutes That Could Change Everything
+              One Hour That Shows You Everything
             </h2>
             <p className="section-header__subtitle">
-              Your free trial is not a sales pitch. It is a real teaching session
-              designed to show you exactly how we work.
+              Your free trial is a real lesson, not a sales pitch. It shows you exactly how we teach.
             </p>
           </div>
 
@@ -139,7 +135,7 @@ export default function FreeTrialView({ region: _region }: { region: RegionCode 
         </div>
       </section>
 
-      <Testimonials />
+      {/* Testimonials block hidden per instructions until verified reviews supplied */}
 
       <section className="trial-norisk">
         <div className="container">
@@ -153,11 +149,10 @@ export default function FreeTrialView({ region: _region }: { region: RegionCode 
 
             <div>
               <h2 className="trial-norisk__title">
-                Absolutely No Risk. Here&apos;s Our Promise.
+                Zero Risk. Here&apos;s Our Promise.
               </h2>
               <p className="trial-norisk__subtitle">
-                We believe in our tutoring so much that we do not need to trick
-                you into signing up.
+                We are confident in our tutoring, so there are no tricks and no pressure to sign up.
               </p>
               <ul className="trial-norisk__list">
                 {noRiskPromises.map((promise, i) => (
@@ -178,13 +173,12 @@ export default function FreeTrialView({ region: _region }: { region: RegionCode 
       <section className="trial-cta">
         <div className="container">
           <div className="trial-cta__content">
-            <h2 className="trial-cta__title">What Are You Waiting For?</h2>
+            <h2 className="trial-cta__title">Your Child&apos;s First Lesson Is on Us</h2>
             <p className="trial-cta__subtitle">
-              It takes 30 seconds to book a slot. Your child&apos;s first step
-              towards academic excellence starts now.
+              Booking takes about 30 seconds. Pick a time and see what great tutoring feels like.
             </p>
             <a href="#book-trial" className="trial-cta__button">
-              Book Your Free Trial Lesson
+              Book My Free Trial Lesson
             </a>
           </div>
         </div>

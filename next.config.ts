@@ -54,36 +54,45 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // AU-only pages redirected from US, CA, and NZ directly to root
-      // NAPLAN
+      // AU NAPLAN 301 redirect
+      {
+        source: "/naplan-preparation",
+        destination: "/exam-prep/naplan",
+        permanent: true,
+      },
+      {
+        source: "/naplan-preparation/:path*",
+        destination: "/exam-prep/naplan/:path*",
+        permanent: true,
+      },
       {
         source: "/us/naplan-preparation",
-        destination: "/naplan-preparation",
+        destination: "/exam-prep/naplan",
         permanent: true,
       },
       {
         source: "/us/naplan-preparation/:path*",
-        destination: "/naplan-preparation/:path*",
+        destination: "/exam-prep/naplan/:path*",
         permanent: true,
       },
       {
         source: "/ca/naplan-preparation",
-        destination: "/naplan-preparation",
+        destination: "/exam-prep/naplan",
         permanent: true,
       },
       {
         source: "/ca/naplan-preparation/:path*",
-        destination: "/naplan-preparation/:path*",
+        destination: "/exam-prep/naplan/:path*",
         permanent: true,
       },
       {
         source: "/nz/naplan-preparation",
-        destination: "/naplan-preparation",
+        destination: "/exam-prep/naplan",
         permanent: true,
       },
       {
         source: "/nz/naplan-preparation/:path*",
-        destination: "/naplan-preparation/:path*",
+        destination: "/exam-prep/naplan/:path*",
         permanent: true,
       },
       // CA Grade and Math redirects

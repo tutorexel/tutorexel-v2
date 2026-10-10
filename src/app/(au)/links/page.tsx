@@ -4,6 +4,7 @@ import LinksView from "@/components/links/LinksView";
 export const metadata = buildMetadata({
   path: "/links",
   region: "au",
+  noindex: true,
 });
 
 export default function LinksPage() {

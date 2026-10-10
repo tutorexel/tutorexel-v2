@@ -6,6 +6,7 @@
  * - Canada (ca) is at "/ca"
  * - New Zealand (nz) is at "/nz"
  */
+import { PAGE_AVAILABILITY } from "@/data/page-availability";
 
 export type RegionCode = "au" | "us" | "ca" | "nz";
 
@@ -44,7 +45,7 @@ export const SHARED_BASE_ROUTES = new Set([
  * Market-unique routes that only exist in Australia.
  */
 export const AU_ONLY_BASE_ROUTES = new Set([
-  "/naplan-preparation",
+  "/exam-prep/naplan",
 ]);
 
 export const REGIONAL_SUPPORTED_BASE_ROUTES = SHARED_BASE_ROUTES;
@@ -126,20 +127,12 @@ export function getEquivalentRegionalUrl(
       .replace(/\/grade-(\d+)/i, "/year-$1");
   }
 
-  // Check if this is an AU-only market-unique route
-  const isAuOnly = Array.from(AU_ONLY_BASE_ROUTES).some(
-    (prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`)
-  );
+  const homeUrl = target === "au" ? "/" : `/${target}`;
 
-  // If this is an AU-only route and the target region is not Australia,
-  // there is no equivalent page in the target region, so return that region's home.
-  if (isAuOnly && target !== "au") {
-    return `/${target}`;
-  }
-
-  // Research is supported in AU and US only
-  if ((cleanPath === "/research" || cleanPath.startsWith("/research/")) && target !== "au" && target !== "us") {
-    return `/${target}`;
+  // Check against PAGE_AVAILABILITY
+  const entry = PAGE_AVAILABILITY.find((p) => p.path === cleanPath);
+  if (!entry || !entry.regions.includes(target)) {
+    return homeUrl;
   }
 
   // For Australia: root URL has no prefix
@@ -158,14 +151,19 @@ export function isRouteSupportedInRegion(
   region: RegionCode | string = "au"
 ): boolean {
   if (!path || path === "/" || path === "") return true;
+  const reg = getRegionFromPathname(region);
+  let cleanPath = (path || "/").trim();
+  cleanPath = cleanPath.replace(/^\/(us|ca|nz|au)(\/|$)/i, "$2");
+  if (!cleanPath.startsWith("/")) cleanPath = `/${cleanPath}`;
+  if (cleanPath.endsWith("/") && cleanPath.length > 1) cleanPath = cleanPath.slice(0, -1);
+  const entry = PAGE_AVAILABILITY.find((p) => p.path === cleanPath);
+  if (entry) {
+    return entry.regions.includes(reg);
+  }
   const match = path.match(/^(\/[^/?#]+)/);
   if (!match) return false;
   const baseSegment = match[1].toLowerCase();
-  if (SHARED_BASE_ROUTES.has(baseSegment)) return true;
-  const reg = getRegionFromPathname(region);
-  if (baseSegment === "/research") return reg === "au" || reg === "us";
-  if (reg === "au" && AU_ONLY_BASE_ROUTES.has(baseSegment)) return true;
-  return false;
+  return SHARED_BASE_ROUTES.has(baseSegment);
 }
 
 /**

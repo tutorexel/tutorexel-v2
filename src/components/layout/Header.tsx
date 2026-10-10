@@ -31,7 +31,7 @@ const navLinks: NavLinkItem[] = [
 ];
 
 const auExamPrepItems = [
-  { label: "NAPLAN", href: "/naplan-preparation" },
+  { label: "NAPLAN", href: "/exam-prep/naplan" },
   { label: "ICAS", href: "/exam-prep/icas" },
   { label: "OC Test", href: "/exam-prep/oc-test" },
   { label: "Selective", href: "/exam-prep/selective" },
@@ -135,7 +135,7 @@ export default function Header() {
     ) {
       return pathname === regionalTarget || pathname === `${regionalTarget}/`;
     }
-    if (href === "/exam-prep" && pathname.startsWith("/naplan-preparation")) {
+    if (href === "/exam-prep" && pathname.startsWith("/exam-prep/naplan")) {
       return true;
     }
     return pathname.startsWith(regionalTarget);

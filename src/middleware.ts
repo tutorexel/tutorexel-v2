@@ -5,6 +5,7 @@
 
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { PAGE_AVAILABILITY, type RegionCode } from "@/data/page-availability";
 
 // ─── Blog redirect map ───────────────────────────────────────────────────────
 const oldIdToSlug: Record<string, string> = {
@@ -55,16 +56,30 @@ export function middleware(request: NextRequest) {
   } else if (pathname.startsWith("/au/")) {
     response = NextResponse.redirect(new URL((pathname.slice(3) || "/") + search, request.url), 301);
   } else {
-    // 3. Market-unique Australian routes accessed under /us, /ca, /nz redirect straight to AU root
-    // Note: US has its own /us/research page.
-    const marketUniqueMatch = pathname.match(/^\/(us|ca|nz)(\/(?:naplan-preparation)(?:\/.*)?)$/i);
-    if (marketUniqueMatch) {
-      let target = marketUniqueMatch[2];
-      if (target.endsWith("/") && target.length > 1) {
-        target = target.slice(0, -1);
+    // 3. Check if region-prefixed URL is not registered for that region (307 redirect to region homepage)
+    const regionMatch = pathname.match(/^\/(us|ca|nz)(\/.*)?$/i);
+    if (regionMatch) {
+      const region = regionMatch[1].toLowerCase() as RegionCode;
+      const rest = regionMatch[2] || "/";
+      let clean = rest;
+      if (clean.endsWith("/") && clean.length > 1) {
+        clean = clean.slice(0, -1);
       }
-      response = NextResponse.redirect(new URL(target + search, request.url), 301);
-    } else {
+      if (
+        clean !== "/" &&
+        !clean.startsWith("/api") &&
+        !clean.startsWith("/_next") &&
+        !clean.startsWith("/admin") &&
+        !clean.startsWith("/blocked")
+      ) {
+        const entry = PAGE_AVAILABILITY.find((p) => p.path === clean);
+        if (entry && !entry.regions.includes(region)) {
+          response = NextResponse.redirect(new URL(`/${region}` + search, request.url), 307);
+        }
+      }
+    }
+
+    if (!response) {
       // 4. Redirect /us/grade-N and /ca/grade-N to their respective /subjects/grade-N, and /nz/year-N to /nz/subjects/year-N
       const usGradeMatch = pathname.match(/^\/us\/grade-(\d+)$/i);
       if (usGradeMatch) {

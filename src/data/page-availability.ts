@@ -110,7 +110,7 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/exam-prep/oc-test", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/selective", regions: ["au"], isMarketUnique: true },
   { path: "/exam-prep/scholarship", regions: ["au"], isMarketUnique: true },
-  { path: "/naplan-preparation", regions: ["au"], isMarketUnique: true },
+  { path: "/exam-prep/naplan", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/sydney", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/melbourne", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },

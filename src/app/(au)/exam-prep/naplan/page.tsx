@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import ExamPrepInteractions from "@/components/exam-prep/ExamPrepInteractions";
-import "./naplan-preparation.css";
+import "./naplan.css";
 
 export const metadata: Metadata = {
   title: "NAPLAN Preparation Online Australia | Years 3, 5, 7, 9 | TutorExel",
   description:
     "Online NAPLAN preparation for Years 3, 5, 7 and 9. Live maths and English lessons, practice tests and parent reports. Book a free assessment today.",
-  alternates: { canonical: "https://www.tutorexel.com/naplan-preparation" },
+  alternates: { canonical: "https://www.tutorexel.com/exam-prep/naplan" },
 };
 
 const jsonLd = [
@@ -28,7 +28,7 @@ const jsonLd = [
         "@type": "ListItem",
         position: 3,
         name: "NAPLAN",
-        item: "https://www.tutorexel.com/naplan-preparation",
+        item: "https://www.tutorexel.com/exam-prep/naplan",
       },
     ],
   },
@@ -42,7 +42,7 @@ const jsonLd = [
       url: "https://www.tutorexel.com",
     },
     areaServed: { "@type": "Country", name: "Australia" },
-    url: "https://www.tutorexel.com/naplan-preparation",
+    url: "https://www.tutorexel.com/exam-prep/naplan",
   },
   {
     "@context": "https://schema.org",
