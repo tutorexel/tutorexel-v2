@@ -149,13 +149,18 @@ export default function FreeAssessmentView({ region }: { region: RegionCode }) {
       const res = await fetch("/api/free-assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, region }),
       });
       if (res.ok) {
         trackAssessmentSubmit(formData.subject, formData.yearLevel);
         setSubmitted(true);
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Assessment submit failed:", res.status, errorData);
+        alert("Something went wrong. Please try again.");
       }
-    } catch {
+    } catch (err) {
+      console.error("Assessment submit exception:", err);
       alert("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);

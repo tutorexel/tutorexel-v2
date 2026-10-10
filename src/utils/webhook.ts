@@ -75,16 +75,12 @@ function cleanPayload(payload: WebhookPayload): WebhookPayload {
 async function sendWebhook(webhookUrl: string | undefined, data: WebhookPayload, source: string): Promise<boolean> {
   // Validate webhook URL exists and is HTTPS
   if (!webhookUrl) {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('[Webhook] URL not configured');
-    }
+    console.warn(`[Webhook] URL not configured for ${source}`);
     return false;
   }
 
   if (!webhookUrl.startsWith('https://')) {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('[Webhook] URL must be HTTPS');
-    }
+    console.warn(`[Webhook] URL must be HTTPS for ${source}`);
     return false;
   }
 
@@ -132,11 +128,7 @@ async function sendWebhook(webhookUrl: string | undefined, data: WebhookPayload,
 
     return true;
   } catch (error) {
-    // Silent error handling for production
-    // Only log in development mode
-    if (process.env.NODE_ENV === 'development') {
-      console.error('[Webhook] Error:', error instanceof Error ? error.message : 'Unknown error');
-    }
+    console.error(`[Webhook] Error for ${source}:`, error instanceof Error ? error.message : 'Unknown error');
     return false;
   }
 }

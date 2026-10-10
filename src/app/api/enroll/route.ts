@@ -9,6 +9,7 @@ import {
   sendEnrollmentTeamNotification,
   type EnrollmentEmailParams,
 } from "@/utils/enrollment-emails";
+import { sendEnrollmentWebhook } from "@/utils/webhook";
 
 /**
  * Formats a phone number for Razorpay without overriding existing country codes.
@@ -289,10 +290,12 @@ export async function POST(request: NextRequest) {
       ...(chargeAmount != null ? { finalPrice: `${currency} $${chargeAmount}` } : {}),
     };
 
-    // Log submission to database store
-    logSubmission("enroll", enrollData).catch((err) => {
-      console.error("[Enroll] Database log submission failed:", err);
-    });
+    // 1. Save submission to store
+    try {
+      await logSubmission("enroll", enrollData);
+    } catch (err) {
+      console.error(`[enroll ${region.toUpperCase()}] Failed to save submission to store:`, err);
+    }
 
     // Create Razorpay Payment Link (with customer notification disabled)
     let paymentUrl: string | null = null;
@@ -343,7 +346,7 @@ export async function POST(request: NextRequest) {
       console.warn("[Enroll] Skipped Razorpay -", { chargeAmount });
     }
 
-    // Send customer welcome email and internal team notification email
+    // 2. Send emails (team notification and customer confirmation)
     const emailParams: EnrollmentEmailParams = {
       parentName,
       email,
@@ -368,10 +371,24 @@ export async function POST(request: NextRequest) {
       discountAmount,
     };
 
-    await Promise.allSettled([
-      sendEnrollmentWelcomeEmail(emailParams),
-      sendEnrollmentTeamNotification(emailParams),
-    ]);
+    try {
+      await sendEnrollmentTeamNotification(emailParams);
+    } catch (err) {
+      console.error(`[enroll ${region.toUpperCase()}] Failed to send team lead email:`, err);
+    }
+
+    try {
+      await sendEnrollmentWelcomeEmail(emailParams);
+    } catch (err) {
+      console.error(`[enroll ${region.toUpperCase()}] Failed to send customer welcome email:`, err);
+    }
+
+    // 3. Call server-side webhook
+    try {
+      await sendEnrollmentWebhook(enrollData);
+    } catch (err) {
+      console.error(`[enroll ${region.toUpperCase()}] Failed to call webhook:`, err);
+    }
 
     return NextResponse.json({
       success: true,

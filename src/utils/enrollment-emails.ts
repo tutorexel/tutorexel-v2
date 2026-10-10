@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import { createTransporter, getSmtpConfig, sendLeadEmail } from "@/utils/mailer";
 import { getRegionConfig, REGIONAL_REFUND_WHATSAPP, type RegionCode } from "@/data/regions";
 
 export interface EnrollmentEmailParams {
@@ -221,71 +221,66 @@ export function buildTeamNotificationHtml(params: EnrollmentEmailParams): string
 }
 
 export async function sendEnrollmentWelcomeEmail(params: EnrollmentEmailParams): Promise<boolean> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("[Resend] Cannot send customer welcome email: RESEND_API_KEY environment variable is not configured.");
+  const config = getSmtpConfig();
+  if (!config.user || !config.pass || !config.host) {
+    console.error(`[Mailer] Cannot send customer welcome email for enroll (${params.region.toUpperCase()}): SMTP credentials not configured`);
     return false;
   }
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "TutorExel <noreply@tutorexel.com>";
+  const transporter = createTransporter();
+  if (!transporter) {
+    console.error(`[Mailer] Failed to create SMTP transporter for customer welcome email (${params.region.toUpperCase()})`);
+    return false;
+  }
+
   const enrolmentWord = getSpellingEnrolment(params.region);
   const subject = `Your ${enrolmentWord} with TutorExel - ${params.studentName}`;
   const html = buildWelcomeEmailHtml(params);
   const text = buildWelcomeEmailText(params);
 
   try {
-    const resend = new Resend(apiKey);
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
+    await transporter.sendMail({
+      from: config.user,
       to: params.email,
       subject,
       html,
       text,
     });
 
-    if (error) {
-      console.error("[Resend] Customer welcome email failed:", JSON.stringify(error));
-      return false;
-    }
-
-    console.log(`[Resend] Customer welcome email sent to ${params.email}. ID: ${data?.id}`);
+    console.log(`[Mailer] Customer welcome email sent to ${params.email} for enroll (${params.region.toUpperCase()})`);
     return true;
   } catch (err) {
-    console.error("[Resend] Exception sending customer welcome email:", err);
+    console.error(`[Mailer] Exception sending customer welcome email to ${params.email} (${params.region.toUpperCase()}):`, err);
     return false;
   }
 }
 
 export async function sendEnrollmentTeamNotification(params: EnrollmentEmailParams): Promise<boolean> {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("[Resend] Cannot send team notification email: RESEND_API_KEY environment variable is not configured.");
-    return false;
-  }
+  const data: Record<string, unknown> = {
+    parentName: params.parentName,
+    email: params.email,
+    phone: params.phone,
+    studentName: params.studentName,
+    studentGrade: params.yearGroup,
+    offering: params.offering,
+  };
+  if (params.classType) data.classType = params.classType;
+  if (params.subjects) data.subjects = params.subjects;
+  if (params.activities) data.activities = params.activities;
+  if (params.planDetails) data.planDetails = params.planDetails;
+  if (params.couponCode) data.couponCode = `${params.couponCode}${params.discountAmount ? ` (-$${params.discountAmount})` : ""}`;
+  data.chargeAmount = `${params.currency} $${params.amount}`;
+  if (params.referenceId) data.referenceId = params.referenceId;
+  if (params.paymentUrl) data.paymentUrl = params.paymentUrl;
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "TutorExel Notifications <noreply@tutorexel.com>";
-  const notifyTo = process.env.NOTIFICATION_EMAIL || "vijayinder@superintech.com";
-  const subject = `[TutorExel] New ${getSpellingEnrolment(params.region)} [${params.region.toUpperCase()}] - ${params.parentName}`;
-  const html = buildTeamNotificationHtml(params);
+  const pageUrl = `https://tutorexel.com/${params.region === "au" ? "" : params.region}/enroll`;
 
-  try {
-    const resend = new Resend(apiKey);
-    const { data, error } = await resend.emails.send({
-      from: fromEmail,
-      to: notifyTo,
-      subject,
-      html,
-    });
-
-    if (error) {
-      console.error("[Resend] Team notification email failed:", JSON.stringify(error));
-      return false;
-    }
-
-    console.log(`[Resend] Team notification email sent to ${notifyTo}. ID: ${data?.id}`);
-    return true;
-  } catch (err) {
-    console.error("[Resend] Exception sending team notification email:", err);
-    return false;
-  }
+  return sendLeadEmail({
+    form: "enroll",
+    region: params.region,
+    data,
+    pageUrl,
+    replyTo: params.email,
+  });
 }
+

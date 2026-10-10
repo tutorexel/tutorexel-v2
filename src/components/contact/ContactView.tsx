@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { Mail, Clock, CheckCircle, MapPin } from "lucide-react";
 import RegionLink from "@/components/shared/RegionLink";
-import { sendContactWebhook } from "@/utils/webhook";
 import { pushUTMToGHL } from "@/utils/utm";
 import { trackContactSubmit } from "@/utils/analytics";
 import { getRegionConfig, COMPANY_ADDRESS, type RegionCode } from "@/data/regions";
@@ -105,7 +104,6 @@ export default function ContactView({ region }: { region: RegionCode }) {
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const webhookCalledRef = useRef(false);
 
   const handleInterestToggle = (interest: string) => {
     setFormData((prev) => ({
@@ -125,23 +123,22 @@ export default function ContactView({ region }: { region: RegionCode }) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, region }),
       });
 
       if (res.ok) {
-        if (!webhookCalledRef.current) {
-          webhookCalledRef.current = true;
-          sendContactWebhook(formData).catch(() => {});
-          pushUTMToGHL(formData.email);
-        }
+        pushUTMToGHL(formData.email);
         trackContactSubmit(formData.interests);
         setSubmitting(false);
         setSubmitted(true);
       } else {
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Contact submit failed:", res.status, errorData);
         setSubmitting(false);
         alert("Something went wrong. Please try again.");
       }
-    } catch {
+    } catch (err) {
+      console.error("Contact submit exception:", err);
       setSubmitting(false);
       alert("Something went wrong. Please try again.");
     }

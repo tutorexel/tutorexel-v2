@@ -5,7 +5,6 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import RegionLink from "@/components/shared/RegionLink";
 import { useRegion } from "@/hooks/useRegion";
-import { sendCareersWebhook } from "@/utils/webhook";
 import { type RegionCode } from "@/utils/regionalLinks";
 import "@/app/careers/apply/apply.css";
 
@@ -38,7 +37,6 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const webhookCalledRef = useRef(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -98,6 +96,7 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
       if (formData.cv) {
         submitData.append("cv", formData.cv);
       }
+      submitData.append("region", region);
 
       const res = await fetch("/api/careers-apply", {
         method: "POST",
@@ -105,33 +104,17 @@ export default function ApplyView({ region: propRegion }: { region?: RegionCode 
       });
 
       if (res.ok) {
-        const data = await res.json();
-
-        if (!webhookCalledRef.current) {
-          webhookCalledRef.current = true;
-          sendCareersWebhook({
-            fullName: formData.fullName,
-            email: formData.email,
-            phone: formData.phone,
-            location: formData.location,
-            subjects: formData.subjects,
-            qualification: formData.qualification,
-            yearsExperience: formData.yearsExperience,
-            currentRole: formData.currentRole,
-            hasWebcam: formData.hasWebcam,
-            hasQuietSpace: formData.hasQuietSpace,
-            internetSpeed: formData.internetSpeed,
-            availability: formData.availability,
-            coverLetter: formData.coverLetter,
-            cvUrl: data.cvUrl || "",
-          }).catch(() => {});
-        }
-
         setSubmitting(false);
         setSubmitted(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        console.error("Careers apply submit failed:", res.status, errorData);
+        setSubmitting(false);
+        alert("Something went wrong. Please try again.");
       }
-    } catch {
+    } catch (err) {
+      console.error("Careers apply submit exception:", err);
       setSubmitting(false);
       alert("Something went wrong. Please try again.");
     }

@@ -4,7 +4,7 @@
  * Called from API routes after form submission
  */
 
-import { Resend } from 'resend';
+import { createTransporter, getSmtpConfig } from '@/utils/mailer';
 
 const GHL_API_KEY = process.env.GHL_API_KEY;
 const GHL_LOCATION_ID = process.env.GHL_LOCATION_ID;
@@ -108,31 +108,28 @@ export async function sendEmail(
   subject: string,
   htmlBody: string
 ): Promise<boolean> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL || 'TutorExel <noreply@tutorexel.com>';
+  const config = getSmtpConfig();
+  if (!config.user || !config.pass || !config.host) {
+    console.error('[Mailer] SMTP credentials not configured');
+    return false;
+  }
 
-  if (!apiKey) {
-    console.error('[Resend] API key not configured');
+  const transporter = createTransporter();
+  if (!transporter) {
+    console.error('[Mailer] Failed to create SMTP transporter');
     return false;
   }
 
   try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
+    await transporter.sendMail({
+      from: config.user,
       to: toEmail,
       subject,
       html: htmlBody,
     });
-
-    if (error) {
-      console.error('[Resend] Send error:', error);
-      return false;
-    }
-
     return true;
   } catch (err) {
-    console.error('[Resend] Error:', err);
+    console.error('[Mailer] Send error:', err);
     return false;
   }
 }

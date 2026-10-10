@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { logSubmission } from "@/lib/submissions-store";
-import { sendNotificationEmail } from "@/utils/send-notification-email";
+import { sendLeadEmail } from "@/utils/mailer";
+import { sendCareersWebhook } from "@/utils/webhook";
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,6 +34,8 @@ export async function POST(request: NextRequest) {
     const subjectsRaw = formData.get("subjects") as string;
     const availabilityRaw = formData.get("availability") as string;
     const cvFile = formData.get("cv") as File | null;
+    const rawRegion = formData.get("region") as string;
+    const region = (rawRegion || "au").toLowerCase();
 
     if (!fullName || !email || !phone || !location || !qualificationRaw || !yearsExperience) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -71,6 +74,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = {
+      region,
       fullName, email, phone, location, qualification, yearsExperience,
       ...(currentRole && { currentRole }),
       ...(subjectsList && { subjects: subjectsList }),
@@ -82,8 +86,32 @@ export async function POST(request: NextRequest) {
       ...(cvUrl && { cvUrl }),
     };
 
-    logSubmission("careers", data).catch(() => {});
-    sendNotificationEmail("careers", data).catch(() => {});
+    // 1. Save to store
+    try {
+      await logSubmission("careers", data);
+    } catch (err) {
+      console.error(`[careers-apply ${region.toUpperCase()}] Failed to save submission to store:`, err);
+    }
+
+    // 2. Send email
+    try {
+      await sendLeadEmail({
+        form: "careers-apply",
+        region,
+        data,
+        pageUrl: `https://tutorexel.com/${region === "au" ? "" : region}/careers/apply`,
+        replyTo: email,
+      });
+    } catch (err) {
+      console.error(`[careers-apply ${region.toUpperCase()}] Failed to send lead email:`, err);
+    }
+
+    // 3. Call webhook
+    try {
+      await sendCareersWebhook(data);
+    } catch (err) {
+      console.error(`[careers-apply ${region.toUpperCase()}] Failed to call webhook:`, err);
+    }
 
     return NextResponse.json({ success: true, cvUrl });
   } catch (error) {

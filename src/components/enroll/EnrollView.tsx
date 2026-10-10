@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 import RegionLink from "@/components/shared/RegionLink";
 import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
 import Image from "next/image";
-import { sendEnrollmentWebhook } from "@/utils/webhook";
 import { trackEnrollment } from "@/utils/analytics";
 import { pushUTMToGHL } from "@/utils/utm";
 import { computePricing, type ClassType, type Offering } from "@/lib/pricing";
@@ -113,7 +112,6 @@ function EnrollForm({ region }: { region?: RegionCode }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const webhookCalledRef = useRef(false);
 
   // Country / currency selection defaults to current region
   const initialCountry =
@@ -413,17 +411,14 @@ function EnrollForm({ region }: { region?: RegionCode }) {
         body: JSON.stringify(submissionData),
       });
 
-      const data = await res.json().catch(() => ({}));
+      const data = await res.json().catch((err) => {
+        console.error("[Enroll] Failed to parse response JSON:", err);
+        return {};
+      });
 
       if (!res.ok) {
         console.error("API Error:", data);
         throw new Error("Failed to submit enrolment");
-      }
-
-      // Send to webhook (fire and forget)  -  e.g. to sync the lead into your CRM/GHL.
-      if (!webhookCalledRef.current) {
-        webhookCalledRef.current = true;
-        sendEnrollmentWebhook(submissionData).catch(() => { });
       }
 
       // Track enrollment/lead conversion in GA4

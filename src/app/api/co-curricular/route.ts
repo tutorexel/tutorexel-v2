@@ -1,20 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 import { logSubmission } from "@/lib/submissions-store";
-import { sendNotificationEmail } from "@/utils/send-notification-email";
+import { sendLeadEmail } from "@/utils/mailer";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { instrument, parentName, email, phone, studentName, yearLevel, preferredTime, additionalNotes } = body;
+    const { instrument, parentName, email, phone, studentName, yearLevel, preferredTime, additionalNotes, region: rawRegion } = body;
 
     if (!parentName || !email || !phone || !studentName || !yearLevel) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const data = { instrument, parentName, email, phone, studentName, yearLevel, preferredTime, additionalNotes };
+    const region = (rawRegion || "au").toLowerCase();
+    const data = { region, instrument, parentName, email, phone, studentName, yearLevel, preferredTime, additionalNotes };
 
-    logSubmission("co-curricular", data).catch(() => {});
-    sendNotificationEmail("co-curricular", data).catch(() => {});
+    try {
+      await logSubmission("co-curricular", data);
+    } catch (err) {
+      console.error(`[co-curricular ${region.toUpperCase()}] Failed to save submission to store:`, err);
+    }
+
+    try {
+      await sendLeadEmail({
+        form: "co-curricular",
+        region,
+        data,
+        pageUrl: `https://tutorexel.com/${region === "au" ? "" : region}/co-curricular`,
+        replyTo: email,
+      });
+    } catch (err) {
+      console.error(`[co-curricular ${region.toUpperCase()}] Failed to send lead email:`, err);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
