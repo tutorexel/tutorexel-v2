@@ -356,8 +356,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/subscription": {
     "au": {
-      "title": "Self-Study Learning Guides | TutorExel Australia",
-      "description": "Access complete digital study guides and workbook packs aligned to the Australian Curriculum. Comprehensive term learning resources for independent learners."
+      "title": "Self Learning eBooks and Worksheets | TutorExel Australia",
+      "description": "Australian Curriculum eBooks, worksheets and NAPLAN-style mock tests for Years 2 to 10 Maths and English. Self-paced study from TutorExel. Coming soon."
     },
     "us": {
       "title": "Self Learning eBooks and Worksheets | TutorExel USA",
@@ -392,8 +392,8 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
   },
   "/subjects": {
     "au": {
-      "title": "Primary & Middle School Subjects | TutorExel AU",
-      "description": "Browse comprehensive online tutoring subjects for Years 2 to 10. Structured curricula in Maths, English and Science aligned with ACARA learning guidelines."
+      "title": "Online Tutoring Subjects Years 2 to 10 Australia | TutorExel",
+      "description": "Online Maths, English and Science tutoring for Years 2 to 10, matched to the Australian Curriculum. Small groups or 1 on 1 classes. Book a free assessment."
     },
     "us": {
       "title": "Elementary & Middle School Subjects | TutorExel US",
@@ -1545,54 +1545,90 @@ export const PAGE_META_REGISTRY: Record<string, Partial<Record<RegionCode, PageM
     }
   },
   "/subjects/year-2": {
+    "au": {
+      "title": "Year 2 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 2 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 2 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 2 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-3": {
+    "au": {
+      "title": "Year 3 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 3 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 3 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 3 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-4": {
+    "au": {
+      "title": "Year 4 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 4 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 4 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 4 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-5": {
+    "au": {
+      "title": "Year 5 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 5 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 5 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 5 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-6": {
+    "au": {
+      "title": "Year 6 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 6 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 6 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 6 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-7": {
+    "au": {
+      "title": "Year 7 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 7 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 7 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 7 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-8": {
+    "au": {
+      "title": "Year 8 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 8 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 8 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 8 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-9": {
+    "au": {
+      "title": "Year 9 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 9 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 9 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 9 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
     }
   },
   "/subjects/year-10": {
+    "au": {
+      "title": "Year 10 Tutoring Australia | Maths, English, Science",
+      "description": "Online Year 10 tutoring in Australia for Maths, English and Science. Live 1-on-1 or small group lessons mapped to the Australian Curriculum. Free trial."
+    },
     "nz": {
       "title": "Year 10 Tutoring NZ | Maths, English, Science | TutorExel",
       "description": "Year 10 tutoring in NZ. 40 live lessons in Maths, English and Science aligned to the New Zealand Curriculum. Small groups or 1-on-1. Book a free trial."
@@ -1632,6 +1668,14 @@ export const AU_MARKET_UNIQUE_META: Record<string, PageMetaItem> = {
   "/online-tutoring/adelaide": {
     "title": "Online Tutoring Adelaide | SA Curriculum | TutorExel",
     "description": "Adelaide online tutoring for Years 2 to 7 students. Expert South Australian curriculum-aligned classes in Maths and English designed for academic confidence."
+  },
+  "/online-tutoring/gold-coast": {
+    "title": "Online Tutoring in Gold Coast, QLD | TutorExel",
+    "description": "Online tutoring in Gold Coast, QLD. Live maths, English and science for Years 2 to 10 with NAPLAN and ICAS prep. Small groups or 1:1. Book a free assessment."
+  },
+  "/online-tutoring/canberra": {
+    "title": "Online Tutoring in Canberra, ACT | TutorExel",
+    "description": "Online tutoring in Canberra, ACT. Live maths, English and science for Years 2 to 10 with NAPLAN and ICAS prep. Small groups or 1:1. Book a free assessment."
   },
   "/research/australian-tutoring-report-2026": {
     "title": "Australian Tutoring Report 2026 | TutorExel Research",

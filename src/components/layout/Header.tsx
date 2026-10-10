@@ -68,6 +68,8 @@ const auOnlineTutoringItems = [
   { label: "Brisbane", href: "/online-tutoring/brisbane" },
   { label: "Perth", href: "/online-tutoring/perth" },
   { label: "Adelaide", href: "/online-tutoring/adelaide" },
+  { label: "Gold Coast", href: "/online-tutoring/gold-coast" },
+  { label: "Canberra", href: "/online-tutoring/canberra" },
 ];
 
 const caOnlineTutoringItems = [

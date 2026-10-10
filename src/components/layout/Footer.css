@@ -16,7 +16,8 @@
 @media (min-width: 992px) {
   .footer__grid--us,
   .footer__grid--ca,
-  .footer__grid--nz {
+  .footer__grid--nz,
+  .footer__grid--au {
     grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 1fr;
     gap: var(--spacing-8);
   }

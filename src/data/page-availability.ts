@@ -79,10 +79,10 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
     regions: ["us", "ca"] as RegionCode[],
   })),
 
-  // NZ Year Landing Pages: Years 2-10
+  // AU & NZ Year Landing Pages: Years 2-10
   ...[2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => ({
     path: `/subjects/year-${y}`,
-    regions: ["nz"] as RegionCode[],
+    regions: ["au", "nz"] as RegionCode[],
   })),
 
   // Exam Prep & Tutoring Hubs (AU, US, CA, NZ)
@@ -116,6 +116,8 @@ export const PAGE_AVAILABILITY: PageAvailabilityConfig[] = [
   { path: "/online-tutoring/brisbane", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/perth", regions: ["au"], isMarketUnique: true },
   { path: "/online-tutoring/adelaide", regions: ["au"], isMarketUnique: true },
+  { path: "/online-tutoring/gold-coast", regions: ["au"], isMarketUnique: true },
+  { path: "/online-tutoring/canberra", regions: ["au"], isMarketUnique: true },
   { path: "/research", regions: ["au", "us", "ca", "nz"] },
   { path: "/research/australian-tutoring-report-2026", regions: ["au"], isMarketUnique: true },
 

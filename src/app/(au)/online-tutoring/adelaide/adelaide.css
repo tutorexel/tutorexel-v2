@@ -1,0 +1,223 @@
+
+.xp-au-adelaide{}
+.xp-au-adelaide{
+  --ink:#222222; --ink-2:#4A4A4A; --muted:#6E6E6E;
+  --page:#FFF6F2; --paper:#FFFFFF; --line:#F0E2DA;
+  --rule:#F7DCCF; --margin:#F26B3A; --hi:#F26B3A; --hi-ink:#FFFFFF;
+  --brand:#F26B3A; --brand-dark:#D9551F; --wa:#25D366;
+  --c-parents:#1E8E5A; --c-parents-bg:#E4F5EC;
+  --c-naplan:#C93A3A; --c-naplan-bg:#FCE6E4;
+  --c-study:#6A4BC4; --c-study-bg:#EEE9FB;
+  --c-inside:#E0592A; --c-inside-bg:#FFEADF;
+  --band:#1F1F1F; --band-ink:#FFFFFF;
+  --focus:#F26B3A;
+  --ff-d:"Poppins", system-ui, sans-serif;
+  --ff-b:"Poppins", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+}
+
+
+.xp-au-adelaide *,.xp-au-adelaide *::before,.xp-au-adelaide *::after{box-sizing:inherit}
+.xp-au-adelaide{margin:0;background:var(--page);color:var(--ink);font:400 16px/1.65 var(--ff-b);-webkit-font-smoothing:antialiased}
+.xp-au-adelaide img{max-width:100%;display:block}
+.xp-au-adelaide a{color:inherit}
+.xp-au-adelaide :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.xp-au-adelaide .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.xp-au-adelaide h1,.xp-au-adelaide h2,.xp-au-adelaide h3{font-family:var(--ff-d);line-height:1.12;margin:0;letter-spacing:-.01em}
+.xp-au-adelaide .btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--ff-b);padding:13px 20px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.xp-au-adelaide .btn-hi{background:var(--hi);color:var(--hi-ink)}
+.xp-au-adelaide .btn-hi:hover{filter:brightness(.95)}
+.xp-au-adelaide .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--paper)}
+.xp-au-adelaide .btn-ghost:hover{border-color:var(--ink)}
+
+/* ---------- HEADER ---------- */
+
+/* ---------- HERO (the notebook page) ---------- */
+
+/* ---------- CATEGORY STYLES ---------- */
+
+/* image with graceful fallback */
+
+/* ---------- FEATURED ---------- */
+
+/* ---------- LIBRARY ---------- */
+
+/* ---------- NAPLAN SPOTLIGHT ---------- */
+
+/* ---------- EXPLORE ---------- */
+
+/* ---------- FINAL CTA (original content) ---------- */
+.xp-au-adelaide .final{padding:40px 0 72px}
+.xp-au-adelaide .final-card{display:grid;grid-template-columns:1fr 1fr;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.xp-au-adelaide .final-img{min-height:320px;background:var(--c-inside-bg)}
+.xp-au-adelaide .final-img img{width:100%;height:100%;object-fit:cover}
+.xp-au-adelaide .final-txt{padding:44px}
+.xp-au-adelaide .final-txt h2{font-size:clamp(28px,3.4vw,40px);font-weight:600;margin-bottom:14px}
+.xp-au-adelaide .final-txt p{color:var(--ink-2);margin:0 0 24px;max-width:46ch}
+.xp-au-adelaide .final-actions{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:820px){.xp-au-adelaide .final-card{grid-template-columns:1fr}.xp-au-adelaide .final-img{min-height:220px}.xp-au-adelaide .final-txt{padding:28px}}
+
+/* ---------- FOOTER (original content) ---------- */
+
+/* sticky bottom bar (from live site) */
+
+@media (prefers-reduced-motion: no-preference){
+}
+
+/* ===== Live-site header / footer (markup + class names from tutorexel.com) ===== */
+
+/* ===== Header matched to live screenshot ===== */
+/* brand accents across page */
+.xp-au-adelaide .btn-hi{background:var(--brand);color:#fff;border-radius:8px}
+.xp-au-adelaide .btn-hi:hover{background:var(--brand-dark);filter:none}
+.xp-au-adelaide .btn-ghost{border-radius:8px}
+.xp-au-adelaide .btn-ghost:hover{border-color:var(--brand)}
+
+/* ===== Blog banner (live theme) ===== */
+.xp-au-adelaide .bb-line{position:absolute;pointer-events:none}
+.xp-au-adelaide .bb-line--right{right:0;top:40px;width:190px}
+@media (max-width:760px){.xp-au-adelaide .bb-line{opacity:.5}.xp-au-adelaide .bb-line--right{width:110px}}
+
+
+
+/* tabs as live pills */
+
+/* Poppins everywhere, site weights (400 body, 500 hero/links, 600 headings) */
+.xp-au-adelaide,.xp-au-adelaide button,.xp-au-adelaide input,.xp-au-adelaide select,.xp-au-adelaide textarea{font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.xp-au-adelaide h1,.xp-au-adelaide h2,.xp-au-adelaide h3,.xp-au-adelaide h4{font-family:"Poppins",system-ui,sans-serif;letter-spacing:-.005em}
+
+/* ===== Polish pass ===== */
+/* thumb fallback: patterned tile + icon */
+/* featured (polish) */
+/* library */
+/* inline CTA */
+/* spotlight */
+/* explore */
+/* final CTA */
+.xp-au-adelaide .final-card{border-radius:26px;box-shadow:0 30px 60px -40px rgba(242,107,58,.5)}
+.xp-au-adelaide .final-img{position:relative;min-height:360px;background:radial-gradient(circle at 30% 30%,#FFD9C4,transparent 55%),linear-gradient(135deg,#FFE7DB,#FFD1C2)}
+.xp-au-adelaide .final-img img{position:relative;z-index:1}
+.xp-au-adelaide .final-art{position:absolute;inset:0}
+.xp-au-adelaide .fa-spark{position:absolute;width:46px;left:12%;top:14%}
+.xp-au-adelaide .fa-stat{position:absolute;background:#fff;border-radius:16px;padding:14px 18px;box-shadow:0 18px 36px -20px rgba(0,0,0,.3);display:flex;flex-direction:column}
+.xp-au-adelaide .fa-stat b{font-size:22px;font-weight:600;background:linear-gradient(90deg,#FF7A45,#FF2D4F);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.xp-au-adelaide .fa-stat span{font-size:13px;color:#4A4A4A}
+.xp-au-adelaide .fa-stat--1{left:14%;top:34%}
+.xp-au-adelaide .fa-stat--2{right:10%;top:18%}
+.xp-au-adelaide .fa-stat--3{right:18%;bottom:14%}
+.xp-au-adelaide .final-txt .btn{border-radius:999px}
+.xp-au-adelaide .final-txt{display:flex;flex-direction:column;justify-content:center}
+/* footer logo fallback on dark */
+.xp-au-adelaide .btn-hi,.xp-au-adelaide .btn-ghost{border-radius:999px}
+.xp-au-adelaide .fa-stat--3 b{font-size:18px}
+@media (max-width:640px){
+  .xp-au-adelaide .final-img{min-height:260px}
+}
+
+/* ===== Start here: rethought (editorial: 1 wide lead + 2 balanced cards) ===== */
+
+/* spotlight alignment fix */
+
+/* ===== Library header: topic cards + compact sticky bar ===== */
+.xp-au-adelaide .topic-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--cb);color:var(--c);transition:background .2s,color .2s}
+.xp-au-adelaide .topic-ic svg{width:22px;height:22px}
+/* compact sticky bar (slides in after the cards scroll away) */
+.xp-au-adelaide .topic-ic{grid-row:1;grid-column:1}
+
+/* ===== Hero: suggestions + stats ===== */
+/* ===== Inline CTA year picker ===== */
+/* ===== NAPLAN rail ===== */
+/* ===== Explore programs ===== */
+/* ===== Final CTA ===== */
+.xp-au-adelaide .btn-wa{background:#25D366;color:#fff;border-radius:999px}
+.xp-au-adelaide .btn-wa:hover{filter:brightness(.95)}
+
+/* ===== Plans (content from live pricing) ===== */
+
+.xp-au-adelaide .xd-hero{position:relative;overflow-x:clip;padding:40px 0 64px;background:linear-gradient(180deg,#FFEFE7 0%,#FFF8F4 70%,var(--page))}
+.xp-au-adelaide .xd-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}
+.xp-au-adelaide .xd-hero .hub-title{margin-top:16px}.xp-au-adelaide .xd-hero .hub-sub{margin-bottom:24px}
+.xp-au-adelaide .xd-cta{display:flex;flex-wrap:wrap;gap:12px}
+.xp-au-adelaide .glance{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 30px 60px -40px rgba(242,107,58,.6)}
+.xp-au-adelaide .glance-t{margin:0 0 14px;font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:#B8461C}
+.xp-au-adelaide .xfacts{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.xp-au-adelaide .xfacts li{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px dashed var(--line)}.xp-au-adelaide .xfacts li:first-child{border-top:0}
+.xp-au-adelaide .xfacts b{display:block;font-size:13px;color:var(--muted);font-weight:500;margin-bottom:2px}
+.xp-au-adelaide .xfacts li>span:last-child{font-size:15px;font-weight:500;color:var(--ink);line-height:1.45}
+.xp-au-adelaide .xf-ic{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#FFEADF;color:var(--brand)}.xp-au-adelaide .xf-ic svg{width:20px;height:20px}
+.xp-au-adelaide .dom-head{display:flex;gap:12px;align-items:center}
+.xp-au-adelaide .see-all{display:inline-flex;gap:6px;align-items:center;font-weight:600;color:var(--brand);text-decoration:none}
+@media (max-width:980px){.xp-au-adelaide .xd-grid{grid-template-columns:1fr}}
+
+.xp-au-adelaide .subjs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.xp-au-adelaide .subj{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:22px;transition:border-color .2s,transform .2s}
+.xp-au-adelaide .subj:hover{border-color:var(--brand);transform:translateY(-3px)}
+.xp-au-adelaide .subj h3{font-size:20px;font-weight:600;margin:0}
+.xp-au-adelaide .subj-list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.xp-au-adelaide .subj-list li{display:grid;gap:3px;padding:12px 14px;border-radius:14px;background:var(--page)}
+.xp-au-adelaide .subj-list b{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#B8461C}
+.xp-au-adelaide .subj-list span{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.xp-au-adelaide .times{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+.xp-au-adelaide .times h2{font-size:clamp(26px,2.8vw,34px);font-weight:600}.xp-au-adelaide .times .btn{margin-top:22px}.xp-au-adelaide .times .muted b{color:var(--brand)}
+.xp-au-adelaide .tcard{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 30px 60px -40px rgba(242,107,58,.6)}
+.xp-au-adelaide .trow{padding:14px 0;border-top:1px dashed var(--line)}.xp-au-adelaide .trow:first-child{border-top:0;padding-top:0}
+.xp-au-adelaide .tlabel{display:flex;gap:8px;align-items:center;font-weight:600;font-size:15px;margin-bottom:12px}.xp-au-adelaide .tlabel svg{width:18px;height:18px;color:var(--brand)}
+.xp-au-adelaide .slots{display:flex;flex-wrap:wrap;gap:8px}
+.xp-au-adelaide .slot{font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;background:var(--page);border:1px solid #F7D3C1}
+.xp-au-adelaide .tnote{margin:14px 0 0;font-size:13px;color:var(--muted)}
+.xp-au-adelaide .areas{display:flex;flex-wrap:wrap;gap:10px}
+.xp-au-adelaide .area-chip{display:inline-flex;gap:6px;align-items:center;font-size:14.5px;font-weight:500;padding:10px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--line)}
+.xp-au-adelaide .area-chip svg{width:16px;height:16px;color:var(--brand)}
+.xp-au-adelaide .cswitch{position:relative;overflow:hidden;display:grid;grid-template-columns:.9fr 1.6fr;gap:40px;align-items:center;padding:40px;border-radius:28px;color:#fff;background:radial-gradient(600px 300px at 0% 0%,rgba(242,107,58,.35),transparent 60%),#1F1F1F}
+.xp-au-adelaide .cs-ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(242,107,58,.2);color:#FF8A5C}.xp-au-adelaide .cs-ic svg{width:24px;height:24px}
+.xp-au-adelaide .cs-l h2{font-size:clamp(26px,2.8vw,34px);font-weight:600;margin:18px 0 8px;color:#fff}
+.xp-au-adelaide .cs-l p{margin:0 0 20px;opacity:.75;line-height:1.6;max-width:36ch}
+.xp-au-adelaide .cs-all{display:inline-flex;gap:8px;align-items:center;font-weight:600;color:#FF8A5C;text-decoration:none}.xp-au-adelaide .cs-all:hover{color:#fff}
+.xp-au-adelaide .cs-r{display:flex;flex-wrap:wrap;gap:12px}
+.xp-au-adelaide .cpill{flex:1 1 200px;display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}
+.xp-au-adelaide .cpill:hover{background:var(--brand);border-color:var(--brand);transform:translateY(-2px)}
+.xp-au-adelaide .cp-pin{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:rgba(242,107,58,.2);color:#FF8A5C;transition:all .2s}.xp-au-adelaide .cp-pin svg{width:18px;height:18px}
+.xp-au-adelaide .cpill:hover .cp-pin{background:rgba(255,255,255,.2);color:#fff}
+.xp-au-adelaide .cp-txt{display:grid;gap:2px;min-width:0}.xp-au-adelaide .cp-txt b{font-size:16px}.xp-au-adelaide .cp-txt>span{font-size:13px;opacity:.7}
+.xp-au-adelaide .cp-go{margin-left:auto;opacity:.6}.xp-au-adelaide .cpill:hover .cp-go{opacity:1}
+@media (max-width:980px){.xp-au-adelaide .cswitch{grid-template-columns:1fr;gap:24px;padding:28px}}
+@media (max-width:620px){.xp-au-adelaide .cswitch{padding:24px 18px}.xp-au-adelaide .cs-r{gap:10px}.xp-au-adelaide .cpill{flex:1 1 130px;padding:12px;gap:10px}.xp-au-adelaide .cp-go{display:none}.xp-au-adelaide .cp-pin{width:32px;height:32px}.xp-au-adelaide .cp-txt b{font-size:15px}}
+@media (max-width:980px){.xp-au-adelaide .subjs{grid-template-columns:1fr 1fr}.xp-au-adelaide .times{grid-template-columns:1fr;gap:24px}}
+@media (max-width:620px){.xp-au-adelaide .subjs{grid-template-columns:1fr}}
+.xp-au-adelaide .crumbs{display:flex;gap:8px;font-size:13px;color:var(--muted);margin-bottom:18px}.xp-au-adelaide .crumbs a{color:var(--muted);text-decoration:none}.xp-au-adelaide .crumbs a:hover{color:var(--brand)}.xp-au-adelaide .crumbs [aria-current]{color:var(--ink);font-weight:500}
+.xp-au-adelaide .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#B8461C;background:#fff;border:1px solid #F7D3C1;padding:7px 14px;border-radius:999px}
+.xp-au-adelaide .eyebrow svg{width:16px;height:16px;color:var(--brand)}
+.xp-au-adelaide .hub-title{font:500 clamp(34px,5.4vw,62px)/1.1 var(--ff-d);letter-spacing:-.02em;margin:18px 0 14px;color:#222}
+.xp-au-adelaide .grad{background:linear-gradient(90deg,#FF7A45,#FF6A3D 55%,#FF2D4F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.xp-au-adelaide .hub-sub{font-size:clamp(15px,1.4vw,18px);color:#4A4A4A;max-width:64ch;margin:0 0 26px;line-height:1.6}
+.xp-au-adelaide .sec{padding:64px 0}.xp-au-adelaide .sec--tint{background:#FFF3EC}
+.xp-au-adelaide .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.xp-au-adelaide .sec-head h2{font-size:clamp(26px,2.8vw,34px);font-weight:600}
+.xp-au-adelaide .muted{color:var(--muted);margin:6px 0 0;font-size:15px}
+.xp-au-adelaide .tile-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#FFEADF;color:var(--brand)}.xp-au-adelaide .tile-ic svg{width:22px;height:22px}
+.xp-au-adelaide .exams{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.xp-au-adelaide .exam{display:flex;flex-direction:column;gap:8px;padding:24px;background:#fff;border:1.5px solid var(--line);border-radius:20px;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s,border-color .2s,opacity .2s,filter .2s}
+.xp-au-adelaide .exam:hover{transform:translateY(-3px);border-color:var(--brand);box-shadow:0 22px 40px -28px rgba(242,107,58,.8)}
+.xp-au-adelaide .exam-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.xp-au-adelaide .exam .topic-ic{background:#FFEADF;color:var(--brand)}
+.xp-au-adelaide .exam-name{font-size:24px;font-weight:600}
+.xp-au-adelaide .exam-full{font-size:14px;color:var(--muted)}
+.xp-au-adelaide .exam-who{font-size:14.5px;color:var(--ink-2);line-height:1.5}
+.xp-au-adelaide .exam-foot{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.xp-au-adelaide .exam-foot>span:first-child{display:inline-flex;gap:6px;align-items:center}.xp-au-adelaide .exam-foot svg{width:16px;height:16px;color:var(--brand)}
+.xp-au-adelaide .exam-go{display:inline-flex;gap:6px;align-items:center;font-weight:600;color:var(--brand);white-space:nowrap}
+.xp-au-adelaide .faq-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start}
+.xp-au-adelaide .faq-wrap h2{font-size:clamp(26px,2.8vw,34px);font-weight:600}.xp-au-adelaide .faq-wrap .btn{margin-top:20px}
+.xp-au-adelaide .faqs{display:grid;gap:12px}
+.xp-au-adelaide .faq{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 20px}
+.xp-au-adelaide .faq summary{list-style:none;cursor:pointer;padding:18px 0;font-weight:600;font-size:16px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.xp-au-adelaide .faq summary::-webkit-details-marker{display:none}
+.xp-au-adelaide .faq-ic{flex:none;width:28px;height:28px;border-radius:50%;background:#FFEADF;position:relative}
+.xp-au-adelaide .faq-ic::before,.xp-au-adelaide .faq-ic::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--brand);transform:translate(-50%,-50%)}
+.xp-au-adelaide .faq-ic::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s}
+.xp-au-adelaide .faq[open] .faq-ic::after{transform:translate(-50%,-50%) rotate(0)}
+.xp-au-adelaide .faq[open]{border-color:#F4CDB9}
+.xp-au-adelaide .faq p{margin:0 0 18px;color:var(--ink-2);line-height:1.65}
+@media (max-width:980px){.xp-au-adelaide .exams{grid-template-columns:1fr 1fr}.xp-au-adelaide .faq-wrap{grid-template-columns:1fr;gap:24px}}
+@media (max-width:620px){.xp-au-adelaide .exams{grid-template-columns:1fr}.xp-au-adelaide .sec{padding:48px 0}}
+@media (prefers-reduced-motion: reduce){.xp-au-adelaide .exam{transition:none}}

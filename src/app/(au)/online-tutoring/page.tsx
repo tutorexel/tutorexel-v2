@@ -8,7 +8,7 @@ import "./online-tutoring.css";
 export const metadata: Metadata = {
   title: "Online Tutoring in Australia by City | TutorExel",
   description:
-    "Live online maths, English and science tutoring for Years 2 to 10 in Sydney, Melbourne, Brisbane, Perth and Adelaide. Book a free assessment today.",
+    "Live online maths, English and science tutoring for Years 2 to 10 in Sydney, Melbourne, Brisbane, Perth, Adelaide, Gold Coast and Canberra. Book a free assessment.",
   alternates: { canonical: "https://www.tutorexel.com/online-tutoring" },
 };
 
@@ -182,7 +182,7 @@ export default function OnlineTutoringCitiesPage() {
                 </svg>
               </span>
               <span>
-                <b>5</b> city guides
+                <b>7</b> city guides
               </span>
             </li>
             <li>
@@ -233,7 +233,7 @@ export default function OnlineTutoringCitiesPage() {
             <div>
               <h2 id="cH">Pick Your City</h2>
               <p className="muted" id="cStatus">
-                5 cities
+                7 cities
               </p>
             </div>
             <div aria-label="Filter by state" className="atabs" role="toolbar">
@@ -254,6 +254,9 @@ export default function OnlineTutoringCitiesPage() {
               </button>
               <button aria-pressed="false" className="atab" data-a="SA">
                 SA
+              </button>
+              <button aria-pressed="false" className="atab" data-a="ACT">
+                ACT
               </button>
             </div>
           </div>
@@ -564,6 +567,128 @@ export default function OnlineTutoringCitiesPage() {
                 </span>
               </span>
             </Link>
+            <Link
+              className="city"
+              data-area="QLD"
+              data-name="gold coast qld"
+              href="/online-tutoring/gold-coast"
+            >
+              <span className="city-top">
+                <span className="city-pin">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="city-area">QLD</span>
+              </span>
+              <b className="city-name">Gold Coast</b>
+              <span className="city-desc">
+                Queensland curriculum lessons, NAPLAN and ICAS preparation for Gold Coast families.
+              </span>
+              <span className="city-foot">
+                <span className="city-time">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  <span data-tz="Australia/Brisbane">--:--</span> local
+                </span>
+                <span className="city-go">
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
+            <Link
+              className="city"
+              data-area="ACT"
+              data-name="canberra act"
+              href="/online-tutoring/canberra"
+            >
+              <span className="city-top">
+                <span className="city-pin">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="city-area">ACT</span>
+              </span>
+              <b className="city-name">Canberra</b>
+              <span className="city-desc">
+                Australian Curriculum aligned tutoring, NAPLAN and ICAS prep for ACT students.
+              </span>
+              <span className="city-foot">
+                <span className="city-time">
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  <span data-tz="Australia/Sydney">--:--</span> local
+                </span>
+                <span className="city-go">
+                  <svg
+                    aria-hidden="true"
+                    fill="none"
+                    height="16"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                    width="16"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
             <div className="city city--any">
               <span className="city-pin city-pin--solid">
                 <svg
@@ -582,7 +707,7 @@ export default function OnlineTutoringCitiesPage() {
               </span>
               <b className="city-name">Can't Find Your City?</b>
               <span className="city-desc">
-                Families in Canberra, the Gold Coast, Newcastle, Hobart, Darwin and regional towns
+                Families in Newcastle, Wollongong, Geelong, Hobart, Darwin and regional towns
                 learn with us too. Every lesson is live and online.
               </span>
               <Link className="btn btn-hi" href="/free-assessment">
@@ -795,7 +920,7 @@ export default function OnlineTutoringCitiesPage() {
                   <svg aria-hidden="true" fill="#fff" height="18" viewBox="0 0 24 24" width="18">
                     <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2z"></path>
                   </svg>
-                  +61 470-330-548
+                  +61 470 330 548
                 </a>
               </div>
             </div>

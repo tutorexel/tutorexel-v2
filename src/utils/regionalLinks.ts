@@ -346,8 +346,8 @@ export function getYearHubHref(year: number | string, regionOrPathname: RegionCo
   if (reg === "us" || reg === "ca") {
     return `/subjects/grade-${num}`;
   }
-  if (reg === "nz") {
+  if (reg === "nz" || reg === "au") {
     return `/subjects/year-${num}`;
   }
-  return `/year-${num}`;
+  return `/subjects/year-${num}`;
 }

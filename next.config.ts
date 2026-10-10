@@ -257,7 +257,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/year-:year",
-        destination: "/subjects/year-:year/maths",
+        destination: "/subjects/year-:year",
       },
     ];
   },

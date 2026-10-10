@@ -158,7 +158,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                   </span>{" "}
                   for Grades 2 to 10
                 </>
-              ) : isNz ? (
+              ) : isNz || isAu ? (
                 <>
                   Complete{" "}
                   <span className="subject-banner__title-highlight">
@@ -172,7 +172,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                   <span className="subject-banner__title-highlight">
                     Academic Curriculum
                   </span>{" "}
-                  {isAu ? "Years 2 to 10" : "Years 2 to 7"}{" "}
+                  Years 2 to 7{" "}
                 </>
               )}
               <span className="subject-banner__title-star">
@@ -182,6 +182,8 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
             <p className="subject-banner__subtitle">
               {isNz
                 ? "Maths, English and Science programmes built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
+                : isAu
+                ? "Maths, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
                 : isCa
                 ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
                 : `Structured ${regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.`}
@@ -190,15 +192,15 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
             <div className="subject-banner__features">
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Small Groups or 1-on-1</h3>
-                <p className="subject-banner__feature-desc">{isNz ? "Up to 3 students per group for personal attention, or private 1-on-1 sessions" : `Maximum 3 students per group for ${regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions`}</p>
+                <p className="subject-banner__feature-desc">{isNz || isAu ? "Up to 3 students per group for personal attention, or private 1-on-1 sessions" : `Maximum 3 students per group for ${regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions`}</p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">60-Minute Live Sessions</h3>
-                <p className="subject-banner__feature-desc">{isNz ? "4 structured sessions a month per subject with a dedicated tutor" : "4 structured sessions per month per subject with a dedicated tutor"}</p>
+                <p className="subject-banner__feature-desc">{isNz || isAu ? "4 structured sessions a month per subject with a dedicated tutor" : "4 structured sessions per month per subject with a dedicated tutor"}</p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Curriculum-Aligned Learning</h3>
-                <p className="subject-banner__feature-desc">{isNz ? "Every lesson follows the New Zealand Curriculum, matched to your child's Year level" : "Every lesson is tailored to your child's school curriculum and grade/year level"}</p>
+                <p className="subject-banner__feature-desc">{isAu ? "Every lesson follows the Australian Curriculum, matched to your child's Year level" : isNz ? "Every lesson follows the New Zealand Curriculum, matched to your child's Year level" : "Every lesson is tailored to your child's school curriculum and grade/year level"}</p>
               </div>
             </div>
 
