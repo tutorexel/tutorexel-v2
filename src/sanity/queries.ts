@@ -127,6 +127,8 @@ export const ALL_SLUGS_FOR_SITEMAP_QUERY = `
     "slug": slug.current,
     region,
     publishedAt,
-    _updatedAt
+    _updatedAt,
+    noindex,
+    "imageUrl": mainImage.asset->url
   }
 `;

@@ -38,6 +38,15 @@ export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isPreview = process.env.VERCEL_ENV === "preview";
 
+  // Bypass sitemaps and sitemap stylesheet
+  if (
+    pathname === "/sitemap.xml" ||
+    pathname === "/sitemap.xsl" ||
+    pathname.endsWith("-sitemap.xml")
+  ) {
+    return NextResponse.next();
+  }
+
   let response: NextResponse | null = null;
 
   // 1. Handle trailing slashes and /au redirects in a single hop
@@ -118,6 +127,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml|sitemap\\.xsl|.*-sitemap\\.xml).*)",
   ],
 };

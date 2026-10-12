@@ -177,7 +177,14 @@ export async function getAllSlugsByRegion(region: string): Promise<string[]> {
 }
 
 export async function getAllSlugsForSitemap(): Promise<
-  Array<{ slug: string; region: string; publishedAt?: string; _updatedAt?: string }>
+  Array<{
+    slug: string;
+    region: string;
+    publishedAt?: string;
+    _updatedAt?: string;
+    noindex?: boolean;
+    imageUrl?: string;
+  }>
 > {
   try {
     const results: Array<{
@@ -185,6 +192,8 @@ export async function getAllSlugsForSitemap(): Promise<
       region: string;
       publishedAt?: string;
       _updatedAt?: string;
+      noindex?: boolean;
+      imageUrl?: string;
     }> = await client.fetch(ALL_SLUGS_FOR_SITEMAP_QUERY, {}, { next: { revalidate: 3600 } });
 
     if (results && results.length > 0) {
@@ -199,6 +208,7 @@ export async function getAllSlugsForSitemap(): Promise<
     slug: b.slug,
     region: 'au',
     publishedAt: new Date(b.date).toISOString(),
-    _updatedAt: new Date().toISOString(),
+    _updatedAt: '2026-10-13T00:00:00+10:00',
+    imageUrl: b.image || undefined,
   }));
 }
