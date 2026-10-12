@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export interface PricingPlanCopy {
   id: string;
   name: string;
@@ -51,11 +53,11 @@ export const AU_PRICING_COPY: AuPricingCopy = {
   plans: [
     {
       id: "live-online-coaching",
-      name: "Live Online Coaching",
-      subtitle: "Maths, English, Science",
+      name: PRICING_DATA.tutoring.name,
+      subtitle: PRICING_DATA.tutoring.subtitleAU,
       badge: "Most Popular",
       currency: "$",
-      amount: "84",
+      amount: PRICING_DATA.tutoring.amount,
       period: "per month, per subject",
       popular: true,
       borderColor: "orange",
@@ -75,11 +77,11 @@ export const AU_PRICING_COPY: AuPricingCopy = {
     },
     {
       id: "co-curricular",
-      name: "Co-Curricular",
-      subtitle: "Music and Creative Arts, Piano and Guitar",
+      name: PRICING_DATA.music.name,
+      subtitle: PRICING_DATA.music.subtitle,
       currency: "$",
-      amount: "79",
-      period: "per month (4 lessons)",
+      amount: PRICING_DATA.music.amount,
+      period: "per month (4 classes)",
       popular: false,
       borderColor: "dark",
       features: [
@@ -96,12 +98,12 @@ export const AU_PRICING_COPY: AuPricingCopy = {
     },
     {
       id: "premium-plan",
-      name: "Premium Plan",
-      subtitle: "Complete Learning Package, 3 Subjects",
+      name: PRICING_DATA.premium.name,
+      subtitle: PRICING_DATA.premium.subtitle,
       currency: "$",
-      amount: "219",
-      originalAmount: "299",
-      discountBadge: "Save 27%",
+      amount: PRICING_DATA.premium.amount,
+      originalAmount: PRICING_DATA.premium.originalAmount,
+      discountBadge: PRICING_DATA.premium.discountBadge,
       period: "per month",
       popular: false,
       borderColor: "dark",

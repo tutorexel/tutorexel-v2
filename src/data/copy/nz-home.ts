@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export const NZ_HOME_COPY = {
   meta: {
     title: "Online Tutoring in New Zealand | Years 2-10 | TutorExel",
@@ -186,10 +188,10 @@ export const NZ_HOME_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: "Live Online Tutoring",
-        subtitle: "Maths, English, Science",
+        name: PRICING_DATA.tutoring.name,
+        subtitle: PRICING_DATA.tutoring.subtitleAU,
         currency: "NZ$",
-        amount: "92",
+        amount: PRICING_DATA.tutoring.amount,
         period: "NZD/month per subject",
         popular: true,
         borderColor: "orange",
@@ -210,10 +212,10 @@ export const NZ_HOME_COPY = {
       },
       {
         id: "co-curricular",
-        name: "Music Lessons",
-        subtitle: "Piano and Guitar",
+        name: PRICING_DATA.music.name,
+        subtitle: PRICING_DATA.music.subtitle,
         currency: "NZ$",
-        amount: "87",
+        amount: PRICING_DATA.music.amount,
         period: "NZD/month (4 classes)",
         popular: false,
         borderColor: "dark",
@@ -232,12 +234,12 @@ export const NZ_HOME_COPY = {
       },
       {
         id: "premium-plan",
-        name: "Premium Plan",
-        subtitle: "Complete Learning Package, 3 Subjects",
+        name: PRICING_DATA.premium.name,
+        subtitle: PRICING_DATA.premium.subtitle,
         currency: "NZ$",
-        amount: "241",
-        originalAmount: "329",
-        discountBadge: "SAVE 27%",
+        amount: PRICING_DATA.premium.amount,
+        originalAmount: PRICING_DATA.premium.originalAmount,
+        discountBadge: PRICING_DATA.premium.discountBadge,
         period: "NZD/month",
         popular: false,
         borderColor: "dark",

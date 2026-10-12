@@ -10,7 +10,7 @@ export const US_PRICING_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: "Live Online Coaching",
+        name: "Live Online Tutoring",
         subtitle: "Math, English, Science",
         popular: true,
         badge: "Most Popular",
@@ -32,8 +32,8 @@ export const US_PRICING_COPY = {
       },
       {
         id: "co-curricular",
-        name: "Co-Curricular",
-        subtitle: "Music and Creative Arts, Piano and Guitar",
+        name: "Music Lessons",
+        subtitle: "Piano and Guitar",
         popular: false,
         borderColor: "dark",
         periodText: "per month (4 lessons)",

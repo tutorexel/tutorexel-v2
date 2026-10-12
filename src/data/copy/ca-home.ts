@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export const CA_HOME_COPY = {
   meta: {
     title: "Online Tutoring in Canada | Grades 2 to 10 | TutorExel",
@@ -178,11 +180,10 @@ export const CA_HOME_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: "Live Online Tutoring",
-        subtitle: "Math, English, Science",
+        name: PRICING_DATA.tutoring.name,
+        subtitle: PRICING_DATA.tutoring.subtitleUS,
         currency: "$",
-        // TODO: Replace placeholder amount once confirmed by client
-        amount: "84",
+        amount: PRICING_DATA.tutoring.amount,
         period: "CAD/month per subject",
         popular: true,
         borderColor: "orange",
@@ -203,11 +204,10 @@ export const CA_HOME_COPY = {
       },
       {
         id: "co-curricular",
-        name: "Music Lessons",
-        subtitle: "Piano and Guitar",
+        name: PRICING_DATA.music.name,
+        subtitle: PRICING_DATA.music.subtitle,
         currency: "$",
-        // TODO: Replace placeholder amount once confirmed by client
-        amount: "79",
+        amount: PRICING_DATA.music.amount,
         period: "CAD/month (4 classes)",
         popular: false,
         borderColor: "dark",
@@ -226,13 +226,12 @@ export const CA_HOME_COPY = {
       },
       {
         id: "premium-plan",
-        name: "Premium Plan",
-        subtitle: "Complete Learning Package, 3 Subjects",
+        name: PRICING_DATA.premium.name,
+        subtitle: PRICING_DATA.premium.subtitle,
         currency: "$",
-        // TODO: Replace placeholder amounts once confirmed by client
-        amount: "219",
-        originalAmount: "299",
-        discountBadge: "SAVE 27%",
+        amount: PRICING_DATA.premium.amount,
+        originalAmount: PRICING_DATA.premium.originalAmount,
+        discountBadge: PRICING_DATA.premium.discountBadge,
         period: "CAD/month",
         popular: false,
         borderColor: "dark",

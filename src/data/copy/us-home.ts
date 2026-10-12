@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export const US_HOME_COPY = {
   meta: {
     title: "Online Tutoring in the USA | Grades 2 to 10 | TutorExel",
@@ -185,10 +187,10 @@ export const US_HOME_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: "Live Online Tutoring",
-        subtitle: "Math, English, Science",
+        name: PRICING_DATA.tutoring.name,
+        subtitle: PRICING_DATA.tutoring.subtitleUS,
         currency: "$",
-        amount: "84",
+        amount: PRICING_DATA.tutoring.amount,
         period: "USD per month per subject",
         popular: true,
         borderColor: "orange",
@@ -209,10 +211,10 @@ export const US_HOME_COPY = {
       },
       {
         id: "co-curricular",
-        name: "Music Lessons",
-        subtitle: "Piano and Guitar",
+        name: PRICING_DATA.music.name,
+        subtitle: PRICING_DATA.music.subtitle,
         currency: "$",
-        amount: "79",
+        amount: PRICING_DATA.music.amount,
         period: "USD per month (4 classes)",
         popular: false,
         borderColor: "dark",
@@ -231,12 +233,12 @@ export const US_HOME_COPY = {
       },
       {
         id: "premium-plan",
-        name: "Premium Plan",
-        subtitle: "Complete Learning Package, 3 Subjects",
+        name: PRICING_DATA.premium.name,
+        subtitle: PRICING_DATA.premium.subtitle,
         currency: "$",
-        amount: "219",
-        originalAmount: "299",
-        discountBadge: "SAVE 27%",
+        amount: PRICING_DATA.premium.amount,
+        originalAmount: PRICING_DATA.premium.originalAmount,
+        discountBadge: PRICING_DATA.premium.discountBadge,
         period: "USD per month",
         popular: false,
         borderColor: "dark",

@@ -11,6 +11,7 @@ import { AU_HOME_COPY } from '@/data/copy/au-home';
 import { CA_HOME_COPY } from '@/data/copy/ca-home';
 import { NZ_HOME_COPY } from '@/data/copy/nz-home';
 import { US_HOME_COPY } from '@/data/copy/us-home';
+import { PRICING_DATA } from '@/data/pricing';
 import { COUNTRIES, type Country } from '@/components/shared/CountryTabs';
 import './Pricing.css';
 
@@ -34,10 +35,10 @@ type PricingPlan = {
 const pricingPlans: PricingPlan[] = [
   {
     id: 'live-online-coaching',
-    name: 'Live Online Coaching',
+    name: PRICING_DATA.tutoring.name,
     subtitle: 'Mathematics, English, Science',
     currency: '$',
-    amount: '84',
+    amount: PRICING_DATA.tutoring.amount,
     period: 'month per subject',
     popular: true,
     borderColor: 'orange',
@@ -56,10 +57,10 @@ const pricingPlans: PricingPlan[] = [
   },
   {
     id: 'co-curricular',
-    name: 'Co-Curricular',
-    subtitle: 'Music & Creative Arts\nPiano & Guitar',
+    name: PRICING_DATA.music.name,
+    subtitle: 'Piano & Guitar',
     currency: '$',
-    amount: '79',
+    amount: PRICING_DATA.music.amount,
     period: 'month (4 classes)',
     popular: false,
     borderColor: 'dark',
@@ -76,11 +77,11 @@ const pricingPlans: PricingPlan[] = [
   },
   {
     id: 'premium-plan',
-    name: 'Premium Plan',
+    name: PRICING_DATA.premium.name,
     subtitle: 'Complete Learning Package\n3 Subjects',
     currency: '$',
-    amount: '219',
-    originalAmount: '299',
+    amount: PRICING_DATA.premium.amount,
+    originalAmount: PRICING_DATA.premium.originalAmount,
     period: 'month',
     popular: false,
     borderColor: 'dark',
@@ -441,7 +442,7 @@ export default function Pricing({ region }: PricingProps = {}) {
                 {plan.originalAmount && (
                   <div className="pricing-card__original-price">
                     <span className="original-price">{plan.currency}{plan.originalAmount}</span>
-                    <span className="discount-badge">Save 27%</span>
+                    <span className="discount-badge">{PRICING_DATA.premium.discountBadgeTitleCase}</span>
                   </div>
                 )}
                 <div className="pricing-card__price">

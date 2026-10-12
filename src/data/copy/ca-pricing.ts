@@ -1,4 +1,5 @@
 import { REGIONS_CONFIG } from "@/data/regions";
+import { PRICING_DATA } from "@/data/pricing";
 
 export interface CaPricingPlan {
   id: string;
@@ -45,14 +46,11 @@ const plan1Config = caPlans.find((p) => p.id === "live-online-coaching") || caPl
 const plan2Config = caPlans.find((p) => p.id === "co-curricular") || caPlans[1];
 const plan3Config = caPlans.find((p) => p.id === "premium-plan") || caPlans[2];
 
-const plan1Amount = plan1Config?.amount ?? 84;
-const plan2Amount = plan2Config?.amount ?? 79;
-const plan3Amount = plan3Config?.amount ?? 219;
-const plan3OriginalAmount = plan3Config?.originalAmount ?? 299;
-const plan3DiscountPercent = plan3OriginalAmount && plan3Amount
-  ? Math.round((1 - plan3Amount / plan3OriginalAmount) * 100)
-  : undefined;
-const plan3DiscountBadge = plan3DiscountPercent ? `Save ${plan3DiscountPercent}%` : undefined;
+const plan1Amount = plan1Config?.amount ?? PRICING_DATA.tutoring.amountNumber;
+const plan2Amount = plan2Config?.amount ?? PRICING_DATA.music.amountNumber;
+const plan3Amount = plan3Config?.amount ?? PRICING_DATA.premium.amountNumber;
+const plan3OriginalAmount = plan3Config?.originalAmount ?? PRICING_DATA.premium.originalAmountNumber;
+const plan3DiscountBadge = PRICING_DATA.premium.discountBadgeTitleCase;
 
 export const CA_PRICING_COPY: CaPricingCopy = {
   hero: {
@@ -64,8 +62,8 @@ export const CA_PRICING_COPY: CaPricingCopy = {
   plans: [
     {
       id: "live-online-coaching",
-      name: "Live Online Coaching",
-      subtitle: "Math, English, Science",
+      name: PRICING_DATA.tutoring.name,
+      subtitle: PRICING_DATA.tutoring.subtitleUS,
       badge: "Most Popular",
       featured: true,
       amount: plan1Amount,
@@ -87,8 +85,8 @@ export const CA_PRICING_COPY: CaPricingCopy = {
     },
     {
       id: "co-curricular",
-      name: "Co-Curricular",
-      subtitle: "Music and Creative Arts, Piano and Guitar",
+      name: PRICING_DATA.music.name,
+      subtitle: PRICING_DATA.music.subtitle,
       featured: false,
       amount: plan2Amount,
       periodText: "CAD per month (4 lessons)",
@@ -107,8 +105,8 @@ export const CA_PRICING_COPY: CaPricingCopy = {
     },
     {
       id: "premium-plan",
-      name: "Premium Plan",
-      subtitle: "Complete Learning Package, 3 Subjects",
+      name: PRICING_DATA.premium.name,
+      subtitle: PRICING_DATA.premium.subtitle,
       featured: false,
       amount: plan3Amount,
       originalAmount: plan3OriginalAmount,

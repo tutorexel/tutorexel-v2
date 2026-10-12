@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export const AU_HOME_COPY = {
   meta: {
     title: "Online Tutoring in Australia | Years 2 to 10 | TutorExel",
@@ -173,10 +175,10 @@ export const AU_HOME_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: "Live Online Tutoring",
-        subtitle: "Maths, English, Science",
+        name: PRICING_DATA.tutoring.name,
+        subtitle: PRICING_DATA.tutoring.subtitleAU,
         currency: "$",
-        amount: "84",
+        amount: PRICING_DATA.tutoring.amount,
         period: "AUD/month per subject",
         popular: true,
         borderColor: "orange",
@@ -197,10 +199,10 @@ export const AU_HOME_COPY = {
       },
       {
         id: "co-curricular",
-        name: "Music Lessons",
-        subtitle: "Piano and Guitar",
+        name: PRICING_DATA.music.name,
+        subtitle: PRICING_DATA.music.subtitle,
         currency: "$",
-        amount: "79",
+        amount: PRICING_DATA.music.amount,
         period: "AUD/month (4 classes)",
         popular: false,
         borderColor: "dark",
@@ -219,12 +221,12 @@ export const AU_HOME_COPY = {
       },
       {
         id: "premium-plan",
-        name: "Premium Plan",
-        subtitle: "Complete Learning Package, 3 Subjects",
+        name: PRICING_DATA.premium.name,
+        subtitle: PRICING_DATA.premium.subtitle,
         currency: "$",
-        amount: "219",
-        originalAmount: "299",
-        discountBadge: "SAVE 27%",
+        amount: PRICING_DATA.premium.amount,
+        originalAmount: PRICING_DATA.premium.originalAmount,
+        discountBadge: PRICING_DATA.premium.discountBadge,
         period: "AUD/month",
         popular: false,
         borderColor: "dark",

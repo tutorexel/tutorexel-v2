@@ -1,3 +1,5 @@
+import { PRICING_DATA } from "@/data/pricing";
+
 export type RegionCode = "au" | "us" | "ca" | "nz";
 
 export const COMPANY_ADDRESS = "17 Statham View, Crambourne West, Victoria 3977, Australia";
@@ -258,13 +260,13 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "premium-plan",
-          name: "Premium Plan",
-          subtitle: "Complete Learning Package, 3 Subjects",
+          name: PRICING_DATA.premium.name,
+          subtitle: PRICING_DATA.premium.subtitle,
           featured: false,
           themeCategory: "parents",
-          amount: 219,
-          originalAmount: 299,
-          discountBadge: "SAVE 27%",
+          amount: PRICING_DATA.premium.amountNumber,
+          originalAmount: PRICING_DATA.premium.originalAmountNumber,
+          discountBadge: PRICING_DATA.premium.discountBadge,
           periodText: "AUD/month",
           features: [
             "12 live classes per month",
@@ -369,12 +371,12 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       plans: [
         {
           id: "live-online-coaching",
-          name: "Live Online Coaching",
-          subtitle: "Math, English, Science",
+          name: PRICING_DATA.tutoring.name,
+          subtitle: PRICING_DATA.tutoring.subtitleUS,
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84, // TODO: Replace with US market rate once provided by client
+          amount: PRICING_DATA.tutoring.amountNumber,
           periodText: "USD/month per subject",
           features: [
             "1 hour personalized sessions",
@@ -393,11 +395,11 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "co-curricular",
-          name: "Co-Curricular",
-          subtitle: "Music & Creative Arts, Piano & Guitar",
+          name: PRICING_DATA.music.name,
+          subtitle: PRICING_DATA.music.subtitle,
           featured: false,
           themeCategory: "study",
-          amount: 79, // TODO: Replace with US market rate once provided by client
+          amount: PRICING_DATA.music.amountNumber,
           periodText: "USD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -414,13 +416,13 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "premium-plan",
-          name: "Premium Plan",
-          subtitle: "Complete Learning Package, 3 Subjects",
+          name: PRICING_DATA.premium.name,
+          subtitle: PRICING_DATA.premium.subtitle,
           featured: false,
           themeCategory: "parents",
-          amount: 219, // TODO: Replace with US market rate once provided by client
-          originalAmount: 299,
-          discountBadge: "Save 27%",
+          amount: PRICING_DATA.premium.amountNumber,
+          originalAmount: PRICING_DATA.premium.originalAmountNumber,
+          discountBadge: PRICING_DATA.premium.discountBadge,
           periodText: "USD/month",
           features: [
             "12 live classes per month",
@@ -525,12 +527,12 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       plans: [
         {
           id: "live-online-coaching",
-          name: "Live Online Coaching",
-          subtitle: "Math, English, Science",
+          name: PRICING_DATA.tutoring.name,
+          subtitle: PRICING_DATA.tutoring.subtitleUS,
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84, // TODO: Replace with CA market rate once provided by client
+          amount: PRICING_DATA.tutoring.amountNumber,
           periodText: "CAD/month per subject",
           features: [
             "1 hour personalized sessions",
@@ -549,11 +551,11 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "co-curricular",
-          name: "Co-Curricular",
-          subtitle: "Music & Creative Arts, Piano & Guitar",
+          name: PRICING_DATA.music.name,
+          subtitle: PRICING_DATA.music.subtitle,
           featured: false,
           themeCategory: "study",
-          amount: 79, // TODO: Replace with CA market rate once provided by client
+          amount: PRICING_DATA.music.amountNumber,
           periodText: "CAD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -570,13 +572,13 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "premium-plan",
-          name: "Premium Plan",
-          subtitle: "Complete Learning Package, 3 Subjects",
+          name: PRICING_DATA.premium.name,
+          subtitle: PRICING_DATA.premium.subtitle,
           featured: false,
           themeCategory: "parents",
-          amount: 219, // TODO: Replace with CA market rate once provided by client
-          originalAmount: 299,
-          discountBadge: "Save 27%",
+          amount: PRICING_DATA.premium.amountNumber,
+          originalAmount: PRICING_DATA.premium.originalAmountNumber,
+          discountBadge: PRICING_DATA.premium.discountBadge,
           periodText: "CAD/month",
           features: [
             "12 live classes per month",
@@ -628,19 +630,19 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     homePricing: {
       tutoring: {
-        amount: "92",
+        amount: PRICING_DATA.tutoring.amount,
         currency: "NZ$",
         period: "NZD/month per subject",
       },
       music: {
-        amount: "87",
+        amount: PRICING_DATA.music.amount,
         currency: "NZ$",
         period: "NZD/month (4 classes)",
       },
       premium: {
-        amount: "241",
-        originalAmount: "329",
-        discountBadge: "SAVE 27%",
+        amount: PRICING_DATA.premium.amount,
+        originalAmount: PRICING_DATA.premium.originalAmount,
+        discountBadge: PRICING_DATA.premium.discountBadge,
         currency: "NZ$",
         period: "NZD/month",
       },
@@ -700,12 +702,12 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       plans: [
         {
           id: "live-online-coaching",
-          name: "Live Online Coaching",
-          subtitle: "Maths, English, Science",
+          name: PRICING_DATA.tutoring.name,
+          subtitle: PRICING_DATA.tutoring.subtitleAU,
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: 84, // TODO: Replace with NZ market rate once provided by client
+          amount: PRICING_DATA.tutoring.amountNumber,
           periodText: "NZD/month per subject",
           features: [
             "1 hour personalized sessions",
@@ -724,11 +726,11 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "co-curricular",
-          name: "Co-Curricular",
-          subtitle: "Music & Creative Arts, Piano & Guitar",
+          name: PRICING_DATA.music.name,
+          subtitle: PRICING_DATA.music.subtitle,
           featured: false,
           themeCategory: "study",
-          amount: 79, // TODO: Replace with NZ market rate once provided by client
+          amount: PRICING_DATA.music.amountNumber,
           periodText: "NZD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -745,13 +747,13 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "premium-plan",
-          name: "Premium Plan",
-          subtitle: "Complete Learning Package, 3 Subjects",
+          name: PRICING_DATA.premium.name,
+          subtitle: PRICING_DATA.premium.subtitle,
           featured: false,
           themeCategory: "parents",
-          amount: 219, // TODO: Replace with NZ market rate once provided by client
-          originalAmount: 299,
-          discountBadge: "Save 27%",
+          amount: PRICING_DATA.premium.amountNumber,
+          originalAmount: PRICING_DATA.premium.originalAmountNumber,
+          discountBadge: PRICING_DATA.premium.discountBadge,
           periodText: "NZD/month",
           features: [
             "12 live classes per month",
