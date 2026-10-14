@@ -363,7 +363,18 @@ export default function Footer() {
             {COMPANY_ADDRESS}
           </address>
           <p className="footer__copyright">
-            &copy; {new Date().getFullYear()} TutorExel. All rights reserved.
+            &copy; {new Date().getFullYear()} TutorExel. All rights reserved.{" "}
+            <span className="footer__sitemap-wrap">
+              <span className="footer__copyright-separator" aria-hidden="true">|</span>
+              <a
+                href={`/sitemap-${currentRegionCode}.xml`}
+                target="_blank"
+                rel="noopener"
+                className="footer__sitemap-link"
+              >
+                Sitemap
+              </a>
+            </span>
           </p>
         </div>
       </div>

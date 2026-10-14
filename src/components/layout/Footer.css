@@ -173,6 +173,28 @@
   text-align: center;
 }
 
+.footer__sitemap-wrap {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.footer__copyright-separator {
+  margin: 0 8px;
+  opacity: 0.6;
+}
+
+.footer__sitemap-link {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.footer__sitemap-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ===== Responsive: max-width 991px ===== */
 @media (max-width: 991px) {
   .footer__grid {
