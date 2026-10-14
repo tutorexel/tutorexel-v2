@@ -1181,13 +1181,13 @@ export default function BlogArticleView({
           {/* Free Diagnostic Test Side Card */}
           <div className="side-cta">
             <b>Free diagnostic test</b>
-            <p>Pick your child’s year level to get started.</p>
+            <p>Pick your child&apos;s {regConfig.yearLabel.toLowerCase()} level to get started.</p>
             <div
               className="yr-pick yr-pick--light"
               role="radiogroup"
-              aria-label="Your child's year level"
+              aria-label={`Your child's ${regConfig.yearLabel.toLowerCase()} level`}
             >
-              {[2, 3, 4, 5, 6, 7].map((y) => (
+              {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((y) => (
                 <button
                   key={y}
                   type="button"
@@ -1197,7 +1197,7 @@ export default function BlogArticleView({
                   data-y={y}
                   onClick={() => setSelectedYear(selectedYear === y ? null : y)}
                 >
-                  Year {y}
+                  {regConfig.yearLabel} {y}
                 </button>
               ))}
             </div>

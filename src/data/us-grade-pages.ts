@@ -93,7 +93,7 @@ export const US_GRADE_PAGES_DATA: Record<string, UsGradePageData> = {
     "gradeNum": 2,
     "yearId": "grade-2",
     "meta": {
-      "title": "- Description: Online Grade 2 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class.",
+      "title": "Grade 2 Tutoring USA | Math, English, Science",
       "description": "Online Grade 2 tutoring in the USA for Math, English and Science. Live 1-on-1 or small group lessons aligned to US state standards. Book a free trial class.",
       "canonical": "https://www.tutorexel.com/us/subjects/grade-2"
     },

@@ -38,13 +38,36 @@ export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const isPreview = process.env.VERCEL_ENV === "preview";
 
-  // Bypass sitemaps and sitemap stylesheet
+  // 301 Redirect old type-based sitemaps to /sitemap.xml
+  if (
+    pathname === "/page-sitemap.xml" ||
+    pathname === "/subject-sitemap.xml" ||
+    pathname === "/exam-prep-sitemap.xml" ||
+    pathname === "/co-curricular-sitemap.xml" ||
+    pathname === "/online-tutoring-sitemap.xml" ||
+    pathname === "/blog-sitemap.xml"
+  ) {
+    return NextResponse.redirect(new URL("/sitemap.xml", request.url), 301);
+  }
+
+  // Bypass regional sitemaps, sitemap index, and sitemap stylesheet
   if (
     pathname === "/sitemap.xml" ||
     pathname === "/sitemap.xsl" ||
-    pathname.endsWith("-sitemap.xml")
+    pathname.startsWith("/sitemap-")
   ) {
     return NextResponse.next();
+  }
+
+  // 301 Redirect sample articles to new slugs
+  if (pathname === "/us/blog/sample-article-us") {
+    return NextResponse.redirect(new URL("/us/blog/students-benefit-from-extra-maths-support-usa" + search, request.url), 301);
+  }
+  if (pathname === "/ca/blog/sample-article-ca") {
+    return NextResponse.redirect(new URL("/ca/blog/students-benefit-from-extra-maths-support-canada" + search, request.url), 301);
+  }
+  if (pathname === "/nz/blog/sample-article-nz") {
+    return NextResponse.redirect(new URL("/nz/blog/students-benefit-from-extra-maths-support-new-zealand" + search, request.url), 301);
   }
 
   let response: NextResponse | null = null;
@@ -127,6 +150,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml|sitemap\\.xsl|.*-sitemap\\.xml).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|robots\\.txt|sitemap\\.xml|sitemap\\.xsl|sitemap-.*\\.xml).*)",
   ],
 };

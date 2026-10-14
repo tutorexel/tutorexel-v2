@@ -8,7 +8,7 @@ import "./sydney.css";
 export const metadata: Metadata = {
   title: "Online Tutoring in Sydney | Maths, English & Science | TutorExel",
   description:
-    "Live online tutoring for Sydney students in Years 2 to 10. Maths, English and science aligned to the NSW syllabus (NESA), plus NAPLAN, OC Test, Selective Test, ICAS and Scholarship Tests prep. Book a free assessment.",
+    "Live online tutoring in Sydney for Years 2 to 10. NSW-aligned Maths, English, Science plus NAPLAN, OC, Selective and ICAS prep. Book a free assessment.",
   alternates: { canonical: "https://www.tutorexel.com/online-tutoring/sydney" },
 };
 

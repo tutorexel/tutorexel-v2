@@ -11,52 +11,6 @@ import { NZ_HOME_COPY } from "@/data/copy/nz-home";
 import { US_HOME_COPY } from "@/data/copy/us-home";
 import "@/app/subjects/subjects.css";
 
-const structuredSteps = [
-  {
-    number: 1,
-    title: "Assessment",
-    description: "Your child takes a free diagnostic test so we know exactly where to start.",
-  },
-  {
-    number: 2,
-    title: "Custom Plan",
-    description: "We create a personalised learning plan aligned to their year level and curriculum.",
-  },
-  {
-    number: 3,
-    title: "40 Structured Sessions",
-    description: "4 terms of 10 sessions each: covering every curriculum standard for their year.",
-  },
-  {
-    number: 4,
-    title: "Track Progress",
-    description: "Term tests, progress reports, and parent updates keep everyone on the same page.",
-  },
-];
-
-const learningFeatures = [
-  {
-    title: "Curriculum Aligned:",
-    description: "Every session maps to your child's curriculum standards",
-  },
-  {
-    title: "Small Groups or 1-on-1:",
-    description: "Maximum 3 students per group, or private sessions",
-  },
-  {
-    title: "Weekly Practice:",
-    description: "Worksheets sent after every session for reinforcement",
-  },
-  {
-    title: "Term Tests:",
-    description: "Formal assessments every term to measure growth",
-  },
-  {
-    title: "Mega Exams:",
-    description: "Biannual comprehensive exams that benchmark your child's progress",
-  },
-];
-
 const defaultYearLevels = [
   {
     year: 2,
@@ -99,6 +53,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
   const isCa = region === "ca";
   const isNz = region === "nz";
   const isUs = region === "us";
+
   const displayedYearLevels = isUs
     ? US_HOME_COPY.yearLevels.years
     : isNz
@@ -113,6 +68,160 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
     { name: "Home", url: `https://www.tutorexel.com${basePath}` },
     { name: "Subjects", url: `https://www.tutorexel.com${basePath}/subjects` },
   ]);
+
+  const heroSubtitle = isUs
+    ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 quarters."
+    : isCa
+    ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
+    : isNz
+    ? "Maths, English and Science programmes built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
+    : "Maths, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms.";
+
+  const curriculumCardDesc = isUs
+    ? "Every lesson follows Common Core and state standards, matched to your child's grade level"
+    : isCa
+    ? "Every lesson follows your provincial curriculum, matched to your child's grade level"
+    : isNz
+    ? "Every lesson follows the New Zealand Curriculum, matched to your child's Year level"
+    : "Every lesson follows the Australian Curriculum, matched to your child's Year level";
+
+  const structuredSteps = isUs
+    ? [
+        {
+          number: 1,
+          title: "Assessment",
+          description: "A free diagnostic test shows us where your child is up to, so we start in the right place.",
+        },
+        {
+          number: 2,
+          title: "Custom Plan",
+          description: "We build a personalized learning plan around your child's grade level and your child's school curriculum.",
+        },
+        {
+          number: 3,
+          title: "40 Structured Sessions",
+          description: "4 quarters of 10 sessions each, covering Common Core and state curriculum standards.",
+        },
+        {
+          number: 4,
+          title: "Track Progress",
+          description: "Quarterly tests, progress reports, and parent updates keep everyone on the same page.",
+        },
+      ]
+    : isCa
+    ? [
+        {
+          number: 1,
+          title: "Assessment",
+          description: "A free diagnostic test shows us where your child is up to, so we start in the right place.",
+        },
+        {
+          number: 2,
+          title: "Custom Plan",
+          description: "We build a personalized learning plan around your child's grade level and your child's school curriculum.",
+        },
+        {
+          number: 3,
+          title: "40 Structured Sessions",
+          description: "4 terms of 10 sessions each, covering the full year of your provincial curriculum.",
+        },
+        {
+          number: 4,
+          title: "Track Progress",
+          description: "Term tests, progress reports and parent updates keep everyone on the same page.",
+        },
+      ]
+    : [
+        {
+          number: 1,
+          title: "Assessment",
+          description: "Your child takes a free diagnostic test so we know exactly where to start.",
+        },
+        {
+          number: 2,
+          title: "Custom Plan",
+          description: `We create a ${regConfig.spellingPersonalised} learning plan aligned to their year level and curriculum.`,
+        },
+        {
+          number: 3,
+          title: "40 Structured Sessions",
+          description: "4 terms of 10 sessions each: covering every curriculum standard for their year.",
+        },
+        {
+          number: 4,
+          title: "Track Progress",
+          description: "Term tests, progress reports, and parent updates keep everyone on the same page.",
+        },
+      ];
+
+  const learningFeatures = isUs
+    ? [
+        {
+          title: "Curriculum Aligned:",
+          description: "Every session maps to Common Core and state curriculum standards.",
+        },
+        {
+          title: "Small Groups or 1-on-1:",
+          description: "Up to 3 students per group, or private sessions.",
+        },
+        {
+          title: "Weekly Practice:",
+          description: "Worksheets sent after every session to lock in learning.",
+        },
+        {
+          title: "Quarterly Tests:",
+          description: "Assessments every quarter to measure growth and mastery.",
+        },
+        {
+          title: "Comprehensive Reviews:",
+          description: "Regular evaluations that benchmark your child's progress against grade standards.",
+        },
+      ]
+    : isCa
+    ? [
+        {
+          title: "Curriculum Aligned:",
+          description: "Every session maps to your provincial curriculum.",
+        },
+        {
+          title: "Small Groups or 1-on-1:",
+          description: "Up to 3 students per group, or private sessions.",
+        },
+        {
+          title: "Weekly Practice:",
+          description: "Worksheets sent after every session to lock in learning.",
+        },
+        {
+          title: "Term Tests:",
+          description: "Formal assessments every term to measure growth.",
+        },
+        {
+          title: "Comprehensive Reviews:",
+          description: "Evaluations that benchmark your child's progress against provincial standards.",
+        },
+      ]
+    : [
+        {
+          title: "Curriculum Aligned:",
+          description: `Every session maps to your child's curriculum standards`,
+        },
+        {
+          title: "Small Groups or 1-on-1:",
+          description: "Maximum 3 students per group, or private sessions",
+        },
+        {
+          title: "Weekly Practice:",
+          description: "Worksheets sent after every session for reinforcement",
+        },
+        {
+          title: "Term Tests:",
+          description: "Formal assessments every term to measure growth",
+        },
+        {
+          title: "Comprehensive Reviews:",
+          description: "Biannual comprehensive reviews that benchmark your child's progress",
+        },
+      ];
 
   return (
     <>
@@ -150,7 +259,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
         <div className="container">
           <div className="subject-banner__content">
             <h1 className="subject-banner__title">
-              {isCa ? (
+              {isUs || isCa ? (
                 <>
                   Complete{" "}
                   <span className="subject-banner__title-highlight">
@@ -158,7 +267,7 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                   </span>{" "}
                   for Grades 2 to 10
                 </>
-              ) : isNz || isAu ? (
+              ) : (
                 <>
                   Complete{" "}
                   <span className="subject-banner__title-highlight">
@@ -166,41 +275,29 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                   </span>{" "}
                   for Years 2 to 10
                 </>
-              ) : (
-                <>
-                  Complete{" "}
-                  <span className="subject-banner__title-highlight">
-                    Academic Curriculum
-                  </span>{" "}
-                  Years 2 to 7{" "}
-                </>
               )}
               <span className="subject-banner__title-star">
                 <Image src="/images/banner/Vector-2.webp" alt="" aria-hidden="true" width={20} height={20} />
               </span>
             </h1>
-            <p className="subject-banner__subtitle">
-              {isNz
-                ? "Maths, English and Science programmes built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
-                : isAu
-                ? "Maths, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
-                : isCa
-                ? "Math, English and Science programs built to match what your child is learning at school, delivered as 40 live sessions across 4 terms."
-                : `Structured ${regConfig.mathLabel} and English programs designed to match what your child is learning at school. Delivered in 40 weekly sessions across 4 terms.`}
-            </p>
+            <p className="subject-banner__subtitle">{heroSubtitle}</p>
 
             <div className="subject-banner__features">
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Small Groups or 1-on-1</h3>
-                <p className="subject-banner__feature-desc">{isNz || isAu ? "Up to 3 students per group for personal attention, or private 1-on-1 sessions" : `Maximum 3 students per group for ${regConfig.spellingPersonalised} attention, or dedicated 1-on-1 sessions`}</p>
+                <p className="subject-banner__feature-desc">
+                  Up to 3 students per group for {regConfig.spellingPersonalised} attention, or private 1-on-1 sessions
+                </p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">60-Minute Live Sessions</h3>
-                <p className="subject-banner__feature-desc">{isNz || isAu ? "4 structured sessions a month per subject with a dedicated tutor" : "4 structured sessions per month per subject with a dedicated tutor"}</p>
+                <p className="subject-banner__feature-desc">
+                  4 structured sessions a month per subject with a dedicated tutor
+                </p>
               </div>
               <div className="subject-banner__feature-card">
                 <h3 className="subject-banner__feature-title">Curriculum-Aligned Learning</h3>
-                <p className="subject-banner__feature-desc">{isAu ? "Every lesson follows the Australian Curriculum, matched to your child's Year level" : isNz ? "Every lesson follows the New Zealand Curriculum, matched to your child's Year level" : "Every lesson is tailored to your child's school curriculum and grade/year level"}</p>
+                <p className="subject-banner__feature-desc">{curriculumCardDesc}</p>
               </div>
             </div>
 
@@ -233,18 +330,16 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
               Choose Your {regConfig.yearLabel} Level
             </p>
             <h2 className="subject-years__title">
-              {isNz
-                ? "Find Your Child's Year Level"
-                : isCa
-                ? "Find Your Child's Grade Level"
-                : `Select Your Child's ${regConfig.yearLabel} Level`}
+              Find Your Child&apos;s {regConfig.yearLabel} Level
             </h2>
             <p className="subject-years__subtitle">
-              {isNz
-                ? "Every level includes Maths, English and Science programs, across 4 terms of 10 sessions each."
+              {isUs
+                ? "Every level includes Math, English and Science programs, across 4 quarters of 10 sessions each."
                 : isCa
                 ? "Every level includes Math, English and Science programs, across 4 terms of 10 sessions each."
-                : `Each level includes ${regConfig.mathLabel}, English, and Science programs, structured across 4 terms with 10 sessions each.`}
+                : isNz
+                ? "Every level includes Maths, English and Science programmes, across 4 terms of 10 sessions each."
+                : "Each level includes Maths, English, and Science programs, structured across 4 terms with 10 sessions each."}
             </p>
           </div>
 
@@ -303,7 +398,9 @@ export default function SubjectsView({ region }: { region: RegionCode }) {
                 <Image src="/images/icons/circle_icon.webp" alt="" width={20} height={20} className="subject-structured__label-icon" />
                 How It Works
               </p>
-              <h2 className="subject-structured__title">Structured for Real Results</h2>
+              <h2 className="subject-structured__title">
+                {isCa ? "Built for Real Progress" : "Structured for Real Results"}
+              </h2>
               <div className="subject-structured__steps">
                 {structuredSteps.map((step) => (
                   <div key={step.number} className="subject-structured__step">

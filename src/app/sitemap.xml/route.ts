@@ -1,13 +1,8 @@
 import {
   SITEMAP_BASE_URL,
   SITEMAP_RESPONSE_HEADERS,
-  STATIC_LAST_MODIFIED,
-  getPageSitemapUrls,
-  getSubjectSitemapUrls,
-  getExamPrepSitemapUrls,
-  getCoCurricularSitemapUrls,
-  getOnlineTutoringSitemapUrls,
-  getBlogSitemapUrls,
+  getRegionSitemapUrls,
+  getMaxLastmod,
   renderSitemapIndexXml,
   type SitemapIndexEntry,
 } from "@/data/sitemap-config";
@@ -15,60 +10,24 @@ import {
 export const revalidate = 3600;
 
 export async function GET() {
+  const regions: Array<{ code: "au" | "us" | "ca" | "nz"; path: string }> = [
+    { code: "au", path: "/sitemap-au.xml" },
+    { code: "us", path: "/sitemap-us.xml" },
+    { code: "ca", path: "/sitemap-ca.xml" },
+    { code: "nz", path: "/sitemap-nz.xml" },
+  ];
+
   const sitemaps: SitemapIndexEntry[] = [];
 
-  const pageUrls = getPageSitemapUrls();
-  if (pageUrls.length > 0) {
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/page-sitemap.xml`,
-      lastmod: STATIC_LAST_MODIFIED,
-    });
-  }
-
-  const subjectUrls = getSubjectSitemapUrls();
-  if (subjectUrls.length > 0) {
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/subject-sitemap.xml`,
-      lastmod: STATIC_LAST_MODIFIED,
-    });
-  }
-
-  const examPrepUrls = getExamPrepSitemapUrls();
-  if (examPrepUrls.length > 0) {
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/exam-prep-sitemap.xml`,
-      lastmod: STATIC_LAST_MODIFIED,
-    });
-  }
-
-  const coCurricularUrls = getCoCurricularSitemapUrls();
-  if (coCurricularUrls.length > 0) {
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/co-curricular-sitemap.xml`,
-      lastmod: STATIC_LAST_MODIFIED,
-    });
-  }
-
-  const onlineTutoringUrls = getOnlineTutoringSitemapUrls();
-  if (onlineTutoringUrls.length > 0) {
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/online-tutoring-sitemap.xml`,
-      lastmod: STATIC_LAST_MODIFIED,
-    });
-  }
-
-  const blogUrls = await getBlogSitemapUrls();
-  if (blogUrls.length > 0) {
-    let latestBlogDate = STATIC_LAST_MODIFIED;
-    for (const b of blogUrls) {
-      if (b.lastmod > latestBlogDate) {
-        latestBlogDate = b.lastmod;
-      }
+  for (const reg of regions) {
+    const urls = await getRegionSitemapUrls(reg.code);
+    if (urls.length > 0) {
+      const lastmod = getMaxLastmod(urls);
+      sitemaps.push({
+        loc: `${SITEMAP_BASE_URL}${reg.path}`,
+        lastmod,
+      });
     }
-    sitemaps.push({
-      loc: `${SITEMAP_BASE_URL}/blog-sitemap.xml`,
-      lastmod: latestBlogDate,
-    });
   }
 
   const xml = renderSitemapIndexXml(sitemaps);

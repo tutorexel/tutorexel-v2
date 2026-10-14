@@ -123,7 +123,7 @@ export default function AuGoldCoastCityPage() {
               <span aria-hidden="true">/</span>
               <Link href="/online-tutoring">Online Tutoring</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Brisbane</span>
+              <span aria-current="page">Gold Coast</span>
             </nav>
             <span className="eyebrow">
               <svg
@@ -142,23 +142,23 @@ export default function AuGoldCoastCityPage() {
               Gold Coast, QLD
             </span>
             <h1 className="hub-title">
-              Online Tutoring in <span className="grad">Brisbane</span>
+              Online Tutoring in <span className="grad">Gold Coast</span>
             </h1>
             <p className="hub-sub">
-              Live maths, English and science tutoring for Brisbane students in Years 2 to 10.
-              Aligned to the Australian Curriculum (QLD), with NAPLAN, ICAS and Scholarship Tests
-              prep built in, all from home.
+              Live maths, English and science lessons for Gold Coast students in Years 2 to 10, matched
+              to the Australian Curriculum as taught in Queensland. Prep for NAPLAN, ICAS and scholarship
+              tests is built in, all from home.
             </p>
             <div className="xd-cta">
               <Link className="btn btn-hi" href="/free-assessment">
-                Book a free assessment
+                Book a Free Assessment
               </Link>
               <Link className="btn btn-ghost" href="/pricing">
-                See plans
+                View Plans
               </Link>
             </div>
           </div>
-          <aside className="glance" aria-label="Brisbane at a glance">
+          <aside className="glance" aria-label="Gold Coast at a glance">
             <p className="glance-t">Tutoring in Gold Coast</p>
             <ul className="xfacts">
               <li>
@@ -198,7 +198,7 @@ export default function AuGoldCoastCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Curriculum</b>Australian Curriculum (QLD)
+                  <b>Curriculum</b>Australian Curriculum (Queensland)
                 </span>
               </li>
               <li>
@@ -217,7 +217,7 @@ export default function AuGoldCoastCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Test prep</b>NAPLAN, ICAS and Scholarship Tests
+                  <b>Test prep</b>NAPLAN, ICAS and scholarship tests
                 </span>
               </li>
               <li>
@@ -236,7 +236,7 @@ export default function AuGoldCoastCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Class format</b>Small groups or one-on-one, live online
+                  <b>Class format</b>Live online, in small groups or one-to-one
                 </span>
               </li>
             </ul>
@@ -247,9 +247,9 @@ export default function AuGoldCoastCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="sH">Subjects for Brisbane students</h2>
+              <h2 id="sH">Subjects for Gold Coast Students</h2>
               <p className="muted">
-                Every lesson follows the Australian Curriculum (QLD), pitched at your child’s level.
+                Every lesson follows the Australian Curriculum as taught in Queensland, pitched at your child&apos;s level.
               </p>
             </div>
           </div>
@@ -275,15 +275,15 @@ export default function AuGoldCoastCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Number facts, place value and early problem solving</span>
+                  <span>Counting patterns, place value, money, time and early multiplication using the Queensland Australian Curriculum</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Fractions, decimals, ratios and multi-step problems</span>
+                  <span>Fractions, decimals, ratios and multi-step problems, with algebra foundations for the move to secondary</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Algebra, geometry, data and test-ready reasoning</span>
+                  <span>Algebra, geometry, statistics and probability, building towards QCE Mathematics pathways</span>
                 </li>
               </ul>
             </article>
@@ -309,15 +309,15 @@ export default function AuGoldCoastCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Reading fluency, spelling and sentence writing</span>
+                  <span>Reading fluency, spelling and sentence writing using the Queensland Australian Curriculum</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Comprehension, paragraphing and persuasive writing</span>
+                  <span>Comprehension, paragraph structure and persuasive writing, with grammar practice</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Text analysis, essays and sophisticated vocabulary</span>
+                  <span>Text analysis, essay writing and vocabulary, building towards QCE English</span>
                 </li>
               </ul>
             </article>
@@ -342,15 +342,15 @@ export default function AuGoldCoastCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Curiosity, observation and simple experiments</span>
+                  <span>Curiosity, observation and simple investigations across the primary science strands</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Forces, living things, Earth and space</span>
+                  <span>Forces, living things, Earth and space, with fair-test practice</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Chemistry, physics and biology foundations</span>
+                  <span>Chemistry, physics and biology foundations that lead into QCE sciences</span>
                 </li>
               </ul>
             </article>
@@ -361,9 +361,9 @@ export default function AuGoldCoastCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="eH">Tests Brisbane families prepare for</h2>
+              <h2 id="eH">Tests Gold Coast Families Prepare For</h2>
               <p className="muted">
-                Prep is built into regular lessons, with mock tests as each test gets closer.
+                Preparation sits inside regular lessons, with mock tests as each test date gets closer.
               </p>
             </div>
             <Link className="see-all" href="/exam-prep">
@@ -402,7 +402,7 @@ export default function AuGoldCoastCityPage() {
               </span>
               <b className="exam-name">NAPLAN</b>
               <span className="exam-full">National Assessment Program, Literacy and Numeracy</span>
-              <span className="exam-who">Every Australian student in Years 3, 5, 7 and 9</span>
+              <span className="exam-who">Sat by all students in Years 3, 5, 7 and 9</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -418,7 +418,7 @@ export default function AuGoldCoastCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Usually March, online
+                  Held each March, sat online
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -458,7 +458,7 @@ export default function AuGoldCoastCityPage() {
               <span className="exam-full">
                 International Competitions and Assessments for Schools
               </span>
-              <span className="exam-who">Students who want to stretch beyond the classroom</span>
+              <span className="exam-who">Optional subject tests for Years 2 to 12 that stretch students beyond classroom work</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -474,7 +474,7 @@ export default function AuGoldCoastCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Mid-year, through your school
+                  Usually Terms 2 and 3, entered through schools
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -512,8 +512,8 @@ export default function AuGoldCoastCityPage() {
                 </span>
               </span>
               <b className="exam-name">Scholarship Tests</b>
-              <span className="exam-full">ACER and school scholarship exams</span>
-              <span className="exam-who">Students sitting independent school scholarships</span>
+              <span className="exam-full">Independent school scholarship exams, many set by ACER</span>
+              <span className="exam-who">Students sitting scholarship exams for Gold Coast independent schools, or aiming for Queensland Academies (Year 10 entry)</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -529,7 +529,7 @@ export default function AuGoldCoastCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Usually early in the year
+                  Dates vary, check each school
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -554,13 +554,13 @@ export default function AuGoldCoastCityPage() {
       <section className="sec" aria-labelledby="tH">
         <div className="wrap times">
           <div>
-            <h2 id="tH">Class times that fit the Brisbane school day</h2>
+            <h2 id="tH">Class Times for the Gold Coast School Day</h2>
             <p className="muted">
-              Every class is scheduled in Gold Coast local time. It is{" "}
-              <b data-tz="Australia/Brisbane">--:--</b> there right now.
+              All classes run on Gold Coast local time. The time there right now is{" "}
+              <b data-tz="Australia/Brisbane">--:--</b>.
             </p>
             <Link className="btn btn-hi" href="/free-assessment">
-              Find a time that suits
+              Find a Time That Suits
             </Link>
           </div>
           <div className="tcard">
@@ -602,7 +602,7 @@ export default function AuGoldCoastCityPage() {
                 >
                   <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
                 </svg>{" "}
-                Weekend mornings
+                Weekends
               </span>
               <div className="slots">
                 <span className="slot">9:00 am</span>
@@ -621,182 +621,51 @@ export default function AuGoldCoastCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="aH">Families across Brisbane</h2>
+              <h2 id="aH">Families Across Gold Coast</h2>
               <p className="muted">
-                Online means every suburb is covered. These are just some of the areas we teach.
+                Online lessons reach every suburb. These are just some of the areas our students log in from.
               </p>
             </div>
           </div>
           <div className="areas">
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Sunnybank
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Indooroopilly
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Chermside
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Carindale
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Springfield
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              North Lakes
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Toowong
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Logan
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Redcliffe
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Mount Gravatt
-            </span>
+            {[
+              "Surfers Paradise",
+              "Robina",
+              "Southport",
+              "Burleigh Heads",
+              "Varsity Lakes",
+              "Coomera",
+              "Nerang",
+              "Mermaid Beach",
+              "Helensvale",
+              "Palm Beach",
+            ].map((suburb) => (
+              <span key={suburb} className="area-chip">
+                <svg
+                  className=""
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                  <circle cx="12" cy="9.5" r="2.5"></circle>
+                </svg>
+                {suburb}
+              </span>
+            ))}
           </div>
         </div>
       </section>
       <section className="sec" aria-labelledby="fH">
         <div className="wrap faq-wrap">
           <div>
-            <h2 id="fH">Brisbane parents ask</h2>
+            <h2 id="fH">Gold Coast Parents Ask</h2>
             <p className="muted">
-              Still unsure? Message us on WhatsApp and a real person will reply.
+              Not sure yet? Message us on WhatsApp and a real person will reply.
             </p>
             <a className="btn btn-wa" href="https://wa.me/61470330548">
               Chat on WhatsApp
@@ -809,8 +678,8 @@ export default function AuGoldCoastCityPage() {
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Our classes are live and online, so Brisbane students learn with qualified teachers
-                from home, with no travel across town.
+                Our classes are live and online, so Gold Coast students learn with qualified teachers
+                from home, with no travel up and down the coast.
               </p>
             </details>
             <details className="faq">
@@ -819,18 +688,18 @@ export default function AuGoldCoastCityPage() {
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. Lessons for Brisbane students are aligned to the Australian Curriculum (QLD),
-                so tutoring supports what is taught at school.
+                Yes. Lessons are mapped to the Australian Curriculum as taught in Queensland for
+                each Year level, so what your child learns supports what happens at school.
               </p>
             </details>
             <details className="faq">
               <summary>
-                What times are classes in Gold Coast?
-                <span className="faq-ic" aria-hidden="true"></span>
+                What times are classes in Gold Coast?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Classes run after school on weekdays and on weekend mornings, all scheduled in
-                Brisbane local time.
+                Classes run after school on weekdays and on weekends, in Gold Coast time (AEST).
+                Queensland does not use daylight saving. Your exact times are confirmed after the
+                free assessment.
               </p>
             </details>
             <details className="faq">
@@ -838,8 +707,8 @@ export default function AuGoldCoastCityPage() {
                 Do you help with NAPLAN?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. We prepare Brisbane students for NAPLAN, ICAS and Scholarship Tests, with
-                test-style practice built into regular lessons.
+                Yes. NAPLAN is sat in Years 3, 5, 7 and 9, and we build practice into regular
+                lessons and run mock tests as the test approaches.
               </p>
             </details>
             <details className="faq">
@@ -847,8 +716,9 @@ export default function AuGoldCoastCityPage() {
                 How do we get started?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Book the free assessment. We find where your child stands, build a learning plan and
-                match you with a class.
+                Book a free assessment so we can see where your child is. We then suggest a plan and
+                a time, and you can try a free lesson before you commit. Gold Coast families also
+                ask us about scholarship preparation, which we can include in your plan.
               </p>
             </details>
           </div>
@@ -874,7 +744,7 @@ export default function AuGoldCoastCityPage() {
                 </svg>
               </span>
               <h2 id="oH">Not in Gold Coast?</h2>
-              <p>Same live classes, set to your local time, in every city across Australia.</p>
+              <p>The same live classes, set to your local time, in cities across Australia.</p>
               <Link className="cs-all" href="/online-tutoring">
                 See all cities{" "}
                 <svg
@@ -966,6 +836,43 @@ export default function AuGoldCoastCityPage() {
                   </svg>
                 </span>
               </Link>
+              <Link className="cpill" href="/online-tutoring/brisbane">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Brisbane</b>
+                  <span>
+                    QLD · <span data-tz="Australia/Brisbane">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
               <Link className="cpill" href="/online-tutoring/perth">
                 <span className="cp-pin">
                   <svg
@@ -1040,6 +947,43 @@ export default function AuGoldCoastCityPage() {
                   </svg>
                 </span>
               </Link>
+              <Link className="cpill" href="/online-tutoring/canberra">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Canberra</b>
+                  <span>
+                    ACT · <span data-tz="Australia/Sydney">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -1075,14 +1019,13 @@ export default function AuGoldCoastCityPage() {
               />
             </div>
             <div className="final-txt">
-              <h2>Ready to See Your Child Excel?</h2>
+              <h2>Ready to Start in Gold Coast?</h2>
               <p>
-                Join hundreds of Australian families who trust TutorExel for their children's
-                education. Book your FREE trial class today, no credit card required.
+                Book a free trial lesson for your child today. No credit card needed.
               </p>
               <div className="final-actions">
-                <Link className="btn btn-hi" href="/enroll">
-                  Book Online Now
+                <Link className="btn btn-hi" href="/free-trial">
+                  Book a Free Trial
                 </Link>
                 <a className="btn btn-wa" href="https://wa.me/61470330548">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">

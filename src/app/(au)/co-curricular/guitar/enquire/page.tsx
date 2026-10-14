@@ -32,6 +32,7 @@ export default function GuitarEnquiryPage() {
       <section className="cc-booking-section">
         <div className="container">
           <div className="cc-booking__widget">
+            <h2 className="cc-booking__heading">Guitar Lessons Enquiry</h2>
             <iframe
               src={BOOKING_URL}
               className="cc-booking__iframe"

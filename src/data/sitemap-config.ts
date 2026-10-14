@@ -1,4 +1,4 @@
-import { PAGE_AVAILABILITY, INDEX_YEAR_8_10, type RegionCode, type PageAvailabilityConfig } from "@/data/page-availability";
+import { PAGE_AVAILABILITY, INDEX_YEAR_8_10, type RegionCode } from "@/data/page-availability";
 import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
 import { getAllSlugsForSitemap } from "@/sanity/client";
 
@@ -56,7 +56,7 @@ export function escapeXml(unsafe: string): string {
     .replace(/'/g, "&apos;");
 }
 
-function getRegionalUrl(path: string, region: RegionCode): string {
+export function getRegionalUrl(path: string, region: RegionCode): string {
   const isRoot = path === "/";
   if (region === "au") {
     return isRoot ? SITEMAP_BASE_URL : `${SITEMAP_BASE_URL}${path}`;
@@ -64,10 +64,15 @@ function getRegionalUrl(path: string, region: RegionCode): string {
   return isRoot ? `${SITEMAP_BASE_URL}/${region}` : `${SITEMAP_BASE_URL}/${region}${path}`;
 }
 
-export function buildEntriesFromAvailability(entries: PageAvailabilityConfig[]): SitemapUrlEntry[] {
+export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapUrlEntry[]> {
   const result: SitemapUrlEntry[] = [];
 
-  for (const entry of entries) {
+  // 1. Static and registered pages from PAGE_AVAILABILITY for this region
+  for (const entry of PAGE_AVAILABILITY) {
+    if (!entry.regions.includes(region)) {
+      continue;
+    }
+
     if (EXCLUDED_PATHS.has(entry.path)) {
       continue;
     }
@@ -86,124 +91,99 @@ export function buildEntriesFromAvailability(entries: PageAvailabilityConfig[]):
     const defaultRegion = entry.regions.includes("au") ? "au" : entry.regions[0] || "au";
     clusterLanguages["x-default"] = getRegionalUrl(entry.path, defaultRegion);
 
+    const pageUrl = getRegionalUrl(entry.path, region);
     const images = PAGE_IMAGES_MAP[entry.path] || [];
 
-    for (const region of entry.regions) {
-      const pageUrl = getRegionalUrl(entry.path, region);
-      result.push({
-        loc: pageUrl,
-        lastmod: STATIC_LAST_MODIFIED,
-        images,
-        alternates: clusterLanguages,
-      });
-    }
+    result.push({
+      loc: pageUrl,
+      lastmod: STATIC_LAST_MODIFIED,
+      images,
+      alternates: clusterLanguages,
+    });
   }
 
-  return result;
-}
-
-export function getPageSitemapUrls(): SitemapUrlEntry[] {
-  const staticPageEntries = PAGE_AVAILABILITY.filter((entry) => {
-    if (EXCLUDED_PATHS.has(entry.path)) return false;
-    if (entry.path.startsWith("/subjects")) return false;
-    if (entry.path.startsWith("/exam-prep")) return false;
-    if (entry.path.startsWith("/co-curricular")) return false;
-    if (entry.path.startsWith("/online-tutoring")) return false;
-    if (entry.path === "/blog" || entry.path.startsWith("/blog/")) return false;
-    return true;
-  });
-
-  return buildEntriesFromAvailability(staticPageEntries);
-}
-
-export function getSubjectSitemapUrls(): SitemapUrlEntry[] {
-  const subjectEntries = PAGE_AVAILABILITY.filter((entry) => entry.path.startsWith("/subjects"));
-  return buildEntriesFromAvailability(subjectEntries);
-}
-
-export function getExamPrepSitemapUrls(): SitemapUrlEntry[] {
-  const examPrepEntries = PAGE_AVAILABILITY.filter((entry) => entry.path.startsWith("/exam-prep"));
-  return buildEntriesFromAvailability(examPrepEntries);
-}
-
-export function getCoCurricularSitemapUrls(): SitemapUrlEntry[] {
-  const coCurricularEntries = PAGE_AVAILABILITY.filter((entry) => entry.path.startsWith("/co-curricular"));
-  return buildEntriesFromAvailability(coCurricularEntries);
-}
-
-export function getOnlineTutoringSitemapUrls(): SitemapUrlEntry[] {
-  const onlineTutoringEntries = PAGE_AVAILABILITY.filter((entry) => entry.path.startsWith("/online-tutoring"));
-  return buildEntriesFromAvailability(onlineTutoringEntries);
-}
-
-export async function getBlogSitemapUrls(): Promise<SitemapUrlEntry[]> {
-  const blogIndexEntries = PAGE_AVAILABILITY.filter((entry) => entry.path === "/blog");
-  const result: SitemapUrlEntry[] = buildEntriesFromAvailability(blogIndexEntries);
-
+  // 2. Dynamic Sanity blog posts assigned to this region
   const sampleSlugs = new Set([
     "sample-article-us",
     "sample-article-ca",
     "sample-article-nz",
   ]);
 
-  const sanityPosts = await getAllSlugsForSitemap();
-  const validPosts = sanityPosts.filter((post) => {
-    if (!post.slug) return false;
-    if (post.noindex) return false;
-    if (sampleSlugs.has(post.slug)) return false;
-    if (/^\d+$/.test(post.slug)) return false;
-    return true;
-  });
+  try {
+    const sanityPosts = await getAllSlugsForSitemap();
+    const validPosts = sanityPosts.filter((post) => {
+      if (!post.slug) return false;
+      if (post.noindex) return false;
+      if (sampleSlugs.has(post.slug)) return false;
+      if (/^\d+$/.test(post.slug)) return false;
 
-  for (const post of validPosts) {
-    const rawRegion = (post.region?.toLowerCase() || "au") as Region;
-    const region = (["au", "us", "ca", "nz"].includes(rawRegion) ? rawRegion : "au") as Region;
-    const prefix = region === "au" ? "" : `/${region}`;
-    const postUrl = `${SITEMAP_BASE_URL}${prefix}/blog/${post.slug}`;
-
-    let lastmod = STATIC_LAST_MODIFIED;
-    if (post._updatedAt) {
-      try {
-        const d = new Date(post._updatedAt);
-        if (!isNaN(d.getTime())) {
-          lastmod = d.toISOString();
-        }
-      } catch {
-        lastmod = STATIC_LAST_MODIFIED;
-      }
-    } else if (post.publishedAt) {
-      try {
-        const d = new Date(post.publishedAt);
-        if (!isNaN(d.getTime())) {
-          lastmod = d.toISOString();
-        }
-      } catch {
-        lastmod = STATIC_LAST_MODIFIED;
-      }
-    }
-
-    const locale = REGION_LOCALE_MAP[region];
-    const alternates: Record<string, string> = {
-      [locale]: postUrl,
-      "x-default": postUrl,
-    };
-
-    const images: string[] = [];
-    if (post.imageUrl) {
-      images.push(post.imageUrl);
-    } else {
-      images.push(`${SITEMAP_BASE_URL}/images/og-hero.jpg`);
-    }
-
-    result.push({
-      loc: postUrl,
-      lastmod,
-      images,
-      alternates,
+      const rawRegion = (post.region?.toLowerCase() || "au") as RegionCode;
+      const normalizedRegion: RegionCode = (["au", "us", "ca", "nz"].includes(rawRegion)
+        ? rawRegion
+        : "au") as RegionCode;
+      return normalizedRegion === region;
     });
+
+    for (const post of validPosts) {
+      const prefix = region === "au" ? "" : `/${region}`;
+      const postUrl = `${SITEMAP_BASE_URL}${prefix}/blog/${post.slug}`;
+
+      let lastmod = STATIC_LAST_MODIFIED;
+      if (post._updatedAt) {
+        try {
+          const d = new Date(post._updatedAt);
+          if (!isNaN(d.getTime())) {
+            lastmod = d.toISOString();
+          }
+        } catch {
+          lastmod = STATIC_LAST_MODIFIED;
+        }
+      } else if (post.publishedAt) {
+        try {
+          const d = new Date(post.publishedAt);
+          if (!isNaN(d.getTime())) {
+            lastmod = d.toISOString();
+          }
+        } catch {
+          lastmod = STATIC_LAST_MODIFIED;
+        }
+      }
+
+      const locale = REGION_LOCALE_MAP[region as Region];
+      const alternates: Record<string, string> = {
+        [locale]: postUrl,
+        "x-default": postUrl,
+      };
+
+      const images: string[] = [];
+      if (post.imageUrl) {
+        images.push(post.imageUrl);
+      } else {
+        images.push(`${SITEMAP_BASE_URL}/images/og-hero.jpg`);
+      }
+
+      result.push({
+        loc: postUrl,
+        lastmod,
+        images,
+        alternates,
+      });
+    }
+  } catch (err) {
+    console.warn(`[Sitemap] Failed to fetch blog posts for region ${region}:`, err);
   }
 
   return result;
+}
+
+export function getMaxLastmod(urls: SitemapUrlEntry[]): string {
+  let maxDate = STATIC_LAST_MODIFIED;
+  for (const item of urls) {
+    if (item.lastmod > maxDate) {
+      maxDate = item.lastmod;
+    }
+  }
+  return maxDate;
 }
 
 export function renderUrlSetXml(urls: SitemapUrlEntry[]): string {

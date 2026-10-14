@@ -53,15 +53,15 @@ const jsonLd = [
         name: "Do you have tutors based in Brampton?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Our classes are live and online, so Brampton students learn with qualified teachers from home, with no travel across town.",
+          text: "Our classes are live and online, so Brampton students learn with qualified teachers from home, with no travel across Peel.",
         },
       },
       {
         "@type": "Question",
-        name: "Do lessons follow the Ontario curriculum?",
+        name: "Do lessons follow the Ontario Curriculum?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Lessons for Brampton students are aligned to the Ontario curriculum, so tutoring supports what is taught at school.",
+          text: "Yes. Lessons are mapped to the Ontario Curriculum for each Grade, so what your child learns supports what happens at school.",
         },
       },
       {
@@ -69,15 +69,15 @@ const jsonLd = [
         name: "What times are classes in Brampton?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Classes run after school on weekdays and on weekend mornings, all scheduled in Brampton local time.",
+          text: "Classes run after school on weekdays and on weekends, in Brampton time (Eastern Time). Your exact times are confirmed after the free assessment.",
         },
       },
       {
         "@type": "Question",
-        name: "Do you help with EQAO?",
+        name: "Do you help with the EQAO tests?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. We prepare Brampton students for EQAO, OSSLT and Gifted Testing, with test-style practice built into regular lessons.",
+          text: "Yes. We build practice for provincial assessments into regular lessons and run practice tests as test dates approach. Results depend on your child's work and school.",
         },
       },
       {
@@ -85,7 +85,7 @@ const jsonLd = [
         name: "How do we get started?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Book the free assessment. We find where your child stands, build a learning plan and match you with a class.",
+          text: "Book a free assessment so we can see where your child is. We then suggest a plan and a time, and you can try a free lesson before you commit. Brampton families also ask us about gifted program and private school entrance preparation, which we can include in your plan.",
         },
       },
     ],
@@ -123,7 +123,7 @@ export default function CaBramptonCityPage() {
               <span aria-hidden="true">/</span>
               <Link href="/ca/online-tutoring">Online Tutoring</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Mississauga</span>
+              <span aria-current="page">Brampton</span>
             </nav>
             <span className="eyebrow">
               <svg
@@ -142,23 +142,23 @@ export default function CaBramptonCityPage() {
               Brampton, ON
             </span>
             <h1 className="hub-title">
-              Online Tutoring in <span className="grad">Mississauga</span>
+              Online Tutoring in <span className="grad">Brampton</span>
             </h1>
             <p className="hub-sub">
-              Live math, English and science tutoring for Brampton students in Grades 2 to 10.
-              Aligned to the Ontario curriculum, with EQAO, OSSLT and Gifted Testing prep built in,
-              all from home.
+              Live math, English and science lessons for Brampton students in Grades 2 to 10, matched
+              to the Ontario Curriculum. Prep for EQAO, gifted program and independent school tests
+              is built in, all from home.
             </p>
             <div className="xd-cta">
               <Link className="btn btn-hi" href="/ca/free-assessment">
-                Book a free assessment
+                Book a Free Assessment
               </Link>
               <Link className="btn btn-ghost" href="/ca/pricing">
-                See plans
+                View Plans
               </Link>
             </div>
           </div>
-          <aside className="glance" aria-label="Mississauga at a glance">
+          <aside className="glance" aria-label="Brampton at a glance">
             <p className="glance-t">Tutoring in Brampton</p>
             <ul className="xfacts">
               <li>
@@ -198,7 +198,7 @@ export default function CaBramptonCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Curriculum</b>Ontario curriculum
+                  <b>Curriculum</b>Ontario Curriculum
                 </span>
               </li>
               <li>
@@ -217,7 +217,7 @@ export default function CaBramptonCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Test prep</b>EQAO, OSSLT and Gifted Testing
+                  <b>Test prep</b>EQAO, gifted program and independent school tests
                 </span>
               </li>
               <li>
@@ -236,7 +236,7 @@ export default function CaBramptonCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Class format</b>Small groups or one-on-one, live online
+                  <b>Class format</b>Live online, in small groups or one-to-one
                 </span>
               </li>
             </ul>
@@ -247,9 +247,9 @@ export default function CaBramptonCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="sH">Subjects for Brampton students</h2>
+              <h2 id="sH">Subjects for Brampton Students</h2>
               <p className="muted">
-                Every lesson follows the Ontario curriculum, pitched at your child’s level.
+                Every lesson follows the Ontario Curriculum, pitched at your child&apos;s level.
               </p>
             </div>
           </div>
@@ -275,15 +275,15 @@ export default function CaBramptonCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Grades 2 to 4</b>
-                  <span>Number facts, place value and early problem solving</span>
+                  <span>Number sense, place value and multiplication facts, following the Ontario math curriculum</span>
                 </li>
                 <li>
                   <b>Grades 5 to 7</b>
-                  <span>Fractions, decimals, ratios and multi-step problems</span>
+                  <span>Fractions, decimals, ratios, algebra and financial literacy, with EQAO Grade 6 math practice</span>
                 </li>
                 <li>
                   <b>Grades 8 to 10</b>
-                  <span>Algebra, geometry, data and test-ready reasoning</span>
+                  <span>Grade 9 math and Grade 10 Principles of Mathematics, with EQAO Grade 9 math practice</span>
                 </li>
               </ul>
             </article>
@@ -309,15 +309,15 @@ export default function CaBramptonCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Grades 2 to 4</b>
-                  <span>Reading fluency, spelling and sentence writing</span>
+                  <span>Reading fluency, spelling and sentence writing, following the Ontario Language curriculum</span>
                 </li>
                 <li>
                   <b>Grades 5 to 7</b>
-                  <span>Comprehension, paragraphing and persuasive writing</span>
+                  <span>Comprehension, paragraph structure and persuasive writing, with EQAO Grade 6 reading and writing practice</span>
                 </li>
                 <li>
                   <b>Grades 8 to 10</b>
-                  <span>Text analysis, essays and sophisticated vocabulary</span>
+                  <span>Text analysis, essay writing and vocabulary, with practice for the Grade 10 literacy test (OSSLT)</span>
                 </li>
               </ul>
             </article>
@@ -342,15 +342,15 @@ export default function CaBramptonCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Grades 2 to 4</b>
-                  <span>Curiosity, observation and simple experiments</span>
+                  <span>Curiosity, observation and simple investigations using the Ontario Science and Technology curriculum</span>
                 </li>
                 <li>
                   <b>Grades 5 to 7</b>
-                  <span>Forces, living things, Earth and space</span>
+                  <span>Forces, living systems, Earth and space, with hands-on investigation skills</span>
                 </li>
                 <li>
                   <b>Grades 8 to 10</b>
-                  <span>Chemistry, physics and biology foundations</span>
+                  <span>Grade 9 and Grade 10 science foundations in biology, chemistry, physics and Earth science</span>
                 </li>
               </ul>
             </article>
@@ -361,13 +361,13 @@ export default function CaBramptonCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="eH">Tests Brampton families prepare for</h2>
+              <h2 id="eH">Tests Brampton Families Prepare For</h2>
               <p className="muted">
-                Prep is built into regular lessons, with mock tests as each test gets closer.
+                Preparation sits inside regular lessons, with practice tests as each test date gets closer.
               </p>
             </div>
             <Link className="see-all" href="/ca/exam-prep">
-              All exam prep{" "}
+              View All Test Prep{" "}
               <svg
                 viewBox="0 0 24 24"
                 width="16"
@@ -400,9 +400,9 @@ export default function CaBramptonCityPage() {
                   </svg>
                 </span>
               </span>
-              <b className="exam-name">EQAO</b>
-              <span className="exam-full">Ontario provincial assessments</span>
-              <span className="exam-who">Ontario students in Grades 3, 6 and 9</span>
+              <b className="exam-name">EQAO Assessments</b>
+              <span className="exam-full">Ontario provincial tests in reading, writing and math</span>
+              <span className="exam-who">Written in Grades 3, 6 and 9, plus the Grade 10 literacy test</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -418,62 +418,7 @@ export default function CaBramptonCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Spring, Ontario
-                </span>
-                <span className="exam-go">
-                  Prep plan{" "}
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg>
-                </span>
-              </span>
-            </Link>
-            <Link className="exam" href="/ca/exam-prep/osslt">
-              <span className="exam-top">
-                <span className="topic-ic">
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M4 20h4L19 9l-4-4L4 16v4Z"></path>
-                    <path d="M14 6l4 4"></path>
-                  </svg>
-                </span>
-              </span>
-              <b className="exam-name">OSSLT</b>
-              <span className="exam-full">Ontario Secondary School Literacy Test</span>
-              <span className="exam-who">Ontario students working toward their diploma</span>
-              <span className="exam-foot">
-                <span>
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M12 7v5l3 2"></path>
-                  </svg>
-                  Grade 10, Ontario
+                  Usually spring
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -505,13 +450,13 @@ export default function CaBramptonCityPage() {
                     strokeLinejoin="round"
                     aria-hidden="true"
                   >
-                    <path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0"></path>
+                    <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
                   </svg>
                 </span>
               </span>
-              <b className="exam-name">Gifted Testing</b>
-              <span className="exam-full">CCAT and gifted identification</span>
-              <span className="exam-who">Students referred for gifted programs</span>
+              <b className="exam-name">Gifted &amp; Specialized Programs</b>
+              <span className="exam-full">Peel gifted and specialized programs</span>
+              <span className="exam-who">Students aiming for a gifted program or a specialized program offered by their school board</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -527,7 +472,62 @@ export default function CaBramptonCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Set by your school board
+                  Dates vary, check school board
+                </span>
+                <span className="exam-go">
+                  Prep plan{" "}
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </span>
+            </Link>
+            <Link className="exam" href="/ca/exam-prep">
+              <span className="exam-top">
+                <span className="topic-ic">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 20h4L19 9l-4-4L4 16v4Z"></path>
+                    <path d="M14 6l4 4"></path>
+                  </svg>
+                </span>
+              </span>
+              <b className="exam-name">Independent School Tests</b>
+              <span className="exam-full">SSAT, ISEE and school-set exams</span>
+              <span className="exam-who">Students applying to private and independent schools</span>
+              <span className="exam-foot">
+                <span>
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 2"></path>
+                  </svg>
+                  Offered year-round
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -552,13 +552,13 @@ export default function CaBramptonCityPage() {
       <section className="sec" aria-labelledby="tH">
         <div className="wrap times">
           <div>
-            <h2 id="tH">Class times that fit the Mississauga school day</h2>
+            <h2 id="tH">Class Times for the Brampton School Day</h2>
             <p className="muted">
-              Every class is scheduled in Brampton local time. It is{" "}
-              <b data-tz="America/Toronto">--:--</b> there right now.
+              All classes run on Brampton local time (Eastern Time). The time there right now is{" "}
+              <b data-tz="America/Toronto">--:--</b>.
             </p>
             <Link className="btn btn-hi" href="/ca/free-assessment">
-              Find a time that suits
+              Find a Time That Suits
             </Link>
           </div>
           <div className="tcard">
@@ -600,7 +600,7 @@ export default function CaBramptonCityPage() {
                 >
                   <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
                 </svg>{" "}
-                Weekend mornings
+                Weekends
               </span>
               <div className="slots">
                 <span className="slot">9:00 am</span>
@@ -619,182 +619,51 @@ export default function CaBramptonCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="aH">Families across Brampton</h2>
+              <h2 id="aH">Families Across Brampton</h2>
               <p className="muted">
-                Online means every suburb is covered. These are just some of the areas we teach.
+                Online lessons reach every neighbourhood. These are just some of the areas our students log in from.
               </p>
             </div>
           </div>
           <div className="areas">
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Brampton
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Oakville
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Streetsville
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Meadowvale
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Port Credit
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Erin Mills
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Churchill Meadows
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Milton
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Malton
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Cooksville
-            </span>
+            {[
+              "Springdale",
+              "Bramalea",
+              "Heart Lake",
+              "Mount Pleasant",
+              "Sandalwood Heights",
+              "Castlemore",
+              "Credit Valley",
+              "Fletcher's Meadow",
+              "Gore Meadows",
+              "Downtown Brampton",
+            ].map((neighbourhood) => (
+              <span key={neighbourhood} className="area-chip">
+                <svg
+                  className=""
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                  <circle cx="12" cy="9.5" r="2.5"></circle>
+                </svg>
+                {neighbourhood}
+              </span>
+            ))}
           </div>
         </div>
       </section>
       <section className="sec" aria-labelledby="fH">
         <div className="wrap faq-wrap">
           <div>
-            <h2 id="fH">Mississauga parents ask</h2>
+            <h2 id="fH">Brampton Parents Ask</h2>
             <p className="muted">
-              Still unsure? Message us on WhatsApp and a real person will reply.
+              Not sure yet? Message us on WhatsApp and a real person will reply.
             </p>
             <a className="btn btn-wa" href="https://wa.me/12067977387">
               Chat on WhatsApp
@@ -807,37 +676,37 @@ export default function CaBramptonCityPage() {
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Our classes are live and online, so Brampton students learn with qualified
-                teachers from home, with no travel across town.
+                Our classes are live and online, so Brampton students learn with qualified teachers
+                from home, with no travel across Peel.
               </p>
             </details>
             <details className="faq">
               <summary>
-                Do lessons follow the Ontario curriculum?
+                Do lessons follow the Ontario Curriculum?
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. Lessons for Brampton students are aligned to the Ontario curriculum, so
-                tutoring supports what is taught at school.
+                Yes. Lessons are mapped to the Ontario Curriculum for each Grade, so what your child
+                learns supports what happens at school.
               </p>
             </details>
             <details className="faq">
               <summary>
-                What times are classes in Brampton?
-                <span className="faq-ic" aria-hidden="true"></span>
+                What times are classes in Brampton?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Classes run after school on weekdays and on weekend mornings, all scheduled in
-                Brampton local time.
+                Classes run after school on weekdays and on weekends, in Brampton time (Eastern
+                Time). Your exact times are confirmed after the free assessment.
               </p>
             </details>
             <details className="faq">
               <summary>
-                Do you help with EQAO?<span className="faq-ic" aria-hidden="true"></span>
+                Do you help with the EQAO tests?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. We prepare Brampton students for EQAO, OSSLT and Gifted Testing, with
-                test-style practice built into regular lessons.
+                Yes. We build practice for provincial assessments into regular lessons and run
+                practice tests as test dates approach. Results depend on your child&apos;s work and
+                school.
               </p>
             </details>
             <details className="faq">
@@ -845,8 +714,10 @@ export default function CaBramptonCityPage() {
                 How do we get started?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Book the free assessment. We find where your child stands, build a learning plan and
-                match you with a class.
+                Book a free assessment so we can see where your child is. We then suggest a plan and
+                a time, and you can try a free lesson before you commit. Brampton families also ask
+                us about gifted program and private school entrance preparation, which we can
+                include in your plan.
               </p>
             </details>
           </div>
@@ -872,7 +743,7 @@ export default function CaBramptonCityPage() {
                 </svg>
               </span>
               <h2 id="oH">Not in Brampton?</h2>
-              <p>Same live classes, set to your local time, in every city across Canada.</p>
+              <p>The same live classes, set to your local time, in cities across Canada.</p>
               <Link className="cs-all" href="/ca/online-tutoring">
                 See all cities{" "}
                 <svg
@@ -908,80 +779,6 @@ export default function CaBramptonCityPage() {
                 </span>
                 <span className="cp-txt">
                   <b>Toronto</b>
-                  <span>
-                    ON · <span data-tz="America/Toronto">--:--</span>
-                  </span>
-                </span>
-                <span className="cp-go">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg>
-                </span>
-              </Link>
-                            <Link className="cpill" href="/ca/online-tutoring/mississauga">
-                <span className="cp-pin">
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                    <circle cx="12" cy="9.5" r="2.5"></circle>
-                  </svg>
-                </span>
-                <span className="cp-txt">
-                  <b>Mississauga</b>
-                  <span>
-                    ON · <span data-tz="America/Toronto">--:--</span>
-                  </span>
-                </span>
-                <span className="cp-go">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg>
-                </span>
-              </Link>
-              <Link className="cpill" href="/ca/online-tutoring/ottawa">
-                <span className="cp-pin">
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                    <circle cx="12" cy="9.5" r="2.5"></circle>
-                  </svg>
-                </span>
-                <span className="cp-txt">
-                  <b>Ottawa</b>
                   <span>
                     ON · <span data-tz="America/Toronto">--:--</span>
                   </span>
@@ -1112,6 +909,80 @@ export default function CaBramptonCityPage() {
                   </svg>
                 </span>
               </Link>
+              <Link className="cpill" href="/ca/online-tutoring/ottawa">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Ottawa</b>
+                  <span>
+                    ON · <span data-tz="America/Toronto">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
+              <Link className="cpill" href="/ca/online-tutoring/mississauga">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Mississauga</b>
+                  <span>
+                    ON · <span data-tz="America/Toronto">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -1147,14 +1018,13 @@ export default function CaBramptonCityPage() {
               />
             </div>
             <div className="final-txt">
-              <h2>Ready to See Your Child Excel?</h2>
+              <h2>Ready to Start in Brampton?</h2>
               <p>
-                Join hundreds of Canadian families who trust TutorExel for their children's
-                education. Book your FREE trial class today, no credit card required.
+                Book a free trial lesson for your child today. No credit card needed.
               </p>
               <div className="final-actions">
-                <Link className="btn btn-hi" href="/ca/enroll">
-                  Book Online Now
+                <Link className="btn btn-hi" href="/ca/free-trial">
+                  Book a Free Trial
                 </Link>
                 <a className="btn btn-wa" href="https://wa.me/12067977387">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
@@ -1167,7 +1037,7 @@ export default function CaBramptonCityPage() {
           </div>
         </div>
       </section>
-      <ExamPrepInteractions unit="Grade" />
+      <ExamPrepInteractions />
     </div>
   );
 }

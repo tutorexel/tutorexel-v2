@@ -1,13 +1,13 @@
 import {
   SITEMAP_RESPONSE_HEADERS,
-  getBlogSitemapUrls,
+  getRegionSitemapUrls,
   renderUrlSetXml,
 } from "@/data/sitemap-config";
 
 export const revalidate = 3600;
 
 export async function GET() {
-  const urls = await getBlogSitemapUrls();
+  const urls = await getRegionSitemapUrls("nz");
   const xml = renderUrlSetXml(urls);
   return new Response(xml, {
     status: 200,

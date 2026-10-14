@@ -53,15 +53,15 @@ const jsonLd = [
         name: "Do you have tutors based in Canberra?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Our classes are live and online, so Sydney students learn with qualified teachers from home, with no travel across town.",
+          text: "Our classes are live and online, so Canberra students learn with qualified teachers from home, with no travel between the town centres.",
         },
       },
       {
         "@type": "Question",
-        name: "Do lessons follow the Australian Curriculum (ACT)?",
+        name: "Do lessons follow Australian Curriculum (ACT)?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Lessons for Sydney students are aligned to the Australian Curriculum (ACT), so tutoring supports what is taught at school.",
+          text: "Yes. Lessons are mapped to the Australian Curriculum as taught in ACT schools for each Year level, so what your child learns supports what happens at school.",
         },
       },
       {
@@ -69,7 +69,7 @@ const jsonLd = [
         name: "What times are classes in Canberra?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Classes run after school on weekdays and on weekends, scheduled in Canberra local time (AEST/AEDT, including daylight saving).",
+          text: "Classes run after school on weekdays and on weekends, in Canberra time, which includes daylight saving in summer. Your exact times are confirmed after the free assessment.",
         },
       },
       {
@@ -77,7 +77,7 @@ const jsonLd = [
         name: "Do you help with NAPLAN?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. We prepare Sydney students for NAPLAN, OC Test, Selective Test, ICAS and Scholarship Tests, with test-style practice built into regular lessons.",
+          text: "Yes. NAPLAN is sat in Years 3, 5, 7 and 9, and we build practice into regular lessons and run mock tests as the test approaches.",
         },
       },
       {
@@ -85,7 +85,7 @@ const jsonLd = [
         name: "How do we get started?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Book a free assessment so we can see where your child is. We then suggest a plan and a time, and you can try a free lesson before you commit.",
+          text: "Book a free assessment so we can see where your child is. We then suggest a plan and a time, and you can try a free lesson before you commit. Canberra families also ask us about independent school scholarship preparation, which we can include in your plan.",
         },
       },
     ],
@@ -123,7 +123,7 @@ export default function AuCanberraCityPage() {
               <span aria-hidden="true">/</span>
               <Link href="/online-tutoring">Online Tutoring</Link>
               <span aria-hidden="true">/</span>
-              <span aria-current="page">Sydney</span>
+              <span aria-current="page">Canberra</span>
             </nav>
             <span className="eyebrow">
               <svg
@@ -142,23 +142,23 @@ export default function AuCanberraCityPage() {
               Canberra, ACT
             </span>
             <h1 className="hub-title">
-              Online Tutoring in <span className="grad">Sydney</span>
+              Online Tutoring in <span className="grad">Canberra</span>
             </h1>
             <p className="hub-sub">
-              Live maths, English and science tutoring for Sydney students in Years 2 to 10. Aligned
-              to the Australian Curriculum (ACT), with NAPLAN, OC Test, Selective Test, ICAS and Scholarship
-              Tests prep built in, all from home.
+              Live maths, English and science lessons for Canberra students in Years 2 to 10, matched
+              to the Australian Curriculum as taught in ACT schools. Prep for NAPLAN, ICAS and scholarship
+              tests is built in, all from home.
             </p>
             <div className="xd-cta">
               <Link className="btn btn-hi" href="/free-assessment">
                 Book a free assessment
               </Link>
               <Link className="btn btn-ghost" href="/pricing">
-                See plans
+                View plans
               </Link>
             </div>
           </div>
-          <aside className="glance" aria-label="Sydney at a glance">
+          <aside className="glance" aria-label="Canberra at a glance">
             <p className="glance-t">Tutoring in Canberra</p>
             <ul className="xfacts">
               <li>
@@ -217,7 +217,7 @@ export default function AuCanberraCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Test prep</b>NAPLAN, OC Test, Selective Test, ICAS and Scholarship Tests
+                  <b>Test prep</b>NAPLAN, ICAS and scholarship tests
                 </span>
               </li>
               <li>
@@ -236,7 +236,7 @@ export default function AuCanberraCityPage() {
                   </svg>
                 </span>
                 <span>
-                  <b>Class format</b>Small groups or one-on-one, live online
+                  <b>Class format</b>Live online, in small groups or one-to-one
                 </span>
               </li>
             </ul>
@@ -247,9 +247,9 @@ export default function AuCanberraCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="sH">Subjects for Sydney students</h2>
+              <h2 id="sH">Subjects for Canberra Students</h2>
               <p className="muted">
-                Every lesson follows the Australian Curriculum (ACT), pitched at your child’s level.
+                Every lesson follows the Australian Curriculum as taught in ACT schools, pitched at your child&apos;s level.
               </p>
             </div>
           </div>
@@ -275,15 +275,15 @@ export default function AuCanberraCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Number facts, place value and early problem solving</span>
+                  <span>Number patterns, place value and basic operations, matched to the Australian Curriculum in ACT schools</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Fractions, decimals, ratios and multi-step problems</span>
+                  <span>Fractions, decimals, ratios and multi-step problems, with algebra foundations for the move to high school</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Algebra, geometry, data and test-ready reasoning</span>
+                  <span>Algebra, geometry, statistics and probability, building towards ACT Senior Secondary mathematics courses</span>
                 </li>
               </ul>
             </article>
@@ -309,15 +309,15 @@ export default function AuCanberraCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Reading fluency, spelling and sentence writing</span>
+                  <span>Reading fluency, spelling and sentence writing in line with the Australian Curriculum</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Comprehension, paragraphing and persuasive writing</span>
+                  <span>Comprehension, paragraph structure and persuasive writing, with grammar practice</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Text analysis, essays and sophisticated vocabulary</span>
+                  <span>Text analysis, essay writing and vocabulary, building towards ACT Senior Secondary English courses</span>
                 </li>
               </ul>
             </article>
@@ -342,15 +342,15 @@ export default function AuCanberraCityPage() {
               <ul className="subj-list">
                 <li>
                   <b>Years 2 to 4</b>
-                  <span>Curiosity, observation and simple experiments</span>
+                  <span>Curiosity, observation and simple investigations across the primary science strands</span>
                 </li>
                 <li>
                   <b>Years 5 to 7</b>
-                  <span>Forces, living things, Earth and space</span>
+                  <span>Forces, living things, Earth and space, with fair-test practice</span>
                 </li>
                 <li>
                   <b>Years 8 to 10</b>
-                  <span>Chemistry, physics and biology foundations</span>
+                  <span>Chemistry, physics and biology foundations that lead into ACT Senior Secondary sciences</span>
                 </li>
               </ul>
             </article>
@@ -361,9 +361,9 @@ export default function AuCanberraCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="eH">Tests Sydney families prepare for</h2>
+              <h2 id="eH">Tests Canberra Families Prepare For</h2>
               <p className="muted">
-                Prep is built into regular lessons, with mock tests as each test gets closer.
+                Preparation sits inside regular lessons, with mock tests as each test date gets closer.
               </p>
             </div>
             <Link className="see-all" href="/exam-prep">
@@ -402,7 +402,7 @@ export default function AuCanberraCityPage() {
               </span>
               <b className="exam-name">NAPLAN</b>
               <span className="exam-full">National Assessment Program, Literacy and Numeracy</span>
-              <span className="exam-who">Every Australian student in Years 3, 5, 7 and 9</span>
+              <span className="exam-who">Sat by all students in Years 3, 5, 7 and 9</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -418,115 +418,7 @@ export default function AuCanberraCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Usually March, online
-                </span>
-                <span className="exam-go">
-                  Prep plan{" "}
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg>
-                </span>
-              </span>
-            </Link>
-            <Link className="exam" href="/exam-prep/oc-test">
-              <span className="exam-top">
-                <span className="topic-ic">
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 0V7a3 3 0 0 0-3-3Zm6 0a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 0"></path>
-                  </svg>
-                </span>
-              </span>
-              <b className="exam-name">OC Test</b>
-              <span className="exam-full">NSW Opportunity Class Placement Test</span>
-              <span className="exam-who">NSW Year 4 students applying for OC classes</span>
-              <span className="exam-foot">
-                <span>
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M12 7v5l3 2"></path>
-                  </svg>
-                  Sat in Year 4 for Year 5 entry
-                </span>
-                <span className="exam-go">
-                  Prep plan{" "}
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6"></path>
-                  </svg>
-                </span>
-              </span>
-            </Link>
-            <Link className="exam" href="/exam-prep/selective">
-              <span className="exam-top">
-                <span className="topic-ic">
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3 2 8l10 5 10-5-10-5ZM6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"></path>
-                  </svg>
-                </span>
-              </span>
-              <b className="exam-name">Selective Test</b>
-              <span className="exam-full">Selective High School Placement Test</span>
-              <span className="exam-who">Students applying to selective high schools</span>
-              <span className="exam-foot">
-                <span>
-                  <svg
-                    className=""
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M12 7v5l3 2"></path>
-                  </svg>
-                  NSW in Year 6, VIC in Year 8
+                  Held each March, sat online
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -566,7 +458,7 @@ export default function AuCanberraCityPage() {
               <span className="exam-full">
                 International Competitions and Assessments for Schools
               </span>
-              <span className="exam-who">Students who want to stretch beyond the classroom</span>
+              <span className="exam-who">Optional subject tests for Years 2 to 12 that stretch students beyond classroom work</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -582,7 +474,7 @@ export default function AuCanberraCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Mid-year, through your school
+                  Usually Terms 2 and 3, entered through schools
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -620,8 +512,8 @@ export default function AuCanberraCityPage() {
                 </span>
               </span>
               <b className="exam-name">Scholarship Tests</b>
-              <span className="exam-full">ACER and school scholarship exams</span>
-              <span className="exam-who">Students sitting independent school scholarships</span>
+              <span className="exam-full">Independent school scholarship exams, many set by ACER</span>
+              <span className="exam-who">Students sitting scholarship exams for Canberra independent schools</span>
               <span className="exam-foot">
                 <span>
                   <svg
@@ -637,7 +529,7 @@ export default function AuCanberraCityPage() {
                     <circle cx="12" cy="12" r="9"></circle>
                     <path d="M12 7v5l3 2"></path>
                   </svg>
-                  Usually early in the year
+                  Dates vary, check each school
                 </span>
                 <span className="exam-go">
                   Prep plan{" "}
@@ -662,13 +554,13 @@ export default function AuCanberraCityPage() {
       <section className="sec" aria-labelledby="tH">
         <div className="wrap times">
           <div>
-            <h2 id="tH">Class times that fit the Sydney school day</h2>
+            <h2 id="tH">Class Times for the Canberra School Day</h2>
             <p className="muted">
-              Every class is scheduled in Canberra local time. It is{" "}
-              <b data-tz="Australia/Sydney">--:--</b> there right now.
+              All classes run on Canberra local time. The time there right now is{" "}
+              <b data-tz="Australia/Sydney">--:--</b>.
             </p>
             <Link className="btn btn-hi" href="/free-assessment">
-              Find a time that suits
+              Find a Time That Suits
             </Link>
           </div>
           <div className="tcard">
@@ -710,7 +602,7 @@ export default function AuCanberraCityPage() {
                 >
                   <path d="M12 3l2.4 5.6L20 9.3l-4.4 3.9 1.3 5.9L12 16l-4.9 3.1 1.3-5.9L4 9.3l5.6-.7L12 3Z"></path>
                 </svg>{" "}
-                Weekend mornings
+                Weekends
               </span>
               <div className="slots">
                 <span className="slot">9:00 am</span>
@@ -729,182 +621,51 @@ export default function AuCanberraCityPage() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <h2 id="aH">Families across Sydney</h2>
+              <h2 id="aH">Families Across Canberra</h2>
               <p className="muted">
-                Online means every suburb is covered. These are just some of the areas we teach.
+                Online lessons reach every suburb. These are just some of the areas our students log in from.
               </p>
             </div>
           </div>
           <div className="areas">
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Parramatta
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Chatswood
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Hornsby
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Castle Hill
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Strathfield
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Ryde
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Liverpool
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Penrith
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Blacktown
-            </span>
-            <span className="area-chip">
-              <svg
-                className=""
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
-                <circle cx="12" cy="9.5" r="2.5"></circle>
-              </svg>
-              Bondi
-            </span>
+            {[
+              "Belconnen",
+              "Gungahlin",
+              "Tuggeranong",
+              "Woden",
+              "Kingston",
+              "Braddon",
+              "Dickson",
+              "Kambah",
+              "Weston Creek",
+              "Molonglo Valley",
+            ].map((suburb) => (
+              <span key={suburb} className="area-chip">
+                <svg
+                  className=""
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                  <circle cx="12" cy="9.5" r="2.5"></circle>
+                </svg>
+                {suburb}
+              </span>
+            ))}
           </div>
         </div>
       </section>
       <section className="sec" aria-labelledby="fH">
         <div className="wrap faq-wrap">
           <div>
-            <h2 id="fH">Sydney parents ask</h2>
+            <h2 id="fH">Canberra Parents Ask</h2>
             <p className="muted">
-              Still unsure? Message us on WhatsApp and a real person will reply.
+              Not sure yet? Message us on WhatsApp and a real person will reply.
             </p>
             <a className="btn btn-wa" href="https://wa.me/61470330548">
               Chat on WhatsApp
@@ -917,18 +678,18 @@ export default function AuCanberraCityPage() {
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Our classes are live and online, so Sydney students learn with qualified teachers
-                from home, with no travel across town.
+                Our classes are live and online, so Canberra students learn with qualified teachers
+                from home, with no travel between the town centres.
               </p>
             </details>
             <details className="faq">
               <summary>
-                Do lessons follow the Australian Curriculum (ACT)?
+                Do lessons follow Australian Curriculum (ACT)?
                 <span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. Lessons for Sydney students are aligned to the Australian Curriculum (ACT), so tutoring
-                supports what is taught at school.
+                Yes. Lessons are mapped to the Australian Curriculum as taught in ACT schools for
+                each Year level, so what your child learns supports what happens at school.
               </p>
             </details>
             <details className="faq">
@@ -936,8 +697,9 @@ export default function AuCanberraCityPage() {
                 What times are classes in Canberra?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Classes run after school on weekdays and on weekend mornings, all scheduled in
-                Sydney local time.
+                Classes run after school on weekdays and on weekends, in Canberra time, which
+                includes daylight saving in summer. Your exact times are confirmed after the free
+                assessment.
               </p>
             </details>
             <details className="faq">
@@ -945,8 +707,8 @@ export default function AuCanberraCityPage() {
                 Do you help with NAPLAN?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Yes. We prepare Sydney students for NAPLAN, OC Test, Selective Test, ICAS and
-                Scholarship Tests, with test-style practice built into regular lessons.
+                Yes. NAPLAN is sat in Years 3, 5, 7 and 9, and we build practice into regular
+                lessons and run mock tests as the test approaches.
               </p>
             </details>
             <details className="faq">
@@ -954,8 +716,10 @@ export default function AuCanberraCityPage() {
                 How do we get started?<span className="faq-ic" aria-hidden="true"></span>
               </summary>
               <p>
-                Book the free assessment. We find where your child stands, build a learning plan and
-                match you with a class.
+                Book a free assessment so we can see where your child is. We then suggest a plan and
+                a time, and you can try a free lesson before you commit. Canberra families also ask
+                us about independent school scholarship preparation, which we can include in your
+                plan.
               </p>
             </details>
           </div>
@@ -981,7 +745,7 @@ export default function AuCanberraCityPage() {
                 </svg>
               </span>
               <h2 id="oH">Not in Canberra?</h2>
-              <p>Same live classes, set to your local time, in every city across Australia.</p>
+              <p>The same live classes, set to your local time, in cities across Australia.</p>
               <Link className="cs-all" href="/online-tutoring">
                 See all cities{" "}
                 <svg
@@ -999,6 +763,43 @@ export default function AuCanberraCityPage() {
               </Link>
             </div>
             <div className="cs-r">
+              <Link className="cpill" href="/online-tutoring/sydney">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Sydney</b>
+                  <span>
+                    NSW · <span data-tz="Australia/Sydney">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
               <Link className="cpill" href="/online-tutoring/melbourne">
                 <span className="cp-pin">
                   <svg
@@ -1147,6 +948,43 @@ export default function AuCanberraCityPage() {
                   </svg>
                 </span>
               </Link>
+              <Link className="cpill" href="/online-tutoring/gold-coast">
+                <span className="cp-pin">
+                  <svg
+                    className=""
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"></path>
+                    <circle cx="12" cy="9.5" r="2.5"></circle>
+                  </svg>
+                </span>
+                <span className="cp-txt">
+                  <b>Gold Coast</b>
+                  <span>
+                    QLD · <span data-tz="Australia/Brisbane">--:--</span>
+                  </span>
+                </span>
+                <span className="cp-go">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6"></path>
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
@@ -1182,14 +1020,13 @@ export default function AuCanberraCityPage() {
               />
             </div>
             <div className="final-txt">
-              <h2>Ready to See Your Child Excel?</h2>
+              <h2>Ready to Start in Canberra?</h2>
               <p>
-                Join hundreds of Australian families who trust TutorExel for their children's
-                education. Book your FREE trial class today, no credit card required.
+                Book a free trial lesson for your child today. No credit card needed.
               </p>
               <div className="final-actions">
-                <Link className="btn btn-hi" href="/enroll">
-                  Book Online Now
+                <Link className="btn btn-hi" href="/free-trial">
+                  Book a Free Trial
                 </Link>
                 <a className="btn btn-wa" href="https://wa.me/61470330548">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
