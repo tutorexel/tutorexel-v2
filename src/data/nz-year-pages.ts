@@ -887,8 +887,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-3": {
@@ -1689,8 +1689,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-4": {
@@ -2491,8 +2491,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-5": {
@@ -3293,8 +3293,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-6": {
@@ -4095,8 +4095,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-7": {
@@ -4897,8 +4897,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-8": {
@@ -5699,8 +5699,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-9": {
@@ -6501,8 +6501,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   },
   "year-10": {
@@ -7303,8 +7303,8 @@ export const NZ_YEAR_PAGES_DATA: Record<string, NzYearPageData> = {
       "h2": "Ready to Help Your Child Excel?",
       "text": "Join the Kiwi families who trust TutorExel with their child's learning. Book your free trial class today, no credit card required.",
       "buttonText": "Book My Free Trial",
-      "phone": "+61 470 330 548",
-      "phoneHref": "https://wa.me/61470330548"
+      "phone": "+61 469 833 028",
+      "phoneHref": "https://wa.me/61469833028"
     }
   }
 };

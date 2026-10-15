@@ -161,6 +161,6 @@ export const AU_PRICING_COPY: AuPricingCopy = {
     description:
       "Join Australian families who trust TutorExel with their child's learning. Book your FREE trial lesson today, no credit card needed.",
     buttonText: "Book Online Now",
-    phone: "+61 470 330 548",
+    phone: "+61 469 833 028",
   },
 };

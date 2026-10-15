@@ -9,7 +9,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { createFaqSchema } from "@/utils/schema";
 import CountryTabs, { COUNTRIES, type Country } from "@/components/shared/CountryTabs";
 import { REGIONS_CONFIG, type RegionCode } from "@/data/regions";
-import { PRICING_DATA } from "@/data/pricing";
+import { PRICING_DATA, getRegionalPricing } from "@/data/pricing";
 import { AU_PRICING_COPY } from "@/data/copy/au-pricing";
 import { US_PRICING_COPY } from "@/data/copy/us-pricing";
 import { CA_PRICING_COPY } from "@/data/copy/ca-pricing";
@@ -279,6 +279,8 @@ function PricingContent({ region }: { region: RegionCode }) {
     }
   }, [region]);
 
+  const regPricing = getRegionalPricing(region);
+  const nzPricing = getRegionalPricing("nz");
   const nzPlansConfig = REGIONS_CONFIG.nz.pricing?.plans;
   const nzPlans: PricingPlan[] = [
     {
@@ -286,7 +288,7 @@ function PricingContent({ region }: { region: RegionCode }) {
       name: NZ_PRICING_COPY.plansSection.plans[0].name,
       subtitle: NZ_PRICING_COPY.plansSection.plans[0].subtitle,
       currency: "NZ$",
-      amount: String(nzPlansConfig?.[0]?.amount || PRICING_DATA.tutoring.amountNumber),
+      amount: String(nzPlansConfig?.[0]?.amount || nzPricing.tutoring.amountNumber),
       period: NZ_PRICING_COPY.plansSection.plans[0].periodText,
       popular: true,
       borderColor: "orange",
@@ -297,7 +299,7 @@ function PricingContent({ region }: { region: RegionCode }) {
       name: NZ_PRICING_COPY.plansSection.plans[1].name,
       subtitle: NZ_PRICING_COPY.plansSection.plans[1].subtitle,
       currency: "NZ$",
-      amount: String(nzPlansConfig?.[1]?.amount || PRICING_DATA.music.amountNumber),
+      amount: String(nzPlansConfig?.[1]?.amount || nzPricing.music.amountNumber),
       period: NZ_PRICING_COPY.plansSection.plans[1].periodText,
       popular: false,
       borderColor: "dark",
@@ -308,9 +310,9 @@ function PricingContent({ region }: { region: RegionCode }) {
       name: NZ_PRICING_COPY.plansSection.plans[2].name,
       subtitle: NZ_PRICING_COPY.plansSection.plans[2].subtitle,
       currency: "NZ$",
-      amount: String(nzPlansConfig?.[2]?.amount || PRICING_DATA.premium.amountNumber),
-      originalAmount: String(nzPlansConfig?.[2]?.originalAmount || PRICING_DATA.premium.originalAmountNumber),
-      discountBadge: nzPlansConfig?.[2]?.discountBadge || PRICING_DATA.premium.discountBadgeTitleCase,
+      amount: String(nzPlansConfig?.[2]?.amount || nzPricing.premium.amountNumber),
+      originalAmount: String(nzPlansConfig?.[2]?.originalAmount || nzPricing.premium.originalAmountNumber),
+      discountBadge: nzPlansConfig?.[2]?.discountBadge || nzPricing.premium.discountBadgeTitleCase,
       period: NZ_PRICING_COPY.plansSection.plans[2].periodText,
       popular: false,
       borderColor: "dark",
@@ -636,7 +638,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
-                        <span className="pricing-subcard__amount">$84</span>
+                        <span className="pricing-subcard__amount">${regPricing.tutoring.amount}</span>
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month - 1 Subject</span>
                       </div>
                       <div className="pricing-subcard__price-row">
@@ -644,7 +646,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month - 2 Subjects</span>
                       </div>
                       <div className="pricing-subcard__price-row">
-                        <span className="pricing-subcard__amount">${PRICING_DATA.premium.amount}</span>
+                        <span className="pricing-subcard__amount">${regPricing.premium.amount}</span>
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month - 3 Subjects</span>
                       </div>
                       <p className="pricing-subcard__note">4 sessions per month per subject</p>
@@ -698,7 +700,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
-                        <span className="pricing-subcard__amount">$79</span>
+                        <span className="pricing-subcard__amount">${regPricing.music.amount}</span>
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month (4 classes)</span>
                       </div>
                     </div>
@@ -718,7 +720,7 @@ function PricingContent({ region }: { region: RegionCode }) {
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__price-row">
-                        <span className="pricing-subcard__amount">$79</span>
+                        <span className="pricing-subcard__amount">${regPricing.music.amount}</span>
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month (4 classes)</span>
                       </div>
                     </div>
@@ -764,11 +766,11 @@ function PricingContent({ region }: { region: RegionCode }) {
                     </p>
                     <div className="pricing-subcard__prices">
                       <div className="pricing-subcard__original-row">
-                        <span className="pricing-subcard__original-amount">${PRICING_DATA.premium.originalAmount}</span>
-                        <span className="pricing-subcard__discount-badge">{PRICING_DATA.premium.discountBadgeTitleCase}</span>
+                        <span className="pricing-subcard__original-amount">${regPricing.premium.originalAmount}</span>
+                        <span className="pricing-subcard__discount-badge">{regPricing.premium.discountBadgeTitleCase}</span>
                       </div>
                       <div className="pricing-subcard__price-row">
-                        <span className="pricing-subcard__amount">${PRICING_DATA.premium.amount}</span>
+                        <span className="pricing-subcard__amount">${regPricing.premium.amount}</span>
                         <span className="pricing-subcard__detail">{selectedCountry.currency}/month - 3 subjects included</span>
                       </div>
                     </div>

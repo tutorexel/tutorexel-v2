@@ -50,8 +50,8 @@ export const AU_CONTACT_COPY: AuContactCopy = {
   details: {
     email: "info@tutorexel.com",
     emailHref: "mailto:info@tutorexel.com",
-    whatsappText: "+61 470 330 548",
-    whatsappHref: "https://wa.me/61470330548",
+    whatsappText: "+61 469 833 028",
+    whatsappHref: "https://wa.me/61469833028",
     replyTime: "We usually reply within 2 hours",
     replyTimeLabel: "Reply Time",
     emailLabel: "Email Us",

@@ -218,6 +218,7 @@ export async function POST(request: NextRequest) {
         classType: pricingSelection.classType as ClassType,
         subjects: pricingSelection.subjects,
         activities: pricingSelection.activities,
+        region: region,
       });
       serverTotal = result.total;
     }

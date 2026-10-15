@@ -239,8 +239,9 @@ function EnrollForm({ region }: { region?: RegionCode }) {
         classType: formData.classType as ClassType,
         subjects: formData.subjects,
         activities: formData.activities,
+        region: currentRegion,
       }),
-    [formData]
+    [formData, currentRegion]
   );
   const totalAmount = pricing.total;
 

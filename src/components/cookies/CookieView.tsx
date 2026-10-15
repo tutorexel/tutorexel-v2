@@ -4,8 +4,8 @@ import { type RegionCode } from "@/data/regions";
 import "@/app/styles/legal.css";
 
 const whatsappData: Record<RegionCode, { href: string; label: string }> = {
-  au: { href: "https://wa.me/61470330548", label: "+61 470 330 548" },
-  nz: { href: "https://wa.me/61470330548", label: "+61 470 330 548" },
+  au: { href: "https://wa.me/61469833028", label: "+61 469 833 028" },
+  nz: { href: "https://wa.me/61469833028", label: "+61 469 833 028" },
   us: { href: "https://wa.me/12067977387", label: "+1 (206) 797-7387" },
   ca: { href: "https://wa.me/12067977387", label: "+1 (206) 797-7387" },
 };

@@ -1,4 +1,4 @@
-import { PRICING_DATA } from "@/data/pricing";
+import { PRICING_DATA, NZ_PRICING_DATA } from "@/data/pricing";
 
 export const NZ_HOME_COPY = {
   meta: {
@@ -188,10 +188,10 @@ export const NZ_HOME_COPY = {
     plans: [
       {
         id: "live-online-coaching",
-        name: PRICING_DATA.tutoring.name,
-        subtitle: PRICING_DATA.tutoring.subtitleAU,
+        name: NZ_PRICING_DATA.tutoring.name,
+        subtitle: NZ_PRICING_DATA.tutoring.subtitleAU,
         currency: "NZ$",
-        amount: PRICING_DATA.tutoring.amount,
+        amount: NZ_PRICING_DATA.tutoring.amount,
         period: "NZD/month per subject",
         popular: true,
         borderColor: "orange",
@@ -212,10 +212,10 @@ export const NZ_HOME_COPY = {
       },
       {
         id: "co-curricular",
-        name: PRICING_DATA.music.name,
-        subtitle: PRICING_DATA.music.subtitle,
+        name: NZ_PRICING_DATA.music.name,
+        subtitle: NZ_PRICING_DATA.music.subtitle,
         currency: "NZ$",
-        amount: PRICING_DATA.music.amount,
+        amount: NZ_PRICING_DATA.music.amount,
         period: "NZD/month (4 classes)",
         popular: false,
         borderColor: "dark",
@@ -234,12 +234,12 @@ export const NZ_HOME_COPY = {
       },
       {
         id: "premium-plan",
-        name: PRICING_DATA.premium.name,
-        subtitle: PRICING_DATA.premium.subtitle,
+        name: NZ_PRICING_DATA.premium.name,
+        subtitle: NZ_PRICING_DATA.premium.subtitle,
         currency: "NZ$",
-        amount: PRICING_DATA.premium.amount,
-        originalAmount: PRICING_DATA.premium.originalAmount,
-        discountBadge: PRICING_DATA.premium.discountBadge,
+        amount: NZ_PRICING_DATA.premium.amount,
+        originalAmount: NZ_PRICING_DATA.premium.originalAmount,
+        discountBadge: NZ_PRICING_DATA.premium.discountBadge,
         period: "NZD/month",
         popular: false,
         borderColor: "dark",

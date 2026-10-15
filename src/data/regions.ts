@@ -1,4 +1,4 @@
-import { PRICING_DATA } from "@/data/pricing";
+import { PRICING_DATA, NZ_PRICING_DATA } from "@/data/pricing";
 
 export type RegionCode = "au" | "us" | "ca" | "nz";
 
@@ -28,8 +28,8 @@ export const LEGAL_EFFECTIVE_DATE = "6 October 2026";
 
 export const REGIONAL_REFUND_WHATSAPP: Record<RegionCode, { number: string; href: string }> = {
   au: {
-    number: "+61 470 330 548",
-    href: "https://wa.me/61470330548",
+    number: "+61 469 833 028",
+    href: "https://wa.me/61469833028",
   },
   us: {
     number: "+1 (206) 797 7387",
@@ -40,8 +40,8 @@ export const REGIONAL_REFUND_WHATSAPP: Record<RegionCode, { number: string; href
     href: "https://wa.me/12067977387",
   },
   nz: {
-    number: "+61 470 330 548",
-    href: "https://wa.me/61470330548",
+    number: "+61 469 833 028",
+    href: "https://wa.me/61469833028",
   },
 };
 
@@ -144,10 +144,10 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     flag: "au",
     flagUrl: "https://flagcdn.com/80x60/au.png",
     locale: "en-AU",
-    phone: "+61 470 330 548",
-    phoneText: "+61 470 330 548",
-    phoneHref: "https://wa.me/61470330548",
-    phoneE164: "+61470330548",
+    phone: "+61 469 833 028",
+    phoneText: "+61 469 833 028",
+    phoneHref: "https://wa.me/61469833028",
+    phoneE164: "+61469833028",
     curriculumLabel: "Australian Curriculum (ACARA)",
     testNames: ["NAPLAN", "ICAS"],
     name: "Australia",
@@ -287,8 +287,8 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join the Australian families who trust TutorExel with their child's learning. Book your FREE trial class today, no credit card required.",
       btnText: "Book My Free Trial",
       btnHref: "/free-trial",
-      phoneText: "+61 470 330 548",
-      phoneHref: "https://wa.me/61470330548",
+      phoneText: "+61 469 833 028",
+      phoneHref: "https://wa.me/61469833028",
     },
   },
 
@@ -611,10 +611,10 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     flag: "nz",
     flagUrl: "https://flagcdn.com/80x60/nz.png",
     locale: "en-NZ",
-    phone: "+61 470 330 548",
-    phoneText: "+61 470 330 548",
-    phoneHref: "https://wa.me/61470330548",
-    phoneE164: "+61470330548",
+    phone: "+61 469 833 028",
+    phoneText: "+61 469 833 028",
+    phoneHref: "https://wa.me/61469833028",
+    phoneE164: "+61469833028",
     curriculumLabel: "New Zealand Curriculum (NZC)",
     testNames: ["PAT", "NZC Assessments"],
     name: "New Zealand",
@@ -630,19 +630,19 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
     yearLevels: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     homePricing: {
       tutoring: {
-        amount: PRICING_DATA.tutoring.amount,
+        amount: NZ_PRICING_DATA.tutoring.amount,
         currency: "NZ$",
         period: "NZD/month per subject",
       },
       music: {
-        amount: PRICING_DATA.music.amount,
+        amount: NZ_PRICING_DATA.music.amount,
         currency: "NZ$",
         period: "NZD/month (4 classes)",
       },
       premium: {
-        amount: PRICING_DATA.premium.amount,
-        originalAmount: PRICING_DATA.premium.originalAmount,
-        discountBadge: PRICING_DATA.premium.discountBadge,
+        amount: NZ_PRICING_DATA.premium.amount,
+        originalAmount: NZ_PRICING_DATA.premium.originalAmount,
+        discountBadge: NZ_PRICING_DATA.premium.discountBadge,
         currency: "NZ$",
         period: "NZD/month",
       },
@@ -702,12 +702,12 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       plans: [
         {
           id: "live-online-coaching",
-          name: PRICING_DATA.tutoring.name,
-          subtitle: PRICING_DATA.tutoring.subtitleAU,
+          name: NZ_PRICING_DATA.tutoring.name,
+          subtitle: NZ_PRICING_DATA.tutoring.subtitleAU,
           badge: "Most Popular",
           featured: true,
           themeCategory: "inside",
-          amount: PRICING_DATA.tutoring.amountNumber,
+          amount: NZ_PRICING_DATA.tutoring.amountNumber,
           periodText: "NZD/month per subject",
           features: [
             "1 hour personalized sessions",
@@ -726,11 +726,11 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "co-curricular",
-          name: PRICING_DATA.music.name,
-          subtitle: PRICING_DATA.music.subtitle,
+          name: NZ_PRICING_DATA.music.name,
+          subtitle: NZ_PRICING_DATA.music.subtitle,
           featured: false,
           themeCategory: "study",
-          amount: PRICING_DATA.music.amountNumber,
+          amount: NZ_PRICING_DATA.music.amountNumber,
           periodText: "NZD/month (4 classes)",
           features: [
             "Piano lessons",
@@ -747,13 +747,13 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
         },
         {
           id: "premium-plan",
-          name: PRICING_DATA.premium.name,
-          subtitle: PRICING_DATA.premium.subtitle,
+          name: NZ_PRICING_DATA.premium.name,
+          subtitle: NZ_PRICING_DATA.premium.subtitle,
           featured: false,
           themeCategory: "parents",
-          amount: PRICING_DATA.premium.amountNumber,
-          originalAmount: PRICING_DATA.premium.originalAmountNumber,
-          discountBadge: PRICING_DATA.premium.discountBadge,
+          amount: NZ_PRICING_DATA.premium.amountNumber,
+          originalAmount: NZ_PRICING_DATA.premium.originalAmountNumber,
+          discountBadge: NZ_PRICING_DATA.premium.discountBadge,
           periodText: "NZD/month",
           features: [
             "12 live classes per month",
@@ -774,8 +774,8 @@ export const REGIONS_CONFIG: Record<RegionCode, RegionConfig> = {
       lede: "Join hundreds of New Zealand families who trust TutorExel for their children's education. Book your FREE trial class today, no credit card required.",
       btnText: "Book Online Now",
       btnHref: "/enroll",
-      phoneText: "+61 470 330 548",
-      phoneHref: "https://wa.me/61470330548",
+      phoneText: "+61 469 833 028",
+      phoneHref: "https://wa.me/61469833028",
     },
   },
 };

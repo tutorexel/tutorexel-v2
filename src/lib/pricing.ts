@@ -4,7 +4,7 @@
  * server can re-derive totals instead of trusting client input.
  */
 
-import { PRICING_DATA } from "@/data/pricing";
+import { getRegionalPricing } from "@/data/pricing";
 
 export type Offering = "live-online-coaching" | "co-curricular" | "premium-plan" | "";
 export type ClassType = "one-to-one" | "group" | "";
@@ -14,6 +14,7 @@ export interface PricingInput {
   classType?: ClassType;
   subjects?: { Mathematics?: boolean; English?: boolean; Science?: boolean };
   activities?: { piano?: boolean; guitar?: boolean };
+  region?: string;
 }
 
 export interface PricingResult {
@@ -23,7 +24,9 @@ export interface PricingResult {
   period: "/month" | "/session" | "";
 }
 
-export function computePricing(input: PricingInput): PricingResult {
+export function computePricing(input: PricingInput, regionCode?: string): PricingResult {
+  const region = (regionCode || input.region || "").toLowerCase();
+  const pricingData = getRegionalPricing(region);
   const { offering, classType, subjects, activities } = input;
 
   if (offering === "live-online-coaching") {
@@ -31,8 +34,8 @@ export function computePricing(input: PricingInput): PricingResult {
     const subjectCount = [subjects?.Mathematics, subjects?.English, subjects?.Science].filter(Boolean).length;
     if (subjectCount === 0) return { total: null, period: "/month" };
     if (classType === "one-to-one") {
-      // 1:1 pricing: $84/1 subject, $149/2 subjects, $241/3 subjects
-      const price = subjectCount === 3 ? PRICING_DATA.premium.amountNumber : subjectCount === 2 ? 149 : PRICING_DATA.tutoring.amountNumber;
+      // 1:1 pricing: 1 subject = tutoring amount ($84 or NZ$92), 2 subjects = $149, 3 subjects = premium ($241)
+      const price = subjectCount === 3 ? pricingData.premium.amountNumber : subjectCount === 2 ? 149 : pricingData.tutoring.amountNumber;
       return { total: price, period: "/month" };
     }
     if (classType === "group") {
@@ -47,13 +50,13 @@ export function computePricing(input: PricingInput): PricingResult {
     const activityCount = [activities?.piano, activities?.guitar].filter(Boolean).length;
     if (activityCount === 0) return { total: null, period: "/session" };
     return {
-      total: activityCount === 1 ? PRICING_DATA.music.amountNumber : 149,
+      total: activityCount === 1 ? pricingData.music.amountNumber : 149,
       period: activityCount === 1 ? "/session" : "/month",
     };
   }
 
   if (offering === "premium-plan") {
-    return { total: PRICING_DATA.premium.amountNumber, period: "/month" };
+    return { total: pricingData.premium.amountNumber, period: "/month" };
   }
 
   return { total: null, period: "" };

@@ -120,7 +120,7 @@ const socialLinks = [
   },
   {
     title: "WhatsApp",
-    href: "https://wa.me/61470330548",
+    href: "https://wa.me/61469833028",
     iconType: "whatsapp",
   },
 ];
@@ -167,7 +167,7 @@ export default function LinksView({ region }: { region: RegionCode }) {
   const yearOrGrade = isYearRegion ? "Years" : "Grades";
   const mathLabel = isYearRegion ? "Maths" : "Math";
   const exploreLinks = getExploreLinks(mathLabel, yearOrGrade);
-  const whatsappNumber = (region === "us" || region === "ca") ? "12067977387" : "61470330548";
+  const whatsappNumber = (region === "us" || region === "ca") ? "12067977387" : "61469833028";
 
   const addUTM = (url: string, campaign: string) => {
     if (url.startsWith("http")) {
