@@ -161,14 +161,14 @@ export interface ArticleSection {
   intro?: any[];
   layout: SectionLayout;
   items?: Array<{ title: string; points?: string[]; text?: string }> | string[];
-  tiles?: Array<{ icon: PresetIcon | string; title: string; text?: string }>;
+  tiles?: IconTileItem[];
   variant?: 'warn' | 'info' | 'success';
   title?: string;
   points?: string[];
   steps?: Array<{ title: string; text?: string }>;
-  features?: Array<{ icon: PresetIcon | string; title: string; text?: string }>;
+  features?: FeatureGridItem[];
   quotes?: string[];
-  cards?: Array<{ title: string; text: string }>;
+  cards?: TrioCardItem[];
   checklistItems?: string[];
   ctaHeading?: string;
   subtext?: string;
@@ -209,7 +209,7 @@ export interface SanityPost {
   // TAB: Icon Tiles
   tilesHeading?: string;
   tilesIntro?: string;
-  tiles?: Array<{ icon: PresetIcon | string; title: string; text?: string }>;
+  tiles?: IconTileItem[];
   tilesCalloutTitle?: string;
   tilesCalloutPoints?: string[];
 
@@ -225,7 +225,7 @@ export interface SanityPost {
   // TAB: Feature Grid
   fgHeading?: string;
   fgIntro?: string;
-  features?: Array<{ icon: PresetIcon | string; title: string; text?: string }>;
+  features?: FeatureGridItem[];
 
   // TAB: Quotes
   qHeading?: string;
@@ -236,7 +236,7 @@ export interface SanityPost {
   // TAB: Trio
   trioHeading?: string;
   trioIntro?: string;
-  trioCards?: Array<{ title: string; text?: string }>;
+  trioCards?: TrioCardItem[];
   trioPullQuote?: string;
 
   // TAB: Checklist

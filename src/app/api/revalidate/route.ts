@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Invalidate cached WordPress REST fetch calls tagged with "blog"
-    revalidateTag("blog");
+    revalidateTag("blog", "max");
 
     // Invalidate blog listing and single page routes across regions
     revalidatePath("/blog");
