@@ -53,8 +53,8 @@ export default function BlogLibrary({
     setVisibleCount((prev) => prev + 6);
   };
 
-  const displayedPosts = filteredPosts.slice(0, visibleCount);
-  const hasMore = filteredPosts.length > visibleCount;
+  const displayedPosts = filteredPosts;
+  const hasMore = false;
 
   return (
     <section className="lib" id="library" aria-labelledby="libH">

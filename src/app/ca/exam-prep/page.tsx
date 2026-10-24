@@ -31,9 +31,7 @@ const jsonLd = [
     "@type": "Service",
     name: "EQAO, OSSLT and Provincial Test Prep",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "Country", name: "Canada" },
     url: "https://www.tutorexel.com/ca/exam-prep",

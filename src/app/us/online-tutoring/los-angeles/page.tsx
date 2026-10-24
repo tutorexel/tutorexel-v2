@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "Online tutoring in Los Angeles",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "City", name: "Los Angeles" },
     url: "https://www.tutorexel.com/us/online-tutoring/los-angeles",

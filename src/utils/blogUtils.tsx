@@ -120,7 +120,10 @@ export function getReadingTime(post: SanityPost): string {
     wordCount += post.excerpt.trim().split(/\s+/).length;
   }
 
-  if (Array.isArray(post.body)) {
+  if (post.bodyHtml && typeof post.bodyHtml === "string") {
+    const textOnly = post.bodyHtml.replace(/<[^>]*>/g, " ").trim();
+    wordCount += textOnly.split(/\s+/).filter(Boolean).length;
+  } else if (Array.isArray(post.body)) {
     for (const block of post.body) {
       if (block._type === "block" && Array.isArray(block.children)) {
         for (const child of block.children) {

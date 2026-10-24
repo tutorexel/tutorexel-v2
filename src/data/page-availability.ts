@@ -2,7 +2,7 @@ export type RegionCode = "au" | "us" | "ca" | "nz";
 
 export const INDEX_YEAR_8_10 = true;
 
-export const HREFLANG_MODE: "cluster" | "self" = "self";
+export const HREFLANG_MODE: "cluster" | "self" = "cluster";
 
 export interface PageAvailabilityConfig {
   path: string;

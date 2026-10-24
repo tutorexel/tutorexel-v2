@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "Online tutoring in Christchurch",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "City", name: "Christchurch" },
     url: "https://www.tutorexel.com/nz/online-tutoring/christchurch",

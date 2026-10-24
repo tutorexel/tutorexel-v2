@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "ICAS preparation",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "Country", name: "New Zealand" },
     url: "https://www.tutorexel.com/nz/exam-prep/icas",

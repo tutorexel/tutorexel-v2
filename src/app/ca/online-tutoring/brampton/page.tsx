@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "Online tutoring in Brampton",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "City", name: "Brampton" },
     url: "https://www.tutorexel.com/ca/online-tutoring/brampton",

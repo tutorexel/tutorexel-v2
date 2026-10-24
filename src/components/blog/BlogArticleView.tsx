@@ -14,6 +14,7 @@ import {
   CategoryIcon,
 } from "@/utils/blogUtils";
 import PortableTextRenderer from "./PortableTextRenderer";
+import WordPressHtmlRenderer from "./WordPressHtmlRenderer";
 import PresetIconSvg from "./BlogBlockIcons";
 import { getRegionConfig } from "@/data/regions";
 import "@/app/blog/[slug]/blog-article.css";
@@ -491,6 +492,21 @@ export default function BlogArticleView({
     }
 
     const items: TocItem[] = [];
+    if (typeof post.bodyHtml === "string" && post.bodyHtml.trim()) {
+      const headingRegex = /<h([23])[^>]*>(.*?)<\/h\1>/gi;
+      let match;
+      while ((match = headingRegex.exec(post.bodyHtml)) !== null) {
+        const text = match[2].replace(/<[^>]*>/g, "").trim();
+        if (text) {
+          const id = slugify(text);
+          items.push({ id, text });
+        }
+      }
+      if (items.length > 0) {
+        return items;
+      }
+    }
+
     if (Array.isArray(post.body)) {
       for (const block of post.body) {
         if (block._type === "block" && block.style === "h2") {
@@ -891,7 +907,15 @@ export default function BlogArticleView({
                     {post.tiles!.map((tile, idx) => (
                       <div key={idx} className="tile">
                         <span className="tile-ic">
-                          <PresetIconSvg name={tile.icon} size={22} />
+                          {tile.image ? (
+                            <img
+                              src={typeof tile.image === "string" ? tile.image : tile.image.url}
+                              alt={tile.title}
+                              style={{ width: 22, height: 22, objectFit: "contain" }}
+                            />
+                          ) : (
+                            <PresetIconSvg name={tile.icon} size={22} />
+                          )}
                         </span>
                         <b>{tile.title}</b>
                         {tile.text && <p>{tile.text}</p>}
@@ -978,7 +1002,15 @@ export default function BlogArticleView({
                     {post.features!.map((feat, idx) => (
                       <div key={idx} className="feat-i">
                         <span className="tile-ic">
-                          <PresetIconSvg name={feat.icon} size={22} />
+                          {feat.image ? (
+                            <img
+                              src={typeof feat.image === "string" ? feat.image : feat.image.url}
+                              alt={feat.title}
+                              style={{ width: 22, height: 22, objectFit: "contain" }}
+                            />
+                          ) : (
+                            <PresetIconSvg name={feat.icon} size={22} />
+                          )}
                         </span>
                         <b>{feat.title}</b>
                         {feat.text && <p>{feat.text}</p>}
@@ -1023,6 +1055,13 @@ export default function BlogArticleView({
                     <div className="trio">
                       {post.trioCards.map((card, idx) => (
                         <div key={idx}>
+                          {card.image && (
+                            <img
+                              src={typeof card.image === "string" ? card.image : card.image.url}
+                              alt={card.title}
+                              style={{ width: "100%", height: "auto", marginBottom: 8, borderRadius: 4 }}
+                            />
+                          )}
                           <b>{card.title}</b>
                           {card.text && <span>{card.text}</span>}
                         </div>
@@ -1106,6 +1145,8 @@ export default function BlogArticleView({
                 </React.Fragment>
               );
             })
+          ) : post.bodyHtml ? (
+            <WordPressHtmlRenderer html={post.bodyHtml} region={region} />
           ) : (
             /* Legacy single body fallback for all 22 existing posts */
             <PortableTextRenderer

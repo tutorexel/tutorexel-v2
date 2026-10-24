@@ -1,9 +1,18 @@
 import { PAGE_AVAILABILITY, INDEX_YEAR_8_10, type RegionCode } from "@/data/page-availability";
 import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
-import { getAllSlugsForSitemap } from "@/sanity/client";
+import { getAllSlugsForSitemap } from "@/lib/blog-data";
 
 export const STATIC_LAST_MODIFIED = "2026-10-13T00:00:00+10:00";
 export const SITEMAP_BASE_URL = "https://www.tutorexel.com";
+
+const PAGE_LASTMOD_MAP: Record<string, string> = {
+  "/privacy": "2026-10-06T00:00:00Z",
+  "/terms": "2026-10-06T00:00:00Z",
+  "/refund": "2026-10-06T00:00:00Z",
+  "/cookies": "2026-10-06T00:00:00Z",
+  "/research": "2026-03-01T00:00:00Z",
+  "/research/australian-tutoring-report-2026": "2026-03-01T00:00:00Z",
+};
 
 export const SITEMAP_RESPONSE_HEADERS = {
   "Content-Type": "application/xml; charset=utf-8",
@@ -16,6 +25,11 @@ const EXCLUDED_PATHS = new Set([
   "/free-trial-booking/thank-you",
   "/careers/apply",
   "/home-v1",
+  "/enroll",
+  "/links",
+  "/co-curricular/guitar/enquire",
+  "/co-curricular/piano/enquire",
+  "/free-trial-booking",
 ]);
 
 const PAGE_IMAGES_MAP: Record<string, string[]> = {
@@ -82,21 +96,28 @@ export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapU
       continue;
     }
 
+    const isUnique = entry.regions.length <= 1;
     const clusterLanguages: Record<string, string> = {};
-    for (const reg of entry.regions) {
-      const locale = REGION_LOCALE_MAP[reg as Region];
-      clusterLanguages[locale] = getRegionalUrl(entry.path, reg);
+    if (isUnique) {
+      const locale = REGION_LOCALE_MAP[region as Region];
+      clusterLanguages[locale] = getRegionalUrl(entry.path, region);
+    } else {
+      for (const reg of entry.regions) {
+        const locale = REGION_LOCALE_MAP[reg as Region];
+        clusterLanguages[locale] = getRegionalUrl(entry.path, reg);
+      }
+      const defaultRegion = entry.regions.includes("au") ? "au" : entry.regions[0] || "au";
+      clusterLanguages["x-default"] = getRegionalUrl(entry.path, defaultRegion);
     }
-
-    const defaultRegion = entry.regions.includes("au") ? "au" : entry.regions[0] || "au";
-    clusterLanguages["x-default"] = getRegionalUrl(entry.path, defaultRegion);
 
     const pageUrl = getRegionalUrl(entry.path, region);
     const images = PAGE_IMAGES_MAP[entry.path] || [];
 
+    const pageLastmod = PAGE_LASTMOD_MAP[entry.path] || STATIC_LAST_MODIFIED;
+
     result.push({
       loc: pageUrl,
-      lastmod: STATIC_LAST_MODIFIED,
+      lastmod: pageLastmod,
       images,
       alternates: clusterLanguages,
     });

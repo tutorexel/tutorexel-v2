@@ -38,12 +38,14 @@ export default function FreeTrialModal({ isOpen, onClose }: FreeTrialModalProps)
         <iframe
           loading="lazy"
           src={CALENDLY_URL}
+          width="100%"
+          height="100%"
           style={{
             width: "100%",
             height: "100%",
             border: "none",
           }}
-          title="Book a meeting"
+          title="Claim Your FREE Trial Class"
         />
       </div>
     </div>

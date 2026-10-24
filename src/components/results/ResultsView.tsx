@@ -75,6 +75,13 @@ export default function ResultsView({ region }: { region: RegionCode }) {
             >
               Get a Free Assessment
             </RegionLink>
+            <RegionLink
+              href="/research"
+              region={region}
+              className="btn btn-outline-white btn-lg"
+            >
+              Research Report
+            </RegionLink>
           </div>
         </div>
       </section>

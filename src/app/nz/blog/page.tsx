@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { buildMetadata } from "@/utils/seo";
-import { getPostsByRegion } from "@/sanity/client";
+import { getPostsByRegion } from "@/lib/blog-data";
 import BlogListView from "@/components/blog/BlogListView";
 
 export const revalidate = 60;

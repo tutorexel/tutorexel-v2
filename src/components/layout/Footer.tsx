@@ -36,6 +36,7 @@ const legalLinks = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Refund & Cancellation Policy", href: "/refund" },
+  { label: "Cookie Policy", href: "/cookies" },
 ];
 
 const usExamPrepFooterItems = [

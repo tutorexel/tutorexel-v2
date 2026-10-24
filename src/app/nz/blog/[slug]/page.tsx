@@ -7,7 +7,7 @@ import {
   getPostBySlugAndRegion,
   getAllSlugsByRegion,
   getRelatedPosts,
-} from "@/sanity/client";
+} from "@/lib/blog-data";
 import { getPostImageUrl } from "@/sanity/image";
 import BlogArticleView from "@/components/blog/BlogArticleView";
 import { blogs as localBlogs } from "@/data/blogs";

@@ -2,7 +2,7 @@ import { PRICING_DATA, NZ_PRICING_DATA } from "@/data/pricing";
 
 export type RegionCode = "au" | "us" | "ca" | "nz";
 
-export const COMPANY_ADDRESS = "17 Statham View, Crambourne West, Victoria 3977, Australia";
+export const COMPANY_ADDRESS = "17 Statham View, Cranbourne West, Victoria 3977, Australia";
 
 export interface CompanyPostalAddress {
   "@type": "PostalAddress";
@@ -16,7 +16,7 @@ export interface CompanyPostalAddress {
 export const COMPANY_POSTAL_ADDRESS: CompanyPostalAddress = {
   "@type": "PostalAddress",
   streetAddress: "17 Statham View",
-  addressLocality: "Crambourne West",
+  addressLocality: "Cranbourne West",
   addressRegion: "VIC",
   postalCode: "3977",
   addressCountry: "AU",

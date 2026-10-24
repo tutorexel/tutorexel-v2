@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "OSSLT preparation",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "Country", name: "Canada" },
     url: "https://www.tutorexel.com/ca/exam-prep/osslt",

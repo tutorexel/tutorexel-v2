@@ -37,9 +37,7 @@ const jsonLd = [
     "@type": "Service",
     name: "OC Test preparation",
     provider: {
-      "@type": "EducationalOrganization",
-      name: "TutorExel",
-      url: "https://www.tutorexel.com",
+      "@id": "https://www.tutorexel.com/#organization",
     },
     areaServed: { "@type": "Country", name: "Australia" },
     url: "https://www.tutorexel.com/exam-prep/oc-test",

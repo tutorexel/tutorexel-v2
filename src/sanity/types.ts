@@ -50,6 +50,7 @@ export interface IconTileItem {
   icon: PresetIcon | string;
   title: string;
   text?: string;
+  image?: { id?: number; url?: string } | string;
 }
 
 export interface IconTilesBlock {
@@ -82,6 +83,7 @@ export interface FeatureGridItem {
   icon: PresetIcon | string;
   title: string;
   text?: string;
+  image?: { id?: number; url?: string } | string;
 }
 
 export interface FeatureGridBlock {
@@ -122,6 +124,7 @@ export interface QuoteListBlock {
 export interface TrioCardItem {
   title: string;
   text: string;
+  image?: { id?: number; url?: string } | string;
 }
 
 export interface TrioCardsBlock {
@@ -256,6 +259,7 @@ export interface SanityPost {
 
   // TAB: Legacy Body
   body?: any[];
+  bodyHtml?: string;
   sections?: ArticleSection[];
 }
 
