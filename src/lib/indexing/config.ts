@@ -1,7 +1,12 @@
 // Shared settings for Google Indexing API + IndexNow submissions.
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.tutorexel.com").replace(/\/$/, "");
-export const SITE_HOST = new URL(SITE_URL).host;
+const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+export const SITE_URL = (
+  envSiteUrl && envSiteUrl.startsWith("https://www.")
+    ? envSiteUrl
+    : "https://www.tutorexel.com"
+).replace(/\/$/, "");
+export const SITE_HOST = "www.tutorexel.com";
 
 // Google default quota: 200 publish calls per day per Cloud project (URL_UPDATED + URL_DELETED combined).
 export const GOOGLE_DAILY_LIMIT = Number(process.env.GOOGLE_INDEXING_DAILY_LIMIT ?? 200);
@@ -28,7 +33,7 @@ export function normalise(raw: string): string | null {
     }
     const u = new URL(clean, SITE_URL);
     if (u.hostname === "tutorexel.com" || u.hostname === "www.tutorexel.com") {
-      u.hostname = SITE_HOST;
+      u.hostname = "www.tutorexel.com";
       u.protocol = "https:";
     }
     if (u.host !== SITE_HOST || u.protocol !== "https:") return null;
