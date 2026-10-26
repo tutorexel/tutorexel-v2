@@ -11,7 +11,7 @@ export const SESSION_MAX_AGE_SECONDS = 8 * 60 * 60; // 8 hours
 export function isServerAuthConfigured(): boolean {
   const pwd = process.env.ADMIN_PASSWORD;
   const secret = process.env.ADMIN_SESSION_SECRET;
-  return Boolean(pwd && pwd.length >= 12 && secret && secret.length >= 16);
+  return Boolean(pwd && pwd.trim().length > 0 && secret && secret.length >= 16);
 }
 
 /**
@@ -99,7 +99,7 @@ function getCookieValue(request: NextRequest | Request, name: string): string | 
  * Validates admin authentication.
  * 1. Checks HMAC-signed httpOnly session cookie.
  * 2. Fallback for external API requests: checks x-admin-password matching ADMIN_PASSWORD
- *    (refuses if ADMIN_PASSWORD is missing or shorter than 12 chars).
+ *    (refuses if ADMIN_PASSWORD is missing or empty).
  * Absolutely no default or fallback passwords.
  */
 export function isAdminAuthed(request: NextRequest | Request): boolean {
@@ -113,7 +113,7 @@ export function isAdminAuthed(request: NextRequest | Request): boolean {
   const headerPwd = request.headers.get("x-admin-password");
   const expectedPwd = process.env.ADMIN_PASSWORD;
 
-  if (headerPwd && expectedPwd && expectedPwd.length >= 12) {
+  if (headerPwd && expectedPwd && expectedPwd.trim().length > 0) {
     return safeEqual(headerPwd, expectedPwd);
   }
 

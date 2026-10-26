@@ -49,11 +49,11 @@ export async function POST(request: NextRequest) {
   const expectedPassword = process.env.ADMIN_PASSWORD;
   const sessionSecret = process.env.ADMIN_SESSION_SECRET;
 
-  if (!expectedPassword || expectedPassword.length < 12) {
+  if (!expectedPassword || expectedPassword.trim().length === 0) {
     return NextResponse.json(
       {
         error:
-          "Admin authentication is not configured. ADMIN_PASSWORD must be set and at least 12 characters long.",
+          "Admin authentication is not configured. ADMIN_PASSWORD must be set.",
       },
       { status: 500 }
     );
