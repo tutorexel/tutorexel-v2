@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminAuthed } from "@/lib/admin-auth";
+import { isAdminAuthed, isStateChangeAllowed } from "@/lib/admin-auth";
 import {
   createCoupon,
   listCoupons,
@@ -20,6 +20,13 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json(
+      { error: "Security check failed: missing required action header" },
+      { status: 403 }
+    );
   }
 
   let body: unknown;

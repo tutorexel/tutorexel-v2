@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdminAuthed } from "@/lib/admin-auth";
+import { isAdminAuthed, isStateChangeAllowed } from "@/lib/admin-auth";
 import {
   deleteCoupon,
   normalizeCode,
@@ -18,6 +18,14 @@ export async function PATCH(request: NextRequest, context: RouteParams) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json(
+      { error: "Security check failed: missing required action header" },
+      { status: 403 }
+    );
+  }
+
   const { id } = await context.params;
 
   let body: unknown;
@@ -46,6 +54,14 @@ export async function DELETE(request: NextRequest, context: RouteParams) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json(
+      { error: "Security check failed: missing required action header" },
+      { status: 403 }
+    );
+  }
+
   const { id } = await context.params;
   try {
     await deleteCoupon(id);
@@ -88,7 +104,7 @@ function validatePatch(
     if (b.discountType === "percentage" && n > 100) {
       return { ok: false, error: "Percentage discount cannot exceed 100" };
     }
-    // If only value sent, we can't enforce % cap without knowing existing type — store does it again on read if needed.
+    // If only value sent, we can't enforce % cap without knowing existing type - store does it again on read if needed.
     void type;
     out.discountValue = n;
   }

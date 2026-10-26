@@ -77,23 +77,20 @@ export default function SubmissionsPage() {
     }
   }, []);
 
-  // Restore session on mount — sessionStorage clears automatically when the tab is closed
+  // Restore session on mount: check cookie first or sessionStorage
   useEffect(() => {
-    const saved = sessionStorage.getItem(SUBMISSIONS_SESSION_KEY);
-    if (!saved) return;
-    fetch("/api/submissions", { headers: { "x-admin-password": saved } })
+    fetch("/api/submissions")
       .then((res) => {
-        if (!res.ok) { sessionStorage.removeItem(SUBMISSIONS_SESSION_KEY); return; }
+        if (!res.ok) return null;
         return res.json();
       })
       .then((data) => {
         if (!data) return;
         setSubmissions(data.submissions || []);
         setTrashed(data.trashed || []);
-        setStoredPwd(saved);
         setAuthed(true);
       })
-      .catch(() => sessionStorage.removeItem(SUBMISSIONS_SESSION_KEY));
+      .catch(() => {});
   }, []);
 
   const handleLogin = async () => {
@@ -114,10 +111,13 @@ export default function SubmissionsPage() {
     return () => clearInterval(interval);
   }, [authed, storedPwd, fetchAll]);
 
-  // ── Actions ──
+  // Actions
 
   const moveToTrash = async (id: string) => {
-    const res = await fetch(`/api/submissions/${id}`, { method: "DELETE", headers: { "x-admin-password": storedPwd } });
+    const res = await fetch(`/api/submissions/${id}`, {
+      method: "DELETE",
+      headers: { "x-admin-password": storedPwd, "x-admin-action": "1" },
+    });
     if (res.ok) {
       const sub = submissions.find((s) => s.id === id);
       if (sub) {
@@ -129,7 +129,10 @@ export default function SubmissionsPage() {
   };
 
   const restore = async (id: string) => {
-    const res = await fetch(`/api/submissions/${id}`, { method: "POST", headers: { "x-admin-password": storedPwd } });
+    const res = await fetch(`/api/submissions/${id}`, {
+      method: "POST",
+      headers: { "x-admin-password": storedPwd, "x-admin-action": "1" },
+    });
     if (res.ok) {
       const sub = trashed.find((s) => s.id === id);
       if (sub) {
@@ -143,14 +146,20 @@ export default function SubmissionsPage() {
 
   const permanentDelete = async (id: string) => {
     if (!confirm("Permanently delete? This cannot be undone.")) return;
-    const res = await fetch(`/api/submissions/${id}?permanent=1`, { method: "DELETE", headers: { "x-admin-password": storedPwd } });
+    const res = await fetch(`/api/submissions/${id}?permanent=1`, {
+      method: "DELETE",
+      headers: { "x-admin-password": storedPwd, "x-admin-action": "1" },
+    });
     if (res.ok) { setTrashed((p) => p.filter((s) => s.id !== id)); showToast("Permanently deleted"); }
     else showToast("Failed", true);
   };
 
   const emptyTrashAll = async () => {
     if (!confirm(`Permanently delete all ${trashed.length} items in Trash?`)) return;
-    const res = await fetch("/api/submissions/empty-trash", { method: "DELETE", headers: { "x-admin-password": storedPwd } });
+    const res = await fetch("/api/submissions/empty-trash", {
+      method: "DELETE",
+      headers: { "x-admin-password": storedPwd, "x-admin-action": "1" },
+    });
     if (res.ok) { setTrashed([]); showToast("Trash emptied"); }
     else showToast("Failed", true);
   };
@@ -194,7 +203,11 @@ export default function SubmissionsPage() {
       if (entries.length === 0) { showToast("No rows found in CSV", true); return; }
       const res = await fetch("/api/submissions", {
         method: "POST",
-        headers: { "x-admin-password": storedPwd, "Content-Type": "application/json" },
+        headers: {
+          "x-admin-password": storedPwd,
+          "x-admin-action": "1",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ entries }),
       });
       if (res.ok) {
@@ -232,7 +245,7 @@ export default function SubmissionsPage() {
         <div style={s.loginCard}>
           <div style={s.logo}>📋</div>
           <h1 style={s.title}>Form Submissions</h1>
-          <p style={s.subtitle}>TutorExel — Admin Access</p>
+          <p style={s.subtitle}>TutorExel: Admin Access</p>
           <label style={s.label}>Admin Password</label>
           <input style={s.input} type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleLogin()} placeholder="Enter password" autoFocus />
           {loginError && <p style={{ color: "#b91c1c", fontSize: 13, marginTop: 8 }}>{loginError}</p>}
@@ -250,7 +263,7 @@ export default function SubmissionsPage() {
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
           <div>
-            <h1 style={{ fontSize: 24, fontWeight: 700, color: "#111827", margin: 0 }}>TutorExel — Form Submissions</h1>
+            <h1 style={{ fontSize: 24, fontWeight: 700, color: "#111827", margin: 0 }}>TutorExel: Form Submissions</h1>
             <p style={{ fontSize: 14, color: "#6b7280", margin: "4px 0 0" }}>
               {submissions.length} submission{submissions.length !== 1 ? "s" : ""} · {trashed.length} in trash · auto-refreshes every 30s
             </p>
@@ -318,9 +331,9 @@ export default function SubmissionsPage() {
               <tbody>
                 {filtered.map((sub) => {
                   const d = sub.data;
-                  const name = String(d.parentName || d.fullName || d.name || "—");
-                  const email = String(d.email || "—");
-                  const phone = String(d.phone || "—");
+                  const name = String(d.parentName || d.fullName || d.name || "-");
+                  const email = String(d.email || "-");
+                  const phone = String(d.phone || "-");
                   return (
                     <tr key={sub.id} style={{ borderBottom: "1px solid #f3f4f6", background: "#fff" }}>
                       <td style={{ padding: "10px 12px", color: "#6b7280", whiteSpace: "nowrap" as const }}>

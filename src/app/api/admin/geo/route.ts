@@ -1,9 +1,9 @@
 /**
- * GeoGuard — Admin CRUD API
- * Protected by GEO_ADMIN_PASSWORD env var.
+ * GeoGuard: Admin CRUD API
+ * Protected by admin authentication.
  *
- * GET  /api/admin/geo          → returns full config
- * POST /api/admin/geo          → mutate config (actions below)
+ * GET  /api/admin/geo          -> returns full config
+ * POST /api/admin/geo          -> mutate config (actions below)
  *
  * POST actions:
  *   { action: "toggle" }
@@ -16,15 +16,12 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { readGeoConfig, writeGeoConfig } from "@/lib/geo-store";
+import { isAdminAuthed, isStateChangeAllowed } from "@/lib/admin-auth";
 
-function isAuthed(request: NextRequest): boolean {
-  const password = request.headers.get("x-admin-password");
-  const expected = process.env.GEO_ADMIN_PASSWORD || "Admin@123";
-  return !!password && password === expected;
-}
+export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
-  if (!isAuthed(request)) {
+  if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const config = await readGeoConfig();
@@ -32,16 +29,29 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  if (!isAuthed(request)) {
+  if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = (await request.json()) as {
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json(
+      { error: "Security check failed: missing required action header" },
+      { status: 403 }
+    );
+  }
+
+  let body: {
     action: string;
     ip?: string;
     code?: string;
     siteName?: string;
   };
+
+  try {
+    body = (await request.json()) as typeof body;
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
 
   let config;
   try {

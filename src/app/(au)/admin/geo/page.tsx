@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * GeoGuard — Admin Dashboard
+ * GeoGuard: Admin Dashboard
  * Route: /admin/geo
  * Protected by GEO_ADMIN_PASSWORD env var.
  */
@@ -133,6 +133,20 @@ export default function GeoAdminPage() {
       .then((r) => r.json())
       .then((d: { ip: string }) => setMyIP(d.ip))
       .catch(() => setMyIP("unknown"));
+
+    // Check if session cookie is already valid
+    fetch("/api/admin/geo")
+      .then((res) => {
+        if (!res.ok) return null;
+        return res.json();
+      })
+      .then((data: GeoConfig | null) => {
+        if (data) {
+          setConfig(data);
+          setAuthed(true);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   function showToast(msg: string) {
@@ -147,6 +161,7 @@ export default function GeoAdminPage() {
         headers: {
           "Content-Type": "application/json",
           "x-admin-password": password,
+          "x-admin-action": "1",
         },
         body: body ? JSON.stringify(body) : undefined,
       });
@@ -165,7 +180,7 @@ export default function GeoAdminPage() {
         setConfig(data);
         setAuthed(true);
       } else {
-        setLoginError("Incorrect password. Check GEO_ADMIN_PASSWORD env var.");
+        setLoginError("Incorrect password. Check ADMIN_PASSWORD env var.");
       }
     } catch {
       setLoginError("Could not connect to API.");
@@ -186,7 +201,7 @@ export default function GeoAdminPage() {
         showToast(err.error || `Save failed (HTTP ${res.status})`);
       }
     } catch {
-      showToast("Error saving — check connection.");
+      showToast("Error saving: check connection.");
     }
     setLoading(false);
   }
@@ -253,7 +268,7 @@ export default function GeoAdminPage() {
           <div style={{ marginBottom: 12 }}>
             {config.allowedCountries.length === 0 && (
               <span style={{ color: "#9ca3af", fontStyle: "italic", fontSize: 14 }}>
-                No countries set — everyone is blocked!
+                No countries set: everyone is blocked!
               </span>
             )}
             {config.allowedCountries.map((code) => (
@@ -298,7 +313,7 @@ export default function GeoAdminPage() {
           </div>
         </div>
 
-        {/* Test Mode — simulate a country for debugging */}
+        {/* Test Mode: simulate a country for debugging */}
         <div style={s.section}>
           <p style={s.sectionTitle}>
             Test Mode
@@ -367,7 +382,7 @@ export default function GeoAdminPage() {
         <div style={s.lastSection}>
           <p style={s.sectionTitle}>Whitelisted IPs</p>
           <p style={s.sectionHint}>
-            These IP addresses bypass geo-blocking — always allowed regardless of country.
+            These IP addresses bypass geo-blocking: always allowed regardless of country.
           </p>
 
           {config.whitelistedIPs.length === 0 && (

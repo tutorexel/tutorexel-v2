@@ -4,7 +4,7 @@ import {
   renderUrlSetXml,
 } from "@/data/sitemap-config";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export async function GET() {
   const urls = await getRegionSitemapUrls("ca");

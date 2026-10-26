@@ -5,7 +5,7 @@ import {
   permanentDeleteSubmission,
   emptyTrash,
 } from "@/lib/submissions-store";
-import { isAdminAuthed } from "@/lib/admin-auth";
+import { isAdminAuthed, isStateChangeAllowed } from "@/lib/admin-auth";
 
 export async function DELETE(
   request: NextRequest,
@@ -13,6 +13,9 @@ export async function DELETE(
 ) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json({ error: "Missing required security header" }, { status: 403 });
   }
   const { id } = await params;
 
@@ -36,6 +39,9 @@ export async function POST(
 ) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json({ error: "Missing required security header" }, { status: 403 });
   }
   const { id } = await params;
   const ok = await restoreSubmission(id);

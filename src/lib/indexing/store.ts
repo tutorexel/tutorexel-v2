@@ -48,3 +48,47 @@ export async function markSent(entries: { url: string; stamp: string }[]): Promi
   entries.forEach((e) => p.set(sentKey(e.url), e.stamp));
   await p.exec();
 }
+
+export interface SubmissionRecord {
+  url: string;
+  time: string;
+  engine: "IndexNow" | "Google" | "Both";
+  status: string;
+}
+
+const HISTORY_KEY = "idx:history:log";
+
+export async function logSubmissions(records: SubmissionRecord[]): Promise<void> {
+  if (!kv || records.length === 0) return;
+  try {
+    const p = kv.pipeline();
+    for (const r of records) {
+      p.lpush(HISTORY_KEY, JSON.stringify(r));
+    }
+    p.ltrim(HISTORY_KEY, 0, 49); // keep last 50
+    await p.exec();
+  } catch {
+    // Non-fatal if Redis write fails
+  }
+}
+
+export async function getSubmissionHistory(): Promise<SubmissionRecord[]> {
+  if (!kv) return [];
+  try {
+    const raw = await kv.lrange<string | SubmissionRecord>(HISTORY_KEY, 0, 49);
+    if (!raw || raw.length === 0) return [];
+    return raw.map((item) => {
+      if (typeof item === "string") {
+        try {
+          return JSON.parse(item) as SubmissionRecord;
+        } catch {
+          return { url: item, time: "", engine: "IndexNow", status: "Unknown" };
+        }
+      }
+      return item as SubmissionRecord;
+    });
+  } catch {
+    return [];
+  }
+}
+

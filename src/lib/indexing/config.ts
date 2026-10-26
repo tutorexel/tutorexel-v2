@@ -6,9 +6,10 @@ export const SITE_HOST = new URL(SITE_URL).host;
 // Google default quota: 200 publish calls per day per Cloud project (URL_UPDATED + URL_DELETED combined).
 export const GOOGLE_DAILY_LIMIT = Number(process.env.GOOGLE_INDEXING_DAILY_LIMIT ?? 200);
 
-// Optional: only send URLs matching this regex to Google (e.g. "/careers/" for JobPosting pages only).
-// Leave unset to send every eligible URL. IndexNow always gets every eligible URL.
-export const GOOGLE_INCLUDE = process.env.GOOGLE_INDEXING_INCLUDE ? new RegExp(process.env.GOOGLE_INDEXING_INCLUDE) : null;
+// When unset, only URLs matching /careers/ go to Google (safe default for JobPosting pages only).
+export const GOOGLE_INCLUDE = process.env.GOOGLE_INDEXING_INCLUDE
+  ? new RegExp(process.env.GOOGLE_INDEXING_INCLUDE)
+  : /\/careers\//;
 
 // Never submit these (utility, noindex, form steps).
 export const EXCLUDE: RegExp[] = [

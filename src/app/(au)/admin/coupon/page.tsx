@@ -1,10 +1,10 @@
 "use client";
 
 /**
- * Coupons — Admin Dashboard
+ * Coupons: Admin Dashboard
  * Route: /admin/coupon
- * Protected by COUPONS_ADMIN_PASSWORD (falls back to GEO_ADMIN_PASSWORD).
- * Mirrors the GeoGuard admin look & feel.
+ * Protected by master admin password.
+ * Mirrors the GeoGuard admin look and feel.
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -159,9 +159,9 @@ function formatDiscount(c: Coupon): string {
 }
 
 function formatExpiry(iso: string | null): string {
-  if (!iso) return "—";
+  if (!iso) return "-";
   const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return "—";
+  if (Number.isNaN(d.getTime())) return "-";
   return d.toISOString().slice(0, 10);
 }
 
@@ -203,6 +203,7 @@ export default function CouponAdminPage() {
         headers: {
           "Content-Type": "application/json",
           "x-admin-password": storedPwd,
+          "x-admin-action": "1",
           ...(init?.headers ?? {}),
         },
       });
@@ -227,22 +228,20 @@ export default function CouponAdminPage() {
     if (authed) load();
   }, [authed, load]);
 
-  // Restore session on mount — sessionStorage clears when the tab is closed
+  // Restore session on mount: check cookie first or sessionStorage
   useEffect(() => {
-    const saved = sessionStorage.getItem(SESSION_KEY);
-    if (!saved) return;
-    fetch("/api/admin/coupons", { headers: { "x-admin-password": saved } })
+    fetch("/api/admin/coupons")
       .then((res) => {
-        if (!res.ok) { sessionStorage.removeItem(SESSION_KEY); return null; }
+        if (!res.ok) return null;
         return res.json();
       })
       .then((data) => {
-        if (!data) return;
-        setStoredPwd(saved);
-        setCoupons((data as { coupons: Coupon[] }).coupons);
-        setAuthed(true);
+        if (data && (data as { coupons: Coupon[] }).coupons) {
+          setCoupons((data as { coupons: Coupon[] }).coupons);
+          setAuthed(true);
+        }
       })
-      .catch(() => sessionStorage.removeItem(SESSION_KEY));
+      .catch(() => {});
   }, []);
 
   async function login() {
@@ -586,7 +585,7 @@ export default function CouponAdminPage() {
 
           {coupons.length === 0 ? (
             <p style={{ color: "#9ca3af", fontStyle: "italic", fontSize: 14, marginTop: 12 }}>
-              No coupons yet — create your first one above.
+              No coupons yet: create your first one above.
             </p>
           ) : (
             <div style={{ overflowX: "auto" }}>

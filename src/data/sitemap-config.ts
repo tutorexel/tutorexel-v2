@@ -1,6 +1,7 @@
 import { PAGE_AVAILABILITY, INDEX_YEAR_8_10, type RegionCode } from "@/data/page-availability";
 import { REGION_LOCALE_MAP, type Region } from "@/utils/seo";
 import { getAllSlugsForSitemap } from "@/lib/blog-data";
+import { safeRedisGet } from "@/lib/admin-redis";
 
 export const STATIC_LAST_MODIFIED = "2026-10-13T00:00:00+10:00";
 export const SITEMAP_BASE_URL = "https://www.tutorexel.com";
@@ -16,7 +17,7 @@ const PAGE_LASTMOD_MAP: Record<string, string> = {
 
 export const SITEMAP_RESPONSE_HEADERS = {
   "Content-Type": "application/xml; charset=utf-8",
-  "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+  "Cache-Control": "public, max-age=300, s-maxage=300, stale-while-revalidate=86400",
 };
 
 const EXCLUDED_PATHS = new Set([
@@ -81,13 +82,29 @@ export function getRegionalUrl(path: string, region: RegionCode): string {
 export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapUrlEntry[]> {
   const result: SitemapUrlEntry[] = [];
 
+  // Fetch Redis exclusions and custom URLs safely
+  let redisExcluded = new Set<string>();
+  try {
+    const stored = await safeRedisGet<string[]>("seo:sitemap:excluded", []);
+    if (Array.isArray(stored)) {
+      redisExcluded = new Set(stored);
+    }
+  } catch {
+    // Fail safe to built-in EXCLUDED_PATHS
+  }
+
   // 1. Static and registered pages from PAGE_AVAILABILITY for this region
   for (const entry of PAGE_AVAILABILITY) {
     if (!entry.regions.includes(region)) {
       continue;
     }
 
-    if (EXCLUDED_PATHS.has(entry.path)) {
+    if (EXCLUDED_PATHS.has(entry.path) || redisExcluded.has(entry.path)) {
+      continue;
+    }
+
+    const pageUrl = getRegionalUrl(entry.path, region);
+    if (redisExcluded.has(pageUrl)) {
       continue;
     }
 
@@ -100,7 +117,7 @@ export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapU
     const clusterLanguages: Record<string, string> = {};
     if (isUnique) {
       const locale = REGION_LOCALE_MAP[region as Region];
-      clusterLanguages[locale] = getRegionalUrl(entry.path, region);
+      clusterLanguages[locale] = pageUrl;
     } else {
       for (const reg of entry.regions) {
         const locale = REGION_LOCALE_MAP[reg as Region];
@@ -110,9 +127,7 @@ export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapU
       clusterLanguages["x-default"] = getRegionalUrl(entry.path, defaultRegion);
     }
 
-    const pageUrl = getRegionalUrl(entry.path, region);
     const images = PAGE_IMAGES_MAP[entry.path] || [];
-
     const pageLastmod = PAGE_LASTMOD_MAP[entry.path] || STATIC_LAST_MODIFIED;
 
     result.push({
@@ -148,6 +163,10 @@ export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapU
     for (const post of validPosts) {
       const prefix = region === "au" ? "" : `/${region}`;
       const postUrl = `${SITEMAP_BASE_URL}${prefix}/blog/${post.slug}`;
+
+      if (redisExcluded.has(postUrl) || redisExcluded.has(`/blog/${post.slug}`)) {
+        continue;
+      }
 
       let lastmod = STATIC_LAST_MODIFIED;
       if (post._updatedAt) {
@@ -192,6 +211,28 @@ export async function getRegionSitemapUrls(region: RegionCode): Promise<SitemapU
     }
   } catch (err) {
     console.warn(`[Sitemap] Failed to fetch blog posts for region ${region}:`, err);
+  }
+
+  // 3. Custom URLs added via Admin Panel
+  try {
+    const customList = await safeRedisGet<Array<{ loc: string; lastmod: string }>>(
+      `seo:sitemap:custom:${region}`,
+      []
+    );
+    if (Array.isArray(customList)) {
+      for (const item of customList) {
+        if (item.loc && !redisExcluded.has(item.loc)) {
+          result.push({
+            loc: item.loc,
+            lastmod: item.lastmod || STATIC_LAST_MODIFIED,
+            images: [],
+            alternates: {},
+          });
+        }
+      }
+    }
+  } catch {
+    // Fail safe
   }
 
   return result;

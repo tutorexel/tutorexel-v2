@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllSubmissions, getTrashedSubmissions, logSubmission } from "@/lib/submissions-store";
-import { isAdminAuthed } from "@/lib/admin-auth";
+import { isAdminAuthed, isStateChangeAllowed } from "@/lib/admin-auth";
 
 export async function GET(request: NextRequest) {
   if (!isAdminAuthed(request)) {
@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   if (!isAdminAuthed(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (!isStateChangeAllowed(request)) {
+    return NextResponse.json({ error: "Missing required security header" }, { status: 403 });
   }
   const body = await request.json();
   const { entries } = body as { entries: Array<{ type: string; data: Record<string, string> }> };

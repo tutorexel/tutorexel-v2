@@ -1,5 +1,5 @@
 // GA4 Event Tracking Utility
-// Measurement ID: G-C2VFSLJF3K
+// Measurement ID: G-29V3DPRHE3
 
 type GtagEvent = {
   action: string;

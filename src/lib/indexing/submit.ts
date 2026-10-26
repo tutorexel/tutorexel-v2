@@ -13,12 +13,21 @@ export interface SubmitOptions {
   force?: boolean; // resend even if already sent with the same lastmod
   google?: boolean;
   indexnow?: boolean;
+  ignoreGoogleInclude?: boolean; // send all URLs to Google, bypassing /careers/ filter
 }
 
 export interface SubmitSummary {
   received: number;
   eligible: number;
-  google: { sent: number; ok: number; failed: GoogleResult[]; skippedAlreadySent: number; deferredByQuota: number; quotaUsedToday: number };
+  google: {
+    sent: number;
+    ok: number;
+    failed: GoogleResult[];
+    results: GoogleResult[];
+    skippedAlreadySent: number;
+    deferredByQuota: number;
+    quotaUsedToday: number;
+  };
   indexnow: { submitted: number; status: number | null };
 }
 
@@ -38,14 +47,22 @@ export async function submit(items: SubmitItem[], opts: SubmitOptions = {}): Pro
   const summary: SubmitSummary = {
     received: items.length,
     eligible: eligible.length,
-    google: { sent: 0, ok: 0, failed: [], skippedAlreadySent: 0, deferredByQuota: 0, quotaUsedToday: 0 },
+    google: {
+      sent: 0,
+      ok: 0,
+      failed: [],
+      results: [],
+      skippedAlreadySent: 0,
+      deferredByQuota: 0,
+      quotaUsedToday: 0,
+    },
     indexnow: { submitted: 0, status: null },
   };
 
   if (useGoogle) {
     const sent = await getSent(eligible);
     const queue = eligible.filter((u) => {
-      if (GOOGLE_INCLUDE && !GOOGLE_INCLUDE.test(u)) return false;
+      if (!opts.ignoreGoogleInclude && GOOGLE_INCLUDE && !GOOGLE_INCLUDE.test(u)) return false;
       if (opts.force || type === "URL_DELETED") return true;
       const prev = sent.get(u);
       const lm = map.get(u);
@@ -63,6 +80,7 @@ export async function submit(items: SubmitItem[], opts: SubmitOptions = {}): Pro
       const results = await Promise.all(batch.slice(i, i + 5).map((u) => publish(u, type)));
       for (const r of results) {
         summary.google.sent++;
+        summary.google.results.push(r);
         if (r.ok) {
           summary.google.ok++;
           done.push({ url: r.url, stamp: map.get(r.url) ?? new Date().toISOString() });
