@@ -11,7 +11,7 @@ import {
   type SubmissionRecord,
 } from "@/lib/indexing/store";
 import { submit, type SubmitItem, type SubmitOptions } from "@/lib/indexing/submit";
-import { GOOGLE_DAILY_LIMIT, SITE_HOST } from "@/lib/indexing/config";
+import { GOOGLE_DAILY_LIMIT, SITE_HOST, normalise } from "@/lib/indexing/config";
 
 export const runtime = "nodejs";
 
@@ -94,6 +94,10 @@ export async function POST(request: NextRequest) {
             { status: 400 }
           );
         }
+        if (u.hostname === "tutorexel.com" || u.hostname === "www.tutorexel.com") {
+          u.hostname = SITE_HOST;
+          u.protocol = "https:";
+        }
         itemsToSubmit.push({ url: u.toString() });
       } catch {
         return NextResponse.json(
@@ -126,31 +130,53 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  const eligibleSet = new Set(summary.eligibleUrls ?? []);
+
   // Create log entries for submitted URLs (up to 50)
   for (const item of itemsToSubmit.slice(0, 50)) {
-    const gRes = googleResultsMap.get(item.url);
+    const norm = normalise(item.url);
+    const isEligible = Boolean(norm && eligibleSet.has(norm));
+    const finalUrl = norm ?? item.url;
+    const gRes = googleResultsMap.get(finalUrl) ?? googleResultsMap.get(item.url);
+
     let engine: "IndexNow" | "Google" | "Both" = "IndexNow";
-    if (google && gRes) {
-      engine = "Both";
-    } else if (google && !indexNowConfigured()) {
+    if (google && !indexNowConfigured()) {
       engine = "Google";
+    } else if (google) {
+      engine = "Both";
     }
 
-    let statusText = "";
-    if (summary.indexnow.submitted > 0) {
-      statusText += `IndexNow: ${summary.indexnow.status || 200}`;
+    const parts: string[] = [];
+
+    if (engine === "IndexNow" || engine === "Both") {
+      if (!indexNowConfigured()) {
+        parts.push("IndexNow: Key missing");
+      } else if (!isEligible) {
+        parts.push("IndexNow: Filtered (ineligible)");
+      } else if (summary.indexnow.submitted > 0 && summary.indexnow.status !== null) {
+        parts.push(`IndexNow: ${summary.indexnow.status}`);
+      } else if (summary.indexnow.error) {
+        parts.push(`IndexNow: Error (${summary.indexnow.error})`);
+      } else {
+        parts.push("IndexNow: Not submitted");
+      }
     }
-    if (gRes) {
-      statusText += `${statusText ? " | " : ""}Google: ${gRes.ok ? 200 : gRes.status}${gRes.error ? ` (${gRes.error})` : ""}`;
-    } else if (google) {
-      statusText += `${statusText ? " | " : ""}Google: Skipped or queued`;
+
+    if (engine === "Google" || engine === "Both") {
+      if (gRes) {
+        parts.push(`Google: ${gRes.ok ? 200 : gRes.status}${gRes.error ? ` (${gRes.error})` : ""}`);
+      } else if (google) {
+        parts.push("Google: Skipped or queued");
+      }
     }
+
+    const statusText = parts.join(" | ");
 
     records.push({
-      url: item.url,
+      url: finalUrl,
       time: timestamp,
       engine,
-      status: statusText || "Processed",
+      status: statusText || "Skipped",
     });
   }
 

@@ -22,7 +22,15 @@ export const EXCLUDE: RegExp[] = [
 
 export function normalise(raw: string): string | null {
   try {
-    const u = new URL(raw.trim(), SITE_URL);
+    let clean = raw.trim();
+    if (!clean.startsWith("http://") && !clean.startsWith("https://")) {
+      clean = `https://${clean}`;
+    }
+    const u = new URL(clean, SITE_URL);
+    if (u.hostname === "tutorexel.com" || u.hostname === "www.tutorexel.com") {
+      u.hostname = SITE_HOST;
+      u.protocol = "https:";
+    }
     if (u.host !== SITE_HOST || u.protocol !== "https:") return null;
     u.hash = "";
     u.search = "";

@@ -1,6 +1,6 @@
 import { GOOGLE_DAILY_LIMIT, GOOGLE_INCLUDE, normalise, priority } from "./config";
 import { googleConfigured, publish, type GoogleResult, type NotificationType } from "./google";
-import { indexNowConfigured, submitIndexNow } from "./indexnow";
+import { indexNowConfigured, submitIndexNow, type IndexNowResult } from "./indexnow";
 import { addUsage, getSent, markSent, usedToday } from "./store";
 
 export interface SubmitItem {
@@ -19,6 +19,7 @@ export interface SubmitOptions {
 export interface SubmitSummary {
   received: number;
   eligible: number;
+  eligibleUrls?: string[];
   google: {
     sent: number;
     ok: number;
@@ -28,7 +29,7 @@ export interface SubmitSummary {
     deferredByQuota: number;
     quotaUsedToday: number;
   };
-  indexnow: { submitted: number; status: number | null };
+  indexnow: IndexNowResult;
 }
 
 export async function submit(items: SubmitItem[], opts: SubmitOptions = {}): Promise<SubmitSummary> {
@@ -47,6 +48,7 @@ export async function submit(items: SubmitItem[], opts: SubmitOptions = {}): Pro
   const summary: SubmitSummary = {
     received: items.length,
     eligible: eligible.length,
+    eligibleUrls: eligible,
     google: {
       sent: 0,
       ok: 0,
@@ -101,6 +103,12 @@ export async function submit(items: SubmitItem[], opts: SubmitOptions = {}): Pro
 
   if (useIndexNow) {
     summary.indexnow = await submitIndexNow(eligible);
+  } else if (opts.indexnow !== false && !indexNowConfigured()) {
+    summary.indexnow = {
+      submitted: 0,
+      status: null,
+      error: "INDEXNOW_KEY not configured",
+    };
   }
 
   return summary;
