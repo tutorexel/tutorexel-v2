@@ -59,36 +59,90 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 301 Redirect sample articles to new slugs
-  if (pathname === "/us/blog/sample-article-us") {
-    return NextResponse.redirect(new URL("/us/blog/students-benefit-from-extra-maths-support-usa" + search, request.url), 301);
+  const cleanPath = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
+  // 1. Specific 301 redirects
+
+  // Exception: Canadian math blog on AU path maps to CA
+  if (cleanPath === "/au/blog/how-online-math-tutoring-helps-canadian-students-excel") {
+    return NextResponse.redirect(new URL("/ca/blog/how-online-math-tutoring-helps-canadian-students-excel" + search, request.url), 301);
   }
-  if (pathname === "/ca/blog/sample-article-ca") {
-    return NextResponse.redirect(new URL("/ca/blog/students-benefit-from-extra-maths-support-canada" + search, request.url), 301);
+
+  // Sample articles redirect to their region's blog index
+  const sampleArticleMatch = cleanPath.match(/^\/(?:(au|nz|ca|us)\/)?blog\/sample-article.*$/);
+  if (sampleArticleMatch) {
+    const reg = sampleArticleMatch[1]?.toLowerCase();
+    const target = reg && reg !== "au" ? `/${reg}/blog` : "/blog";
+    return NextResponse.redirect(new URL(target + search, request.url), 301);
   }
-  if (pathname === "/nz/blog/sample-article-nz") {
-    return NextResponse.redirect(new URL("/nz/blog/students-benefit-from-extra-maths-support-new-zealand" + search, request.url), 301);
+
+  // Out-of-region assessment blog posts redirect to their region's blog index
+  if (cleanPath === "/nz/blog/stress-to-strategy-naplan-icas-prep-saves-time") {
+    return NextResponse.redirect(new URL("/nz/blog" + search, request.url), 301);
+  }
+  if (cleanPath === "/ca/blog/why-national-assessments-matter-naplan-icas") {
+    return NextResponse.redirect(new URL("/ca/blog" + search, request.url), 301);
+  }
+
+  // Specific path redirects
+  if (cleanPath === "/term-condition") {
+    return NextResponse.redirect(new URL("/terms" + search, request.url), 301);
+  }
+  if (cleanPath === "/prep-zone/naplan") {
+    return NextResponse.redirect(new URL("/exam-prep/naplan" + search, request.url), 301);
+  }
+  if (cleanPath === "/subjects/science") {
+    return NextResponse.redirect(new URL("/subjects" + search, request.url), 301);
+  }
+
+  // Legacy blog ID redirect (these 22 legacy posts are Australian articles)
+  const blogMatch = cleanPath.match(/^\/(?:au\/)?blog\/(\d+)$/);
+  if (blogMatch) {
+    const slug = oldIdToSlug[blogMatch[1]];
+    if (slug) {
+      return NextResponse.redirect(new URL(`/blog/${slug}` + search, request.url), 301);
+    }
+  }
+
+  // /au and /au/* redirect to the same path without /au (single-hop 301)
+  if (cleanPath === "/au") {
+    return NextResponse.redirect(new URL("/" + search, request.url), 301);
+  }
+  if (cleanPath.startsWith("/au/")) {
+    const rest = cleanPath.slice(3) || "/";
+    if (rest === "/term-condition") {
+      return NextResponse.redirect(new URL("/terms" + search, request.url), 301);
+    }
+    if (rest === "/prep-zone/naplan") {
+      return NextResponse.redirect(new URL("/exam-prep/naplan" + search, request.url), 301);
+    }
+    if (rest === "/subjects/science") {
+      return NextResponse.redirect(new URL("/subjects" + search, request.url), 301);
+    }
+    return NextResponse.redirect(new URL(rest + search, request.url), 301);
+  }
+
+  // Redirect /us/grade-N and /ca/grade-N to /subjects/grade-N, and /nz/year-N to /nz/subjects/year-N
+  const usGradeMatch = cleanPath.match(/^\/us\/grade-(\d+)$/i);
+  if (usGradeMatch) {
+    return NextResponse.redirect(new URL(`/us/subjects/grade-${usGradeMatch[1]}` + search, request.url), 301);
+  }
+  const caGradeMatch = cleanPath.match(/^\/ca\/grade-(\d+)$/i);
+  if (caGradeMatch) {
+    return NextResponse.redirect(new URL(`/ca/subjects/grade-${caGradeMatch[1]}` + search, request.url), 301);
+  }
+  const nzYearMatch = cleanPath.match(/^\/nz\/year-(\d+)$/i);
+  if (nzYearMatch) {
+    return NextResponse.redirect(new URL(`/nz/subjects/year-${nzYearMatch[1]}` + search, request.url), 301);
   }
 
   let response: NextResponse | null = null;
 
-  // 1. Handle trailing slashes and /au redirects in a single hop
+  // Trailing slash redirect for normal paths (308 redirect)
   if (pathname.length > 1 && pathname.endsWith("/")) {
-    const clean = pathname.slice(0, -1);
-    if (clean === "/au") {
-      response = NextResponse.redirect(new URL("/" + search, request.url), 301);
-    } else if (clean.startsWith("/au/")) {
-      response = NextResponse.redirect(new URL((clean.slice(3) || "/") + search, request.url), 301);
-    } else {
-      response = NextResponse.redirect(new URL(clean + search, request.url), 308);
-    }
-  } else if (pathname === "/au") {
-    // 2. Legacy /au paths (no trailing slash) redirect straight to AU root equivalent (single-hop 301)
-    response = NextResponse.redirect(new URL("/" + search, request.url), 301);
-  } else if (pathname.startsWith("/au/")) {
-    response = NextResponse.redirect(new URL((pathname.slice(3) || "/") + search, request.url), 301);
+    response = NextResponse.redirect(new URL(cleanPath + search, request.url), 308);
   } else {
-    // 3. Check if region-prefixed URL is not registered for that region (307 redirect to region homepage)
+    // Check if region-prefixed URL is not registered for that region (307 redirect to region homepage)
     const regionMatch = pathname.match(/^\/(us|ca|nz)(\/.*)?$/i);
     if (regionMatch) {
       const region = regionMatch[1].toLowerCase() as RegionCode;
@@ -107,31 +161,6 @@ export function middleware(request: NextRequest) {
         const entry = PAGE_AVAILABILITY.find((p) => p.path === clean);
         if (entry && !entry.regions.includes(region)) {
           response = NextResponse.redirect(new URL(`/${region}` + search, request.url), 307);
-        }
-      }
-    }
-
-    if (!response) {
-      // 4. Redirect /us/grade-N and /ca/grade-N to their respective /subjects/grade-N, and /nz/year-N to /nz/subjects/year-N
-      const usGradeMatch = pathname.match(/^\/us\/grade-(\d+)$/i);
-      if (usGradeMatch) {
-        response = NextResponse.redirect(new URL(`/us/subjects/grade-${usGradeMatch[1]}` + search, request.url), 301);
-      }
-      const caGradeMatch = pathname.match(/^\/ca\/grade-(\d+)$/i);
-      if (caGradeMatch) {
-        response = NextResponse.redirect(new URL(`/ca/subjects/grade-${caGradeMatch[1]}` + search, request.url), 301);
-      }
-      const nzYearMatch = pathname.match(/^\/nz\/year-(\d+)$/i);
-      if (nzYearMatch) {
-        response = NextResponse.redirect(new URL(`/nz/subjects/year-${nzYearMatch[1]}` + search, request.url), 301);
-      }
-
-      // 5. Legacy blog ID redirect (these 22 legacy posts are Australian articles)
-      const blogMatch = pathname.match(/^\/(?:au\/)?blog\/(\d+)$/);
-      if (blogMatch) {
-        const slug = oldIdToSlug[blogMatch[1]];
-        if (slug) {
-          response = NextResponse.redirect(new URL(`/blog/${slug}` + search, request.url), 301);
         }
       }
     }

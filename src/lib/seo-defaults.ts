@@ -17,12 +17,14 @@ User-agent: Meta-ExternalAgent
 User-agent: MistralAI-User
 User-agent: CCBot
 Allow: /
+Allow: /_next/static/
 Disallow: /api/
 Disallow: /admin
 Disallow: /admin/
 
 User-agent: *
 Allow: /
+Allow: /_next/static/
 Disallow: /api/
 Disallow: /admin
 Disallow: /admin/
